@@ -41,6 +41,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AplicacionBL.cs" />
+    <Compile Include="BLCargos.cs" />
+    <Compile Include="BLDepartamento.cs" />
+    <Compile Include="BLDisenos.cs" />
+    <Compile Include="BLDistrito.cs" />
+    <Compile Include="BLPeriodos.cs" />
+    <Compile Include="BLProvincia.cs" />
+    <Compile Include="BLProyectos.cs" />
+    <Compile Include="BLReplamento.cs" />
+    <Compile Include="BLTasaCrecimiento.cs" />
+    <Compile Include="BLTipoDiseno.cs" />
+    <Compile Include="BLTipoPavimento.cs" />
+    <Compile Include="BLTramo.cs" />
+    <Compile Include="BLUsuario.cs" />
     <Compile Include="DisenoBL.cs" />
     <Compile Include="GenericBL.cs" />
     <Compile Include="ProyectoBL.cs" />

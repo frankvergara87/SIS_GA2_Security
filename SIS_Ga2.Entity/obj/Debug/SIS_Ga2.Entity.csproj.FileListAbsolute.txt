@@ -45,3 +45,9 @@ C:\Users\Frank\source\repos\Aashto\Replica\SIS_Ga2.Entity\obj\Debug\SIS_Ga2.Enti
 C:\Users\Frank\source\repos\Aashto\Replica\SIS_Ga2.Entity\obj\Debug\SIS_Ga2.Entity.csproj.CoreCompileInputs.cache
 C:\Users\Frank\source\repos\Aashto\Replica\SIS_Ga2.Entity\obj\Debug\SIS_Ga2.Entity.dll
 C:\Users\Frank\source\repos\Aashto\Replica\SIS_Ga2.Entity\obj\Debug\SIS_Ga2.Entity.pdb
+C:\Users\Lenovo\Source\Repos\Aashto\SIS_GA2_Security\SIS_Ga2.Entity\bin\Debug\SIS_Ga2.Entity.dll
+C:\Users\Lenovo\Source\Repos\Aashto\SIS_GA2_Security\SIS_Ga2.Entity\bin\Debug\SIS_Ga2.Entity.pdb
+C:\Users\Lenovo\Source\Repos\Aashto\SIS_GA2_Security\SIS_Ga2.Entity\obj\Debug\SIS_Ga2.Entity.csprojAssemblyReference.cache
+C:\Users\Lenovo\Source\Repos\Aashto\SIS_GA2_Security\SIS_Ga2.Entity\obj\Debug\SIS_Ga2.Entity.csproj.CoreCompileInputs.cache
+C:\Users\Lenovo\Source\Repos\Aashto\SIS_GA2_Security\SIS_Ga2.Entity\obj\Debug\SIS_Ga2.Entity.dll
+C:\Users\Lenovo\Source\Repos\Aashto\SIS_GA2_Security\SIS_Ga2.Entity\obj\Debug\SIS_Ga2.Entity.pdb
