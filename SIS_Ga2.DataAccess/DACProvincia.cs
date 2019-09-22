@@ -21,7 +21,7 @@ namespace SIS_Ga2.DataAccess
                 SqlManager objSql = new SqlManager(ConfigurationManager.AppSettings["ASOCEM"].ToString());
                 List<BEProvincia> lista = objSql.getStatement<BEProvincia>("[USP_Sel_Provincia]", param);
                 return lista;
-            }
+            } 
             catch (Exception ex)
             {
                 //Rutina de Guardado en Log 
