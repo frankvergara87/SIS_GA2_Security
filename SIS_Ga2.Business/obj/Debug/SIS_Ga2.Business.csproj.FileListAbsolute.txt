@@ -118,16 +118,3 @@ C:\Users\Lenovo\Source\Repos\Aashto\SIS_GA2_Security\SIS_Ga2.Business\obj\Debug\
 C:\Users\Lenovo\Source\Repos\Aashto\SIS_GA2_Security\SIS_Ga2.Business\obj\Debug\SIS_Ga2.Business.csproj.CopyComplete
 C:\Users\Lenovo\Source\Repos\Aashto\SIS_GA2_Security\SIS_Ga2.Business\obj\Debug\SIS_Ga2.Business.dll
 C:\Users\Lenovo\Source\Repos\Aashto\SIS_GA2_Security\SIS_Ga2.Business\obj\Debug\SIS_Ga2.Business.pdb
-C:\Gustavo\Proyecto\ASHTO\SIS_GA2_Security\SIS_Ga2.Business\bin\Debug\SIS_Ga2.Business.dll
-C:\Gustavo\Proyecto\ASHTO\SIS_GA2_Security\SIS_Ga2.Business\bin\Debug\SIS_Ga2.Business.pdb
-C:\Gustavo\Proyecto\ASHTO\SIS_GA2_Security\SIS_Ga2.Business\bin\Debug\SIS_Ga2.DataAccess.dll
-C:\Gustavo\Proyecto\ASHTO\SIS_GA2_Security\SIS_Ga2.Business\bin\Debug\SIS_Ga2.Entity.dll
-C:\Gustavo\Proyecto\ASHTO\SIS_GA2_Security\SIS_Ga2.Business\bin\Debug\DbManager.dll
-C:\Gustavo\Proyecto\ASHTO\SIS_GA2_Security\SIS_Ga2.Business\bin\Debug\CriptoSecurity.dll
-C:\Gustavo\Proyecto\ASHTO\SIS_GA2_Security\SIS_Ga2.Business\bin\Debug\SIS_Ga2.DataAccess.pdb
-C:\Gustavo\Proyecto\ASHTO\SIS_GA2_Security\SIS_Ga2.Business\bin\Debug\SIS_Ga2.Entity.pdb
-C:\Gustavo\Proyecto\ASHTO\SIS_GA2_Security\SIS_Ga2.Business\obj\Debug\SIS_Ga2.Business.csprojAssemblyReference.cache
-C:\Gustavo\Proyecto\ASHTO\SIS_GA2_Security\SIS_Ga2.Business\obj\Debug\SIS_Ga2.Business.csproj.CoreCompileInputs.cache
-C:\Gustavo\Proyecto\ASHTO\SIS_GA2_Security\SIS_Ga2.Business\obj\Debug\SIS_Ga2.Business.csproj.CopyComplete
-C:\Gustavo\Proyecto\ASHTO\SIS_GA2_Security\SIS_Ga2.Business\obj\Debug\SIS_Ga2.Business.dll
-C:\Gustavo\Proyecto\ASHTO\SIS_GA2_Security\SIS_Ga2.Business\obj\Debug\SIS_Ga2.Business.pdb

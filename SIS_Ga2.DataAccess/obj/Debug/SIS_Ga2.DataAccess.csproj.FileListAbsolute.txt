@@ -82,12 +82,3 @@ C:\Users\Lenovo\Source\Repos\Aashto\SIS_GA2_Security\SIS_Ga2.DataAccess\obj\Debu
 C:\Users\Lenovo\Source\Repos\Aashto\SIS_GA2_Security\SIS_Ga2.DataAccess\obj\Debug\SIS_Ga2.DataAccess.csproj.CopyComplete
 C:\Users\Lenovo\Source\Repos\Aashto\SIS_GA2_Security\SIS_Ga2.DataAccess\obj\Debug\SIS_Ga2.DataAccess.dll
 C:\Users\Lenovo\Source\Repos\Aashto\SIS_GA2_Security\SIS_Ga2.DataAccess\obj\Debug\SIS_Ga2.DataAccess.pdb
-C:\Gustavo\Proyecto\ASHTO\SIS_GA2_Security\SIS_Ga2.DataAccess\bin\Debug\SIS_Ga2.DataAccess.dll
-C:\Gustavo\Proyecto\ASHTO\SIS_GA2_Security\SIS_Ga2.DataAccess\bin\Debug\SIS_Ga2.DataAccess.pdb
-C:\Gustavo\Proyecto\ASHTO\SIS_GA2_Security\SIS_Ga2.DataAccess\bin\Debug\SIS_Ga2.Entity.dll
-C:\Gustavo\Proyecto\ASHTO\SIS_GA2_Security\SIS_Ga2.DataAccess\bin\Debug\SIS_Ga2.Entity.pdb
-C:\Gustavo\Proyecto\ASHTO\SIS_GA2_Security\SIS_Ga2.DataAccess\obj\Debug\SIS_Ga2.DataAccess.csprojAssemblyReference.cache
-C:\Gustavo\Proyecto\ASHTO\SIS_GA2_Security\SIS_Ga2.DataAccess\obj\Debug\SIS_Ga2.DataAccess.csproj.CoreCompileInputs.cache
-C:\Gustavo\Proyecto\ASHTO\SIS_GA2_Security\SIS_Ga2.DataAccess\obj\Debug\SIS_Ga2.DataAccess.csproj.CopyComplete
-C:\Gustavo\Proyecto\ASHTO\SIS_GA2_Security\SIS_Ga2.DataAccess\obj\Debug\SIS_Ga2.DataAccess.dll
-C:\Gustavo\Proyecto\ASHTO\SIS_GA2_Security\SIS_Ga2.DataAccess\obj\Debug\SIS_Ga2.DataAccess.pdb
