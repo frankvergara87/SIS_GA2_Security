@@ -1,133 +1,199 @@
-﻿@{
+﻿@using SIS_Ga2.Entity
+@using SIS_Ga2.Controllers
+@{
     ViewBag.Title = "Home Page";
 }
 
+    <script type="text/javascript">
+
+  // Inicialización
+
+  $(document).ready(function() {
+    $("#ddCategory").change(function() {
+      cambiaElementos($("#ddCategory").val());
+    });
+    cambiaElementos($("#ddCategory").val());
+  });
+
+  // Carga el desplegable de elementos en función
+  // de la categoría que le llega como parámetro.
+
+  function cambiaElementos(cat) {
+
+    var dd = document.getElementById("ddElement");
+    dd.options.length = 0;
+    dd.options[0] = new Option("Espere...");
+    dd.selectedIndex = 0;
+    dd.disabled = true;
+
+    // Control de errores
+
+    $("#ddElement").ajaxError(function(event, request, settings) {
+      dd.options[0] = new Option("Categoría incorrecta");
+    });
+
+    // Obtenemos los datos...
+
+    $.getJSON(
+        '<%= Url.Action("GetElements") %>', // URL a la acción
+        { category: cat },                  // Objeto JSON con parámetros
+        function(data) {                    // Función de retorno exitoso
+          $.each(data, function(i, item) {
+            dd.options[i] = new Option(item, item);
+          });
+          dd.disabled = false;
+        });
+    }
+    </script>
+
 <!-- Form Elements -->
-    <div class="col-lg-12">
-        <div class="card">
-            <div class="card-header d-flex align-items-center">
-                <h3 class="h4">Consulta: </h3>
-            </div>
-            <div class="card-body">
-                <form class="form-inline">
-                    <div class="form-group">
-                        <label for="inlineFormInput" class="sr-only">Proyecto</label>
-                        <input id="Proyecto" type="text" placeholder="Proyecto" class="mr-3 form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="inlineFormInput" class="sr-only">FechaProyecto</label>
-                        <input id="datetimepicker1" type="text" placeholder="Fecha Proyecto" class="mr-3 form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="inlineFormInput" class="sr-only">FechaContrato</label>
-                        <input id="datetimepicker2" type="text" placeholder="Fecha Contrato" class="mr-3 form-control">
-                    </div>
-                </form>
-                <br>
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-header d-flex align-items-center">
+            <h3 class="h4">Consulta: </h3>
+        </div>
+        <div class="card-body">
+            <form class="form-inline">
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary">Buscar</button>
+                    <label for="Proyecto">Proyecto</label>
+                    <input id="Proyecto" type="text" class="form-control" placeholder="Proyecto">
                 </div>
-            </div>
-        </div>
-        <div class="card">
-            <div class="card-header d-flex align-items-center">
-                <h3 class="h4">Proyectos: </h3>
-            </div>
-            <div class="card-body">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Nuevo</button>
-                <br>
-                <br>
-                <div class="table-responsive">
-                    <table class="table table-striped table-sm">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>First Name</th>
-                                <th>Last Name</th>
-                                <th>Username</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>twitter      </td>
-                            </tr>
-                            <tr>
-                                <th scope="row">4</th>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                <td>mdo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">5</th>
-                                <td>Jacob</td>
-                                <td>Thornton</td>
-                                <td>fat</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">6</th>
-                                <td>Larry</td>
-                                <td>the Bird</td>
-                                <td>twitter      </td>
-                            </tr>
-                        </tbody>
-                    </table>
+
+                <div class="form-group">
+                    <label for="Proyecto">Fecha Proyecto</label>
+                    <input id="datetimepicker1" type="text" placeholder="Fecha Proyecto" class="mr-3 form-control">
                 </div>
-            </div>
-        </div>
+                <div class="form-group">
+                    <label for="inlineFormInput" class="sr-only">Departamento</label>
 
-
-        <!-- Modal-->
-
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            @using (Html.BeginForm("FormRegistraProyecto", "Home", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
-            {
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Nuevo Proyecto</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <form>
-                            <div class="modal-body">
-
-                                <div class="form-group">
-                                    <label for="recipient-name" class="col-form-label">Recipient:</label>
-                                    <input type="text" class="form-control" id="recipient-name">
-                                </div>
-                                <div class="form-group">
-                                    <label for="recipient-name" class="col-form-label">Recipient:</label>
-                                    <input type="text" class="form-control" id="recipient-name">
-                                </div>                                <div class="form-group">
-                                    <label for="recipient-name" class="col-form-label">Recipient:</label>
-                                    <input type="text" class="form-control" id="recipient-name">
-                                </div>
-
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                <button type="submit" id="btnNuevo" class="btn btn-primary">Registrar</button>
-                            </div>
-                        </form>
-                    </div>
+                    @Html.DropDownList("idPeriodo", new HomeController().ComboDepartamento(0), new { @class = "form-control" })
                 </div>
-            }
+                <div class="form-group">
+                    <label for="inlineFormInput" class="sr-only">Provincia</label>
+                    @Html.DropDownList("idPeriodo", new HomeController().ComboProvincia(1), new { @class = "form-control" })
+                </div>
+                <div class="form-group">
+                    <label for="inlineFormInput" class="sr-only">Distrito</label>
+                    @Html.DropDownList("idPeriodo",new HomeController().ComboDistritos(1), new { @class = "form-control" })
+                </div>
+
+
+                <div class="form-group">
+                    <label for="inlineFormInput" class="sr-only">Provincia</label>
+                    <input id="datetimepicker2" type="text" placeholder="Fecha Contrato" class="mr-3 form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="inlineFormInput" class="sr-only">Distrito</label>
+                    <input id="datetimepicker2" type="text" placeholder="Fecha Contrato" class="mr-3 form-control">
+                </div>
+
+            </form>
+            <br>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">Buscar</button>
+            </div>
         </div>
     </div>
+    <div class="card">
+        <div class="card-header d-flex align-items-center">
+            <h3 class="h4">Proyectos: </h3>
+        </div>
+        <div class="card-body">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Nuevo</button>
+            <br>
+            <br>
+            <div class="table-responsive">
+                <table class="table table-striped table-sm">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Username</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>mdo</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            <td>fat</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Larry</td>
+                            <td>the Bird</td>
+                            <td>twitter      </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">4</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>mdo</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">5</th>
+                            <td>Jacob</td>
+                            <td>Thornton</td>
+                            <td>fat</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">6</th>
+                            <td>Larry</td>
+                            <td>the Bird</td>
+                            <td>twitter      </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal-->
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        @using (Html.BeginForm("FormRegistraProyecto", "Home", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Nuevo Proyecto</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form>
+                        <div class="modal-body">
+
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Recipient:</label>
+                                <input type="text" class="form-control" id="recipient-name">
+                            </div>
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Recipient:</label>
+                                <input type="text" class="form-control" id="recipient-name">
+                            </div>                                <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Recipient:</label>
+                                <input type="text" class="form-control" id="recipient-name">
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            <button type="submit" id="btnNuevo" class="btn btn-primary">Registrar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        }
+    </div>
+</div>
 

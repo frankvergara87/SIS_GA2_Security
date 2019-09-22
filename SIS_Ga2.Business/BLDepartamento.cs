@@ -9,19 +9,13 @@ using SIS_Ga2.DataAccess;
 
 namespace SIS_Ga2.Business
 {
-    public class BLDepartmento
+    public class BLDepartamento
     {
 
-        public List<BeDepartamento> ListarDepartamentoXID(int idDepartamento)
+        public List<BeDepartamento> ListarDepartamentos(int idDepartamento)
         {
             DACDepartamento objDAO = new DACDepartamento();
-            return objDAO.ListarDepartamentoXID(idDepartamento);
-        }
-
-        public List<BeDepartamento> ListarReglamentos()
-        {
-            DACDepartamento objDAO = new DACDepartamento();
-            return objDAO.ListarDepartamentos();
+            return objDAO.ListarDepartamentos(idDepartamento);
         }
     }
 }

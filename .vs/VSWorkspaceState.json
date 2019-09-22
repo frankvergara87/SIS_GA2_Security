@@ -1,7 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\SIS_Ga2.Entity"
+    "\\SIS_Ga2",
+    "\\SIS_Ga2.Entity",
+    "\\SIS_Ga2\\Views",
+    "\\SIS_Ga2\\Views\\Home"
   ],
+  "SelectedNode": "\\SIS_Ga2\\Views\\Diseno",
   "PreviewInSolutionExplorer": false
 }

@@ -119,6 +119,37 @@ namespace SIS_Ga2.Controllers
             return new SelectList(data_list, "Value", "Text");
         }
 
+        // Gustavo M.Z 22.09.2019 inicio
+
+        public List<BeDepartamento> ComboDepartamento(int idDepartamento)
+        {
+            BLDepartamento Departamento = new BLDepartamento();
+            List<BeDepartamento > Lista = new List<BeDepartamento>();
+            Lista = Departamento.ListarDepartamentos(idDepartamento);
+            return Lista;
+        }
+
+        public List<BEProvincia> ComboProvincia(int idDepartamento)
+        {
+            BLProvincia Provincias = new BLProvincia();
+            List<BEProvincia> Lista = new List<BEProvincia>();
+            Lista = Provincias.ListarProvincia(idDepartamento);
+            return Lista;
+        }
+
+        public List<BEDistrito> ComboDistrito (int IdDistrito)
+        {
+            BLDistritos Distritos = new BLDistritos();
+            List<BEDistrito> Lista = new List<BEDistrito>();
+            Lista = Distritos.ListarDistrito(IdDistrito);
+            return Lista;
+        }
+        //fin
+
+
+
+
+
 
         //public JsonResult ListarUsuariosByEntidad(String TipoEntidad, String CodigoUnico)
         //{

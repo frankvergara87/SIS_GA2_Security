@@ -9,19 +9,16 @@ using SIS_Ga2.DataAccess;
 
 namespace SIS_Ga2.Business
 {
-    public class BLProvincia
-    {
+ 
 
-        public List<BEProvincia> ListarDisenoxId(int idProvincia)
+        public class BLProvincia
         {
-            DACProvincia objDAO = new DACProvincia();
-            return objDAO.ListarProvinciaXID(idProvincia);
-        }
 
-        public List<BEProvincia> ListarProviciaXDep(int idDepartamento)
-        {
-            DACProvincia objDAO = new DACProvincia();
-            return objDAO.ListarProviciaXDep(idDepartamento);
+            public List<BEProvincia> ListarProvincia(int idDepartamento)
+            {
+                DACProvincia objDAO = new DACProvincia();
+                return objDAO.ListarProvincias(idDepartamento);
+            }
         }
     }
-}
+

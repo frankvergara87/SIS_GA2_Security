@@ -12,16 +12,10 @@ namespace SIS_Ga2.Business
     public class BLDistritos
     {
 
-        public List<BEDistrito> ListarDistritoXId(int idDistrito)
+        public List<BEDistrito> ListarDistrito(int idProvincia)
         {
             DACDistrito objDAO = new DACDistrito();
-            return objDAO.ListarDistritoXId(idDistrito);
-        }
-
-        public List<BEDistrito> ListarDistritoXProv(int idProvincia)
-        {
-            DACDistrito objDAO = new DACDistrito();
-            return objDAO.ListarDistritoXProv(idProvincia);
+            return objDAO.ListarDistritos(idProvincia);
         }
     }
 }

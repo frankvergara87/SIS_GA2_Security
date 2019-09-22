@@ -9,7 +9,7 @@ namespace SIS_Ga2.Entity
     public class BeDepartamento
     {
         public int idDepartamento { get; set; }
-        public string Deoartamento { get; set; }       
+        public string Departamento { get; set; }       
 
     }
 }

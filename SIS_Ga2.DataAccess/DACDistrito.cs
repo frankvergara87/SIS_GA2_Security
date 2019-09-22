@@ -11,32 +11,14 @@ namespace SIS_Ga2.DataAccess
 {
     public class DACDistrito
     {
-        public List<BEDistrito> ListarDistritoXId(int idDistrito)
+        public List<BEDistrito> ListarDistritos(int idProvincia)
         {
             try
             {
                 Parameter param = new Parameter();
-                param.Add("@idDistrito", idDistrito);
+                param.Add("@IdProvincia", idProvincia);
                 SqlManager objSql = new SqlManager(ConfigurationManager.AppSettings["ASOCEM"].ToString());
-                List<BEDistrito> lista = objSql.getStatement<BEDistrito>("USP_ListarDistritoXId_Lst", param);
-                return lista;
-            }
-            catch (Exception ex)
-            {
-                //Rutina de Guardado en Log 
-                //afilogDAO.Save(0, 0, "CatalogoDAO", "GetCatalogoToCombo", ex);
-                throw ex;
-            }
-        }
-
-        public List<BEDistrito> ListarDistritoXProv(int idProvincia)
-        {
-            try
-            {
-                Parameter param = new Parameter();
-                param.Add("@idProvincia", idProvincia);
-                SqlManager objSql = new SqlManager(ConfigurationManager.AppSettings["ASOCEM"].ToString());
-                List<BEDistrito> lista = objSql.getStatement<BEDistrito>("USP_ListarDistritoXProv_Lst", param);
+                List<BEDistrito> lista = objSql.getStatement<BEDistrito>("[USP_Sel_Distrito]", param);
                 return lista;
             }
             catch (Exception ex)
