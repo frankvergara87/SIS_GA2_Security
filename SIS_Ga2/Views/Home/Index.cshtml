@@ -65,6 +65,7 @@
                 </div>
                 <div class="form-group">
                     <label for="inlineFormInput" class="sr-only">Departamento</label>
+                     
 
                     @Html.DropDownList("idPeriodo", new HomeController().ComboDepartamento(0), new { @class = "form-control" })
                 </div>
@@ -74,7 +75,7 @@
                 </div>
                 <div class="form-group">
                     <label for="inlineFormInput" class="sr-only">Distrito</label>
-                    @Html.DropDownList("idPeriodo",new HomeController().ComboDistritos(1), new { @class = "form-control" })
+                    @Html.DropDownList("idPeriodo",new HomeController().ComboDistritos(2), new { @class = "form-control" })
                 </div>
 
 
