@@ -11,11 +11,11 @@ namespace SIS_Ga2.Business
     public class UsuarioBL
     {
         UsuarioDAO objdao = new UsuarioDAO();
-       public List<Usuario> ListarUsuario()
+       public List<BEUsuario> ListarUsuario()
         {
             return objdao.ListarUsuario();
         }
-		public bool RegistroUsuario(Usuario usuario)
+	/*	public bool RegistroUsuario(BEUsuario usuario)
         {
             return objdao.RegistroUsuario(usuario);
         }
@@ -26,7 +26,7 @@ namespace SIS_Ga2.Business
         public bool ActualizarUsuario(Usuario usuario)
         {
             return objdao.ActualizarUsuario(usuario);
-        }
+        }*/
         public List<rol> ListarRolesPorSociedad(int idsociedad,int idusuario)
         {
             return objdao.ListarRolesPorSociedad(idsociedad,idusuario);

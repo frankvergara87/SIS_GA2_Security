@@ -91,14 +91,14 @@ namespace SIS_Ga2.DataAccess
             }
         }
 
-        public List<Usuario> ListarUsuario()
+        public List<BEUsuario> ListarUsuario()
         {
             try
             {
                 Parameter param = new Parameter();                
                 SqlManager objSql = new SqlManager();
 
-                List<Usuario> lista = objSql.getStatement<Usuario>("SEG_USP_Usuarios_Lst", param);
+                List<BEUsuario> lista = objSql.getStatement<BEUsuario>("SEG_USP_Usuarios_Lst", param);
                 return lista;
             }
             catch (Exception ex)
@@ -107,7 +107,7 @@ namespace SIS_Ga2.DataAccess
             }
         }
         
-        public bool RegistroUsuario(Usuario usuario)
+   /*     public bool RegistroUsuario(BEUsuario usuario)
         {
             SqlManager objSql = new SqlManager();
             bool resultado = false;
@@ -131,15 +131,15 @@ namespace SIS_Ga2.DataAccess
                 
             }            
             return resultado;
-        }
-        public Usuario EditarUsuario(int idusuario)
+        }*/
+        public BEUsuario EditarUsuario(int idusuario)
         {
             try
             {
                 Parameter param = new Parameter();
                 param.Add("@idusuario", idusuario);
                 SqlManager objSql = new SqlManager();
-                Usuario usuario = objSql.getStatement<Usuario>("SEG_USP_UsuariosPorUsuario_Lst", param)[0];
+                BEUsuario usuario = objSql.getStatement<BEUsuario>("SEG_USP_UsuariosPorUsuario_Lst", param)[0];
                 return usuario;
             }
             catch (Exception ex)
@@ -147,7 +147,7 @@ namespace SIS_Ga2.DataAccess
                 throw ex;
             }
         }
-        public bool ActualizarUsuario(Usuario usuario)
+     /*   public bool ActualizarUsuario(BEUsuario usuario)
         {
             SqlManager objSql = new SqlManager();
             bool resultado = false;
@@ -172,7 +172,7 @@ namespace SIS_Ga2.DataAccess
                 
             }
             return resultado;
-        }
+        }*/
         public List<rol> ListarRolesPorSociedad(int idsociedad,int idusuario)
         {
             try

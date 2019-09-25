@@ -6,7 +6,7 @@
     //Layout = null;
 
     ViewBag.Title = "Proyecto";
-    Usuario usuario = Session["sistema.usuario"] as Usuario;
+    BEUsuario usuario = Session["sistema.usuario"] as BEUsuario;
     Sistema sistema = Session["sistema.general"] as Sistema;
     if (sistema == null)
     {

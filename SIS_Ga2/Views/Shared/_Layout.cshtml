@@ -1,7 +1,7 @@
 ﻿@using SIS_Ga2.Entity
 
 @{
-    Usuario usuario = Session["sistema.usuario"] as Usuario;
+    BEUsuario usuario = Session["sistema.usuario"] as BEUsuario;
 }
 <!DOCTYPE html>
 
@@ -96,7 +96,7 @@
                 <div class="sidebar-header d-flex align-items-center">
                     <div class="avatar"><img src="~/Content/icon/img_user_4.png" alt="..." class="img-fluid rounded-circle"></div>
                     <div class="title">
-                        <h1 class="h4">@usuario.Apellidos</h1>
+                        <h1 class="h4">@usuario.Apellido</h1>
                         <p>@usuario.Cargo</p>
                     </div>
                 </div>

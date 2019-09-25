@@ -61,7 +61,6 @@
     <Compile Include="BETipoDiseno.cs" />
     <Compile Include="BETipoPavimento.cs" />
     <Compile Include="BETramo.cs" />
-    <Compile Include="BEUsuario.cs" />
     <Compile Include="BookViewModel.cs" />
     <Compile Include="Catalogo.cs" />
     <Compile Include="Cliente.cs" />
@@ -85,7 +84,7 @@
     <Compile Include="UIElement.cs" />
     <Compile Include="UILanguage.cs" />
     <Compile Include="Unidadmedida.cs" />
-    <Compile Include="Usuario.cs" />
+    <Compile Include="BEUsuario.cs" />
     <Compile Include="UsuarioRoles.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -11,17 +11,17 @@ namespace SIS_Ga2.DataAccess
 {
     public class SistemasDAO
     {
-        public Usuario login(Usuario objEntidad)
+        public BEUsuario login(BEUsuario objEntidad)
         {
-            Usuario logeo = new Usuario();
-            List<Usuario> list = new List<Usuario>();
+            BEUsuario logeo = new BEUsuario();
+            List<BEUsuario> list = new List<BEUsuario>();
             SqlManager objSql = new SqlManager(ConfigurationManager.AppSettings["ASOCEM"].ToString());
             Parameter param = new Parameter();
-            param.Add("@cuenta", objEntidad.cuenta);
-            param.Add("@clave", objEntidad.clave);
+            param.Add("@cuenta", objEntidad.Usuario);
+            param.Add("@clave", objEntidad.Clave);
             try
             {
-                list = objSql.getStatement<Usuario>("SEG_USP_Login", param);
+                list = objSql.getStatement<BEUsuario>("USP_SEL_Login", param);
                 if (list.Count != 0)
                 {
                     logeo = list.First();

@@ -10,7 +10,7 @@ namespace SIS_Ga2.Business
 {
     public class SistemaBL
     {
-        public Usuario login(Usuario objEntidad)
+        public BEUsuario login(BEUsuario objEntidad)
         {
             SistemasDAO objDAO = new SistemasDAO();
             return objDAO.login(objEntidad);

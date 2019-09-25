@@ -35,22 +35,22 @@ namespace SIS_Ga2.Controllers
 
         public ActionResult IniciarSesion()
         {
-            Usuario usuario = new Usuario();
+            BEUsuario usuario = new BEUsuario();
             Sistema sistema = new Sistema();
-            usuario.cuenta = Request.Params["loginUsername"].ToString();
-            usuario.clave = Request.Params["loginPassword"].ToString();
+            usuario.Usuario = Request.Params["loginUsername"].ToString();
+            usuario.Clave = Request.Params["loginPassword"].ToString();
 
             SistemaBL autorizacion = new SistemaBL();
             usuario = autorizacion.login(usuario);
 
-            if (usuario.cuenta != null)
+            if (usuario.Usuario != null)
             {
                 AplicacionBL objBL = new AplicacionBL();
                 List<Aplicacion> Aplicaciones = objBL.ListarAplicaciones();
 
-                sistema.cuenta = usuario.cuenta;
-                sistema.clave = usuario.clave;
-                sistema.idUsuario = usuario.idUsuario;
+                sistema.cuenta = usuario.Usuario;
+                sistema.clave = usuario.Clave;
+                sistema.idUsuario = usuario.Id_Usuario;
 
 
                 Session.Add("sistema.usuario", usuario);
@@ -68,7 +68,7 @@ namespace SIS_Ga2.Controllers
         [HttpGet]
         public ActionResult Aplicaciones()
         {
-            Usuario usuario = Session["sistema.usuario"] as Usuario;
+            BEUsuario usuario = Session["sistema.usuario"] as BEUsuario;
             if (usuario == null) return RedirectToAction("Login", "Seguridad");
 
             try
@@ -86,7 +86,7 @@ namespace SIS_Ga2.Controllers
         {
             try
             {
-                Usuario usuario = (Usuario)Session["sistema.usuario"];
+                BEUsuario usuario = (BEUsuario)Session["sistema.usuario"];
                 Sistema sistema = (Sistema)Session["sistema.general"];
                 sistema.idAplicacion = IdAplicacion;
                 usuario.Aplicacion = IdAplicacion;
