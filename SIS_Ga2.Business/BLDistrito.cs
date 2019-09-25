@@ -9,7 +9,7 @@ using SIS_Ga2.DataAccess;
 
 namespace SIS_Ga2.Business
 {
-    public class BLDistritos
+    public class BLDistrito
     {
 
         public List<BEDistrito> ListarDistrito(int idProvincia)

@@ -51,3 +51,9 @@ C:\Users\Lenovo\Source\Repos\Aashto\SIS_GA2_Security\SIS_Ga2.Entity\obj\Debug\SI
 C:\Users\Lenovo\Source\Repos\Aashto\SIS_GA2_Security\SIS_Ga2.Entity\obj\Debug\SIS_Ga2.Entity.csproj.CoreCompileInputs.cache
 C:\Users\Lenovo\Source\Repos\Aashto\SIS_GA2_Security\SIS_Ga2.Entity\obj\Debug\SIS_Ga2.Entity.dll
 C:\Users\Lenovo\Source\Repos\Aashto\SIS_GA2_Security\SIS_Ga2.Entity\obj\Debug\SIS_Ga2.Entity.pdb
+C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2.Entity\bin\Debug\SIS_Ga2.Entity.dll
+C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2.Entity\bin\Debug\SIS_Ga2.Entity.pdb
+C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2.Entity\obj\Debug\SIS_Ga2.Entity.csproj.CoreCompileInputs.cache
+C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2.Entity\obj\Debug\SIS_Ga2.Entity.dll
+C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2.Entity\obj\Debug\SIS_Ga2.Entity.pdb
+C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2.Entity\obj\Debug\SIS_Ga2.Entity.csprojAssemblyReference.cache

@@ -38,12 +38,34 @@
                     <label for="inlineFormInput" class="sr-only">FechaContrato</label>
                     <input id="datetimepicker2" type="text" placeholder="Fecha Contrato" class="mr-3 form-control">
                 </div>
+                <div class="form-group">
+                    <label for="inlineFormInput" class="col-form-label">Departamento</label>
+                    @Html.DropDownList("ddlDepartamento")
+                </div>
+                <div class="form-group">
+                    <label for="inlineFormInput" class="col-form-label">Provincia</label>
+                    @Html.DropDownList("ddlProvincia")
+                </div>
+                <div class="form-group">
+                    <label for="inlineFormInput" class="col-form-label">Provincia</label>
+                    @Html.DropDownList("ddlDistrito")
+                </div>
+                <div class="form-group">
+                    <label for="inlineFormInput" class="sr-only">Ingeniero</label>
+                    <input id="Ingeniero" type="text" placeholder="Proyecto" class="mr-3 form-control">
+                </div>
+
+               
+
+
+
+
             </form>
-            <br>
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary">Buscar</button>
-            </div>
+        <br>
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Buscar</button>
         </div>
+    </div>
     </div>
     <div class="card">
         <div class="card-header d-flex align-items-center">
@@ -123,7 +145,134 @@
 
     $(document).ready(function () {
         ListarProyectos();
+
+        $("#ddlDepartamento").change(function () {
+            cambiaDepartamento($("#ddlDepartamento").val());
+        });
+
+        $("#ddlProvincia").change(function () {
+            cambiaProvincia($("#ddlProvincia").val());
+        });
+
+        cambiaDepartamento($("#ddlDepartamento").val());
+
+        $("#ddlDepartamento").addClass("col-form-label");
+        $("#ddlProvincia").addClass("col-form-label");
+        $("#ddlDistrito").addClass("rocol-form-labeljo");
+
+            var availableTags = [
+          "ActionScript",
+          "AppleScript",
+          "Asp",
+          "BASIC",
+          "C",
+          "C++",
+          "Clojure",
+          "COBOL",
+          "ColdFusion",
+          "Erlang",
+          "Fortran",
+          "Groovy",
+          "Haskell",
+          "Java",
+          "JavaScript",
+          "Lisp",
+          "Perl",
+          "PHP",
+          "Python",
+          "Ruby",
+          "Scala",
+          "Scheme"
+        ];
+    $( "#Ingeniero" ).autocomplete({
+            source: availableTags
     });
+
+
+    });
+
+    function cambiaDepartamento(idDepartamento) {
+
+        var dd = document.getElementById("ddlProvincia");
+
+        dd.options.length = 0;
+        dd.options[0] = new Option("Espere...");
+        dd.selectedIndex = 0;
+        dd.disabled = true;
+
+        // Control de errores
+        $("#ddlProvincia").ajaxError(function (event, request, settings) {
+            dd.options[0] = new Option("Departamento incorrecto");
+        });
+
+
+        var objData = {};
+        objData["idDepartamento"] = idDepartamento;
+
+        $.ajax({
+            type: "POST",
+            url: '/Home/ListaProvincias',
+            data: JSON.stringify(objData),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (provincias) {
+
+                var obj = (typeof provincias) == 'string' ? eval('(' + provincias + ')') : provincias;
+
+                $.each(obj, function (i, item) {
+
+                    dd.options[i] = new Option(item.Provincia, item.Id_Provincia);
+
+                });
+
+                dd.disabled = false;
+                cambiaProvincia($("#ddlProvincia").val());
+            }
+
+        });
+    }
+
+    function cambiaProvincia(idProvincia) {
+
+        var dd = document.getElementById("ddlDistrito");
+
+        dd.options.length = 0;
+        dd.options[0] = new Option("Espere...");
+        dd.selectedIndex = 0;
+        dd.disabled = true;
+
+        // Control de errores
+        $("#ddlDistrito").ajaxError(function (event, request, settings) {
+            dd.options[0] = new Option("Distrito incorrecto");
+        });
+
+
+        var objData = {};
+        objData["idProvincia"] = idProvincia;
+
+        $.ajax({
+            type: "POST",
+            url: '/Home/ListaDepartamento',
+            data: JSON.stringify(objData),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (distritos) {
+
+                var obj = (typeof distritos) == 'string' ? eval('(' + distritos + ')') : distritos;
+
+                $.each(obj, function (i, item) {
+
+                    dd.options[i] = new Option(item.Distrito, item.Id_Distrito);
+
+                });
+
+                dd.disabled = false;
+            }
+
+        });
+    }
+
+
 
     function ListarProyectos() {
         var idTipoDiseno = document.getElementById("txtidTipoDiseno").value;
@@ -167,4 +316,7 @@
 
 
 
-</script>
+   
+ 
+
+    </script>
