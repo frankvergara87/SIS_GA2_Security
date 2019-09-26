@@ -26,40 +26,36 @@
         </div>
         <div class="card-body">
             <form class="form-inline">
-                <div class="form-group">
-                    <label for="inlineFormInput" class="sr-only">Proyecto</label>
-                    <input id="Proyecto" type="text" placeholder="Proyecto" class="mr-3 form-control">
-                </div>
-                <div class="form-group">
-                    <label for="inlineFormInput" class="sr-only">FechaProyecto</label>
-                    <input id="datetimepicker1" type="text" placeholder="Fecha Proyecto" class="mr-3 form-control">
-                </div>
-                <div class="form-group">
-                    <label for="inlineFormInput" class="sr-only">FechaContrato</label>
-                    <input id="datetimepicker2" type="text" placeholder="Fecha Contrato" class="mr-3 form-control">
-                </div>
-                <div class="form-group">
-                    <label for="inlineFormInput" class="col-form-label">Departamento</label>
-                    @Html.DropDownList("ddlDepartamento")
-                </div>
-                <div class="form-group">
-                    <label for="inlineFormInput" class="col-form-label">Provincia</label>
-                    @Html.DropDownList("ddlProvincia")
-                </div>
-                <div class="form-group">
-                    <label for="inlineFormInput" class="col-form-label">Provincia</label>
-                    @Html.DropDownList("ddlDistrito")
-                </div>
-                <div class="form-group">
-                    <label for="inlineFormInput" class="sr-only">Ingeniero</label>
-                    <input id="Ingeniero" type="text" placeholder="Proyecto" class="mr-3 form-control">
-                </div>
 
-               
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label for="inlineFormInput" class="col-form-label">Proyecto</label>
+                        <input id="Proyecto" type="text" placeholder="Proyecto" class="mr-3 form-control">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="inlineFormInput" class="col-form-label">Fecha Proyecto</label>
+                        <input id="datetimepicker1" type="text" placeholder="Fecha Proyecto" class="mr-3 form-control">
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="inlineFormInput" class="col-form-label">Fec fin de contrato</label>
+                        <input id="datetimepicker2" type="text" placeholder="Fecha Fin Contrato" class="mr-3 form-control">
+                    </div>
+                @*</div>
 
-
-
-
+                <div class="row">*@
+                    <div class="form-group col-md-4">
+                        <label for="ddlDepartamento"  class="col-form-label">Departamento  </label>
+                        @Html.DropDownList("ddlDepartamento",null, new { @class = "mr-4 form-control dropdown-toggle" })
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="ddlProvincia" class="col-form-label">Provincia  </label>
+                        @Html.DropDownList("ddlProvincia",null, new { @class = "mr-4 form-control dropdown-toggle" })
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="ddlDistrito" class="col-form-label">Distrito  </label>
+                        @Html.DropDownList("ddlDistrito",null, new { @class = "mr-4 form-control dropdown-toggle" })
+                    </div>
+                </div>
             </form>
         <br>
         <div class="form-group">
