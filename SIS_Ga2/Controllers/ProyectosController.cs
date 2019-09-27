@@ -16,15 +16,37 @@ namespace SIS_Ga2.Controllers
             return View();
         }
 
-
-        public JsonResult ListarProyectos(int idTipoDiseno, int idUsuario)
+        
+        public ActionResult ListarProyectos()
         {
+            //HardCode 
+            int idTipoDiseno, idUsuario;
+            idTipoDiseno = 2;
+            idUsuario = 3;
+
             Sistema usuario = new Sistema();
             usuario = ((Sistema)Session["sistema.general"]);
             ProyectoBL objProyecto = new ProyectoBL();
             List<Proyecto> Proyecto = objProyecto.ListarProyectos(idTipoDiseno, idUsuario);
-            return Json(Proyecto, JsonRequestBehavior.AllowGet);
+            //return Json(Proyecto, JsonRequestBehavior.AllowGet);
+            return Json(new { data = Proyecto }, JsonRequestBehavior.AllowGet);
+
         }
+
+        //public JsonResult ListarProyectos(int idTipoDiseno, int idUsuario)
+        //{
+
+        //    //HardCode 
+        //    idTipoDiseno = 2;
+        //    idUsuario = 3;
+
+        //    Sistema usuario = new Sistema();
+        //    usuario = ((Sistema)Session["sistema.general"]);
+        //    ProyectoBL objProyecto = new ProyectoBL();
+        //    List<Proyecto> Proyecto = objProyecto.ListarProyectos(idTipoDiseno, idUsuario);
+        //    //return Json(Proyecto, JsonRequestBehavior.AllowGet);
+        //    return Json(new { data = Proyecto }, JsonRequestBehavior.AllowGet);
+        //}
 
         public int GuardarProyecto(Proyecto DataProyecto)
         {
