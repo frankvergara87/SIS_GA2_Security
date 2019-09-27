@@ -201,10 +201,59 @@
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 
 
+    <!-- Include Bootstrap Datepicker V2 -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/es.js"></script>
+
+
+    <link rel="stylesheet" href="~/Content/Repo/bootstrap-material-datetimepicker-bs4.min.css">
+    <script src="~/Content/Repo/bootstrap-material-datetimepicker-bs4.min.js"></script>
+
+
     <script type="text/javascript">
         $(function () {
-            $("#datetimepicker1").datepicker();
-            $("#datetimepicker2").datepicker();
+            //$("#datetimepicker1").datepicker();
+            //$("#datetimepicker2").datepicker();
+
+            $('#datetimepicker1').bootstrapMaterialDatePicker({
+                format: 'DD/MM/YYYY',
+                shortTime: false,
+                date: true,
+                time: false,
+                monthPicker: false,
+                year: false,
+                clearButton: false,
+                nowButton: false,
+                switchOnClick: true,
+                cancelText: 'Cancelar',
+                okText: 'OK',
+                triggerEvent: 'focus',
+                lang: 'es',
+                weekStart: 1,
+
+            });
+
+            $('#datetimepicker2').bootstrapMaterialDatePicker({
+                format: 'DD/MM/YYYY',
+                shortTime: false,
+                date: true,
+                time: false,
+                monthPicker: false,
+                year: false,
+                clearButton: false,
+                nowButton: false,
+                switchOnClick: true,
+                cancelText: 'Cancelar',
+                okText: 'OK',
+                triggerEvent: 'focus',
+                lang: 'es',
+                weekStart: 1,
+
+            });
+
+
         });
 
     </script>

@@ -470,6 +470,12 @@
     <Content Include="Content\img\project-4.jpg" />
     <Content Include="Content\img\template-mac.png" />
     <Content Include="Content\Poppins.css" />
+    <Content Include="Content\Repo\bootstrap-material-datetimepicker-bs4.css" />
+    <Content Include="Content\Repo\bootstrap-material-datetimepicker-bs4.js" />
+    <Content Include="Content\Repo\bootstrap-material-datetimepicker-bs4.min.css" />
+    <Content Include="Content\Repo\bootstrap-material-datetimepicker-bs4.min.js" />
+    <Content Include="Content\Repo\bootstrap-material-datetimepicker.css" />
+    <Content Include="Content\Repo\bootstrap-material-datetimepicker.js" />
     <Content Include="Content\style.default.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
