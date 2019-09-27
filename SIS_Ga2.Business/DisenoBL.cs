@@ -22,5 +22,6 @@ namespace SIS_Ga2.Business
                 throw ex;
             }
         }
+
     }
 }

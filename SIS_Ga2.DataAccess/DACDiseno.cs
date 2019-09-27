@@ -31,13 +31,12 @@ namespace SIS_Ga2.DataAccess
 
         public List<BEDiseno> ListarDisenos()
         {
-
-
             try
             {
                 Parameter param = new Parameter();
                 SqlManager objSql = new SqlManager(ConfigurationManager.AppSettings["ASOCEM"].ToString());
-                List<BEDiseno> lista = objSql.getStatement<BEDiseno>("USP_Disenos_Lst", param);
+                //List<BEDiseno> lista = objSql.getStatement<BEDiseno>("USP_Disenos_Lst", param);
+                List<BEDiseno> lista = objSql.getStatement<BEDiseno>("USP_ListaProyDiseno_Lst", param);
                 param = null;
                 objSql.Dispose();
                 objSql = null;

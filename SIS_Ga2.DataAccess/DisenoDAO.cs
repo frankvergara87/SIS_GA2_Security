@@ -29,6 +29,7 @@ namespace SIS_Ga2.DataAccess
                 throw ex;
             }
         }
-        
+
+
     }
 }

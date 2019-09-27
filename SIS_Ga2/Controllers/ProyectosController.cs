@@ -28,7 +28,6 @@ namespace SIS_Ga2.Controllers
             usuario = ((Sistema)Session["sistema.general"]);
             ProyectoBL objProyecto = new ProyectoBL();
             List<Proyecto> Proyecto = objProyecto.ListarProyectos(idTipoDiseno, idUsuario);
-            //return Json(Proyecto, JsonRequestBehavior.AllowGet);
             return Json(new { data = Proyecto }, JsonRequestBehavior.AllowGet);
 
         }
