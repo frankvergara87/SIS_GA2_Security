@@ -55,7 +55,7 @@
                         <label for="ddlDistrito" class="col-form-label">Distrito  </label>
                         @Html.DropDownList("ddlDistrito", null, new { @class = "mr-4 form-control dropdown-toggle" })
                     </div>
-                </div>
+                </div> 
             </form>
             <br>
             <div class="form-group">
@@ -72,17 +72,17 @@
             <br>
             <br>
             <div class="table-responsive">
-                <table id="example" class="display" style="width:100%">
+                <table id="example" class="display compact" style="width:100%">
                     <thead>
                         <tr>
                             <th class="align-center;" id="id">idProyecto</th>
                             <th class="align-center;" id="CodProyecto">CodProyecto</th>
                             <th class="align-center;" id="FecProyecto">FecProyecto</th>
-                            <th class="align-center;" id="idTipDiseno">Ubicacion</th>
-                            <th class="align-center;" id="TipDiseno">NumDiseno</th>
-                            <th class="align-center;" id="NumDiseno">Tramo</th>
-                            <th class="align-center;" id="NumDiseno">Reglamento</th>
-                            <th class="align-center;" id="NumDiseno">TipoDiseno</th>
+                            <th class="align-center;" id="Ubicacion">Ubicacion</th>
+                            <th class="align-center;" id="NumDiseno">NumDiseno</th>
+                            <th class="align-center;" id="Tramo">Tramo</th>
+                            <th class="align-center;" id="Reglamento">Reglamento</th>
+                            <th class="align-center;" id="TipoDiseno">TipoDiseno</th>
                         </tr>
                     </thead>
                     <tfoot>
@@ -90,11 +90,11 @@
                             <th class="align-center;" id="id">idProyecto</th>
                             <th class="align-center;" id="CodProyecto">CodProyecto</th>
                             <th class="align-center;" id="FecProyecto">FecProyecto</th>
-                            <th class="align-center;" id="idTipDiseno">Ubicacion</th>
-                            <th class="align-center;" id="TipDiseno">NumDiseno</th>
-                            <th class="align-center;" id="NumDiseno">Tramo</th>
-                            <th class="align-center;" id="NumDiseno">Reglamento</th>
-                            <th class="align-center;" id="NumDiseno">TipoDiseno</th>
+                            <th class="align-center;" id="Ubicacion">Ubicacion</th>
+                            <th class="align-center;" id="NumDiseno">NumDiseno</th>
+                            <th class="align-center;" id="Tramo">Tramo</th>
+                            <th class="align-center;" id="Reglamento">Reglamento</th>
+                            <th class="align-center;" id="TipoDiseno">TipoDiseno</th>
                         </tr>
                     </tfoot>
                 </table>
@@ -118,15 +118,16 @@
                         <div class="modal-body">
 
                             <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Recipient:</label>
-                                <input type="text" class="form-control" id="recipient-name">
+                                <label for="recipient-name" class="col-form-label">Proyecto:</label>
+                                <input type="text" class="form-control" id="frmProyecto" name="frmProyecto">
                             </div>
                             <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Recipient:</label>
-                                <input type="text" class="form-control" id="recipient-name">
-                            </div>                                <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Recipient:</label>
-                                <input type="text" class="form-control" id="recipient-name">
+                                <label for="recipient-name" class="col-form-label">Diseño:</label>
+                                <input type="text" class="form-control" id="frmDiseno" name="frmDiseno">
+                            </div>                                
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Reglamento:</label>
+                                <input type="text" class="form-control" id="frmReglamento" name="frmReglamento">
                             </div>
 
                         </div>
@@ -193,7 +194,12 @@
 
 
 
+            var idTipoDiseno = document.getElementById("txtidTipoDiseno").value;
+            var idUsuario = document.getElementById("txtidUsuario").value;
 
+            var objData = {};
+            objData["idTipoDiseno"] = idTipoDiseno;
+            objData["idUsuario"] = idUsuario;
 
 
             //setup - add a text input to each footer cell
@@ -203,13 +209,12 @@
             });
 
 
-
-
             var table =
                 $('#example').DataTable({
                 "ajax": {
                         "url": "/Proyectos/ListarProyectos",
                         "type": "POST",
+                        "data": objData,
                         "dataType": "json"
                         },
                 "columns": [

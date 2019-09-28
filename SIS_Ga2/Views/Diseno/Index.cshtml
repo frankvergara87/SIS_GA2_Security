@@ -5,8 +5,9 @@
 @{
     //Layout = null;
 
-    ViewBag.Title = "Proyecto";
+    ViewBag.Title = "Diseno";
     BEUsuario usuario = Session["sistema.usuario"] as BEUsuario;
+    Proyecto GetProyecto = Session["sistema.proyecto"] as Proyecto;
     Sistema sistema = Session["sistema.general"] as Sistema;
     if (sistema == null)
     {
@@ -17,32 +18,40 @@
 <div class="col-lg-12">
     <div class="card">
         <div class="card-header d-flex align-items-center">
-            <h3 class="h4">Proyecto: </h3>
-        </div>
-        <div class="card-body">
-            <div class="table-responsive">
-                <table id="tblDiseno" class="display" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th class="align-center;" id="id">IdProyecto</th>
-                            <th class="align-center;" id="CodProyecto">NumDiseno</th>
-                            <th class="align-center;" id="FecProyecto">Fecha</th>
-                            <th class="align-center;" id="idTipDiseno">Estado</th>
-                        </tr>
-                    </thead>
-                    <tfoot>
-                        <tr>
-                            <th class="align-center;" id="id">IdProyecto</th>
-                            <th class="align-center;" id="CodProyecto">NumDiseno</th>
-                            <th class="align-center;" id="FecProyecto">Fecha</th>
-                            <th class="align-center;" id="idTipDiseno">Estado</th>
-                        </tr>
-                    </tfoot>
-                </table>
+            <div class="form-group col-md-3">
+                <h3 class="h5">Proyecto: @GetProyecto.CodProyecto</h3>
+            </div>
+            <div class="form-group col-md-4">
+                <h2 class="h6">Diseño: @GetProyecto.NumDiseno</h2>
+            </div>
+            <div class="form-group col-md-5">
+                <h2 class="h6">Reglamento: @GetProyecto.Reglamento</h2>
             </div>
         </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table id="tblDiseno" class="display" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th class="align-center;" id="id">IdProyecto</th>
+                                <th class="align-center;" id="CodProyecto">NumDiseno</th>
+                                <th class="align-center;" id="FecProyecto">Fecha</th>
+                                <th class="align-center;" id="idTipDiseno">Estado</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th class="align-center;" id="id">IdProyecto</th>
+                                <th class="align-center;" id="CodProyecto">NumDiseno</th>
+                                <th class="align-center;" id="FecProyecto">Fecha</th>
+                                <th class="align-center;" id="idTipDiseno">Estado</th>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
 
-    </div>
+        </div>
     <div class="card">
 
         <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">

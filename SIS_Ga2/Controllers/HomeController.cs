@@ -25,6 +25,17 @@ namespace SIS_Ga2.Controllers
         [HttpPost]
         public ActionResult FormRegistraProyecto()
         {
+
+            Proyecto Proyecto = new Proyecto();
+            ProyectosController RegistraProyecto = new ProyectosController();
+
+            Proyecto.CodProyecto = Request.Form["frmProyecto"];
+            Proyecto.NumDiseno = Request.Form["frmDiseno"];
+            Proyecto.Reglamento = Request.Form["frmReglamento"];
+
+            Session.Add("sistema.proyecto", Proyecto);
+
+
             return RedirectToAction("Index", "Diseno");
         }
 
