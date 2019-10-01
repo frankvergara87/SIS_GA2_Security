@@ -11,14 +11,15 @@ namespace SIS_Ga2.DataAccess
 {
     public class DACUsuario
     {
-        public List<BEUsuario> ListarUsuariosxId(int idUsuario)
+        public List<BEUsuario> ListarUsuariosxPadre(Int32 strUsuarioPadre, String strApellido)
         {
             try
             {
                 Parameter param = new Parameter();
-                param.Add("@idUsuario", idUsuario);
+                param.Add("@IDUsuarioPadre", strUsuarioPadre);
+                param.Add("@Apellido", strApellido);
                 SqlManager objSql = new SqlManager(ConfigurationManager.AppSettings["ASOCEM"].ToString());
-                List<BEUsuario> lista = objSql.getStatement<BEUsuario>("USP_ListarUsuariosxId_Lst", param);
+                List<BEUsuario> lista = objSql.getStatement<BEUsuario>("USP_Sel_UsuarioxPadre", param);
                 return lista;
             }
             catch (Exception ex)

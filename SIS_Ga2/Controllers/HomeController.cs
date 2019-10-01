@@ -41,23 +41,39 @@ namespace SIS_Ga2.Controllers
 
         public JsonResult ListaProvincias(int idDepartamento)
         {
-            BLProvincia objblProvincia = new BLProvincia();
-        
-            List<BEProvincia> elements = objblProvincia.ListarProvincia(idDepartamento);
-            if (elements == null)
+            BLProvincia objblProvincia = new BLProvincia();  
+            List<BEProvincia> lobjProvincia = new List<BEProvincia>();
+            lobjProvincia = objblProvincia.ListarProvincia(idDepartamento);   
+            if (lobjProvincia == null)
                 throw new ArgumentException("Departamento " + idDepartamento + " no es correcta");           
-            return Json(elements);
+            return Json(lobjProvincia);
         }
 
-        public JsonResult ListaDepartamento(int idProvincia)
+        public JsonResult ListaDistritos(int idProvincia)
         {
+                                  
+            List<BEDistrito> lobjbeDistrito = new List<BEDistrito>();
             BLDistrito objDistrito = new BLDistrito();
-
-            List<BEDistrito> elements = objDistrito.ListarDistrito(idProvincia);
-            if (elements == null)
+ 
+            lobjbeDistrito = objDistrito.ListarDistrito(idProvincia);
+            if (lobjbeDistrito == null)
                 throw new ArgumentException("Distrito " + idProvincia + " no es correcta");
-            return Json(elements);
+            return Json(lobjbeDistrito);
         }
+
+
+        public JsonResult ListaUsuarios(Int32 strUsuario, String valorUsuario)
+        {
+            BLusuario objBLusuario = new BLusuario();
+            List<BEUsuario> lobjBeUsuario = new List<BEUsuario>();
+
+            lobjBeUsuario = objBLusuario.ListarUsuariosxPadre(strUsuario,valorUsuario);
+
+            if (lobjBeUsuario == null)
+                throw new ArgumentException("Usuarios " + strUsuario + " no es correcta");
+            return Json(lobjBeUsuario);
+        }
+
 
     }
 }

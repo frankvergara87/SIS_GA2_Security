@@ -14,8 +14,22 @@ namespace SIS_Ga2.Business
 
         public List<BeDepartamento> ListarDepartamentos(int idDepartamento)
         {
+
+            BeDepartamento objbeDepartamento = new BeDepartamento();
+            List<BeDepartamento> lobjbeDepartamento = new List<BeDepartamento>();
             DACDepartamento objDAO = new DACDepartamento();
-            return objDAO.ListarDepartamentos(idDepartamento);
-        }
+
+            objbeDepartamento.id_Departamento = 0;
+            objbeDepartamento.Departamento = "TODOS";
+
+            lobjbeDepartamento.Add(objbeDepartamento);
+
+            foreach (BeDepartamento temp in objDAO.ListarDepartamentos(idDepartamento))
+            {
+                lobjbeDepartamento.Add(temp);
+            }
+
+            return lobjbeDepartamento;
+                     }
     }
 }

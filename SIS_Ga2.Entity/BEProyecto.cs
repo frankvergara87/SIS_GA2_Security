@@ -9,8 +9,13 @@ namespace SIS_Ga2.Entity
   public  class BEProyecto
     {
         public int idProyecto{ get; set; }
-        public string Num_Proyecto { get; set; }
+        public string NumProyecto { get; set; }
         public string Proyecto { get; set; }
+        public double Fecha_Proyecto { get; set; }
+        public double Fecha_Contrato { get; set; }
+        public string Ingeniero { get; set; }
+        public double Cant_Disenos { get; set; }
+
         public string idUsuario { get; set; }
         public bool Estado { get; set; }
         public string Aplicacion { get; set; }   
@@ -20,5 +25,8 @@ namespace SIS_Ga2.Entity
         public double FechaActualizacion { get; set; }
         public double HoraActualizacion { get; set; }
         public string UsrActualizacion { get; set; }
-    }
+
+   }
+
+
 }

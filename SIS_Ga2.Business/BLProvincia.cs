@@ -16,8 +16,22 @@ namespace SIS_Ga2.Business
 
             public List<BEProvincia> ListarProvincia(int idDepartamento)
             {
-                DACProvincia objDAO = new DACProvincia();
-                return objDAO.ListarProvincias(idDepartamento);
+
+            DACProvincia objDAO = new DACProvincia();
+            BEProvincia objbeProvincia = new BEProvincia();
+            objbeProvincia.Id_Provincia = 0;
+            objbeProvincia.Provincia = "TODOS";
+
+
+            List<BEProvincia> lobjProvincia = new List<BEProvincia>();
+            lobjProvincia.Add(objbeProvincia);
+
+            foreach (BEProvincia temp in objDAO.ListarProvincias(idDepartamento))
+            {
+                lobjProvincia.Add(temp);
+            }
+                                            
+            return lobjProvincia;
             }
         }
     }

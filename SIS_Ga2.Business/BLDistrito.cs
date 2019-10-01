@@ -14,8 +14,22 @@ namespace SIS_Ga2.Business
 
         public List<BEDistrito> ListarDistrito(int idProvincia)
         {
+
+            BEDistrito objbeDistrito= new BEDistrito();
+            List<BEDistrito> lobjbeDistrito = new List<BEDistrito>();
             DACDistrito objDAO = new DACDistrito();
-            return objDAO.ListarDistritos(idProvincia);
+
+            objbeDistrito.id_Distrito = 0;
+            objbeDistrito.Distrito = "TODOS";
+
+            lobjbeDistrito.Add(objbeDistrito);
+
+            foreach (BEDistrito temp in objDAO.ListarDistritos(idProvincia))
+            {
+                lobjbeDistrito.Add(temp);
+            }
+
+           return lobjbeDistrito;
         }
     }
 }

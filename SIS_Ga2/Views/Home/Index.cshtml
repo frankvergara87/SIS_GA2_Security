@@ -17,6 +17,8 @@
 
 <input type="hidden" id="txtidTipoDiseno" value="@sistema.idAplicacion" />
 <input type="hidden" id="txtidUsuario" value="@sistema.idUsuario" />
+<input type="hidden" id="txtUsuario" value="@usuario.Usuario" />
+<input type="hidden" id="idIngeniero"  />
 
 <!-- Form Elements -->
 <div class="col-lg-12">
@@ -42,7 +44,7 @@
                     </div>
                     @*</div>
 
-                        <div class="row">*@
+        <div class="row">*@
                     <div class="form-group col-md-4">
                         <label for="ddlDepartamento" class="col-form-label">Departamento  </label>
                         @Html.DropDownList("ddlDepartamento", null, new { @class = "mr-4 form-control dropdown-toggle" })
@@ -55,11 +57,21 @@
                         <label for="ddlDistrito" class="col-form-label">Distrito  </label>
                         @Html.DropDownList("ddlDistrito", null, new { @class = "mr-4 form-control dropdown-toggle" })
                     </div>
+
+                    <div class="form-group col-md-4">
+                        <label for="inlineFormInput" class="col-form-label">Ingeniero</label>
+                        <input id="txtIngeniero" type="text" placeholder="Apellidos y Nombres" class="mr-3 form-control">
+                    </div>
+
                 </div> 
             </form>
             <br>
             <div class="form-group">
                 <button type="submit" class="btn btn-primary">Buscar</button>
+                <button id= "btnBuscar" type="submit" class="btn btn-primary">Buscar</button>
+
+          
+
             </div>
         </div>
     </div>
@@ -67,10 +79,17 @@
         <div class="card-header d-flex align-items-center">
             <h3 class="h4">Proyectos: </h3>
         </div>
+      
+
         <div class="card-body">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Nuevo</button>
             <br>
             <br>
+
+
+
+
+
             <div class="table-responsive">
                 <table id="example" class="display compact" style="width:100%">
                     <thead>
@@ -85,18 +104,7 @@
                             <th class="align-center;" id="TipoDiseno">TipoDiseno</th>
                         </tr>
                     </thead>
-                    <tfoot>
-                        <tr>
-                            <th class="align-center;" id="id">idProyecto</th>
-                            <th class="align-center;" id="CodProyecto">CodProyecto</th>
-                            <th class="align-center;" id="FecProyecto">FecProyecto</th>
-                            <th class="align-center;" id="Ubicacion">Ubicacion</th>
-                            <th class="align-center;" id="NumDiseno">NumDiseno</th>
-                            <th class="align-center;" id="Tramo">Tramo</th>
-                            <th class="align-center;" id="Reglamento">Reglamento</th>
-                            <th class="align-center;" id="TipoDiseno">TipoDiseno</th>
-                        </tr>
-                    </tfoot>
+               
                 </table>
             </div>
         </div>
@@ -147,8 +155,13 @@
     <script src="~/Scripts/jquery-3.3.1.js"></script>
 
     <script type="text/javascript">
+         var dataProyecto = [];
 
-        $(document).ready(function () {
+        $(document).ready(function ()
+        {
+
+            
+           // $("#btnBuscar").click(ProcesarQuery);
 
             $("#ddlDepartamento").change(function () {
                 cambiaDepartamento($("#ddlDepartamento").val());
@@ -163,36 +176,6 @@
             $("#ddlDepartamento").addClass("col-form-label");
             $("#ddlProvincia").addClass("col-form-label");
             $("#ddlDistrito").addClass("rocol-form-labeljo");
-
-            var availableTags = [
-                "ActionScript",
-                "AppleScript",
-                "Asp",
-                "BASIC",
-                "C",
-                "C++",
-                "Clojure",
-                "COBOL",
-                "ColdFusion",
-                "Erlang",
-                "Fortran",
-                "Groovy",
-                "Haskell",
-                "Java",
-                "JavaScript",
-                "Lisp",
-                "Perl",
-                "PHP",
-                "Python",
-                "Ruby",
-                "Scala",
-                "Scheme"
-            ];
-            $("#Ingeniero").autocomplete({
-                source: availableTags
-            });
-
-
 
             var idTipoDiseno = document.getElementById("txtidTipoDiseno").value;
             var idUsuario = document.getElementById("txtidUsuario").value;
@@ -282,7 +265,7 @@
                     $(this).removeClass('selected');
                     dato = "";
                     datos = "";
-                    alert(dato);
+                   
                 }
                 else {
                     table.$('tr.selected').removeClass('selected');
@@ -293,11 +276,118 @@
                 }
             } );
 
+            CargarCompleted();
+            CargarGrilla();
+
 
         });
 
-        function cambiaDepartamento(idDepartamento) {
 
+function ProcesarQuery() 
+{  
+             var dataJson  = "{'Proyecto':'" +  $('[id$=Proyecto]').val() + "'," +
+             "'FechaProyecto':'"+$('[id$=txtOrdenCompra]').val()+ "'," +
+             "'FechaContrato':'"+ $('[id$=datetimepicker1]').val()+ "'," +
+             "'Departamento':'"+$('[id$=ddlDepartamento]').val() + "'," +
+             "'Provincia':'"+$('[id$=ddlProvincia]').val() + "'," +
+             "'Distrito':'"+$('[id$=ddlDistrito]').val() + "'," +
+        "'IdIngeniero':'" + document.getElementById("idIngeniero").value + "'}" 
+
+    alert(dataJson);
+
+            $.ajax({
+                type: "POST",             
+                url: "/Proyectos/ListarProyectos2",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",   
+                data : dataJson ,
+                //    crossDomain: true, 
+                success: function (response)
+                 {  
+                    dataOrdenCompra=[];
+                    //var objeto =  JSON.parse(response.d) ; 
+                     $.each(response, function(i, item) {
+                     
+                         var dataObject = 
+                         {
+
+                               NumProyecto: item.NumProyecto,  
+                               Proyecto : item.Proyecto ,
+                               Fecha_Proyecto : item.Fecha_Proyecto ,
+                               Fecha_Contrato : item.Fecha_Contrato ,
+                               Ingeniero : item.Ingeniero ,
+                               Cant_Diseno : item.CantDiseno 
+                           };
+                            dataProyecto.push(dataObject);
+
+                    });
+                    //Reload();
+                         
+                },
+                
+               error: Error
+            
+            });
+       
+        };
+ function Error(result) 
+    {
+       // $("#divError").show();
+         alert("ERROR " + result.status + ' ' + result.statusText); 
+       
+      } 
+
+
+ function CargarCompleted()
+{
+     var idUsuario = document.getElementById("txtidUsuario").value;
+    
+         
+    $('#txtIngeniero').autocomplete({
+        //source: DataProveedor,       
+         source: function( request, response )
+        {
+                $.ajax(
+                {
+                 type: "POST",
+                 url: "/Home/ListaUsuarios",
+                 data:  "{'strUsuario':'" + $.trim(idUsuario) + "'," +
+                             "'valorUsuario':'"+ $.trim(request.term) + "'}" ,
+                 contentType: "application/json; charset=utf-8",
+                 dataType: "json",
+                 dataFilter: function (data) { return data; },                   
+                 success: function(data) 
+                 { 
+                     response($.map(data, function (item) {
+                        return {
+                            label:  item.Apellido + " "+ item.Nombre,
+                            value: item.Apellido + " "+ item.Nombre,
+                            id: item.Id_Usuario
+                         }; 
+                    }));
+                 },
+                error: Error
+                });
+            },
+        minLength: 2,
+        select: function (event, ui) {
+
+            
+
+            var dd = document.getElementById("idIngeniero");
+            dd.value =ui.item.id
+
+      
+        },
+    });
+        };
+
+
+
+        function cambiaDepartamento(idDepartamento) {
+           
+            // var dd2 = document.getElementById("idIngeniero");
+             //alert(dd2.value);
             var dd = document.getElementById("ddlProvincia");
 
             dd.options.length = 0;
@@ -357,7 +447,7 @@
 
             $.ajax({
                 type: "POST",
-                url: '/Home/ListaDepartamento',
+                url: '/Home/ListaDistritos',
                 data: JSON.stringify(objData),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
@@ -367,17 +457,17 @@
 
                     $.each(obj, function (i, item) {
 
-                        dd.options[i] = new Option(item.Distrito, item.Id_Distrito);
+                        dd.options[i] = new Option(item.Distrito, item.id_Distrito);
 
                     });
 
                     dd.disabled = false;
+                    
                 }
 
             });
+
         }
-
-
 
         function ListarProyectos() {
             var idTipoDiseno = document.getElementById("txtidTipoDiseno").value;
@@ -418,9 +508,6 @@
                 }
             });
         }
-
-
-        
 
     </script>
 

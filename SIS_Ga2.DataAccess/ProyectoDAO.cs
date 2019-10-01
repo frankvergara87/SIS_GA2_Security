@@ -30,6 +30,31 @@ namespace SIS_Ga2.DataAccess
             }
         }
 
+
+        public List<BEProyecto> ListarProyectos2(String strProyecto, String strFechaProyecto, String FechaContrato, int Departamento, int Provincia, int Distrito, int IdIngeniero)
+        {
+            try
+            {
+                Parameter param = new Parameter();
+                param.Add("@Num_Proyecto", strProyecto);
+                param.Add("@Fecha_Proyecto", Int32.Parse(strFechaProyecto));
+                param.Add("@Fecha_Contrato", Int32.Parse(FechaContrato));
+                param.Add("@Id_Usuario", Departamento);
+                param.Add("@Id_Provincia", Provincia);
+                param.Add("@Id_Departamento", IdIngeniero);
+
+                SqlManager objSql = new SqlManager(ConfigurationManager.AppSettings["ASOCEM"].ToString());
+                List<BEProyecto> lista = objSql.getStatement<BEProyecto>("USP_ListaProyDiseno_Lst2", param);
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                //Rutina de Guardado en Log 
+                //afilogDAO.Save(0, 0, "CatalogoDAO", "GetCatalogoToCombo", ex);
+                throw ex;
+            }
+        }
+
         public int GuardarProyecto(Proyecto DataProyecto)
         {
             int resultado = 0;

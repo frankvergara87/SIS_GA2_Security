@@ -28,6 +28,14 @@ namespace SIS_Ga2.Controllers
 
         }
 
+        public JsonResult ListarProyectos2(String strProyecto, String strFechaProyecto, String FechaContrato, String Departamento, String Provincia, String Distrito, String IdIngeniero )
+        {
+            ProyectoBL objProyecto = new ProyectoBL();
+            List<BEProyecto> lObjBeProyecto = objProyecto.ListarProyectos2(strProyecto, strFechaProyecto, FechaContrato, Int32.Parse(Departamento), Int32.Parse(Provincia), Int32.Parse(Distrito), Int32.Parse(IdIngeniero));
+            return Json(new { data = lObjBeProyecto }, JsonRequestBehavior.AllowGet);
+
+        }
+
         public int GuardarProyecto(Proyecto DataProyecto)
         {
             ProyectoBL BLProyecto = new ProyectoBL();

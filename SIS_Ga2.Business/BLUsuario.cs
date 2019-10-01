@@ -12,10 +12,10 @@ namespace SIS_Ga2.Business
     public class BLusuario
     {
 
-        public List<BEUsuario> ListarUsuariosxId(int idUsuario)
+        public List<BEUsuario> ListarUsuariosxPadre(Int32 strUsuarioPadre, String strApellido)
         {
             DACUsuario objDAO = new DACUsuario();
-            return objDAO.ListarUsuariosxId(idUsuario);
+            return objDAO.ListarUsuariosxPadre(strUsuarioPadre, strApellido);
         }
 
         public List<BEUsuario> ListarUsuario()
