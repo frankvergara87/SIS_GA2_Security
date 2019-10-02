@@ -11,7 +11,7 @@ namespace SIS_Ga2.DataAccess
 {
     public class ProyectoDAO
     {
-        public List<Proyecto> ListarProyectos(int idTipoDiseno, int idUsuario)
+        public List<BEProyecto> ListarProyectos(int idTipoDiseno, int idUsuario)
         {
             try
             {
@@ -19,7 +19,7 @@ namespace SIS_Ga2.DataAccess
                 param.Add("@idTipoDiseno", idTipoDiseno);
                 param.Add("@IdUsuario", idUsuario);
                 SqlManager objSql = new SqlManager(ConfigurationManager.AppSettings["ASOCEM"].ToString());
-                List<Proyecto> lista = objSql.getStatement<Proyecto>("USP_ListaProyecto_Lst", param);
+                List<BEProyecto> lista = objSql.getStatement<BEProyecto>("USP_ListaProyecto_Lst", param);
                 return lista;
             }
             catch (Exception ex)

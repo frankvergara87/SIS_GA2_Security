@@ -24,87 +24,77 @@
 <div class="col-lg-12">
     <div class="card">
         <div class="card-header d-flex align-items-center">
-            <h3 class="h4">Consulta: </h3>
+            <h3 class="h4">Mantenimiento Proyectos</h3>
         </div>
         <div class="card-body">
             <form class="form-inline">
-
                 <div class="row">
                     <div class="form-group col-md-4">
-                        <label for="inlineFormInput" class="col-form-label">Proyecto</label>
-                        <input id="Proyecto" type="text" placeholder="Proyecto" class="mr-3 form-control">
+                        <label for="inlineFormInput" class="col-form-label">Proyecto N° :</label>
+                        <input id="col1_filter" data-id="1" type="text" placeholder="Proyecto" class="column_filter mr-3 form-control">
                     </div>
                     <div class="form-group col-md-4">
                         <label for="inlineFormInput" class="col-form-label">Fecha Proyecto</label>
                         <input id="datetimepicker1" type="text" placeholder="Fecha Proyecto" class="mr-3 form-control">
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="inlineFormInput" class="col-form-label">Fec fin de contrato</label>
+                        <label for="inlineFormInput" class="col-form-label">Fecha Contrato</label>
                         <input id="datetimepicker2" type="text" placeholder="Fecha Fin Contrato" class="mr-3 form-control">
                     </div>
-                    @*</div>
-
-        <div class="row">*@
                     <div class="form-group col-md-4">
-                        <label for="ddlDepartamento" class="col-form-label">Departamento  </label>
-                        @Html.DropDownList("ddlDepartamento", null, new { @class = "mr-4 form-control dropdown-toggle" })
+                        <label for="ddlDepartamento" class="col-form-label">Departamento</label>
+                        @Html.DropDownList("ddlDepartamento", null, new { @class = "mr-4 form-control dropdown-toggle" });
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="ddlProvincia" class="col-form-label">Provincia  </label>
+                        <label for="ddlProvincia" class="col-form-label">Provincia</label>
                         @Html.DropDownList("ddlProvincia", null, new { @class = "mr-4 form-control dropdown-toggle" })
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="ddlDistrito" class="col-form-label">Distrito  </label>
+                        <label for="ddlDistrito" class="col-form-label">Distrito</label>
                         @Html.DropDownList("ddlDistrito", null, new { @class = "mr-4 form-control dropdown-toggle" })
                     </div>
-
                     <div class="form-group col-md-4">
                         <label for="inlineFormInput" class="col-form-label">Ingeniero</label>
-                        <input id="txtIngeniero" type="text" placeholder="Apellidos y Nombres" class="mr-3 form-control">
+                        <input id="col4_filter" data-id="4" type="text" placeholder="Apellidos y Nombres" class="column_filter mr-3 form-control">
                     </div>
-
-                </div> 
+                </div>
             </form>
-            <br>
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary">Buscar</button>
-                <button id= "btnBuscar" type="submit" class="btn btn-primary">Buscar</button>
+        </div>
 
-          
-
+        <div class="card-header d-flex align-items-center">
+        </div>
+        <div class="card-header d-flex align-items-center">
+            <div class="p-1">
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" id="btnNuevoProyecto" class="btn btn-outline-primary" data-id="2" data-toggle="modal" data-target="#exampleModal"><span class="icon-form"></span> Proyecto</button>
+                    <button type="button" id="btnNuevoDiseno" class="btn btn-outline-primary"><span class="icon-form"></span> Diseño</button>
+                    <button type="button" id="ButtonEditar" class="btn btn-outline-primary editor_edit" data-id="1" data-toggle="modal" data-target="#exampleModal"><span class="icon-form"></span> Editar</button>
+                    <button type="button" id="ButtonEliminar" class="btn btn-outline-danger editor_delete" data-id="3" data-toggle="modal" data-target="#deleteModal"><span class="icon-close"></span> Eliminar</button>
+                    <button type="button" id="ButtonExportar" class="btn btn-outline-success"><span class="icon-screen"></span> Exportar</button>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="card">
-        <div class="card-header d-flex align-items-center">
-            <h3 class="h4">Proyectos: </h3>
-        </div>
-      
 
         <div class="card-body">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Nuevo</button>
-            <br>
-            <br>
-
-
-
-
-
             <div class="table-responsive">
                 <table id="example" class="display compact" style="width:100%">
                     <thead>
                         <tr>
-                            <th class="align-center;" id="id">idProyecto</th>
-                            <th class="align-center;" id="CodProyecto">CodProyecto</th>
-                            <th class="align-center;" id="FecProyecto">FecProyecto</th>
-                            <th class="align-center;" id="Ubicacion">Ubicacion</th>
-                            <th class="align-center;" id="NumDiseno">NumDiseno</th>
-                            <th class="align-center;" id="Tramo">Tramo</th>
-                            <th class="align-center;" id="Reglamento">Reglamento</th>
-                            <th class="align-center;" id="TipoDiseno">TipoDiseno</th>
+                            <th class="text-sm-center" id="NumProyecto">Cod.</th>
+                            <th class="text-sm-center" id="Proyecto">Proyecto</th>
+                            <th class="text-sm-center" id="FechaProyecto">Fecha Proy.</th>
+                            <th class="text-sm-center" id="Dni">Dni</th>
+                            <th class="text-sm-center" id="Ingeniero">Ingeniero</th>
+                            <th class="text-sm-center" id="Cargo">Cargo</th>
+                            <th class="text-sm-center" id="FechaContrato">F.Contrato</th>
+                            <th class="text-sm-center" id="NumDiseno">Num.Diseño</th>
+                            <th class="text-sm-center" id="TipoDiseno">Tipo Diseno</th>
+                            <th class="text-sm-center" id="Tramo">Tramo</th>
+                            <th class="text-sm-center" id="Ubigeo">Ubigeo</th>
+                            <th></th>
                         </tr>
                     </thead>
-               
+
                 </table>
             </div>
         </div>
@@ -152,9 +142,9 @@
 
 
 
-    <script src="~/Scripts/jquery-3.3.1.js"></script>
+<script src="~/Scripts/jquery-3.3.1.js"></script>
 
-    <script type="text/javascript">
+<script type="text/javascript">
          var dataProyecto = [];
 
         $(document).ready(function ()
@@ -177,20 +167,45 @@
             $("#ddlProvincia").addClass("col-form-label");
             $("#ddlDistrito").addClass("rocol-form-labeljo");
 
+
+            var availableTags = [
+                "ActionScript",
+                "AppleScript",
+                "Asp",
+                "BASIC",
+                "C",
+                "C++",
+                "Clojure",
+                "COBOL",
+                "ColdFusion",
+                "Erlang",
+                "Fortran",
+                "Groovy",
+                "Haskell",
+                "Java",
+                "JavaScript",
+                "Lisp",
+                "Perl",
+                "PHP",
+                "Python",
+                "Ruby",
+                "Scala",
+                "Scheme"
+            ];
+
+            $("#col4_filter").autocomplete({
+                source: availableTags
+            });
+
+
+
+
             var idTipoDiseno = document.getElementById("txtidTipoDiseno").value;
             var idUsuario = document.getElementById("txtidUsuario").value;
 
             var objData = {};
             objData["idTipoDiseno"] = idTipoDiseno;
             objData["idUsuario"] = idUsuario;
-
-
-            //setup - add a text input to each footer cell
-            $('#example tfoot th').each(function () {
-                var title = $(this).text();
-                $(this).html('<input type="text" placeholder="Buscar ' + title + '" />');
-            });
-
 
             var table =
                 $('#example').DataTable({
@@ -201,14 +216,22 @@
                         "dataType": "json"
                         },
                 "columns": [
-                            { "data": "idProyecto" },
-                            { "data": "CodProyecto" },
-                            { "data": "FecProyecto" },
-                            { "data": "Ubicacion" },
-                            { "data": "NumDiseno" },
-                            { "data": "Tramo" },
-                            { "data": "Reglamento" },
-                            { "data": "TipoDiseno" }
+                                { "data": "Num_Proyecto" , "class": "text-center"},
+                                { "data": "Proyecto" , "class": "text-center" },
+                                { "data": "FechaProyecto" , "class": "text-center"},
+                                { "data": "Dni" , "class": "text-center"},
+                                { "data": "Ingeniero" , "class": "text-center"},
+                                { "data": "Cargo" , "class": "text-center"},
+                                { "data": "FechaContrato" , "class": "text-center"},
+                                { "data": "NumDiseno" , "class": "text-center"},
+                                { "data": "TipoDiseno" , "class": "text-center"},
+                                { "data": "Tramo" , "class": "text-center"},
+                                { "data": "Ubigeo" , "class": "text-center"},
+                                {
+                                    data: null,
+                                    className: "center",
+                                    defaultContent: '<div class="btn-group btn-group-sm"><button type="button" id="ButtonReporte" class="btn btn-primary editor_report" data-id="1" data-toggle="modal" data-target="#exampleModal"><span class="icon-search"></span></button></div>'
+                                }
                             ],
 
                 "lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]],
@@ -240,40 +263,9 @@
             });
 
 
-
-            // Apply the search
-            table.columns().every(function () {
-                var that = this;
-
-                $('input', this.footer()).on('keyup change clear', function () {
-                    if (that.search() !== this.value) {
-                        that
-                            .search(this.value)
-                            .draw();
-                    }
-                });
-            });
-
-
-
-            var dato = "";
-            var datos = "";
-
-            //para seleccionar una opcion
-            $('#example tbody').on( 'click', 'tr', function () {
-                if ( $(this).hasClass('selected') ) {
-                    $(this).removeClass('selected');
-                    dato = "";
-                    datos = "";
-                   
-                }
-                else {
-                    table.$('tr.selected').removeClass('selected');
-                    $(this).addClass('selected');
-                    dato = $(this).find("td:eq(0)").text();
-                    datos = $(this).find("td:eq(1)").text();
-                    alert(dato + ' - ' + datos);
-                }
+            $('input.column_filter').on('keyup click', function () {
+                var iden = $(this).data("id"); 
+                filterColumn(iden);
             } );
 
             CargarCompleted();
@@ -330,12 +322,12 @@ function ProcesarQuery()
             });
        
         };
- function Error(result) 
-    {
-       // $("#divError").show();
-         alert("ERROR " + result.status + ' ' + result.statusText); 
+function Error(result) 
+{
+    // $("#divError").show();
+        alert("ERROR " + result.status + ' ' + result.statusText); 
        
-      } 
+} 
 
 
  function CargarCompleted()
@@ -384,131 +376,154 @@ function ProcesarQuery()
 
 
 
-        function cambiaDepartamento(idDepartamento) {
+function cambiaDepartamento(idDepartamento) {
            
-            // var dd2 = document.getElementById("idIngeniero");
-             //alert(dd2.value);
-            var dd = document.getElementById("ddlProvincia");
+    // var dd2 = document.getElementById("idIngeniero");
+        //alert(dd2.value);
+    var dd = document.getElementById("ddlProvincia");
 
-            dd.options.length = 0;
-            dd.options[0] = new Option("Espere...");
-            dd.selectedIndex = 0;
-            dd.disabled = true;
+    dd.options.length = 0;
+    dd.options[0] = new Option("Espere...");
+    dd.selectedIndex = 0;
+    dd.disabled = true;
 
-            // Control de errores
-            $("#ddlProvincia").ajaxError(function (event, request, settings) {
-                dd.options[0] = new Option("Departamento incorrecto");
-            });
+    // Control de errores
+    $("#ddlProvincia").ajaxError(function (event, request, settings) {
+        dd.options[0] = new Option("Departamento incorrecto");
+    });
 
 
-            var objData = {};
-            objData["idDepartamento"] = idDepartamento;
+    var objData = {};
+    objData["idDepartamento"] = idDepartamento;
 
-            $.ajax({
-                type: "POST",
-                url: '/Home/ListaProvincias',
-                data: JSON.stringify(objData),
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (provincias) {
+    $.ajax({
+        type: "POST",
+        url: '/Home/ListaProvincias',
+        data: JSON.stringify(objData),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (provincias) {
 
-                    var obj = (typeof provincias) == 'string' ? eval('(' + provincias + ')') : provincias;
+            var obj = (typeof provincias) == 'string' ? eval('(' + provincias + ')') : provincias;
 
-                    $.each(obj, function (i, item) {
+            $.each(obj, function (i, item) {
 
-                        dd.options[i] = new Option(item.Provincia, item.Id_Provincia);
-
-                    });
-
-                    dd.disabled = false;
-                    cambiaProvincia($("#ddlProvincia").val());
-                }
+                dd.options[i] = new Option(item.Provincia, item.Id_Provincia);
 
             });
+
+            dd.disabled = false;
+            cambiaProvincia($("#ddlProvincia").val());
         }
 
-        function cambiaProvincia(idProvincia) {
+    });
+}
 
-            var dd = document.getElementById("ddlDistrito");
+function cambiaProvincia(idProvincia) {
 
-            dd.options.length = 0;
-            dd.options[0] = new Option("Espere...");
-            dd.selectedIndex = 0;
-            dd.disabled = true;
+    var dd = document.getElementById("ddlDistrito");
 
-            // Control de errores
-            $("#ddlDistrito").ajaxError(function (event, request, settings) {
-                dd.options[0] = new Option("Distrito incorrecto");
+    dd.options.length = 0;
+    dd.options[0] = new Option("Espere...");
+    dd.selectedIndex = 0;
+    dd.disabled = true;
+
+    // Control de errores
+    $("#ddlDistrito").ajaxError(function (event, request, settings) {
+        dd.options[0] = new Option("Distrito incorrecto");
+    });
+
+
+    var objData = {};
+    objData["idProvincia"] = idProvincia;
+
+    $.ajax({
+        type: "POST",
+        url: '/Home/ListaDistritos',
+        data: JSON.stringify(objData),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (distritos) {
+
+            var obj = (typeof distritos) == 'string' ? eval('(' + distritos + ')') : distritos;
+
+            $.each(obj, function (i, item) {
+
+                dd.options[i] = new Option(item.Distrito, item.id_Distrito);
+
             });
 
-
-            var objData = {};
-            objData["idProvincia"] = idProvincia;
-
-            $.ajax({
-                type: "POST",
-                url: '/Home/ListaDistritos',
-                data: JSON.stringify(objData),
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (distritos) {
-
-                    var obj = (typeof distritos) == 'string' ? eval('(' + distritos + ')') : distritos;
-
-                    $.each(obj, function (i, item) {
-
-                        dd.options[i] = new Option(item.Distrito, item.id_Distrito);
-
-                    });
-
-                    dd.disabled = false;
+            dd.disabled = false;
                     
-                }
-
-            });
-
         }
 
-        function ListarProyectos() {
-            var idTipoDiseno = document.getElementById("txtidTipoDiseno").value;
-            var idUsuario = document.getElementById("txtidUsuario").value;
-            var contenido = "";
+    });
 
-            var objData = {};
-            objData["idTipoDiseno"] = idTipoDiseno;
-            objData["idUsuario"] = idUsuario;
+}
 
-            $.ajax({
-                type: "POST",
-                url: '/Proyectos/ListarProyectos',
-                data: JSON.stringify(objData),
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",
-                success: function (Proyectos) {
-                    var obj = (typeof Proyectos) == 'string' ? eval('(' + Proyectos + ')') : Proyectos;
-                    for (i = 0; i < obj.length; i++) {
+function ListarProyectos() {
+    var idTipoDiseno = document.getElementById("txtidTipoDiseno").value;
+    var idUsuario = document.getElementById("txtidUsuario").value;
+    var contenido = "";
 
-                        contenido = contenido + "<tr>" +
-                            "<td style='text-align: center'>" + obj[i].idProyecto + "</td>" +
-                            "<td style='text-align: center'>" + obj[i].CodProyecto + "</td>" +
-                            "<td style='text-align: center'>" + obj[i].FecProyecto + "</td>" +
-                            "<td style='display:none;'>" + obj[i].idTipoDiseno + "</td>" +
-                            "<td style='text-align: center'>" + obj[i].TipoDiseno + "</td>" +
-                            "<td style='text-align: center'>" + obj[i].NumDiseno + "</td>" +
-                            "<td style='text-align: center'>" + obj[i].Tramo + "</td>" +
-                            "<td style='text-align: center'>" + obj[i].Ubicacion + "</td>" +
-                            "<td style='text-align: center'>" + obj[i].Reglamento + "</td>" +
-                            "<td style='display:none;'>" + obj[i].idReglamento + "</td>" +
-                            "<td><a title='Editar' style='cursor:pointer' onclick='EditarProductoVentas(" + obj[i].idProyecto + ")'>" +
-                            "<i class='icol-text-signature'></i>" +
-                            "</a> &nbsp </td></tr>"
-                    }
+    var objData = {};
+    objData["idTipoDiseno"] = idTipoDiseno;
+    objData["idUsuario"] = idUsuario;
 
-                    $("#bodyProyectos").empty().html(contenido);
-                }
-            });
+    $.ajax({
+        type: "POST",
+        url: '/Proyectos/ListarProyectos',
+        data: JSON.stringify(objData),
+        contentType: "application/json; charset=utf-8",
+        dataType: "json",
+        success: function (Proyectos) {
+            var obj = (typeof Proyectos) == 'string' ? eval('(' + Proyectos + ')') : Proyectos;
+            for (i = 0; i < obj.length; i++) {
+
+                contenido = contenido + "<tr>" +
+                    "<td style='text-align: center'>" + obj[i].idProyecto + "</td>" +
+                    "<td style='text-align: center'>" + obj[i].CodProyecto + "</td>" +
+                    "<td style='text-align: center'>" + obj[i].FecProyecto + "</td>" +
+                    "<td style='display:none;'>" + obj[i].idTipoDiseno + "</td>" +
+                    "<td style='text-align: center'>" + obj[i].TipoDiseno + "</td>" +
+                    "<td style='text-align: center'>" + obj[i].NumDiseno + "</td>" +
+                    "<td style='text-align: center'>" + obj[i].Tramo + "</td>" +
+                    "<td style='text-align: center'>" + obj[i].Ubicacion + "</td>" +
+                    "<td style='text-align: center'>" + obj[i].Reglamento + "</td>" +
+                    "<td style='display:none;'>" + obj[i].idReglamento + "</td>" +
+                    "<td><a title='Editar' style='cursor:pointer' onclick='EditarProductoVentas(" + obj[i].idProyecto + ")'>" +
+                    "<i class='icol-text-signature'></i>" +
+                    "</a> &nbsp </td></tr>"
+            }
+
+            $("#bodyProyectos").empty().html(contenido);
         }
+    });
+}
 
-    </script>
+function Mantenimiento(prc,codProy)
+{
+    switch (prc) {
+        case 1: //Proceso Actualizar
+            document.getElementById('exampleModalLabel').innerHTML = ' ACTUALIZANDO: ' + codProy;
+            break;
+
+        case 2: //Proceso Nuevo
+            document.getElementById('exampleModalLabel').innerHTML = ' NUEVO PROYECTO: ';
+            break;
+
+        case 3: //Proceso Eliminar
+            document.getElementById('deleteModalLabel').innerHTML = ' ELIMINANDO: ' + codProy;
+            break;
+    } 
+}
+
+function filterColumn(i) {
+    $('#example').DataTable().column(i).search(
+        $('#col'+i+'_filter').val(),
+    ).draw();
+}
+
+</script>
 
 

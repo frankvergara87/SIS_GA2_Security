@@ -10,7 +10,7 @@ namespace SIS_Ga2.Business
 {
     public class ProyectoBL
     {
-        public List<Proyecto> ListarProyectos(int idTipoDiseno, int idUsuario)
+        public List<BEProyecto> ListarProyectos(int idTipoDiseno, int idUsuario)
         {
             ProyectoDAO objDAO = new ProyectoDAO();
             return objDAO.ListarProyectos(idTipoDiseno, idUsuario);
