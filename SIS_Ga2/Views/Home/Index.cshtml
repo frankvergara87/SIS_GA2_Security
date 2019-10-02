@@ -42,16 +42,16 @@
                         <input id="datetimepicker2" type="text" placeholder="Fecha Fin Contrato" class="mr-3 form-control">
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="ddlDepartamento" class="col-form-label">Departamento</label>
-                        @Html.DropDownList("ddlDepartamento", null, new { @class = "mr-4 form-control dropdown-toggle" });
+                        <label for="inlineFormInput" class="col-form-label">Departamento</label>
+                        @Html.DropDownList("ddlDepartamento", null, new { @class = "mr-4 col-sm-10 form-control" })
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="ddlProvincia" class="col-form-label">Provincia</label>
-                        @Html.DropDownList("ddlProvincia", null, new { @class = "mr-4 form-control dropdown-toggle" })
+                        <label for="inlineFormInput" class="col-form-label">Provincia</label>
+                        @Html.DropDownList("ddlProvincia", null, new { @class = "mr-4  col-sm-10 form-control" })
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="ddlDistrito" class="col-form-label">Distrito</label>
-                        @Html.DropDownList("ddlDistrito", null, new { @class = "mr-4 form-control dropdown-toggle" })
+                        <label for="inlineFormInput" class="col-form-label">Distrito</label>
+                        @Html.DropDownList("ddlDistrito", null, new { @class = "mr-4  col-sm-10 form-control" })
                     </div>
                     <div class="form-group col-md-4">
                         <label for="inlineFormInput" class="col-form-label">Ingeniero</label>
@@ -189,11 +189,8 @@
                 cambiaProvincia($("#ddlProvincia").val());
             });
 
-           //cambiaDepartamento($("#ddlDepartamento").val());
+           cambiaDepartamento($("#ddlDepartamento").val());           
 
-            $("#ddlDepartamento").addClass("mr-4 form-control dropdown-toggle");
-            $("#ddlProvincia").addClass("mr-4 form-control dropdown-toggle");
-            $("#ddlDistrito").addClass("mr-4 form-control dropdown-toggle");
 
 
             var availableTags = [
