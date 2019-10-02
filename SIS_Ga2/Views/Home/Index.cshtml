@@ -31,15 +31,15 @@
                 <div class="row">
                     <div class="form-group col-md-4">
                         <label for="inlineFormInput" class="col-form-label">Proyecto N° :</label>
-                        <input id="col1_filter" data-id="1" type="text" placeholder="Proyecto" class="column_filter mr-3 form-control">
+                        <input id="col1_filter" data-id="1" type="text" placeholder="Proyecto" class="column_filter mr-3 col-sm-10 form-control">
                     </div>
                     <div class="form-group col-md-4">
                         <label for="inlineFormInput" class="col-form-label">Fecha Proyecto</label>
-                        <input id="datetimepicker1" type="text" placeholder="Fecha Proyecto" class="mr-3 form-control">
+                        <input id="datetimepicker1" type="text" placeholder="Fecha Proyecto" class="mr-3 col-sm-10 form-control">
                     </div>
                     <div class="form-group col-md-4">
                         <label for="inlineFormInput" class="col-form-label">Fecha Contrato</label>
-                        <input id="datetimepicker2" type="text" placeholder="Fecha Fin Contrato" class="mr-3 form-control">
+                        <input id="datetimepicker2" type="text" placeholder="Fecha Fin Contrato" class="mr-3 col-sm-10 form-control">
                     </div>
                     <div class="form-group col-md-4">
                         <label for="inlineFormInput" class="col-form-label">Departamento</label>
@@ -55,7 +55,7 @@
                     </div>
                     <div class="form-group col-md-4">
                         <label for="inlineFormInput" class="col-form-label">Ingeniero</label>
-                        <input id="col4_filter" data-id="4" type="text" placeholder="Apellidos y Nombres" class="column_filter mr-3 form-control">
+                        <input id="col4_filter" data-id="4" type="text" placeholder="Apellidos y Nombres" class="column_filter mr-3 col-sm-10 form-control">
                     </div>
                 </div>
             </form>
@@ -183,6 +183,9 @@
 
             $("#ddlDepartamento").change(function () {
                 cambiaDepartamento($("#ddlDepartamento").val());
+                //var id = $(this).val();
+                //var text = $(this).find('option:selected').text();
+                //alert(text);
             });
 
             $("#ddlProvincia").change(function () {
@@ -306,10 +309,17 @@
 
 
 
+            //Busqueda de Parámetros TextBox: Proyecto/Ingeniero
             $('input.column_filter').on('keyup click', function () {
                 var iden = $(this).data("id"); 
                 filterColumn(iden);
             } );
+
+
+
+
+
+
 
 
             // Proceso Actualizar
