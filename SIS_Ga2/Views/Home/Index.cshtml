@@ -68,9 +68,9 @@
                 <div class="btn-group" role="group" aria-label="Basic example">
                     <button type="button" id="btnNuevoProyecto" class="btn btn-outline-primary" data-id="2" data-toggle="modal" data-target="#exampleModal"><span class="icon-form"></span> Proyecto</button>
                     <button type="button" id="btnNuevoDiseno" class="btn btn-outline-primary"><span class="icon-form"></span> Diseño</button>
-                    <button type="button" id="ButtonEditar" class="btn btn-outline-primary editor_edit" data-id="1" data-toggle="modal" data-target="#exampleModal"><span class="icon-form"></span> Editar</button>
-                    <button type="button" id="ButtonEliminar" class="btn btn-outline-danger editor_delete" data-id="3" data-toggle="modal" data-target="#deleteModal"><span class="icon-close"></span> Eliminar</button>
-                    <button type="button" id="ButtonExportar" class="btn btn-outline-success"><span class="icon-screen"></span> Exportar</button>
+                    <button type="button" id="btnEditar" class="btn btn-outline-primary editor_edit" data-id="1" data-toggle="modal" data-target="#exampleModal"><span class="icon-form"></span> Editar</button>
+                    <button type="button" id="btnEliminar" class="btn btn-outline-danger editor_delete" data-id="3" data-toggle="modal" data-target="#deleteModal"><span class="icon-close"></span> Eliminar</button>
+                    <button type="button" id="btnExportar" class="btn btn-outline-success"><span class="icon-screen"></span> Exportar</button>
                 </div>
             </div>
         </div>
@@ -122,7 +122,7 @@
                             <div class="form-group">
                                 <label for="recipient-name" class="col-form-label">Diseño:</label>
                                 <input type="text" class="form-control" id="frmDiseno" name="frmDiseno">
-                            </div>                                
+                            </div>
                             <div class="form-group">
                                 <label for="recipient-name" class="col-form-label">Reglamento:</label>
                                 <input type="text" class="form-control" id="frmReglamento" name="frmReglamento">
@@ -138,6 +138,34 @@
             </div>
         }
     </div>
+
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        @using (Html.BeginForm("FormEliminaProyecto", "Home", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteModalLabel"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="recipient-name" class="col-form-label">Esta seguro de eliminar el Proyecto?</label>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            <button type="submit" id="btnNuevo" class="btn btn-primary">Eliminar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        }
+    </div>
+
 </div>
 
 
@@ -161,11 +189,11 @@
                 cambiaProvincia($("#ddlProvincia").val());
             });
 
-            cambiaDepartamento($("#ddlDepartamento").val());
+           //cambiaDepartamento($("#ddlDepartamento").val());
 
-            $("#ddlDepartamento").addClass("col-form-label");
-            $("#ddlProvincia").addClass("col-form-label");
-            $("#ddlDistrito").addClass("rocol-form-labeljo");
+            $("#ddlDepartamento").addClass("mr-4 form-control dropdown-toggle");
+            $("#ddlProvincia").addClass("mr-4 form-control dropdown-toggle");
+            $("#ddlDistrito").addClass("mr-4 form-control dropdown-toggle");
 
 
             var availableTags = [
@@ -262,11 +290,58 @@
 
             });
 
+            //para seleccionar una opcion
+            $('#example tbody').on( 'click', 'tr', function () {
+                if ( $(this).hasClass('selected') ) {
+                    $(this).removeClass('selected');
+                    //dato = "";
+                    //datos = "";
+                    //alert(dato);
+                }
+                else {
+                    table.$('tr.selected').removeClass('selected');
+                    $(this).addClass('selected');
+                    //dato = $(this).find("td:eq(0)").text();
+                    //datos = $(this).find("td:eq(1)").text();
+                    //alert(dato + ' - ' + datos);
+                }
+            } );
+
+
 
             $('input.column_filter').on('keyup click', function () {
                 var iden = $(this).data("id"); 
                 filterColumn(iden);
             } );
+
+
+            // Proceso Actualizar
+            $("#btnEditar").click( function()
+                {
+                    var Proc = $(this).data("id"); //Parametro identificador de Proceso                    
+                    alert(Proc);
+                    Mantenimiento(Proc, ' ');
+                }
+            );
+
+            // Proceso Eliminar
+            $('#example').on('click', 'button.editor_delete', function (e) {
+                e.preventDefault();
+                var Proc = $(this).data("id"); //Parametro identificador de Proceso 
+                var CodProyecto = $(this).parents("tr").find("td").eq(1).html();
+
+                Mantenimiento(Proc,CodProyecto);          
+
+            } );
+
+            // Proceso Nuevo
+            $("#btnNuevoProyecto").click( function()
+                {
+                    var Proc = $(this).data("id"); //Parametro identificador de Proceso                    
+                    alert(Proc);
+                    Mantenimiento(Proc, ' ');
+                }
+            );
 
             CargarCompleted();
             CargarGrilla();
