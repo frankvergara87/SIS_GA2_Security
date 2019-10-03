@@ -27,14 +27,13 @@ namespace SIS_Ga2.Entity
         public string UsrActualizacion { get; set; }
 
 
-
+        public int Id_Proyecto { get; set; }
         public string Num_Proyecto { get; set; }  //Por Regularizar
-        public double FechaProyecto { get; set; }
+        public double Fecha { get; set; }
         public string Dni { get; set; }
         public string Cargo { get; set; }
-        public double FechaContrato { get; set; }
-        public string NumDiseno { get; set; }
-        public string TipoDiseno { get; set; }
+        public string Num_Diseno { get; set; }
+        public string Tipo_Diseno { get; set; }
         public string Tramo { get; set; }
         public string Ubigeo { get; set; }
 

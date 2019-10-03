@@ -17,24 +17,24 @@ namespace SIS_Ga2.Controllers
         }
 
         
-        public JsonResult ListarProyectos(int idTipoDiseno, int idUsuario)
+        public JsonResult ListarProyectos(string NumProyecto, string FechaProyecto, string FechaContrato, int IdUsuario, int Distrito, int Provincia, int Departamento)
         {
 
             Sistema usuario = new Sistema();
             usuario = ((Sistema)Session["sistema.general"]);
             ProyectoBL objProyecto = new ProyectoBL();
-            List<BEProyecto> Proyecto = objProyecto.ListarProyectos(idTipoDiseno, idUsuario);
+            List<BEProyecto> Proyecto = objProyecto.ListarProyectos(NumProyecto, FechaProyecto, FechaContrato, IdUsuario, Distrito, Provincia, Departamento);
             return Json(new { data = Proyecto }, JsonRequestBehavior.AllowGet);
 
         }
 
-        public JsonResult ListarProyectos2(String strProyecto, String strFechaProyecto, String FechaContrato, String Departamento, String Provincia, String Distrito, String IdIngeniero )
-        {
-            ProyectoBL objProyecto = new ProyectoBL();
-            List<BEProyecto> lObjBeProyecto = objProyecto.ListarProyectos2(strProyecto, strFechaProyecto, FechaContrato, Int32.Parse(Departamento), Int32.Parse(Provincia), Int32.Parse(Distrito), Int32.Parse(IdIngeniero));
-            return Json(new { data = lObjBeProyecto }, JsonRequestBehavior.AllowGet);
+        //public JsonResult ListadoProyectos(String strNumProyecto, String strFechaProyecto, String strFechaContrato, int strIdUsuario, int strIdDistrito, int strIdProvincia, int strIdDepartamento )
+        //{
+        //    ProyectoBL objProyecto = new ProyectoBL();
+        //    List<BEProyecto> lObjBeProyecto = objProyecto.ListarProyectos2(strNumProyecto, strFechaProyecto, strFechaContrato, strIdUsuario, strIdDistrito, strIdProvincia, strIdDepartamento);
+        //    return Json(new { data = lObjBeProyecto }, JsonRequestBehavior.AllowGet);
 
-        }
+        //}
 
         public int GuardarProyecto(Proyecto DataProyecto)
         {

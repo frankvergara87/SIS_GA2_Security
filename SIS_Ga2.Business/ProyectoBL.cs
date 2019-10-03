@@ -10,15 +10,15 @@ namespace SIS_Ga2.Business
 {
     public class ProyectoBL
     {
-        public List<BEProyecto> ListarProyectos(int idTipoDiseno, int idUsuario)
+        public List<BEProyecto> ListarProyectos(string NumProyecto, string FechaProyecto, string FechaContrato, int IdUsuario, int IdDistrito, int Provincia, int Departamento)
         {
             ProyectoDAO objDAO = new ProyectoDAO();
-            return objDAO.ListarProyectos(idTipoDiseno, idUsuario);
+            return objDAO.ListarProyectos(NumProyecto, FechaProyecto, FechaContrato, IdUsuario, IdDistrito, Provincia, Departamento);
         }
-        public List<BEProyecto> ListarProyectos2(String strProyecto, String strFechaProyecto, String FechaContrato, int Departamento, int Provincia, int Distrito, int IdIngeniero) 
+        public List<BEProyecto> ListarProyectos2(string strNumProyecto, string strFechaProyecto)
         {
             ProyectoDAO objDAO = new ProyectoDAO();
-            return objDAO.ListarProyectos2(strProyecto, strFechaProyecto, FechaContrato, Departamento, Provincia, Distrito, IdIngeniero);
+            return objDAO.ListarProyectos2(strNumProyecto, strFechaProyecto);
         }
 
         public int GuardarProyecto(Proyecto DataProyecto)

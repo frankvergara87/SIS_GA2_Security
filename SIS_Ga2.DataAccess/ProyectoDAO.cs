@@ -11,15 +11,20 @@ namespace SIS_Ga2.DataAccess
 {
     public class ProyectoDAO
     {
-        public List<BEProyecto> ListarProyectos(int idTipoDiseno, int idUsuario)
+        public List<BEProyecto> ListarProyectos(string NumProyecto, string FechaProyecto, string FechaContrato, int IdUsuario, int IdDistrito, int IdProvincia, int IdDepartamento)
         {
             try
             {
                 Parameter param = new Parameter();
-                param.Add("@idTipoDiseno", idTipoDiseno);
-                param.Add("@IdUsuario", idUsuario);
+                param.Add("@Num_Proyecto", NumProyecto);
+                param.Add("@Fecha_Proyecto", FechaProyecto);
+                param.Add("@Fecha_Contrato", FechaContrato);
+                param.Add("@Id_Usuario", IdUsuario);
+                param.Add("@Id_Distrito", IdDistrito);
+                param.Add("@Id_Provincia", IdProvincia);
+                param.Add("@Id_Departamento", IdDepartamento);
                 SqlManager objSql = new SqlManager(ConfigurationManager.AppSettings["ASOCEM"].ToString());
-                List<BEProyecto> lista = objSql.getStatement<BEProyecto>("USP_ListaProyecto_Lst", param);
+                List<BEProyecto> lista = objSql.getStatement<BEProyecto>("USP_ListaProyDiseno_Lst", param);
                 return lista;
             }
             catch (Exception ex)
@@ -31,20 +36,21 @@ namespace SIS_Ga2.DataAccess
         }
 
 
-        public List<BEProyecto> ListarProyectos2(String strProyecto, String strFechaProyecto, String FechaContrato, int Departamento, int Provincia, int Distrito, int IdIngeniero)
+        public List<BEProyecto> ListarProyectos2(string strNumProyecto, string strFechaProyecto)
         {
             try
             {
                 Parameter param = new Parameter();
-                param.Add("@Num_Proyecto", strProyecto);
-                param.Add("@Fecha_Proyecto", Int32.Parse(strFechaProyecto));
-                param.Add("@Fecha_Contrato", Int32.Parse(FechaContrato));
-                param.Add("@Id_Usuario", Departamento);
-                param.Add("@Id_Provincia", Provincia);
-                param.Add("@Id_Departamento", IdIngeniero);
+                param.Add("@Num_Proyecto", strNumProyecto);
+                param.Add("@Fecha_Proyecto", strFechaProyecto);
+                //param.Add("@Fecha_Contrato", strFechaContrato);
+                //param.Add("@Id_Usuario", strIdUsuario);
+                //param.Add("@Id_Distrito", strIdDistrito);
+                //param.Add("@Id_Provincia", strIdProvincia);
+                //param.Add("@Id_Departamento", strIdDepartamento);
 
                 SqlManager objSql = new SqlManager(ConfigurationManager.AppSettings["ASOCEM"].ToString());
-                List<BEProyecto> lista = objSql.getStatement<BEProyecto>("USP_ListaProyDiseno_Lst2", param);
+                List<BEProyecto> lista = objSql.getStatement<BEProyecto>("USP_ListaProyDiseno_Lst", param);
                 return lista;
             }
             catch (Exception ex)

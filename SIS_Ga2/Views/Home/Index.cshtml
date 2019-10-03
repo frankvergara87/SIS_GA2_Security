@@ -80,15 +80,16 @@
                 <table id="example" class="display compact" style="width:100%">
                     <thead>
                         <tr>
-                            <th class="text-sm-center" id="NumProyecto">Cod.</th>
+                            <th class="text-sm-center" id="Id_Proyecto">Id.</th>
+                            <th class="text-sm-center" id="Num_Proyecto">Num.</th>
                             <th class="text-sm-center" id="Proyecto">Proyecto</th>
-                            <th class="text-sm-center" id="FechaProyecto">Fecha Proy.</th>
+                            <th class="text-sm-center" id="Fecha">Fecha Proy.</th>
                             <th class="text-sm-center" id="Dni">Dni</th>
                             <th class="text-sm-center" id="Ingeniero">Ingeniero</th>
                             <th class="text-sm-center" id="Cargo">Cargo</th>
-                            <th class="text-sm-center" id="FechaContrato">F.Contrato</th>
-                            <th class="text-sm-center" id="NumDiseno">Num.Diseño</th>
-                            <th class="text-sm-center" id="TipoDiseno">Tipo Diseno</th>
+                            <th class="text-sm-center" id="Fecha_Contrato">F.Contrato</th>
+                            <th class="text-sm-center" id="Num_Diseno">Num.Diseño</th>
+                            <th class="text-sm-center" id="Tipo_Diseno">Tipo Diseno</th>
                             <th class="text-sm-center" id="Tramo">Tramo</th>
                             <th class="text-sm-center" id="Ubigeo">Ubigeo</th>
                             <th></th>
@@ -231,10 +232,28 @@
             var idTipoDiseno = document.getElementById("txtidTipoDiseno").value;
             var idUsuario = document.getElementById("txtidUsuario").value;
 
-            var objData = {};
-            objData["idTipoDiseno"] = idTipoDiseno;
-            objData["idUsuario"] = idUsuario;
 
+            //Aqui se asignará el valor de las variables de cada control -- Hardcode
+            var strNumProyecto = "004";
+            var strFechaProyecto = 0;
+            var strFechaContrato = 0;
+            var strIdDistrito = 0;
+            var strIdProvincia = 0;
+            var strIdDepartamento = 0;
+
+            var objData = {};
+            //objData["idTipoDiseno"] = idTipoDiseno;
+            //objData["idUsuario"] = idUsuario; 
+
+            objData["NumProyecto"] = strNumProyecto;
+            objData["FechaProyecto"] = strFechaProyecto;
+            objData["FechaContrato"] = strFechaContrato;
+            objData["IdUsuario"] = idUsuario;
+            objData["Distrito"] = strIdDistrito;
+            objData["Provincia"] = strIdProvincia;
+            objData["Departamento"] = strIdDepartamento;
+
+           
             var table =
                 $('#example').DataTable({
                 "ajax": {
@@ -244,15 +263,16 @@
                         "dataType": "json"
                         },
                 "columns": [
-                                { "data": "Num_Proyecto" , "class": "text-center"},
+                                { "data": "Id_Proyecto" , "class": "text-center"},
+                                { "data": "Num_Proyecto", "class": "text-center" },
                                 { "data": "Proyecto" , "class": "text-center" },
-                                { "data": "FechaProyecto" , "class": "text-center"},
+                                { "data": "Fecha" , "class": "text-center"},
                                 { "data": "Dni" , "class": "text-center"},
                                 { "data": "Ingeniero" , "class": "text-center"},
                                 { "data": "Cargo" , "class": "text-center"},
-                                { "data": "FechaContrato" , "class": "text-center"},
-                                { "data": "NumDiseno" , "class": "text-center"},
-                                { "data": "TipoDiseno" , "class": "text-center"},
+                                { "data": "Fecha_Contrato" , "class": "text-center"},
+                                { "data": "Num_Diseno" , "class": "text-center"},
+                                { "data": "Tipo_Diseno" , "class": "text-center"},
                                 { "data": "Tramo" , "class": "text-center"},
                                 { "data": "Ubigeo" , "class": "text-center"},
                                 {
