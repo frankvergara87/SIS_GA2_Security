@@ -24,38 +24,38 @@
 <div class="col-lg-12">
     <div class="card">
         <div class="card-header d-flex align-items-center">
-            <h3 class="h4">Mantenimiento Proyectos</h3>
+            <h3 class="h4">Consulta de Proyectos: </h3>
         </div>
         <div class="card-body">
             <form class="form-inline">
                 <div class="row">
                     <div class="form-group col-md-4">
-                        <label for="inlineFormInput" class="col-form-label">Proyecto N° :</label>
-                        <input id="col1_filter" data-id="1" type="text" placeholder="Proyecto" class="column_filter mr-3 col-sm-10 form-control">
+                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">Proyecto N° :</label>
+                        <input id="col1_filter" data-id="1" type="text" placeholder="Proyecto" class="column_filter mr-3 col-sm-10 form-control form-control-sm">
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="inlineFormInput" class="col-form-label">Fecha Proyecto</label>
-                        <input id="datetimepicker1" type="text" placeholder="Fecha Proyecto" class="mr-3 col-sm-10 form-control">
+                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">Fecha Proyecto</label>
+                        <input id="datetimepicker1" type="text" placeholder="Fecha Proyecto" class="mr-3 col-sm-10 form-control form-control-sm">
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="inlineFormInput" class="col-form-label">Fecha Contrato</label>
-                        <input id="datetimepicker2" type="text" placeholder="Fecha Fin Contrato" class="mr-3 col-sm-10 form-control">
+                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">Fecha Contrato</label>
+                        <input id="datetimepicker2" type="text" placeholder="Fecha Fin Contrato" class="mr-3 col-sm-10 form-control form-control-sm">
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="inlineFormInput" class="col-form-label">Departamento</label>
-                        @Html.DropDownList("ddlDepartamento", null, new { @class = "mr-4 col-sm-10 form-control" })
+                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">Departamento</label>
+                        @Html.DropDownList("ddlDepartamento", null, new { @class = "mr-3 col-sm-10 form-control form-control-sm" })
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="inlineFormInput" class="col-form-label">Provincia</label>
-                        @Html.DropDownList("ddlProvincia", null, new { @class = "mr-4  col-sm-10 form-control" })
+                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">Provincia</label>
+                        @Html.DropDownList("ddlProvincia", null, new { @class = "mr-3  col-sm-10 form-control form-control-sm" })
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="inlineFormInput" class="col-form-label">Distrito</label>
-                        @Html.DropDownList("ddlDistrito", null, new { @class = "mr-4  col-sm-10 form-control" })
+                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">Distrito</label>
+                        @Html.DropDownList("ddlDistrito", null, new { @class = "mr-3  col-sm-10 form-control form-control-sm" })
                     </div>
                     <div class="form-group col-md-4">
-                        <label for="inlineFormInput" class="col-form-label">Ingeniero</label>
-                        <input id="col4_filter" data-id="4" type="text" placeholder="Apellidos y Nombres" class="column_filter mr-3 col-sm-10 form-control">
+                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">Ingeniero</label>
+                        <input id="col4_filter" data-id="4" type="text" placeholder="Apellidos y Nombres" class="column_filter mr-3 col-sm-10 form-control form-control-sm">
                     </div>
 
                 </div>
@@ -64,23 +64,25 @@
 
 
         </div>
-        <div class="card-header d-flex flex-row-reverse bd-highlight">
+
+        <div class="card-header">
         </div>
-        <div class="card-header d-flex flex-row-reverse bd-highlight">
-            <div class="p-1">
-                <div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" id="btnBuscar" class="btn btn-primary"><span class="icon-search"></span> Buscar</button>
+
+        <div class="card-header">
+            <div class=" clearfix">
+                <div class="p-0">
+                    <div class="btn-group float-left" role="group" aria-label="Basic example">
+                        <button type="button" id="btnNuevoProyecto" class="btn btn-outline-primary" data-id="2" data-toggle="modal" data-target="#exampleModal"><span class="icon-form"></span> Proyecto</button>
+                        <button type="button" id="btnNuevoDiseno" class="btn btn-outline-primary"><span class="icon-form"></span> Diseño</button>
+                        <button type="button" id="btnEditar" class="btn btn-outline-primary editor_edit" data-id="1" data-toggle="modal" data-target="#exampleModal"><span class="icon-form"></span> Editar</button>
+                        <button type="button" id="btnEliminar" class="btn btn-outline-danger editor_delete" data-id="3" data-toggle="modal" data-target="#deleteModal"><span class="icon-close"></span> Eliminar</button>
+                        <button type="button" id="btnExportar" class="btn btn-outline-success"><span class="icon-screen"></span> Exportar</button>
+                    </div>
                 </div>
-            </div>
-        </div>
-        <div class="card-header d-flex align-items-center">
-            <div class="p-1">
-                <div class="btn-group" role="group" aria-label="Basic example">
-                    <button type="button" id="btnNuevoProyecto" class="btn btn-outline-primary" data-id="2" data-toggle="modal" data-target="#exampleModal"><span class="icon-form"></span> Proyecto</button>
-                    <button type="button" id="btnNuevoDiseno" class="btn btn-outline-primary"><span class="icon-form"></span> Diseño</button>
-                    <button type="button" id="btnEditar" class="btn btn-outline-primary editor_edit" data-id="1" data-toggle="modal" data-target="#exampleModal"><span class="icon-form"></span> Editar</button>
-                    <button type="button" id="btnEliminar" class="btn btn-outline-danger editor_delete" data-id="3" data-toggle="modal" data-target="#deleteModal"><span class="icon-close"></span> Eliminar</button>
-                    <button type="button" id="btnExportar" class="btn btn-outline-success"><span class="icon-screen"></span> Exportar</button>
+                <div class="p-0">
+                    <div class="btn-group float-right" role="group" aria-label="Basic example">
+                        <button type="button" id="btnBuscar" class="btn btn-primary"><span class="icon-search"></span> Buscar</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -191,7 +193,7 @@
             var idTipoDiseno = document.getElementById("txtidTipoDiseno").value;
             var idUsuario = document.getElementById("txtidUsuario").value;
 
-            alert(idUsuario);
+            //alert(idUsuario);
 
            // $("#btnBuscar").click(ProcesarQuery);
 
@@ -276,7 +278,7 @@
             {
                 $('#example').dataTable().fnDestroy();
                 CargarDtProyectos(idUsuario);
-                alert("Buscando...");
+                //alert("Buscando...");
             }
             );
 
