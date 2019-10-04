@@ -12,8 +12,21 @@ namespace SIS_Ga2.Business
     {
         public List<BEProyecto> ListarProyectos(string NumProyecto, string FechaProyecto, string FechaContrato, int IdUsuario, int IdDistrito, int Provincia, int Departamento)
         {
+            BEProyecto objbeDistrito = new BEProyecto();
+            List<BEProyecto> lobjbeProyecto = new List<BEProyecto>();
             ProyectoDAO objDAO = new ProyectoDAO();
-            return objDAO.ListarProyectos(NumProyecto, FechaProyecto, FechaContrato, IdUsuario, IdDistrito, Provincia, Departamento);
+
+            foreach (BEProyecto temp in objDAO.ListarProyectos(NumProyecto, FechaProyecto, FechaContrato, IdUsuario, IdDistrito, Provincia, Departamento))
+            {
+                temp.Fecha_Proyecto_Date = HelpClass.CNumero_a_Fecha(temp.Fecha_Proyecto);
+                temp.Fecha_Contrato_Date = HelpClass.CNumero_a_Fecha(temp.Fecha_Contrato);
+                lobjbeProyecto.Add(temp);
+
+            }
+
+            return lobjbeProyecto;
+
+
         }
         public List<BEProyecto> ListarProyectos2(string strNumProyecto, string strFechaProyecto)
         {

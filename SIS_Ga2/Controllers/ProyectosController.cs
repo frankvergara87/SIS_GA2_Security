@@ -17,13 +17,19 @@ namespace SIS_Ga2.Controllers
         }
 
         
-        public JsonResult ListarProyectos(string NumProyecto, string FechaProyecto, string FechaContrato, int IdUsuario, int Distrito, int Provincia, int Departamento)
-        {
+        public JsonResult ListarProyectos(string NumProyecto, string FechaProyecto, string FechaContrato, string IdUsuario, string Distrito, string Provincia, string Departamento)
 
-            Sistema usuario = new Sistema();
-            usuario = ((Sistema)Session["sistema.general"]);
+        {
+            if (FechaProyecto == "") { FechaProyecto = "0"; }
+            if (FechaContrato == "") { FechaContrato = "0"; }
+            if (Provincia == "") { FechaProyecto = "0"; }
+            if (Distrito == "") { FechaProyecto = "0"; }
+            if (FechaProyecto == "") { Departamento = "0"; }
+            if (IdUsuario == "") { IdUsuario = "0"; }
+
             ProyectoBL objProyecto = new ProyectoBL();
-            List<BEProyecto> Proyecto = objProyecto.ListarProyectos(NumProyecto, FechaProyecto, FechaContrato, IdUsuario, Distrito, Provincia, Departamento);
+
+            List<BEProyecto> Proyecto = objProyecto.ListarProyectos(NumProyecto, FechaProyecto, FechaContrato, Int32.Parse(IdUsuario), Int32.Parse(Distrito), Int32.Parse(Provincia), Int32.Parse(Departamento));
             return Json(new { data = Proyecto }, JsonRequestBehavior.AllowGet);
 
         }

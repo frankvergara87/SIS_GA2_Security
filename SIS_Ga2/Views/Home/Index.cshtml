@@ -55,7 +55,7 @@
                     </div>
                     <div class="form-group col-md-4">
                         <label for="inlineFormInput" class="col-form-label col-form-label-sm">Ingeniero</label>
-                        <input id="col4_filter" data-id="4" type="text" placeholder="Apellidos y Nombres" class="column_filter mr-3 col-sm-10 form-control form-control-sm">
+                        <input id="txtIngeniero" data-id="4" type="text" placeholder="Apellidos y Nombres" class="column_filter mr-3 col-sm-10 form-control form-control-sm">
                     </div>
 
                 </div>
@@ -201,48 +201,14 @@
                 cambiaDepartamento($("#ddlDepartamento").val());
                 //var id = $(this).val();
                 //var text = $(this).find('option:selected').text();
-                //alert(text);
             });
 
             $("#ddlProvincia").change(function () {
                 cambiaProvincia($("#ddlProvincia").val());
             });
 
-           cambiaDepartamento($("#ddlDepartamento").val());           
-
-
-
-            var availableTags = [
-                "ActionScript",
-                "AppleScript",
-                "Asp",
-                "BASIC",
-                "C",
-                "C++",
-                "Clojure",
-                "COBOL",
-                "ColdFusion",
-                "Erlang",
-                "Fortran",
-                "Groovy",
-                "Haskell",
-                "Java",
-                "JavaScript",
-                "Lisp",
-                "Perl",
-                "PHP",
-                "Python",
-                "Ruby",
-                "Scala",
-                "Scheme"
-            ];
-
-            $("#col4_filter").autocomplete({
-                source: availableTags
-            });
-
-
-            CargarDtProyectos(idUsuario); //Cargamos el DataTable
+           cambiaDepartamento($("#ddlDepartamento").val());
+            CargarGrilla(); //Cargamos el DataTable
 
 
 
@@ -262,28 +228,21 @@
                     //alert(dato + ' - ' + datos);
                 }
             } );
-
-
-
-            //Busqueda de Parámetros TextBox: Proyecto/Ingeniero
-            //$('input.column_filter').on('keyup click', function () {
-            //    var iden = $(this).data("id"); 
-            //    filterColumn(iden);
-            //} );
-
-
-
-
+                                   
+            
             $("#btnBuscar").click( function()
             {
                 $('#example').dataTable().fnDestroy();
-                CargarDtProyectos(idUsuario);
-                //alert("Buscando...");
+                
+
+                var dd = document.getElementById("idIngeniero");                    
+                if ($('#txtIngeniero').val() == "") { dd.value = 0 };
+                alert($('#txtIngeniero').val());
+                CargarGrilla();
+
             }
             );
-
-
-
+            
             // Proceso Actualizar
             $("#btnEditar").click( function()
                 {
@@ -298,7 +257,6 @@
                 e.preventDefault();
                 var Proc = $(this).data("id"); //Parametro identificador de Proceso 
                 var CodProyecto = $(this).parents("tr").find("td").eq(1).html();
-
                 Mantenimiento(Proc,CodProyecto);          
 
             } );
@@ -324,65 +282,10 @@
             // });
 
             CargarCompleted();
-            CargarGrilla();
 
 
         });
 
-
-function ProcesarQuery() 
-{  
-             var dataJson  = "{'Proyecto':'" +  $('[id$=Proyecto]').val() + "'," +
-             "'FechaProyecto':'"+$('[id$=txtOrdenCompra]').val()+ "'," +
-             "'FechaContrato':'"+ $('[id$=datetimepicker1]').val()+ "'," +
-             "'Departamento':'"+$('[id$=ddlDepartamento]').val() + "'," +
-             "'Provincia':'"+$('[id$=ddlProvincia]').val() + "'," +
-             "'Distrito':'"+$('[id$=ddlDistrito]').val() + "'," +
-        "'IdIngeniero':'" + document.getElementById("idIngeniero").value + "'}" 
-
-    alert(dataJson);
-
-            $.ajax({
-                type: "POST",             
-                url: "/Proyectos/ListarProyectos2",
-                contentType: "application/json; charset=utf-8",
-                dataType: "json",   
-                data : dataJson ,
-                //    crossDomain: true, 
-                success: function (response)
-                 {  
-                    dataOrdenCompra=[];
-                    //var objeto =  JSON.parse(response.d) ; 
-                     $.each(response, function(i, item) {
-                     
-                         var dataObject = 
-                         {
-
-                               NumProyecto: item.NumProyecto,  
-                               Proyecto : item.Proyecto ,
-                               Fecha_Proyecto : item.Fecha_Proyecto ,
-                               Fecha_Contrato : item.Fecha_Contrato ,
-                               Ingeniero : item.Ingeniero ,
-                               Cant_Diseno : item.CantDiseno 
-                           };
-                            dataProyecto.push(dataObject);
-
-                    });
-                    //Reload();
-                         
-                },
-                
-               error: Error
-            
-            });
-       
-        };
-function Error(result) 
-{
-    // $("#divError").show();
-        alert("ERROR " + result.status + ' ' + result.statusText); 
-       
-} 
 
 
  function CargarCompleted()
@@ -417,18 +320,13 @@ function Error(result)
                 });
             },
         minLength: 2,
-        select: function (event, ui) {
-
-            
+        select: function (event, ui) {          
 
             var dd = document.getElementById("idIngeniero");
-            dd.value =ui.item.id
-
-      
+            dd.value =ui.item.id        
         },
     });
         };
-
 
 
 function cambiaDepartamento(idDepartamento) {
@@ -467,7 +365,9 @@ function cambiaDepartamento(idDepartamento) {
 
             });
 
+           
             dd.disabled = false;
+
             cambiaProvincia($("#ddlProvincia").val());
         }
 
@@ -508,52 +408,12 @@ function cambiaProvincia(idProvincia) {
 
             });
 
-            dd.disabled = false;
+           dd.disabled = false;
                     
         }
 
     });
 
-}
-
-function ListarProyectos() {
-    var idTipoDiseno = document.getElementById("txtidTipoDiseno").value;
-    var idUsuario = document.getElementById("txtidUsuario").value;
-    var contenido = "";
-
-    var objData = {};
-    objData["idTipoDiseno"] = idTipoDiseno;
-    objData["idUsuario"] = idUsuario;
-
-    $.ajax({
-        type: "POST",
-        url: '/Proyectos/ListarProyectos',
-        data: JSON.stringify(objData),
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        success: function (Proyectos) {
-            var obj = (typeof Proyectos) == 'string' ? eval('(' + Proyectos + ')') : Proyectos;
-            for (i = 0; i < obj.length; i++) {
-
-                contenido = contenido + "<tr>" +
-                    "<td style='text-align: center'>" + obj[i].idProyecto + "</td>" +
-                    "<td style='text-align: center'>" + obj[i].CodProyecto + "</td>" +
-                    "<td style='text-align: center'>" + obj[i].FecProyecto + "</td>" +
-                    "<td style='display:none;'>" + obj[i].idTipoDiseno + "</td>" +
-                    "<td style='text-align: center'>" + obj[i].TipoDiseno + "</td>" +
-                    "<td style='text-align: center'>" + obj[i].NumDiseno + "</td>" +
-                    "<td style='text-align: center'>" + obj[i].Tramo + "</td>" +
-                    "<td style='text-align: center'>" + obj[i].Ubicacion + "</td>" +
-                    "<td style='text-align: center'>" + obj[i].Reglamento + "</td>" +
-                    "<td style='display:none;'>" + obj[i].idReglamento + "</td>" +
-                    "<td><a title='Editar' style='cursor:pointer' onclick='EditarProductoVentas(" + obj[i].idProyecto + ")'>" +
-                    "<i class='icol-text-signature'></i>" +
-                    "</a> &nbsp </td></tr>"
-            }
-
-            $("#bodyProyectos").empty().html(contenido);
-        }
-    });
 }
 
 function Mantenimiento(prc,codProy)
@@ -573,51 +433,32 @@ function Mantenimiento(prc,codProy)
     } 
 }
 
-function filterColumn(i) {
-    $('#example').DataTable().column(i).search(
-        $('#col'+i+'_filter').val(),
-    ).draw();
-}
-
-function CargarDtProyectos(param)
-{
-        var strNumProyecto = document.getElementById("col1_filter").value;
-        if (document.getElementById("datetimepicker1").value!="") 
-            var strFechaProyecto = document.getElementById("datetimepicker1").value;
-            var strFechaProyecto = 0;
-
-        if (document.getElementById("datetimepicker2").value!="")
-            var strFechaContrato = document.getElementById("datetimepicker2").value;
-            var strFechaContrato = 0;
-
-        if ($("#ddlDistrito").val()!="(Selecciona)")
-            var strIdDistrito = $("#ddlDistrito").val();
-            var strIdDistrito = 0;
-
-        if ($("#ddlProvincia").val()!="Espere...")
-            var strIdProvincia = $("#ddlProvincia").val();
-            var strIdProvincia = 0;
-
-        var strIdDepartamento = $("#ddlDepartamento").val();
 
 
+  function CargarGrilla()
+    {
+    var strNumProyecto = document.getElementById("col1_filter").value;
+    var strFechaProyecto = document.getElementById("datetimepicker1").value;
+    var strFechaContrato = document.getElementById("datetimepicker2").value;
+    var strIdDepartamento = $("#ddlDepartamento").val();
+    var strIdProvincia = $("#ddlProvincia").val();
+    var strIdDistrito = $("#ddlDistrito").val();
+    var IdIngeniero = document.getElementById("idIngeniero").value;
 
-
-
-            
-        var objData = {};
-        //objData["idTipoDiseno"] = idTipoDiseno;
-        //objData["idUsuario"] = idUsuario; 
+    if (IdIngeniero == "") { IdIngeniero = 0; }
+    if ($("#ddlDistrito").val() == "(Selecciona)") { strIdDistrito = 0; }
+    if ($("#ddlProvincia").val() == "Espere...") { strIdProvincia = 0; }
+       
+    var objData = {};    
 
         objData["NumProyecto"] = strNumProyecto;
         objData["FechaProyecto"] = strFechaProyecto;
         objData["FechaContrato"] = strFechaContrato;
-        objData["IdUsuario"] = param;
+        objData["IdUsuario"] = IdIngeniero;
         objData["Distrito"] = strIdDistrito;
         objData["Provincia"] = strIdProvincia;
         objData["Departamento"] = strIdDepartamento;
-
-           
+ 
         var table =
             $('#example').dataTable({
             "searching": false,
@@ -628,14 +469,14 @@ function CargarDtProyectos(param)
                     "dataType": "json"
                     },
             "columns": [
-                            { "data": "Id_Proyecto" , "class": "text-center"},
+                            { "data": "Id_Proyecto" , "class": "text-center"  },
                             { "data": "Num_Proyecto", "class": "text-center" },
                             { "data": "Proyecto" , "class": "text-center" },
-                            { "data": "Fecha" , "class": "text-center"},
+                            { "data": "Fecha_Proyecto_Date" , "class": "text-center"},
                             { "data": "Dni" , "class": "text-center"},
                             { "data": "Ingeniero" , "class": "text-center"},
                             { "data": "Cargo" , "class": "text-center"},
-                            { "data": "Fecha_Contrato" , "class": "text-center"},
+                            { "data": "Fecha_Contrato_Date" , "class": "text-center"},
                             { "data": "Num_Diseno" , "class": "text-center"},
                             { "data": "Tipo_Diseno" , "class": "text-center"},
                             { "data": "Tramo" , "class": "text-center"},
@@ -673,7 +514,7 @@ function CargarDtProyectos(param)
                 }
             }
 
-        });
+            }); 
 
 }
 

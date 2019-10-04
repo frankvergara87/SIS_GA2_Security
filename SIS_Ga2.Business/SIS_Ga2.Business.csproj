@@ -56,6 +56,7 @@
     <Compile Include="BLUsuario.cs" />
     <Compile Include="DisenoBL.cs" />
     <Compile Include="GenericBL.cs" />
+    <Compile Include="HelpClass.cs" />
     <Compile Include="ProyectoBL.cs" />
     <Compile Include="RolBL.cs" />
     <Compile Include="autorizacionusuarioBL.cs" />
