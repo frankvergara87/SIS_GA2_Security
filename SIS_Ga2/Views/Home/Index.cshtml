@@ -72,7 +72,7 @@
             <div class=" clearfix">
                 <div class="p-0">
                     <div class="btn-group float-left" role="group" aria-label="Basic example">
-                        <button type="button" id="btnNuevoProyecto" class="btn btn-outline-primary" data-id="2" data-toggle="modal" data-target="#exampleModal"><span class="icon-form"></span> Proyecto</button>
+                        <button type="submit" id="btnNuevoProyecto" class="btn btn-outline-primary" onclick="location.href='@Url.Action("NuevoProyecto", "Home")'"><span class="icon-form"></span> Proyecto</button>
                         <button type="button" id="btnNuevoDiseno" class="btn btn-outline-primary"><span class="icon-form"></span> Diseño</button>
                         <button type="button" id="btnEditar" class="btn btn-outline-primary editor_edit" data-id="1" data-toggle="modal" data-target="#exampleModal"><span class="icon-form"></span> Editar</button>
                         <button type="button" id="btnEliminar" class="btn btn-outline-danger editor_delete" data-id="3" data-toggle="modal" data-target="#deleteModal"><span class="icon-close"></span> Eliminar</button>
@@ -304,13 +304,24 @@
             } );
 
             // Proceso Nuevo
-            $("#btnNuevoProyecto").click( function()
-                {
-                    var Proc = $(this).data("id"); //Parametro identificador de Proceso                    
-                    alert(Proc);
-                    Mantenimiento(Proc, ' ');
-                }
-            );
+            //$("#btnNuevoProyecto").click( function()
+            //{
+            //    var checkId = 1;
+            //    $.ajax({
+            //             url: 'ProyectoDiseno/Index',
+            //             type: 'POST',
+            //             contentType: 'application/json;',
+            //             data: JSON.stringify({ id: checkId }),
+            //             success: function (valid)
+            //             {
+            //                  if(valid) { 
+            //                      //show that id is valid 
+            //                  } else { 
+            //                      //show that id is not valid 
+            //                  }
+            //             }
+            //            });
+            // });
 
             CargarCompleted();
             CargarGrilla();
