@@ -1,0 +1,9 @@
+bin\Debug\DbManager.dll
+bin\Debug\DbManager.pdb
+bin\Debug\DbManager.xml
+obj\Debug\ResolveAssemblyReference.cache
+obj\Debug\DbManager.Resources.resources
+obj\Debug\DbManager.vbproj.GenerateResource.Cache
+obj\Debug\DbManager.dll
+obj\Debug\DbManager.xml
+obj\Debug\DbManager.pdb

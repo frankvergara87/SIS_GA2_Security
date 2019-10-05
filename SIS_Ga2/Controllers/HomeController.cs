@@ -44,6 +44,7 @@ namespace SIS_Ga2.Controllers
             BLProvincia objblProvincia = new BLProvincia();  
             List<BEProvincia> lobjProvincia = new List<BEProvincia>();
             lobjProvincia = objblProvincia.ListarProvincia(idDepartamento);   
+
             if (lobjProvincia == null)
                 throw new ArgumentException("Departamento " + idDepartamento + " no es correcta");           
             return Json(lobjProvincia);

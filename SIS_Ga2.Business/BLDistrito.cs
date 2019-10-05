@@ -21,15 +21,15 @@ namespace SIS_Ga2.Business
 
             objbeDistrito.id_Distrito = 0;
             objbeDistrito.Distrito = "TODOS";
-
             lobjbeDistrito.Add(objbeDistrito);
-
-            foreach (BEDistrito temp in objDAO.ListarDistritos(idProvincia))
+            if (idProvincia > 0)
             {
-                lobjbeDistrito.Add(temp);
+                foreach (BEDistrito temp in objDAO.ListarDistritos(idProvincia))
+                {
+                    lobjbeDistrito.Add(temp);
+                }
             }
-
-           return lobjbeDistrito;
+            return lobjbeDistrito;
         }
     }
 }

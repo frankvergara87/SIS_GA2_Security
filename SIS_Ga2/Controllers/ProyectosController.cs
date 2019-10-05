@@ -22,9 +22,9 @@ namespace SIS_Ga2.Controllers
         {
             if (FechaProyecto == "") { FechaProyecto = "0"; }
             if (FechaContrato == "") { FechaContrato = "0"; }
-            if (Provincia == "") { FechaProyecto = "0"; }
-            if (Distrito == "") { FechaProyecto = "0"; }
-            if (FechaProyecto == "") { Departamento = "0"; }
+            if (Provincia == "") { Provincia = "0"; }
+            if (Distrito == "") { Distrito = "0"; }
+            if (Departamento == "") { Departamento = "0"; }
             if (IdUsuario == "") { IdUsuario = "0"; }
 
             ProyectoBL objProyecto = new ProyectoBL();

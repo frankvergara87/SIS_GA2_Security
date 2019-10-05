@@ -154,31 +154,10 @@ C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS
 C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\SIS_Ga2.dll
 C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\SIS_Ga2.pdb
 C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\roslyn\csc.exe
-C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\roslyn\csc.exe.config
-C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\roslyn\csc.rsp
-C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\roslyn\csi.exe
-C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\roslyn\csi.rsp
-C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
 C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
-C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
 C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\roslyn\Microsoft.CodeAnalysis.dll
-C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
-C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
-C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\roslyn\Microsoft.CSharp.Core.targets
-C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
-C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
-C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\roslyn\Microsoft.VisualBasic.Core.targets
-C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\roslyn\System.AppContext.dll
 C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\roslyn\System.Collections.Immutable.dll
-C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\roslyn\System.Diagnostics.StackTrace.dll
-C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\roslyn\System.IO.FileSystem.dll
-C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\roslyn\System.IO.FileSystem.Primitives.dll
 C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\roslyn\System.Reflection.Metadata.dll
-C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\roslyn\vbc.exe
-C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\roslyn\vbc.exe.config
-C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\roslyn\vbc.rsp
-C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\roslyn\VBCSCompiler.exe
-C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\roslyn\VBCSCompiler.exe.config
 C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\Antlr3.Runtime.dll
 C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\EntityFramework.dll
 C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\EntityFramework.SqlServer.dll
@@ -373,3 +352,24 @@ C:\Users\Frank\source\repos\Aashto\SIS_GA2_Security\SIS_Ga2\obj\Debug\SIS_Ga2.cs
 C:\Users\Frank\source\repos\Aashto\SIS_GA2_Security\SIS_Ga2\obj\Debug\SIS_Ga2.csproj.CopyComplete
 C:\Users\Frank\source\repos\Aashto\SIS_GA2_Security\SIS_Ga2\obj\Debug\SIS_Ga2.dll
 C:\Users\Frank\source\repos\Aashto\SIS_GA2_Security\SIS_Ga2\obj\Debug\SIS_Ga2.pdb
+C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\roslyn\csc.exe.config
+C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\roslyn\csc.rsp
+C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\roslyn\csi.exe
+C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\roslyn\csi.rsp
+C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll
+C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll
+C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll
+C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\roslyn\System.AppContext.dll
+C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\roslyn\System.Diagnostics.StackTrace.dll
+C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\roslyn\System.IO.FileSystem.dll
+C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\roslyn\System.IO.FileSystem.Primitives.dll
+C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\roslyn\vbc.exe
+C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\roslyn\vbc.exe.config
+C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\roslyn\vbc.rsp
+C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\roslyn\VBCSCompiler.exe
+C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\roslyn\VBCSCompiler.exe.config

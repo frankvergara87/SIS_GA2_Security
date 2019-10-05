@@ -1,0 +1,12 @@
+D:\DotNet\LadrilleraHomeSystem\Terracota\DbManager\bin\Debug\DbManager.dll
+D:\DotNet\LadrilleraHomeSystem\Terracota\DbManager\bin\Debug\DbManager.pdb
+D:\DotNet\LadrilleraHomeSystem\Terracota\DbManager\bin\Debug\DbManager.xml
+D:\DotNet\LadrilleraHomeSystem\Terracota\DbManager\bin\Debug\CryptoSecurity.dll
+D:\DotNet\LadrilleraHomeSystem\Terracota\DbManager\bin\Debug\CryptoSecurity.pdb
+D:\DotNet\LadrilleraHomeSystem\Terracota\DbManager\bin\Debug\CryptoSecurity.xml
+D:\DotNet\LadrilleraHomeSystem\Terracota\DbManager\obj\Debug\ResolveAssemblyReference.cache
+D:\DotNet\LadrilleraHomeSystem\Terracota\DbManager\obj\Debug\DbManager.Resources.resources
+D:\DotNet\LadrilleraHomeSystem\Terracota\DbManager\obj\Debug\DbManager.vbproj.GenerateResource.Cache
+D:\DotNet\LadrilleraHomeSystem\Terracota\DbManager\obj\Debug\DbManager.dll
+D:\DotNet\LadrilleraHomeSystem\Terracota\DbManager\obj\Debug\DbManager.xml
+D:\DotNet\LadrilleraHomeSystem\Terracota\DbManager\obj\Debug\DbManager.pdb

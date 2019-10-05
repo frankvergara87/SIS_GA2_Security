@@ -26,11 +26,13 @@ namespace SIS_Ga2.Business
             List<BEProvincia> lobjProvincia = new List<BEProvincia>();
             lobjProvincia.Add(objbeProvincia);
 
-            foreach (BEProvincia temp in objDAO.ListarProvincias(idDepartamento))
+            if (idDepartamento > 0)
             {
-                lobjProvincia.Add(temp);
+                foreach (BEProvincia temp in objDAO.ListarProvincias(idDepartamento))
+                {
+                    lobjProvincia.Add(temp);
+                }
             }
-                                            
             return lobjProvincia;
             }
         }

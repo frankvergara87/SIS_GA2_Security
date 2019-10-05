@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIS_Ga2.DataAccess", "SIS_G
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SIS_Ga2.Entity", "SIS_Ga2.Entity\SIS_Ga2.Entity.csproj", "{316524EE-59CC-430C-A885-1DE7DF82FBBE}"
 EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "DbManager", "Dbmanager\DbManager.vbproj", "{52F8994B-EC3C-4A69-BA40-2BA330481B85}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{316524EE-59CC-430C-A885-1DE7DF82FBBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{316524EE-59CC-430C-A885-1DE7DF82FBBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{316524EE-59CC-430C-A885-1DE7DF82FBBE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{52F8994B-EC3C-4A69-BA40-2BA330481B85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{52F8994B-EC3C-4A69-BA40-2BA330481B85}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{52F8994B-EC3C-4A69-BA40-2BA330481B85}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{52F8994B-EC3C-4A69-BA40-2BA330481B85}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

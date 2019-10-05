@@ -57,17 +57,9 @@
                         <label for="inlineFormInput" class="col-form-label col-form-label-sm">Ingeniero</label>
                         <input id="txtIngeniero" data-id="4" type="text" placeholder="Apellidos y Nombres" class="column_filter mr-3 col-sm-10 form-control form-control-sm">
                     </div>
-
                 </div>
-
             </form>
-
-
-        </div>
-
-        <div class="card-header">
-        </div>
-
+        </div>   
         <div class="card-header">
             <div class=" clearfix">
                 <div class="p-0">
@@ -237,7 +229,6 @@
 
                 var dd = document.getElementById("idIngeniero");                    
                 if ($('#txtIngeniero').val() == "") { dd.value = 0 };
-                alert($('#txtIngeniero').val());
                 CargarGrilla();
 
             }
@@ -467,7 +458,11 @@ function Mantenimiento(prc,codProy)
                     "type": "POST",
                     "data": objData,
                     "dataType": "json"
-                    },
+                },
+            "columnDefs": [
+                            { "type": "date-dd-mmm-yyyy", "targets": "0" }
+                ],
+
             "columns": [
                             { "data": "Id_Proyecto" , "class": "text-center"  },
                             { "data": "Num_Proyecto", "class": "text-center" },

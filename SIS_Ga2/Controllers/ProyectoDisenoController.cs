@@ -29,7 +29,7 @@ namespace SIS_Ga2.Controllers
 
             BEProyecto Proyecto = new BEProyecto();
        
-            Proyecto.NumProyecto = Request.Form["txtNombProyecto"];
+            Proyecto.Num_Proyecto = Request.Form["txtNombProyecto"];
             Proyecto.Proyecto = "";
             Proyecto.Fecha_Proyecto = 0;
             Proyecto.Estado = Convert.ToBoolean(1);

@@ -33,8 +33,9 @@
     <Reference Include="CriptoSecurity">
       <HintPath>..\packages\DLL\CriptoSecurity.dll</HintPath>
     </Reference>
-    <Reference Include="DbManager">
-      <HintPath>..\packages\DLL\DbManager.dll</HintPath>
+    <Reference Include="DbManager, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\DbManager.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
