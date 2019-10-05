@@ -16,6 +16,7 @@
     }
 }
 
+
 <div class="col-lg-12">
     <div class="card">
         <div class="card-header d-flex align-items-center">
@@ -31,39 +32,44 @@
             </nav>
             <div class="tab-content" id="myTabContent">
                 <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                    <form class="form-inline">
-                        <div class="row">
-                            <div class="form-group col-md-5">
-                                <label for="inlineFormInput" class="col-form-label col-form-label-sm">Nombre del Proyecto</label>
-                                <input id="txtNombProyecto" data-id="1" type="text" placeholder="Nombre del Proyecto" class="column_filter mr-3 col-sm-12 form-control form-control-sm">
-                            </div>
-                            <div class="form-group col-md-5">
-                                <label for="inlineFormInput" class="col-form-label col-form-label-sm">Fecha de Proyecto</label>
-                                <input id="datetimepicker1" type="text" placeholder="Fecha de Proyecto" class="mr-3 col-sm-12 form-control form-control-sm">
-                            </div>
-                            <div class="form-group col-md-5">
-                                <label for="inlineFormInput" class="col-form-label col-form-label-sm">Fecha Contrato</label>
-                                <input id="datetimepicker2" type="text" placeholder="Fecha Contrato" class="mr-3 col-sm-12 form-control form-control-sm">
-                            </div>
-                            <div class="form-group col-md-5">
-                                <label for="inlineFormInput" class="col-form-label col-form-label-sm">Ingeniero</label>
-                                <input id="txtIngeniero" data-id="4" type="text" placeholder="Ingeniero" class="column_filter mr-3 col-sm-12 form-control form-control-sm">
-                            </div>
-                        </div>
-                    </form>
-                    <div class="card-header">
-                        <div class=" clearfix">
-                            <div class="p-0">
-                                <div class="btn-group float-left" role="group" aria-label="Basic example">
+                    @using (Html.BeginForm("FormRegistraProyecto", "ProyectoDiseno", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+                    {
+
+                        <form>
+                            <div class="row">
+                                <div class="form-group col-md-5">
+                                    <label for="inlineFormInput" class="col-form-label col-form-label-sm">Nombre del Proyecto</label>
+                                    <input id="txtNombProyecto" name="txtNombProyecto" data-id="1" type="text" placeholder="Nombre del Proyecto" class="column_filter mr-3 col-sm-12 form-control form-control-sm">
+                                </div>
+                                <div class="form-group col-md-5">
+                                    <label for="inlineFormInput" class="col-form-label col-form-label-sm">Fecha de Proyecto</label>
+                                    <input id="datetimepicker1" name="datetimepicker1" type="text" placeholder="Fecha de Proyecto" class="mr-3 col-sm-12 form-control form-control-sm">
+                                </div>
+                                <div class="form-group col-md-5">
+                                    <label for="inlineFormInput" class="col-form-label col-form-label-sm">Fecha Contrato</label>
+                                    <input id="datetimepicker2" name="datetimepicker2" type="text" placeholder="Fecha Contrato" class="mr-3 col-sm-12 form-control form-control-sm">
+                                </div>
+                                <div class="form-group col-md-5">
+                                    <label for="inlineFormInput" class="col-form-label col-form-label-sm">Ingeniero</label>
+                                    <input id="txtIngeniero" name="txtIngeniero" data-id="4" type="text" placeholder="Ingeniero" class="column_filter mr-3 col-sm-12 form-control form-control-sm">
                                 </div>
                             </div>
-                            <div class="p-0">
-                                <div class="btn-group float-right" role="group" aria-label="Basic example">
-                                    <button type="button" id="btnSiguiente_a" class="btn btn-primary"><span class="icon-page"></span> Siguiente</button>
+
+                            <div class="card-header">
+                                <div class=" clearfix">
+                                    <div class="p-0">
+                                        <div class="btn-group float-left" role="group" aria-label="Basic example">
+                                        </div>
+                                    </div>
+                                    <div class="p-0">
+                                        <div class="btn-group float-right" role="group" aria-label="Basic example">
+                                            <button type="submit" id="btnSiguiente_a" class="btn btn-primary"><span class="icon-page"></span> Siguiente</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                        </form>
+                    }
                 </div>
                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                     <form class="form-inline">
@@ -224,94 +230,94 @@
             cambiaProvincia($("#ddlProvincia").val());
         });
 
-        cambiaDepartamento($("#ddlDepartamento").val());  
+        cambiaDepartamento($("#ddlDepartamento").val());
 
     });
 
-function cambiaDepartamento(idDepartamento) {
-           
-    // var dd2 = document.getElementById("idIngeniero");
+    function cambiaDepartamento(idDepartamento) {
+
+        // var dd2 = document.getElementById("idIngeniero");
         //alert(dd2.value);
-    var dd = document.getElementById("ddlProvincia");
+        var dd = document.getElementById("ddlProvincia");
 
-    dd.options.length = 0;
-    dd.options[0] = new Option("Espere...");
-    dd.selectedIndex = 0;
-    dd.disabled = true;
+        dd.options.length = 0;
+        dd.options[0] = new Option("Espere...");
+        dd.selectedIndex = 0;
+        dd.disabled = true;
 
-    // Control de errores
-    $("#ddlProvincia").ajaxError(function (event, request, settings) {
-        dd.options[0] = new Option("Departamento incorrecto");
-    });
-
-
-    var objData = {};
-    objData["idDepartamento"] = idDepartamento;
-
-    $.ajax({
-        type: "POST",
-        url: '/Home/ListaProvincias',
-        data: JSON.stringify(objData),
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        success: function (provincias) {
-
-            var obj = (typeof provincias) == 'string' ? eval('(' + provincias + ')') : provincias;
-
-            $.each(obj, function (i, item) {
-
-                dd.options[i] = new Option(item.Provincia, item.Id_Provincia);
-
-            });
-
-            dd.disabled = false;
-            cambiaProvincia($("#ddlProvincia").val());
-        }
-
-    });
-}
-
-function cambiaProvincia(idProvincia) {
-
-    var dd = document.getElementById("ddlDistrito");
-
-    dd.options.length = 0;
-    dd.options[0] = new Option("Espere...");
-    dd.selectedIndex = 0;
-    dd.disabled = true;
-
-    // Control de errores
-    $("#ddlDistrito").ajaxError(function (event, request, settings) {
-        dd.options[0] = new Option("Distrito incorrecto");
-    });
+        // Control de errores
+        $("#ddlProvincia").ajaxError(function (event, request, settings) {
+            dd.options[0] = new Option("Departamento incorrecto");
+        });
 
 
-    var objData = {};
-    objData["idProvincia"] = idProvincia;
+        var objData = {};
+        objData["idDepartamento"] = idDepartamento;
 
-    $.ajax({
-        type: "POST",
-        url: '/Home/ListaDistritos',
-        data: JSON.stringify(objData),
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        success: function (distritos) {
+        $.ajax({
+            type: "POST",
+            url: '/Home/ListaProvincias',
+            data: JSON.stringify(objData),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (provincias) {
 
-            var obj = (typeof distritos) == 'string' ? eval('(' + distritos + ')') : distritos;
+                var obj = (typeof provincias) == 'string' ? eval('(' + provincias + ')') : provincias;
 
-            $.each(obj, function (i, item) {
+                $.each(obj, function (i, item) {
 
-                dd.options[i] = new Option(item.Distrito, item.id_Distrito);
+                    dd.options[i] = new Option(item.Provincia, item.Id_Provincia);
 
-            });
+                });
 
-            dd.disabled = false;
-                    
-        }
+                dd.disabled = false;
+                cambiaProvincia($("#ddlProvincia").val());
+            }
 
-    });
+        });
+    }
 
-}
+    function cambiaProvincia(idProvincia) {
+
+        var dd = document.getElementById("ddlDistrito");
+
+        dd.options.length = 0;
+        dd.options[0] = new Option("Espere...");
+        dd.selectedIndex = 0;
+        dd.disabled = true;
+
+        // Control de errores
+        $("#ddlDistrito").ajaxError(function (event, request, settings) {
+            dd.options[0] = new Option("Distrito incorrecto");
+        });
+
+
+        var objData = {};
+        objData["idProvincia"] = idProvincia;
+
+        $.ajax({
+            type: "POST",
+            url: '/Home/ListaDistritos',
+            data: JSON.stringify(objData),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (distritos) {
+
+                var obj = (typeof distritos) == 'string' ? eval('(' + distritos + ')') : distritos;
+
+                $.each(obj, function (i, item) {
+
+                    dd.options[i] = new Option(item.Distrito, item.id_Distrito);
+
+                });
+
+                dd.disabled = false;
+
+            }
+
+        });
+
+    }
 
 
 

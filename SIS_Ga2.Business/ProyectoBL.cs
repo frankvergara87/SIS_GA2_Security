@@ -34,7 +34,7 @@ namespace SIS_Ga2.Business
             return objDAO.ListarProyectos2(strNumProyecto, strFechaProyecto);
         }
 
-        public int GuardarProyecto(Proyecto DataProyecto)
+        public int GuardarProyecto(BEProyecto DataProyecto)
         {
             ProyectoDAO objDAO = new ProyectoDAO();
             return objDAO.GuardarProyecto(DataProyecto);

@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SIS_Ga2.Entity;
+using DbManager;
 
 namespace SIS_Ga2.DataAccess
 {
@@ -61,26 +62,29 @@ namespace SIS_Ga2.DataAccess
             }
         }
 
-        public int GuardarProyecto(Proyecto DataProyecto)
+        public int GuardarProyecto(BEProyecto DataProyecto)
         {
+           SqlManager objSql = new SqlManager(ConfigurationManager.AppSettings["ASOCEM"].ToString());
+             //SqlManager objSql = new SqlManager();
             int resultado = 0;
-
+            Parameter param = new Parameter();
+            param.Add("@Num_Proyecto", DataProyecto.NumProyecto);
+            param.Add("@Proyecto", DataProyecto.Proyecto);
+            param.Add("@Fecha_Proyecto", DataProyecto.Fecha_Proyecto_Date);
+            param.Add("@Estado", DataProyecto.Estado);
+            param.Add("@Id_Usuario", DataProyecto.id_Usuario);
+            param.Add("@Fecha_Creacion", DataProyecto.FechaCreacion);
+            param.Add("@Fecha_Contrato", DataProyecto.Fecha_Contrato_Date);
+            param.Add("@Hora_Creacion", DataProyecto.HoraCreacion);
+            param.Add("@Usr_Creacion", DataProyecto.UsrCreacion);
+            param.Add("@Fecha_Actualizacion", DataProyecto.FechaActualizacion);
+            param.Add("@Hora_Actualizacion", DataProyecto.HoraActualizacion);
+            param.Add("@Usr_Actualizacion", DataProyecto.UsrActualizacion);
+            
             try
             {
-                Parameter param = new Parameter();
-                param.Add("@CodProyecto", DataProyecto.CodProyecto);
-                param.Add("@IdUsuario", DataProyecto.idUsuario);
-                param.Add("@idReglamento", DataProyecto.idReglamento);
-                param.Add("@idTipoDiseno", DataProyecto.idTipoDiseno);
-                param.Add("@FecProyecto", DataProyecto.FecProyecto);
-                param.Add("@Ubicacion", DataProyecto.Ubicacion);
-                param.Add("@NumDiseno", DataProyecto.NumDiseno);
-                param.Add("@Tramo", DataProyecto.Tramo);
-                SqlManager objSql = new SqlManager(ConfigurationManager.AppSettings["ASOCEM"].ToString());
-
-                resultado = Convert.ToInt32(objSql.ExecuteNoQuery("USP_InsProyecto", param));
-                
-
+               objSql.ExecuteNonQuery("USP_Ins_Proyecto", param);
+               resultado = 1;
             }
             catch (Exception ex)
             {
