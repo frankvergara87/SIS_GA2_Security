@@ -1,8 +1,10 @@
 Imports System.Data.SqlClient
 Imports System.Data
 Imports Microsoft.VisualBasic 
-Imports System.Data.Common
-Imports System.Security
+Imports System.Data.common
+Imports System.Reflection
+Imports System.Diagnostics
+Imports CriptoSecurity
 
 Namespace DataObjects
 
@@ -10,7 +12,7 @@ Namespace DataObjects
         Implements IDisposable
 
         'Variable que establece la cadena de conexion
-        Dim BaseDatos As String
+        Dim BaseDatos As String = ""
         'variable que indica si es encriptada
         Dim _isCrypted As Boolean = False
         'Cadena de Conexion establecida por el usuario
@@ -43,7 +45,7 @@ Namespace DataObjects
 
         Sub New(ByVal ConfigKey As String, ByVal EncryptedString As Boolean)
             CadenaConexion = ConfigKey
-            Me._isCrypted = True
+            Me._isCrypted = EncryptedString
         End Sub
         ''' <summary>
         ''' Clase que facilita el acceso a datos para iSeries DB2 AS400.
@@ -518,6 +520,73 @@ Namespace DataObjects
         End Function
 
         ''' <summary>
+        '''  Función que devuelve una Lista de objetos dependiento de la clase que se envia utilizando
+        '''   un stored procedure [StoredPocedure param] y
+        '''  un objeto (tipo colección) de parametros
+        ''' </summary>
+
+        Public Function getStatement(Of t)(storedProcedure As String, Optional sqlParams As Parameter = Nothing) As List(Of t)
+
+            Dim objList As New List(Of t)
+
+            Using cnx As New SqlConnection(Me.Conectar)
+                Dim cmd As New SqlCommand()
+
+                cmd.CommandType = CommandType.StoredProcedure
+                cmd.CommandText = storedProcedure
+                cmd.Connection = cnx
+                cmd.CommandTimeout = Me.TimeOutCommand
+
+                Dim i As Integer
+                Dim SqlParametro As SqlParameter
+
+                If Not (sqlParams Is Nothing) Then
+                    For i = 1 To sqlParams.Count 
+                        cmd.Parameters.Add(CType(sqlParams.Item(i), SqlParameter))
+                    Next
+                End If
+               
+                cmd.Connection.Open()
+
+                Dim objDataReader As SqlDataReader = cmd.ExecuteReader()
+              
+                If objDataReader.HasRows = True Then
+                    While objDataReader.Read()
+                        Dim objBaseObject As t = Activator.CreateInstance(Of t)()
+
+                        For Each objProp As PropertyInfo In objBaseObject.GetType.GetProperties
+
+                            'verifica si el dato existe dentro de la coleccion de propiedades
+                            Dim lbool_existe As Boolean = False
+                            For i_existe As UInt16 = 0 To objDataReader.FieldCount - 1
+                                If objDataReader.GetName(i_existe) = objProp.Name Then
+                                    lbool_existe = True
+                                End If
+                            Next
+
+                            If lbool_existe = True Then
+                                Try
+                                    If objDataReader.GetValue(objDataReader.GetOrdinal(objProp.Name)) Is DBNull.Value Then
+                                        objBaseObject.GetType.GetProperty(objProp.Name).SetValue(objBaseObject, Nothing, Nothing)
+                                    Else
+                                        objBaseObject.GetType.GetProperty(objProp.Name).SetValue(objBaseObject, objDataReader.GetValue(objDataReader.GetOrdinal(objProp.Name)), Nothing)
+                                    End If
+                                Catch : End Try
+                            End If
+
+                        Next
+                            objList.Add(objBaseObject)
+                    End While
+                End If
+
+                cnx.Close()
+                cmd.Dispose()
+            End Using
+
+            Return objList
+        End Function
+
+        ''' <summary>
         '''  Función que devuelve un DataTable 
         '''  en base a un stored procedure [StoredPocedure param] y
         '''  un objeto (tipo colección) de parametros
@@ -618,100 +687,7 @@ Namespace DataObjects
             objTransaction = Nothing
             Return objData.Tables(0).Copy()
         End Function
-
-        ''' <summary>
-        '''  Función que devuelve un DataTableReader 
-        '''  en base a un stored procedure [StoredPocedure param] y
-        '''  un objeto (tipo colección) de parametros
-        ''' </summary>
-
-        Public Function ExecuteIDataReader(ByVal StoreProcedure As String, ByVal sqlparams As Parameter) As IDataReader
-
-            Dim objData As New DataSet
-            Dim objTransaction As SqlTransaction
-
-            Try
-
-                Using cnx As New SqlConnection(Me.Conectar())
-            
-                    Dim cmdAdaptador As SqlDataAdapter
-                    Dim cmd As New SqlCommand
-
-                    cmd.Connection = cnx
-                    cmd.CommandType = CommandType.StoredProcedure
-                    cmd.CommandText = StoreProcedure
-                    cmd.CommandTimeout = Me.TiempoRespuesta
-
-                    Dim i As Integer
-                    Dim SqlParametro As SqlParameter
-
-                    If Not (sqlparams Is Nothing) Then
-                        For i = 1 To sqlparams.Count
-                            '  SqlParametro = CType(sqlparams.Item(i), SqlParameter)
-                            cmd.Parameters.Add(CType(sqlparams.Item(i), SqlParameter))
-                        Next
-                    End If
-
-                    cmdAdaptador = New SqlDataAdapter(cmd)
-
-                         cnx.Open()
-                
-                    cmdAdaptador.Fill(objData)
-
-                         cnx.Close() 
-                    cmd.Dispose()
-                    SqlParametro = Nothing
-                    cmd = Nothing
-                End Using
-
-            Catch ex As Exception
-                   HelpClass.LogThis(ex.ToString)
-                Throw New Exception(ex.ToString())
-            End Try
-
-            objTransaction = Nothing
-            Return objData.Tables(0).Copy().CreateDataReader()
-
-        End Function
-
-
-        Public Function ExecuteIDataReader(ByVal Query As String) As IDataReader
-            Dim objData As New DataSet
-            Dim objTransaction As SqlTransaction
-
-            Try
-
-                Using cnx As New SqlConnection(Me.Conectar())
-                   
-                    Dim cmdAdaptador As SqlDataAdapter
-                    Dim cmd As New SqlCommand
-
-                    cmd.Connection = cnx
-                    cmd.CommandType = CommandType.Text
-                    cmd.CommandText = Query
-                    cmd.CommandTimeout = Me.TiempoRespuesta
-
-                    cmdAdaptador = New SqlDataAdapter(cmd)
-
-                         cnx.Open()
-               
-                    cmdAdaptador.Fill(objData)
-
-                        cnx.Close() 
-                    cmd.Dispose()
-                    cmd = Nothing
-                End Using
-
-
-            Catch ex As Exception
-                 HelpClass.LogThis(ex.ToString)
-                Throw New Exception(ex.ToString())
-            End Try
-
-            objTransaction = Nothing
-            Return objData.Tables(0).Copy().CreateDataReader()
-        End Function
-
+          
         Private Sub fillParameterCollection(ByVal objCmdParams As SqlParameterCollection)
 
             ObjParameterCollection.Clear()
@@ -732,14 +708,13 @@ Namespace DataObjects
                 If Me.BaseDatos <> "" Then
                     'ConnStr = Configuration.ConfigurationSettings.AppSettings(BaseDatos)
                     If HelpClass.getSetting("ConnectionStringMode") = "EncryptMode" Then
-
-                        ConnStr = New CryptoSecurity.CryptoHelper().Decrypt(Configuration.ConfigurationSettings.AppSettings(BaseDatos))
+                        ConnStr = New CryptoHelper().Decrypt(Configuration.ConfigurationSettings.AppSettings(BaseDatos))
                     Else
                         ConnStr = Configuration.ConfigurationSettings.AppSettings(BaseDatos)
                     End If
                 Else
                     If Me._isCrypted = True Then
-                        ConnStr = New CryptoSecurity.CryptoHelper().Decrypt(Me.CadenaConexion)
+                        ConnStr = New CryptoHelper().Decrypt(Me.CadenaConexion)
                     Else
                         ConnStr = Me.CadenaConexion
                     End If

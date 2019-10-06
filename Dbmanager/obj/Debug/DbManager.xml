@@ -8,7 +8,7 @@ DbManager
 <members>
 <member name="T:DbManager.My.Resources.Resources">
 <summary>
-  Clase de recurso fuertemente tipado, para buscar cadenas traducidas, etc.
+  Clase de recurso con establecimiento inflexible de tipos, para buscar cadenas traducidas, etc.
 </summary>
 </member>
 <member name="P:DbManager.My.Resources.Resources.ResourceManager">
@@ -19,7 +19,7 @@ DbManager
 <member name="P:DbManager.My.Resources.Resources.Culture">
 <summary>
   Reemplaza la propiedad CurrentUICulture del subproceso actual para todas las
-  búsquedas de recursos mediante esta clase de recurso fuertemente tipado.
+  búsquedas de recursos mediante esta clase de recurso con establecimiento inflexible de tipos.
 </summary>
 </member>
 <member name="M:DbManager.DataObjects.Parameter.Add(System.String,System.Object)">
@@ -196,6 +196,13 @@ DbManager
   en base a una instucción SQL
  </summary>
 </member>
+<member name="M:DbManager.DataObjects.SqlManager.getStatement``1(System.String,DbManager.DataObjects.Parameter)">
+ <summary>
+  Función que devuelve una Lista de objetos dependiento de la clase que se envia utilizando
+   un stored procedure [StoredPocedure param] y
+  un objeto (tipo colección) de parametros
+ </summary>
+</member>
 <member name="M:DbManager.DataObjects.SqlManager.ExecuteDataTable(System.String,DbManager.DataObjects.Parameter)">
  <summary>
   Función que devuelve un DataTable 
@@ -207,13 +214,6 @@ DbManager
  <summary>
   Función que devuelve un único resultado 
   en base a una instucción SQL
- </summary>
-</member>
-<member name="M:DbManager.DataObjects.SqlManager.ExecuteIDataReader(System.String,DbManager.DataObjects.Parameter)">
- <summary>
-  Función que devuelve un DataTableReader 
-  en base a un stored procedure [StoredPocedure param] y
-  un objeto (tipo colección) de parametros
  </summary>
 </member>
 <member name="M:DbManager.DataObjects.SqlManager.Probar_Conexion(System.String)">

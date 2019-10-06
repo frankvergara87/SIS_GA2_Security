@@ -18,7 +18,7 @@
 <input type="hidden" id="txtidTipoDiseno" value="@sistema.idAplicacion" />
 <input type="hidden" id="txtidUsuario" value="@sistema.idUsuario" />
 <input type="hidden" id="txtUsuario" value="@usuario.Usuario" />
-<input type="hidden" id="idIngeniero"  />
+<input type="hidden" id="idIngeniero" />
 
 <!-- Form Elements -->
 <div class="col-lg-12">
@@ -59,7 +59,7 @@
                     </div>
                 </div>
             </form>
-        </div>   
+        </div>
         <div class="card-header">
             <div class=" clearfix">
                 <div class="p-0">
@@ -84,7 +84,6 @@
                 <table id="example" class="display compact" style="width:100%">
                     <thead>
                         <tr>
-                            <th class="text-sm-center" id="Id_Proyecto">Id.</th>
                             <th class="text-sm-center" id="Num_Proyecto">Num.</th>
                             <th class="text-sm-center" id="Proyecto">Proyecto</th>
                             <th class="text-sm-center" id="Fecha">Fecha Proy.</th>
@@ -107,10 +106,13 @@
     <!-- Modal-->
 
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          
+
         @using (Html.BeginForm("FormRegistraProyecto", "Home", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             <div class="modal-dialog" role="document">
-                <div class="modal-content">
+                <div class="modal-content" style="width:600px;height:600px;">
+
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Nuevo Proyecto</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -120,19 +122,12 @@
                     <form>
                         <div class="modal-body">
 
-                            <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Proyecto:</label>
-                                <input type="text" class="form-control" id="frmProyecto" name="frmProyecto">
+                            <div id="wrapper"  style="width: 100%; height: 100%;">
+                                <!--<iframe id="output"></iframe>-->
+                                <object id="output" type="application/pdf" style="width: 100%; height: 100%;">
+                                    <p>It appears you don't have PDF support in this web browser. <a href="#" id="download-link">Click here to download the PDF</a>.</p>
+                                </object>
                             </div>
-                            <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Diseño:</label>
-                                <input type="text" class="form-control" id="frmDiseno" name="frmDiseno">
-                            </div>
-                            <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Reglamento:</label>
-                                <input type="text" class="form-control" id="frmReglamento" name="frmReglamento">
-                            </div>
-
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -175,272 +170,313 @@
 
 
 
+<button onclick="javascript:Export();">Export To PDF</button>
+<script type="text/javascript">
+    function Export()
+    {
+        var pdf = new jsPDF('p', 'pt', 'letter');
+        pdf.text(50, 25, "Reporte de Adoquines");
+        // source can be HTML-formatted string, or a reference
+        // to an actual DOM element from which the text will be scraped.
+        source = document.getElementById('example').innerHTML;
+        // we support special element handlers. Register them with jQuery-style
+        // ID selector for either ID or node name. ("#iAmID", "div", "span" etc.)
+        // There is no support for any other type of selectors
+        // (class, of compound) at this time.
+        specialElementHandlers = {
+            // element with id of "bypass" - jQuery style selector
+            '#bypassme': function (element, renderer) {                
+                return true;    }
+        };
+        margins = {
+            top: 80,
+            bottom: 60,
+            left: 40,
+            width: 522
+        };
+        // all coords and widths are in jsPDF instance's declared units
+        // 'inches' in this case
+        pdf.fromHTML(
+            source, // HTML string or DOM elem ref.
+            margins.left, // x coord
+            margins.top, { // y coord
+                'width': margins.width, // max width of content on PDF
+                'elementHandlers': specialElementHandlers
+            },
+
+            function (dispose) {
+                // dispose: object with X, Y of the last line add to the PDF
+                // this allow the insertion of new lines after html
+
+
+                pdf.save('Test.pdf');
+
+                document.getElementById("output").data = pdf.output('datauristring');
+
+            }, margins);
+    }
+</script>
+
+
+
 <script src="~/Scripts/jquery-3.3.1.js"></script>
 
 <script type="text/javascript">
-         var dataProyecto = [];
+    var dataProyecto = [];
 
-        $(document).ready(function ()
-        {
-            var idTipoDiseno = document.getElementById("txtidTipoDiseno").value;
-            var idUsuario = document.getElementById("txtidUsuario").value;
+    $(document).ready(function () {
+        var idTipoDiseno = document.getElementById("txtidTipoDiseno").value;
+        var idUsuario = document.getElementById("txtidUsuario").value;
 
-            //alert(idUsuario);
+        //alert(idUsuario);
 
-           // $("#btnBuscar").click(ProcesarQuery);
+        // $("#btnBuscar").click(ProcesarQuery);
 
-            $("#ddlDepartamento").change(function () {
-                cambiaDepartamento($("#ddlDepartamento").val());
-                //var id = $(this).val();
-                //var text = $(this).find('option:selected').text();
-            });
+        $("#ddlDepartamento").change(function () {
+            cambiaDepartamento($("#ddlDepartamento").val());
+            //var id = $(this).val();
+            //var text = $(this).find('option:selected').text();
+        });
 
-            $("#ddlProvincia").change(function () {
-                cambiaProvincia($("#ddlProvincia").val());
-            });
+        $("#ddlProvincia").change(function () {
+            cambiaProvincia($("#ddlProvincia").val());
+        });
 
-           cambiaDepartamento($("#ddlDepartamento").val());
-            CargarGrilla(); //Cargamos el DataTable
-
+        cambiaDepartamento($("#ddlDepartamento").val());
+        CargarGrilla(); //Cargamos el DataTable
 
 
-            //para seleccionar una opcion
-            $('#example tbody').on( 'click', 'tr', function () {
-                if ( $(this).hasClass('selected') ) {
-                    $(this).removeClass('selected');
-                    //dato = "";
-                    //datos = "";
-                    //alert(dato);
-                }
-                else {
-                    table.$('tr.selected').removeClass('selected');
-                    $(this).addClass('selected');
-                    //dato = $(this).find("td:eq(0)").text();
-                    //datos = $(this).find("td:eq(1)").text();
-                    //alert(dato + ' - ' + datos);
-                }
-            } );
-                                   
-            
-            $("#btnBuscar").click( function()
-            {
-                $('#example').dataTable().fnDestroy();
-                
 
-                var dd = document.getElementById("idIngeniero");                    
-                if ($('#txtIngeniero').val() == "") { dd.value = 0 };
-                CargarGrilla();
-
+        //para seleccionar una opcion
+        $('#example tbody').on('click', 'tr', function () {
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+                //dato = "";
+                //datos = "";
+                //alert(dato);
             }
-            );
-            
-            // Proceso Actualizar
-            $("#btnEditar").click( function()
-                {
-                    var Proc = $(this).data("id"); //Parametro identificador de Proceso                    
-                    alert(Proc);
-                    Mantenimiento(Proc, ' ');
-                }
-            );
-
-            // Proceso Eliminar
-            $('#example').on('click', 'button.editor_delete', function (e) {
-                e.preventDefault();
-                var Proc = $(this).data("id"); //Parametro identificador de Proceso 
-                var CodProyecto = $(this).parents("tr").find("td").eq(1).html();
-                Mantenimiento(Proc,CodProyecto);          
-
-            } );
-
-            // Proceso Nuevo
-            //$("#btnNuevoProyecto").click( function()
-            //{
-            //    var checkId = 1;
-            //    $.ajax({
-            //             url: 'ProyectoDiseno/Index',
-            //             type: 'POST',
-            //             contentType: 'application/json;',
-            //             data: JSON.stringify({ id: checkId }),
-            //             success: function (valid)
-            //             {
-            //                  if(valid) { 
-            //                      //show that id is valid 
-            //                  } else { 
-            //                      //show that id is not valid 
-            //                  }
-            //             }
-            //            });
-            // });
-
-            CargarCompleted();
-
-
+            else {
+                table.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+                //dato = $(this).find("td:eq(0)").text();
+                //datos = $(this).find("td:eq(1)").text();
+                //alert(dato + ' - ' + datos);
+            }
         });
 
 
+        $("#btnBuscar").click(function () {
+            $('#example').dataTable().fnDestroy();
 
- function CargarCompleted()
-{
-     var idUsuario = document.getElementById("txtidUsuario").value;
-    
-         
-    $('#txtIngeniero').autocomplete({
-        //source: DataProveedor,       
-         source: function( request, response )
-        {
-                $.ajax(
-                {
-                 type: "POST",
-                 url: "/Home/ListaUsuarios",
-                 data:  "{'strUsuario':'" + $.trim(idUsuario) + "'," +
-                             "'valorUsuario':'"+ $.trim(request.term) + "'}" ,
-                 contentType: "application/json; charset=utf-8",
-                 dataType: "json",
-                 dataFilter: function (data) { return data; },                   
-                 success: function(data) 
-                 { 
-                     response($.map(data, function (item) {
-                        return {
-                            label:  item.Apellido + " "+ item.Nombre,
-                            value: item.Apellido + " "+ item.Nombre,
-                            id: item.Id_Usuario
-                         }; 
-                    }));
-                 },
-                error: Error
-                });
-            },
-        minLength: 2,
-        select: function (event, ui) {          
 
             var dd = document.getElementById("idIngeniero");
-            dd.value =ui.item.id        
-        },
+            if ($('#txtIngeniero').val() == "") { dd.value = 0 };
+            CargarGrilla();
+
+        }
+        );
+
+        // Proceso Actualizar
+        $("#btnEditar").click(function () {
+            var Proc = $(this).data("id"); //Parametro identificador de Proceso
+            alert(Proc);
+            Mantenimiento(Proc, ' ');
+        }
+        );
+
+        // Proceso Eliminar
+        $('#example').on('click', 'button.editor_delete', function (e) {
+            e.preventDefault();
+            var Proc = $(this).data("id"); //Parametro identificador de Proceso
+            var CodProyecto = $(this).parents("tr").find("td").eq(1).html();
+            Mantenimiento(Proc, CodProyecto);
+
+        });
+
+        // Proceso Nuevo
+        //$("#btnNuevoProyecto").click( function()
+        //{
+        //    var checkId = 1;
+        //    $.ajax({
+        //             url: 'ProyectoDiseno/Index',
+        //             type: 'POST',
+        //             contentType: 'application/json;',
+        //             data: JSON.stringify({ id: checkId }),
+        //             success: function (valid)
+        //             {
+        //                  if(valid) {
+        //                      //show that id is valid
+        //                  } else {
+        //                      //show that id is not valid
+        //                  }
+        //             }
+        //            });
+        // });
+
+        CargarCompleted();
+
+
     });
-        };
 
 
-function cambiaDepartamento(idDepartamento) {
-           
-    // var dd2 = document.getElementById("idIngeniero");
+
+    function CargarCompleted() {
+        var idUsuario = document.getElementById("txtidUsuario").value;
+
+
+        $('#txtIngeniero').autocomplete({
+            //source: DataProveedor,
+            source: function (request, response) {
+                $.ajax(
+                    {
+                        type: "POST",
+                        url: "/Home/ListaUsuarios",
+                        data: "{'strUsuario':'" + $.trim(idUsuario) + "'," +
+                            "'valorUsuario':'" + $.trim(request.term) + "'}",
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        dataFilter: function (data) { return data; },
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return {
+                                    label: item.Apellido + " " + item.Nombre,
+                                    value: item.Apellido + " " + item.Nombre,
+                                    id: item.Id_Usuario
+                                };
+                            }));
+                        },
+                        error: Error
+                    });
+            },
+            minLength: 2,
+            select: function (event, ui) {
+
+                var dd = document.getElementById("idIngeniero");
+                dd.value = ui.item.id
+            },
+        });
+    };
+
+
+    function cambiaDepartamento(idDepartamento) {
+
+        // var dd2 = document.getElementById("idIngeniero");
         //alert(dd2.value);
-    var dd = document.getElementById("ddlProvincia");
+        var dd = document.getElementById("ddlProvincia");
 
-    dd.options.length = 0;
-    dd.options[0] = new Option("Espere...");
-    dd.selectedIndex = 0;
-    dd.disabled = true;
+        dd.options.length = 0;
+        dd.options[0] = new Option("Espere...");
+        dd.selectedIndex = 0;
+        dd.disabled = true;
 
-    // Control de errores
-    $("#ddlProvincia").ajaxError(function (event, request, settings) {
-        dd.options[0] = new Option("Departamento incorrecto");
-    });
+        // Control de errores
+        $("#ddlProvincia").ajaxError(function (event, request, settings) {
+            dd.options[0] = new Option("Departamento incorrecto");
+        });
 
 
-    var objData = {};
-    objData["idDepartamento"] = idDepartamento;
+        var objData = {};
+        objData["idDepartamento"] = idDepartamento;
 
-    $.ajax({
-        type: "POST",
-        url: '/Home/ListaProvincias',
-        data: JSON.stringify(objData),
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        success: function (provincias) {
+        $.ajax({
+            type: "POST",
+            url: '/Home/ListaProvincias',
+            data: JSON.stringify(objData),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (provincias) {
 
-            var obj = (typeof provincias) == 'string' ? eval('(' + provincias + ')') : provincias;
+                var obj = (typeof provincias) == 'string' ? eval('(' + provincias + ')') : provincias;
 
-            $.each(obj, function (i, item) {
+                $.each(obj, function (i, item) {
 
-                dd.options[i] = new Option(item.Provincia, item.Id_Provincia);
+                    dd.options[i] = new Option(item.Provincia, item.Id_Provincia);
 
-            });
+                });
 
-           
-            dd.disabled = false;
 
-            cambiaProvincia($("#ddlProvincia").val());
+                dd.disabled = false;
+
+                cambiaProvincia($("#ddlProvincia").val());
+            }
+
+        });
+    }
+
+    function cambiaProvincia(idProvincia) {
+
+        var dd = document.getElementById("ddlDistrito");
+
+        dd.options.length = 0;
+        dd.options[0] = new Option("Espere...");
+        dd.selectedIndex = 0;
+        dd.disabled = true;
+
+        // Control de errores
+        $("#ddlDistrito").ajaxError(function (event, request, settings) {
+            dd.options[0] = new Option("Distrito incorrecto");
+        });
+
+
+        var objData = {};
+        objData["idProvincia"] = idProvincia;
+
+        $.ajax({
+            type: "POST",
+            url: '/Home/ListaDistritos',
+            data: JSON.stringify(objData),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (distritos) {
+
+                var obj = (typeof distritos) == 'string' ? eval('(' + distritos + ')') : distritos;
+
+                $.each(obj, function (i, item) {
+
+                    dd.options[i] = new Option(item.Distrito, item.id_Distrito);
+
+                });
+
+                dd.disabled = false;
+
+            }
+
+        });
+
+    }
+
+    function Mantenimiento(prc, codProy) {
+        switch (prc) {
+            case 1: //Proceso Actualizar
+                document.getElementById('exampleModalLabel').innerHTML = ' ACTUALIZANDO: ' + codProy;
+                break;
+
+            case 2: //Proceso Nuevo
+                document.getElementById('exampleModalLabel').innerHTML = ' NUEVO PROYECTO: ';
+                break;
+
+            case 3: //Proceso Eliminar
+                document.getElementById('deleteModalLabel').innerHTML = ' ELIMINANDO: ' + codProy;
+                break;
         }
-
-    });
-}
-
-function cambiaProvincia(idProvincia) {
-
-    var dd = document.getElementById("ddlDistrito");
-
-    dd.options.length = 0;
-    dd.options[0] = new Option("Espere...");
-    dd.selectedIndex = 0;
-    dd.disabled = true;
-
-    // Control de errores
-    $("#ddlDistrito").ajaxError(function (event, request, settings) {
-        dd.options[0] = new Option("Distrito incorrecto");
-    });
-
-
-    var objData = {};
-    objData["idProvincia"] = idProvincia;
-
-    $.ajax({
-        type: "POST",
-        url: '/Home/ListaDistritos',
-        data: JSON.stringify(objData),
-        contentType: "application/json; charset=utf-8",
-        dataType: "json",
-        success: function (distritos) {
-
-            var obj = (typeof distritos) == 'string' ? eval('(' + distritos + ')') : distritos;
-
-            $.each(obj, function (i, item) {
-
-                dd.options[i] = new Option(item.Distrito, item.id_Distrito);
-
-            });
-
-           dd.disabled = false;
-                    
-        }
-
-    });
-
-}
-
-function Mantenimiento(prc,codProy)
-{
-    switch (prc) {
-        case 1: //Proceso Actualizar
-            document.getElementById('exampleModalLabel').innerHTML = ' ACTUALIZANDO: ' + codProy;
-            break;
-
-        case 2: //Proceso Nuevo
-            document.getElementById('exampleModalLabel').innerHTML = ' NUEVO PROYECTO: ';
-            break;
-
-        case 3: //Proceso Eliminar
-            document.getElementById('deleteModalLabel').innerHTML = ' ELIMINANDO: ' + codProy;
-            break;
-    } 
-}
+    }
 
 
 
-  function CargarGrilla()
-    {
-    var strNumProyecto = document.getElementById("col1_filter").value;
-    var strFechaProyecto = document.getElementById("datetimepicker1").value;
-    var strFechaContrato = document.getElementById("datetimepicker2").value;
-    var strIdDepartamento = $("#ddlDepartamento").val();
-    var strIdProvincia = $("#ddlProvincia").val();
-    var strIdDistrito = $("#ddlDistrito").val();
-    var IdIngeniero = document.getElementById("idIngeniero").value;
+    function CargarGrilla() {
+        var strNumProyecto = document.getElementById("col1_filter").value;
+        var strFechaProyecto = document.getElementById("datetimepicker1").value;
+        var strFechaContrato = document.getElementById("datetimepicker2").value;
+        var strIdDepartamento = $("#ddlDepartamento").val();
+        var strIdProvincia = $("#ddlProvincia").val();
+        var strIdDistrito = $("#ddlDistrito").val();
+        var IdIngeniero = document.getElementById("idIngeniero").value;
 
-    if (IdIngeniero == "") { IdIngeniero = 0; }
-    if ($("#ddlDistrito").val() == "(Selecciona)") { strIdDistrito = 0; }
-    if ($("#ddlProvincia").val() == "Espere...") { strIdProvincia = 0; }
-       
-    var objData = {};    
+        if (IdIngeniero == "") { IdIngeniero = 0; }
+        if ($("#ddlDistrito").val() == "(Selecciona)") { strIdDistrito = 0; }
+        if ($("#ddlProvincia").val() == "Espere...") { strIdProvincia = 0; }
+
+        var objData = {};
 
         objData["NumProyecto"] = strNumProyecto;
         objData["FechaProyecto"] = strFechaProyecto;
@@ -449,69 +485,78 @@ function Mantenimiento(prc,codProy)
         objData["Distrito"] = strIdDistrito;
         objData["Provincia"] = strIdProvincia;
         objData["Departamento"] = strIdDepartamento;
- 
+
         var table =
             $('#example').dataTable({
-            "searching": false,
-            "ajax": {
+                "searching": false,
+                "ajax": {
                     "url": "/Proyectos/ListarProyectos",
                     "type": "POST",
                     "data": objData,
                     "dataType": "json"
                 },
-            "columnDefs": [
-                            { "type": "date-dd-mmm-yyyy", "targets": "0" }
+                "columnDefs": [
+                    { "type": "date-dd-mmm-yyyy", "targets": "0" }
                 ],
 
-            "columns": [
-                            { "data": "Id_Proyecto" , "class": "text-center"  },
-                            { "data": "Num_Proyecto", "class": "text-center" },
-                            { "data": "Proyecto" , "class": "text-center" },
-                            { "data": "Fecha_Proyecto_Date" , "class": "text-center"},
-                            { "data": "Dni" , "class": "text-center"},
-                            { "data": "Ingeniero" , "class": "text-center"},
-                            { "data": "Cargo" , "class": "text-center"},
-                            { "data": "Fecha_Contrato_Date" , "class": "text-center"},
-                            { "data": "Num_Diseno" , "class": "text-center"},
-                            { "data": "Tipo_Diseno" , "class": "text-center"},
-                            { "data": "Tramo" , "class": "text-center"},
-                            { "data": "Ubigeo" , "class": "text-center"},
-                            {
-                                data: null,
-                                className: "center",
-                                defaultContent: '<div class="btn-group btn-group-sm"><button type="button" id="ButtonReporte" class="btn btn-primary editor_report" data-id="1" data-toggle="modal" data-target="#exampleModal"><span class="icon-search"></span></button></div>'
-                            }
-                        ],
+                "columns": [
+                    { "data": "Num_Proyecto", "class": "text-center" },
+                    { "data": "Proyecto", "class": "text-center" },
+                    { "data": "Fecha_Proyecto_Date", "class": "text-center" },
+                    { "data": "Dni", "class": "text-center" },
+                    { "data": "Ingeniero", "class": "text-center" },
+                    { "data": "Cargo", "class": "text-center" },
+                    { "data": "Fecha_Contrato_Date", "class": "text-center" },
+                    { "data": "Num_Diseno", "class": "text-center" },
+                    { "data": "Tipo_Diseno", "class": "text-center" },
+                    { "data": "Tramo", "class": "text-center" },
+                    { "data": "Ubigeo", "class": "text-center" },
+                    {
+                        data: null,
+                        className: "center",
+                        defaultContent: '<div class="btn-group btn-group-sm"><button type="button" id="ButtonReporte" class="btn btn-primary editor_report" data-id="1" data-toggle="modal" data-target="#exampleModal"><span class="icon-search"></span></button></div>'
+                    }
+                ],
 
-            "lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]],
-            "language": {
-                "sProcessing": "Procesando...",
-                "sLengthMenu": "Mostrar _MENU_ registros",
-                "sZeroRecords": "No se encontraron resultados",
-                "sEmptyTable": "Ningún dato disponible en esta tabla",
-                "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
-                "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
-                "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
-                "sInfoPostFix": "",
-                "sSearch": "Buscar:",
-                "sUrl": "",
-                "sInfoThousands": ",",
-                "sLoadingRecords": "Cargando...",
-                "oPaginate": {
-                    "sFirst": "Primero",
-                    "sLast": "Último",
-                    "sNext": "Siguiente",
-                    "sPrevious": "Anterior"
-                },
-                "oAria": {
-                    "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
-                    "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                "lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]],
+                "language": {
+                    "sProcessing": "Procesando...",
+                    "sLengthMenu": "Mostrar _MENU_ registros",
+                    "sZeroRecords": "No se encontraron resultados",
+                    "sEmptyTable": "Ningún dato disponible en esta tabla",
+                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sSearch": "Buscar:",
+                    "sUrl": "",
+                    "sInfoThousands": ",",
+                    "sLoadingRecords": "Cargando...",
+                    "oPaginate": {
+                        "sFirst": "Primero",
+                        "sLast": "Último",
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                    }
                 }
-            }
 
-            }); 
+            });
 
-}
+
+         $('#example tbody').on('click', 'tr', function (e) {
+             e.preventDefault();
+             var Proc = $(this).data("Num_Proyecto"); 
+             var CodProyecto = $(this).parents("tr").find("td").eq(1).html();
+        // var data_form = tabla.row($(this).parents("tr")).data();
+         alert( CodProyecto);
+         
+         });
+
+    }
 
 
 </script>

@@ -19,7 +19,7 @@ namespace SIS_Ga2.Business
             List<BeDepartamento> lobjbeDepartamento = new List<BeDepartamento>();
             DACDepartamento objDAO = new DACDepartamento();
 
-            objbeDepartamento.id_Departamento = 0;
+            objbeDepartamento.Id_Departamento = 0;
             objbeDepartamento.Departamento = "TODOS";
 
             lobjbeDepartamento.Add(objbeDepartamento);

@@ -15,7 +15,7 @@ namespace SIS_Ga2.Controllers
              
             BLDepartamento objblDepartamento = new BLDepartamento();
             List<SelectListItem> data_list = new List<SelectListItem>();
-            data_list.AddRange(objblDepartamento.ListarDepartamentos(0).Select(a => new SelectListItem() { Text = a.Departamento.ToUpper(), Value = Convert.ToString(a.id_Departamento) }));
+            data_list.AddRange(objblDepartamento.ListarDepartamentos(0).Select(a => new SelectListItem() { Text = a.Departamento.ToUpper(), Value = Convert.ToString(a.Id_Departamento) }));
             ViewData["ddlDepartamento"] = data_list;
             ViewData["ddlProvincia"] = new SelectList(new[] { "(Selecciona)" });
             ViewData["ddlDistrito"] = new SelectList(new[] { "(Selecciona)" });
@@ -41,6 +41,7 @@ namespace SIS_Ga2.Controllers
 
         public JsonResult ListaProvincias(int idDepartamento)
         {
+           
             BLProvincia objblProvincia = new BLProvincia();  
             List<BEProvincia> lobjProvincia = new List<BEProvincia>();
             lobjProvincia = objblProvincia.ListarProvincia(idDepartamento);   

@@ -68,35 +68,18 @@ namespace SIS_Ga2.DataAccess
              //SqlManager objSql = new SqlManager();
             int resultado = 0;
             Parameter param = new Parameter();
-           /* param.Add("@Num_Proyecto", DataProyecto.NumProyecto);
+            param.Add("@Num_Proyecto", DataProyecto.Num_Proyecto);
             param.Add("@Proyecto", DataProyecto.Proyecto);
-            param.Add("@Fecha_Proyecto", DataProyecto.Fecha_Proyecto_Date);
+            param.Add("@Fecha_Proyecto", DataProyecto.Fecha_Proyecto);
             param.Add("@Estado", DataProyecto.Estado);
             param.Add("@Id_Usuario", DataProyecto.id_Usuario);
             param.Add("@Fecha_Creacion", DataProyecto.FechaCreacion);
-            param.Add("@Fecha_Contrato", DataProyecto.Fecha_Contrato_Date);
+            param.Add("@Fecha_Contrato", DataProyecto.Fecha_Contrato);
             param.Add("@Hora_Creacion", DataProyecto.HoraCreacion);
             param.Add("@Usr_Creacion", DataProyecto.UsrCreacion);
             param.Add("@Fecha_Actualizacion", DataProyecto.FechaActualizacion);
             param.Add("@Hora_Actualizacion", DataProyecto.HoraActualizacion);
             param.Add("@Usr_Actualizacion", DataProyecto.UsrActualizacion);
-            */
-
-            param.Add("@Num_Proyecto", "PRUEBA 003");
-            param.Add("@Proyecto", "DEMO");
-            param.Add("@Fecha_Proyecto", 20191001);
-            param.Add("@Estado", 1);
-            param.Add("@Id_Usuario", 6);
-            param.Add("@Fecha_Creacion", 20191001);
-            param.Add("@Fecha_Contrato", 20191001);
-            param.Add("@Hora_Creacion", 160101);
-            param.Add("@Usr_Creacion", "");
-            param.Add("@Fecha_Actualizacion", 20191001);
-            param.Add("@Hora_Actualizacion", 160101);
-            param.Add("@Usr_Actualizacion", "");
-
-
-
          try
             {
                objSql.ExecuteNonQuery("USP_Ins_Proyecto", param);

@@ -33,10 +33,6 @@
     <Reference Include="CriptoSecurity">
       <HintPath>..\packages\DLL\CriptoSecurity.dll</HintPath>
     </Reference>
-    <Reference Include="DbManager, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\DbManager.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -85,6 +81,10 @@
     <Compile Include="UILanguageManagerDAO.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Dbmanager\DbManager.vbproj">
+      <Project>{52f8994b-ec3c-4a69-ba40-2ba330481b85}</Project>
+      <Name>DbManager</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SIS_Ga2.Entity\SIS_Ga2.Entity.csproj">
       <Project>{316524ee-59cc-430c-a885-1de7df82fbbe}</Project>
       <Name>SIS_Ga2.Entity</Name>

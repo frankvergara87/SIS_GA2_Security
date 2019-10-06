@@ -373,3 +373,5 @@ C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS
 C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\roslyn\vbc.rsp
 C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\roslyn\VBCSCompiler.exe
 C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\DbManager.pdb
+C:\Users\Lenovo\OneDrive\Proyectos\ASOCEN\3. Fuentes\Aashto\SIS_GA2_Security\SIS_Ga2\bin\DbManager.xml
