@@ -18,6 +18,8 @@ namespace SIS_Ga2.Entity
         public string Dni { get; set; }
         public string Ingeniero { get; set; }
         public string Cargo { get; set; }
+        
+       public int Id_Diseno { get; set; }
 
         public decimal Fecha_Contrato { get; set; }
         public string Fecha_Contrato_Date { get; set; }

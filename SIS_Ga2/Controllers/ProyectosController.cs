@@ -16,7 +16,29 @@ namespace SIS_Ga2.Controllers
             return View();
         }
 
-        
+
+        public JsonResult ListaReporteCabecera(string Id_Proyecto, string Id_Diseno)
+        {
+            /* if (Id_Proyecto == "") { FechaProyecto = "0"; }
+             if (Id_Diseno == "") { FechaContrato = "0"; }
+
+
+             ProyectoBL objProyecto = new ProyectoBL();
+
+             List<BEProyecto> Proyecto = objProyecto.ListarProyectos(NumProyecto, FechaProyecto, FechaContrato, Int32.Parse(IdUsuario), Int32.Parse(Distrito), Int32.Parse(Provincia), Int32.Parse(Departamento));
+             return Json(new { data = Proyecto }, JsonRequestBehavior.AllowGet);
+
+             { Pavimento: "Adoquin + arena", CoefCapa: "0.44", CoefDrenaje: "", Espesor: "3.15", SN: "1.39", Espesor: "8.00" },
+             { Pavimento: "Base", CoefCapa: " 0.14", CoefDrenaje: "1.00", Espesor: "3.15", SN: "0.44", Espesor: "8.00" },
+             { Pavimento: "Sub - Base", CoefCapa: "0.44", CoefDrenaje: "1", Espesor: "7.09", SN: "", Espesor: "18.00" }
+             */
+            ProyectoBL objblProyecto = new ProyectoBL();
+
+            List<BEProyecto> objProyecto = new List<BEProyecto>();
+
+            return Json(new { data = objProyecto }, JsonRequestBehavior.AllowGet);
+        }
+
         public JsonResult ListarProyectos(string NumProyecto, string FechaProyecto, string FechaContrato, string IdUsuario, string Distrito, string Provincia, string Departamento)
 
         {
