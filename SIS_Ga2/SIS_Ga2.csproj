@@ -148,6 +148,8 @@
     <Content Include="Content\font-awesome\fontawesome-webfont.svg" />
     <Content Include="Content\fontastic.css" />
     <Content Include="Content\fonts\dashboard.svg" />
+    <Content Include="Content\icon\equal.png" />
+    <Content Include="Content\icon\equal_a.png" />
     <Content Include="Content\icon\Help.ico" />
     <Content Include="Content\icon\Help_img.png" />
     <Content Include="Content\icon\Help_img_2.png" />
