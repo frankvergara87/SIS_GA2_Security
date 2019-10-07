@@ -298,3 +298,5 @@ C:\Users\Frank\source\repos\Aashto\SIS_GA2_Security\SIS_Ga2\obj\Debug\SIS_Ga2.cs
 C:\Users\Frank\source\repos\Aashto\SIS_GA2_Security\SIS_Ga2\obj\Debug\SIS_Ga2.csproj.CopyComplete
 C:\Users\Frank\source\repos\Aashto\SIS_GA2_Security\SIS_Ga2\obj\Debug\SIS_Ga2.dll
 C:\Users\Frank\source\repos\Aashto\SIS_GA2_Security\SIS_Ga2\obj\Debug\SIS_Ga2.pdb
+C:\Users\Frank\Source\Repos\Aashto\SIS_GA2_Security\SIS_Ga2\bin\DbManager.pdb
+C:\Users\Frank\Source\Repos\Aashto\SIS_GA2_Security\SIS_Ga2\bin\DbManager.xml

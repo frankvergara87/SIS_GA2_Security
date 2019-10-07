@@ -164,6 +164,9 @@
     <Content Include="Content\images\Diseno_Asfalto.jpg" />
     <Content Include="Content\images\Diseno_Concreto.jpg" />
     <Content Include="Content\images\icono_exp_excel.jpg" />
+    <Content Include="Content\images\img_a.jpg" />
+    <Content Include="Content\images\img_b.jpg" />
+    <Content Include="Content\images\img_c.jpg" />
     <Content Include="Content\img\avatar-0.jpg" />
     <Content Include="Content\img\avatar-1.jpg" />
     <Content Include="Content\img\avatar-10.jpg" />

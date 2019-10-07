@@ -100,3 +100,6 @@ C:\Users\Frank\source\repos\Aashto\SIS_GA2_Security\SIS_Ga2.DataAccess\obj\Debug
 C:\Users\Frank\source\repos\Aashto\SIS_GA2_Security\SIS_Ga2.DataAccess\obj\Debug\SIS_Ga2.DataAccess.csproj.CopyComplete
 C:\Users\Frank\source\repos\Aashto\SIS_GA2_Security\SIS_Ga2.DataAccess\obj\Debug\SIS_Ga2.DataAccess.dll
 C:\Users\Frank\source\repos\Aashto\SIS_GA2_Security\SIS_Ga2.DataAccess\obj\Debug\SIS_Ga2.DataAccess.pdb
+C:\Users\Frank\Source\Repos\Aashto\SIS_GA2_Security\SIS_Ga2.DataAccess\bin\Debug\DbManager.dll
+C:\Users\Frank\Source\Repos\Aashto\SIS_GA2_Security\SIS_Ga2.DataAccess\bin\Debug\DbManager.pdb
+C:\Users\Frank\Source\Repos\Aashto\SIS_GA2_Security\SIS_Ga2.DataAccess\bin\Debug\DbManager.xml
