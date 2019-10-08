@@ -7,7 +7,7 @@
 
     ViewBag.Title = "Diseno";
     BEUsuario usuario = Session["sistema.usuario"] as BEUsuario;
-    Proyecto GetProyecto = Session["sistema.proyecto"] as Proyecto;
+    BEProyecto proyecto = Session["proyecto.general"] as BEProyecto;
     Sistema sistema = Session["sistema.general"] as Sistema;
     if (sistema == null)
     {
@@ -17,224 +17,229 @@
 }
 
 
-    <div class="col-lg-12">
-        <div class="card">
-            <div class="card-header d-flex align-items-center">
-                @*<div class="form-group col-md-3">
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-header d-flex align-items-center">
+            @*<div class="form-group col-md-3">
                     <h3 class="h5">Registro de Proyectos</h3>
                 </div>*@
 
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item active" aria-current="page">Registro de Proyectos</li>
-                    </ol>
-                </nav>
-            </div>
-            @using (Html.BeginForm("FormRegistraProyecto", "ProyectoDiseno", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
-            {
-                <form>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="form-group col-md-5">
-                                <label for="inlineFormInput" class="col-form-label col-form-label-sm">Nombre del Proyecto</label>
-                                <input id="txtNombProyecto" name="txtNombProyecto" data-id="1" type="text" placeholder="Nombre del Proyecto" class="column_filter mr-3 col-sm-12 form-control form-control-sm">
-                            </div>
-                            <div class="form-group col-md-5">
-                                <label for="inlineFormInput" class="col-form-label col-form-label-sm">Ingeniero</label>
-                                <input id="txtIngeniero" name="txtIngeniero" data-id="4" type="text" placeholder="Ingeniero" class="column_filter mr-3 col-sm-12 form-control form-control-sm">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card-footer">
-                        <div class=" clearfix">
-                            <div class="p-0">
-                                <div class="btn-group float-left" role="group" aria-label="Basic example">
-                                </div>
-                            </div>
-                            <div class="p-0">
-                                <div class="btn-group float-right" role="group" aria-label="Basic example">
-                                    <button type="submit" id="btnSiguiente_a" class="btn btn-primary"><span class="icon-form"></span> Guardar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            }
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active" aria-current="page">Registro de Proyectos</li>
+                </ol>
+            </nav>
         </div>
+        @using (Html.BeginForm("FormRegistraProyecto", "ProyectoDiseno", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <form>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="form-group col-md-5">
+                            <label for="inlineFormInput" class="col-form-label col-form-label-sm">Nombre del Proyecto</label>
+                            <input id="txtNombProyecto" name="txtNombProyecto" data-id="1" type="text" placeholder="Nombre del Proyecto" class="column_filter mr-3 col-sm-12 form-control form-control-sm">
+                        </div>
+                        <div class="form-group col-md-5">
+                            <label for="inlineFormInput" class="col-form-label col-form-label-sm">Fecha Proyecto</label>
+                            <input id="txtFechaProyecto" name="txtFechaProyecto" data-id="4" type="text" placeholder="Fecha Proyecto" value="@proyecto.Fecha_Proyecto_Date" class="column_filter mr-3 col-sm-12 form-control form-control-sm" readonly="readonly">
+                        </div>
+                        <div class="form-group col-md-5">
+                            <label for="inlineFormInput" class="col-form-label col-form-label-sm">Ingeniero</label>
+                            <input id="txtIngeniero" name="txtIngeniero" data-id="4" type="text" placeholder="Ingeniero" class="column_filter mr-3 col-sm-12 form-control form-control-sm">
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class=" clearfix">
+                        <div class="p-0">
+                            <div class="btn-group float-left" role="group" aria-label="Basic example">
+                            </div>
+                        </div>
+                        <div class="p-0">
+                            <div class="btn-group float-right" role="group" aria-label="Basic example">
+                                <button type="submit" id="btnSiguiente_a" class="btn btn-primary"><span class="icon-form"></span> Guardar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        }
+    </div>
 
-        <div class="card">
-            <div class="card-header d-flex align-items-center">
-                @*<div class="form-group col-md-3">
+    <div class="card">
+        <div class="card-header d-flex align-items-center">
+            @*<div class="form-group col-md-3">
                     <h3 class="h5">Registro de Disenos</h3>
                 </div>*@
 
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item active" aria-current="page">Registro de Diseños</li>
-                    </ol>
-                </nav>
-            </div>
-            @using (Html.BeginForm("FormRegistraDiseno", "ProyectoDiseno", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
-            {
-                <form>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="form-group col-md-5">
-                                <label for="inlineFormInput" class="col-form-label col-form-label-sm">Tipo de Diseño</label>
-                                <input id="txtTipodiseno" data-id="1" type="text" placeholder="Tipo de Diseño" class="column_filter mr-3 col-sm-12 form-control form-control-sm">
-                            </div>
-                            <div class="form-group col-md-5">
-                                <label for="inlineFormInput" class="col-form-label col-form-label-sm">Diseño</label>
-                                <input id="txtDiseno" type="text" placeholder="Diseño" class="mr-3 col-sm-12 form-control form-control-sm">
-                            </div>
-                            <div class="form-group col-md-5">
-                                <label for="inlineFormInput" class="col-form-label col-form-label-sm">Tramo</label>
-                                <input id="txtTramo" type="text" placeholder="Tramo" class="mr-3 col-sm-12 form-control form-control-sm">
-                            </div>
-                            <div class="form-group col-md-5">
-                                <label for="inlineFormInput" class="col-form-label col-form-label-sm">Reglamento</label>
-                                <input id="txtReglamento" data-id="4" type="text" placeholder="Reglamento" class="column_filter mr-3 col-sm-12 form-control form-control-sm">
-                            </div>
-                            <div class="form-group col-md-5">
-                                <label for="inlineFormInput" class="col-form-label col-form-label-sm">Departamento</label>
-                                @Html.DropDownList("ddlDepartamento", null, new { @class = "mr-3 col-sm-12 form-control form-control-sm" })
-                            </div>
-                            <div class="form-group col-md-5">
-                                <label for="inlineFormInput" class="col-form-label col-form-label-sm">Provincia</label>
-                                @Html.DropDownList("ddlProvincia", null, new { @class = "mr-3  col-sm-12 form-control form-control-sm" })
-                            </div>
-                            <div class="form-group col-md-5">
-                                <label for="inlineFormInput" class="col-form-label col-form-label-sm">Distrito</label>
-                                @Html.DropDownList("ddlDistrito", null, new { @class = "mr-3  col-sm-12 form-control form-control-sm" })
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="card-footer">
-                        <div class=" clearfix">
-                            <div class="p-0">
-                                <div class="btn-group float-left" role="group" aria-label="Basic example">
-                                </div>
-                            </div>
-                            <div class="p-0">
-                                <div class="btn-group float-right" role="group" aria-label="Basic example">
-                                    <button type="submit" id="btnSiguiente_b" class="btn btn-primary"><span class="icon-form"></span> Guardar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            }
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active" aria-current="page">Registro de Diseños</li>
+                </ol>
+            </nav>
         </div>
+        @using (Html.BeginForm("FormRegistraDiseno", "ProyectoDiseno", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <form>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="form-group col-md-5">
+                            <label for="inlineFormInput" class="col-form-label col-form-label-sm">Tipo de Diseño</label>
+                            <input id="txtTipodiseno" data-id="1" type="text" placeholder="Tipo de Diseño" value="@sistema.TipoDiseno" class="column_filter mr-3 col-sm-12 form-control form-control-sm" readonly="readonly">
+                        </div>
+                        <div class="form-group col-md-5">
+                            <label for="inlineFormInput" class="col-form-label col-form-label-sm">Diseño</label>
+                            <input id="txtDiseno" type="text" placeholder="Diseño" class="mr-3 col-sm-12 form-control form-control-sm">
+                        </div>
+                        <div class="form-group col-md-5">
+                            <label for="inlineFormInput" class="col-form-label col-form-label-sm">Tramo</label>
+                            <input id="txtTramo" type="text" placeholder="Tramo" class="mr-3 col-sm-12 form-control form-control-sm">
+                        </div>
+                        <div class="form-group col-md-5">
+                            <label for="inlineFormInput" class="col-form-label col-form-label-sm">Reglamento</label>
+                            <input id="txtReglamento" data-id="4" type="text" placeholder="Reglamento" class="column_filter mr-3 col-sm-12 form-control form-control-sm">
+                        </div>
+                        <div class="form-group col-md-5">
+                            <label for="inlineFormInput" class="col-form-label col-form-label-sm">Departamento</label>
+                            @Html.DropDownList("ddlDepartamento", null, new { @class = "mr-3 col-sm-12 form-control form-control-sm" })
+                        </div>
+                        <div class="form-group col-md-5">
+                            <label for="inlineFormInput" class="col-form-label col-form-label-sm">Provincia</label>
+                            @Html.DropDownList("ddlProvincia", null, new { @class = "mr-3  col-sm-12 form-control form-control-sm" })
+                        </div>
+                        <div class="form-group col-md-5">
+                            <label for="inlineFormInput" class="col-form-label col-form-label-sm">Distrito</label>
+                            @Html.DropDownList("ddlDistrito", null, new { @class = "mr-3  col-sm-12 form-control form-control-sm" })
+                        </div>
+                    </div>
+
+                </div>
+                <div class="card-footer">
+                    <div class=" clearfix">
+                        <div class="p-0">
+                            <div class="btn-group float-left" role="group" aria-label="Basic example">
+                            </div>
+                        </div>
+                        <div class="p-0">
+                            <div class="btn-group float-right" role="group" aria-label="Basic example">
+                                <button type="submit" id="btnSiguiente_b" class="btn btn-primary"><span class="icon-form"></span> Guardar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        }
     </div>
+</div>
 
-        <script src="~/Scripts/jquery-3.3.1.js"></script>
-        <script type="text/javascript">
+<script src="~/Scripts/jquery-3.3.1.js"></script>
 
-            $(document).ready(function () {
+<script type="text/javascript">
 
-                $("#ddlDepartamento").change(function () {
-                    cambiaDepartamento($("#ddlDepartamento").val());
-                    //var id = $(this).val();
-                    //var text = $(this).find('option:selected').text();
-                    //alert(text);
-                });
+    $(document).ready(function () {
 
-                $("#ddlProvincia").change(function () {
-                    cambiaProvincia($("#ddlProvincia").val());
-                });
+        $("#ddlDepartamento").change(function () {
+            cambiaDepartamento($("#ddlDepartamento").val());
+            //var id = $(this).val();
+            //var text = $(this).find('option:selected').text();
+            //alert(text);
+        });
 
-                cambiaDepartamento($("#ddlDepartamento").val());
+        $("#ddlProvincia").change(function () {
+            cambiaProvincia($("#ddlProvincia").val());
+        });
 
-            });
+        cambiaDepartamento($("#ddlDepartamento").val());
 
-            function cambiaDepartamento(idDepartamento) {
+    });
 
-                // var dd2 = document.getElementById("idIngeniero");
-                //alert(dd2.value);
-                var dd = document.getElementById("ddlProvincia");
+    function cambiaDepartamento(idDepartamento) {
 
-                dd.options.length = 0;
-                dd.options[0] = new Option("Espere...");
-                dd.selectedIndex = 0;
-                dd.disabled = true;
+        // var dd2 = document.getElementById("idIngeniero");
+        //alert(dd2.value);
+        var dd = document.getElementById("ddlProvincia");
 
-                // Control de errores
-                $("#ddlProvincia").ajaxError(function (event, request, settings) {
-                    dd.options[0] = new Option("Departamento incorrecto");
-                });
+        dd.options.length = 0;
+        dd.options[0] = new Option("Espere...");
+        dd.selectedIndex = 0;
+        dd.disabled = true;
+
+        // Control de errores
+        $("#ddlProvincia").ajaxError(function (event, request, settings) {
+            dd.options[0] = new Option("Departamento incorrecto");
+        });
 
 
-                var objData = {};
-                objData["idDepartamento"] = idDepartamento;
+        var objData = {};
+        objData["idDepartamento"] = idDepartamento;
 
-                $.ajax({
-                    type: "POST",
-                    url: '/Home/ListaProvincias',
-                    data: JSON.stringify(objData),
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function (provincias) {
+        $.ajax({
+            type: "POST",
+            url: '/Home/ListaProvincias',
+            data: JSON.stringify(objData),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (provincias) {
 
-                        var obj = (typeof provincias) == 'string' ? eval('(' + provincias + ')') : provincias;
+                var obj = (typeof provincias) == 'string' ? eval('(' + provincias + ')') : provincias;
 
-                        $.each(obj, function (i, item) {
+                $.each(obj, function (i, item) {
 
-                            dd.options[i] = new Option(item.Provincia, item.Id_Provincia);
-
-                        });
-
-                        dd.disabled = false;
-                        cambiaProvincia($("#ddlProvincia").val());
-                    }
+                    dd.options[i] = new Option(item.Provincia, item.Id_Provincia);
 
                 });
+
+                dd.disabled = false;
+                cambiaProvincia($("#ddlProvincia").val());
             }
 
-            function cambiaProvincia(idProvincia) {
+        });
+    }
 
-                var dd = document.getElementById("ddlDistrito");
+    function cambiaProvincia(idProvincia) {
 
-                dd.options.length = 0;
-                dd.options[0] = new Option("Espere...");
-                dd.selectedIndex = 0;
-                dd.disabled = true;
+        var dd = document.getElementById("ddlDistrito");
 
-                // Control de errores
-                $("#ddlDistrito").ajaxError(function (event, request, settings) {
-                    dd.options[0] = new Option("Distrito incorrecto");
-                });
+        dd.options.length = 0;
+        dd.options[0] = new Option("Espere...");
+        dd.selectedIndex = 0;
+        dd.disabled = true;
+
+        // Control de errores
+        $("#ddlDistrito").ajaxError(function (event, request, settings) {
+            dd.options[0] = new Option("Distrito incorrecto");
+        });
 
 
-                var objData = {};
-                objData["idProvincia"] = idProvincia;
+        var objData = {};
+        objData["idProvincia"] = idProvincia;
 
-                $.ajax({
-                    type: "POST",
-                    url: '/Home/ListaDistritos',
-                    data: JSON.stringify(objData),
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function (distritos) {
+        $.ajax({
+            type: "POST",
+            url: '/Home/ListaDistritos',
+            data: JSON.stringify(objData),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (distritos) {
 
-                        var obj = (typeof distritos) == 'string' ? eval('(' + distritos + ')') : distritos;
+                var obj = (typeof distritos) == 'string' ? eval('(' + distritos + ')') : distritos;
 
-                        $.each(obj, function (i, item) {
+                $.each(obj, function (i, item) {
 
-                            dd.options[i] = new Option(item.Distrito, item.id_Distrito);
-
-                        });
-
-                        dd.disabled = false;
-
-                    }
+                    dd.options[i] = new Option(item.Distrito, item.id_Distrito);
 
                 });
+
+                dd.disabled = false;
 
             }
 
+        });
+
+    }
 
 
 
-        </script>
+
+</script>
 

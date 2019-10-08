@@ -37,6 +37,7 @@ namespace SIS_Ga2.Controllers
         {
             BEUsuario usuario = new BEUsuario();
             Sistema sistema = new Sistema();
+            BEProyecto proyecto = new BEProyecto();
             usuario.Usuario = Request.Params["loginUsername"].ToString();
             usuario.Clave = Request.Params["loginPassword"].ToString();
 
@@ -52,9 +53,9 @@ namespace SIS_Ga2.Controllers
                 sistema.clave = usuario.Clave;
                 sistema.idUsuario = usuario.Id_Usuario;
 
-
                 Session.Add("sistema.usuario", usuario);
                 Session.Add("sistema.general", sistema);
+                Session.Add("proyecto.general", proyecto);
 
                 return RedirectToAction("Aplicaciones", "Seguridad");
             }
@@ -88,19 +89,24 @@ namespace SIS_Ga2.Controllers
             {
                 BEUsuario usuario = (BEUsuario)Session["sistema.usuario"];
                 Sistema sistema = (Sistema)Session["sistema.general"];
+                BEProyecto proyecto = (BEProyecto)Session["proyecto.general"];
                 sistema.idAplicacion = IdAplicacion;
                 usuario.Aplicacion = IdAplicacion;
+
+
+                DateTime hoy = DateTime.Now;
+                proyecto.Fecha_Proyecto_Date = hoy.ToString("dd/MM/yyyy");
 
                 switch (IdAplicacion)
                 {
                     case 1:
-                        ViewBag.NombDiseno = "Asfalto";
+                        sistema.TipoDiseno = "ASFALTO";
                         break;
                     case 2:
-                        ViewBag.NombDiseno = "Adoquin";
+                        sistema.TipoDiseno = "ADOQUIN";
                         break;
                     case 3:
-                        ViewBag.NombDiseno = "Concreto";
+                        sistema.TipoDiseno = "CONCRETO";
                         break;
                 }
 
