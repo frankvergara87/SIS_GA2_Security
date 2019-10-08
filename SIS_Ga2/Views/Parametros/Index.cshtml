@@ -1,0 +1,445 @@
+﻿@using SIS_Ga2.Entity
+@using SIS_Ga2.Controllers
+
+@model IEnumerable<SIS_Ga2.Entity.Proyecto>
+@{
+    //Layout = null;
+
+    ViewBag.Title = "Diseno";
+    BEUsuario usuario = Session["sistema.usuario"] as BEUsuario;
+    Proyecto GetProyecto = Session["sistema.proyecto"] as Proyecto;
+    Sistema sistema = Session["sistema.general"] as Sistema;
+    if (sistema == null)
+    {
+        Response.Redirect(Url.Action("Login", "Seguridad"));
+        return;
+    }
+}
+
+
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-header d-flex align-items-center">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active" aria-current="page">Registro de Parámetros</li>
+                </ol>
+            </nav>
+        </div>
+        <div class="card-body">
+            <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="Proy-tab" data-toggle="tab" href="#Proy" role="tab" aria-controls="Proy" aria-selected="true">Parámetros de Diseño</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="Cap-tab" data-toggle="tab" href="#Cap" role="tab" aria-controls="Cap" aria-selected="false">Capas de Pavimento</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="Param-tab" data-toggle="tab" href="#Param" role="tab" aria-controls="Param" aria-selected="false">Coeficientes</a>
+                </li>
+            </ul>
+            <div class="tab-content" id="myTabContents">
+                <div class="tab-pane fade show active" id="Proy" role="tabpanel" aria-labelledby="Proy-tab">
+                    <form class="form-inline">
+                        <div class="row">
+                            <div class="form-group col-md-5">
+                                <label for="inlineFormInput" class="col-form-label col-form-label-sm">Periodo de Diseño</label>
+                                <input id="txtPeriodoDiseno" data-id="1" type="text" placeholder="Periodo de Diseño" class="column_filter mr-3 col-sm-12 form-control form-control-sm">
+                            </div>
+                            <div class="form-group col-md-5">
+                                <label for="inlineFormInput" class="col-form-label col-form-label-sm">Cantidad de ESAL</label>
+                                <input id="txtCantidadESAL" type="text" placeholder="Cantidad de ESAL" class="mr-3 col-sm-12 form-control form-control-sm">
+                            </div>
+                            <div class="form-group col-md-5">
+                                <label for="inlineFormInput" class="col-form-label col-form-label-sm">Confiabilidad (R%)</label>
+                                <input id="txtConfiab" type="text" placeholder="Confiabilidad (R%)" class="mr-3 col-sm-12 form-control form-control-sm">
+                            </div>
+                            <div class="form-group col-md-5">
+                                <label for="inlineFormInput" class="col-form-label col-form-label-sm">Error de Comb.Estándar (SO)</label>
+                                <input id="txtErrorComb" data-id="4" type="text" placeholder="Error de Comb.Estándar (SO)" class="column_filter mr-3 col-sm-12 form-control form-control-sm">
+                            </div>
+                            <div class="form-group col-md-5">
+                                <label for="inlineFormInput" class="col-form-label col-form-label-sm">Módulo de Resilencia (Subrasante)</label>
+                                <input id="txtModResilencia" data-id="1" type="text" placeholder="Módulo de Resilencia (Subrasante)" class="column_filter mr-3 col-sm-12 form-control form-control-sm">
+                            </div>
+                            <div class="form-group col-md-5">
+                                <label for="inlineFormInput" class="col-form-label col-form-label-sm">Servicialidad Inicial</label>
+                                <input id="txtServInicial" type="text" placeholder="Servicialidad Inicial" class="mr-3 col-sm-12 form-control form-control-sm">
+                            </div>
+                            <div class="form-group col-md-5">
+                                <label for="inlineFormInput" class="col-form-label col-form-label-sm">Servicialidad Final</label>
+                                <input id="txtServFinal" type="text" placeholder="Servicialidad Final" class="mr-3 col-sm-12 form-control form-control-sm">
+                            </div>
+                            <div class="form-group col-md-5">
+                                <label for="inlineFormInput" class="col-form-label col-form-label-sm">Diferencia de Servicialidad (∆PSI)</label>
+                                <input id="txtDifServ" data-id="4" type="text" placeholder="Diferencia de Servicialidad (∆PSI)" class="column_filter mr-3 col-sm-12 form-control form-control-sm">
+                            </div>
+                            <div class="form-group col-md-5">
+                                <label for="inlineFormInput" class="col-form-label col-form-label-sm">Desviación Estándar Normal (ZR)</label>
+                                <input id="txtDesvEstandar" data-id="4" type="text" placeholder="Desviación Estándar Normal (ZR)" class="column_filter mr-3 col-sm-12 form-control form-control-sm">
+                            </div>
+                        </div>
+                    </form>
+                    <div class="card-footer">
+                        <div class=" clearfix">
+                            <div class="p-0">
+                                <div class="btn-group float-left" role="group" aria-label="Basic example">
+                                </div>
+                            </div>
+                            <div class="p-0">
+                                <div class="btn-group float-right" role="group" aria-label="Basic example">
+                                    <button type="button" id="btnSiguiente_c" class="btn btn-primary"><span class="icon-page"></span> Siguiente</button>
+                                </div>
+                                <div class="btn-group float-right" role="group" aria-label="Basic example">
+                                    &nbsp;
+                                </div>
+                                <div class="btn-group float-right" role="group" aria-label="Basic example">
+                                    <button type="button" id="btnCancelar_c" class="btn btn-secondary"><span class="icon-page"></span> Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="Cap" role="tabpanel" aria-labelledby="Cap-tab">
+                    <div class="table-responsive">
+                        <div class="form-group col-md-8">
+                        </div>
+                        <table border="0" cellspacing="0" cellpadding="0" style="width:100%;">
+                            <tr>
+                                <td width="230px" rowspan="4">
+                                    <div class="form-group col-md-6 text-lg-right">
+                                        <img src="~/Content/images/img_a.jpg" width="250" height="300" class="">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group col-md-12">
+                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">ME</label>
+                                        <div class="form-inline">
+                                            <input id="txtErrorComb" data-id="4" type="text" placeholder="ME" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                            <img src="~/Content/icon/Help_img_6.png" style="width:8%; height:8%;">
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-group col-md-12">
+                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">California Bearing Ratio (CBR)</label>
+                                        <div class="form-inline">
+                                            <input id="txtModResilencia" data-id="1" type="text" placeholder="California Bearing Ratio (CBR" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                            <img src="~/Content/icon/Help_img_6.png" style="width:8%; height:8%;">
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-group col-md-12">
+                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">California Bearing Ratio (CBR)</label>
+                                        <div class="form-inline">
+                                            <input id="txtModResilencia" data-id="1" type="text" placeholder="California Bearing Ratio (CBR)" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                            <img src="~/Content/icon/Help_img_6.png" style="width:8%; height:8%;">
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-group col-md-12">
+                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">California Bearing Ratio (CBR)</label>
+                                        <div class="form-inline">
+                                            <input id="txtModResilencia" data-id="1" type="text" placeholder="California Bearing Ratio (CBR)" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                            <img src="~/Content/icon/Help_img_6.png" style="width:8%; height:8%;">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group col-md-12">
+                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">Módulo de Rotura PSI</label>
+                                        <div class="form-inline">
+                                            <input id="txtModResilencia" data-id="1" type="text" placeholder="Módulo de Rotura PSI" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                            <img src="~/Content/icon/Help_img_6.png" style="width:8%; height:8%;">
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">&nbsp;&nbsp;&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    <div class="text-center">
+                                        <img src="~/Content/images/img_b.jpg">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">&nbsp;&nbsp;&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-group col-md-12">
+                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">N18 Nominal</label>
+                                        <div class="form-inline">
+                                            <input id="txtModResilencia" data-id="1" type="text" placeholder="N18 Nominal" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <img src="~/Content/icon/equal.png" style="width:10%; height:10%;">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group col-md-12">
+                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">N18 Calculado</label>
+                                        <input id="txtModResilencia" data-id="1" type="text" placeholder="N18 Calculado" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group col-md-12">
+                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">S/N Requerido</label>
+                                        <input id="txtModResilencia" data-id="1" type="text" placeholder="S/N Requerido" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-group col-md-12">
+                                        <div class="form-inline">
+                                            <input id="txtModResilencia" data-id="1" type="text" placeholder="" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <img src="~/Content/icon/equal.png" style="width:10%; height:10%;">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group col-md-12">
+                                        <input id="txtModResilencia" data-id="1" type="text" placeholder="" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                    </div>
+                                </td>
+                                <td>&nbsp;</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="card-header">
+                        <div class=" clearfix">
+                            <div class="p-0">
+                                <div class="btn-group float-left" role="group" aria-label="Basic example">
+                                </div>
+                            </div>
+                            <div class="p-0">
+                                <div class="btn-group float-right" role="group" aria-label="Basic example">
+                                    <button type="button" id="btnSiguiente_c" class="btn btn-primary"><span class="icon-page"></span> Siguiente</button>
+                                </div>
+                                <div class="btn-group float-right" role="group" aria-label="Basic example">
+                                    &nbsp;
+                                </div>
+                                <div class="btn-group float-right" role="group" aria-label="Basic example">
+                                    <button type="button" id="btnCancelar_c" class="btn btn-secondary"><span class="icon-page"></span> Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="Param" role="tabpanel" aria-labelledby="Param-tab">
+                    <div class="table-responsive">
+                        <div class="form-group col-md-8">
+                        </div>
+                        <table border="0" cellspacing="0" cellpadding="0" style="width:100%;">
+                            <tr>
+                                <td width="200px">
+                                    <div class="form-group col-md-12">
+                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">Coeficientes Estructuras de Capas</label>
+                                    </div>
+                                </td>
+                                <td width="200px">&nbsp;</td>
+                                <td width="200px">
+                                    <div class="form-group col-md-12">
+                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">Coeficientes Drenaje de Capas</label>
+                                    </div>
+                                </td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-group col-md-12">
+                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">Concreto Asfáltico Conv.</label>
+                                        <div class="form-inline">
+                                            <input id="txtErrorComb" data-id="4" type="text" placeholder="Concreto Asfáltico Convencional" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                            <img src="~/Content/icon/Help_img_6.png" style="width:10%; height:10%;">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>&nbsp;</td>
+                                <td>
+                                    <div class="form-group col-md-12">
+                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">Base Granular (m2)</label>
+                                        <div class="form-inline">
+                                            <input id="txtErrorComb" data-id="4" type="text" placeholder="Base Granular (m2)" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                            <img src="~/Content/icon/Help_img_6.png" style="width:11%; height:11%;">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-group col-md-12">
+                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">Base Granular (a2)</label>
+                                        <div class="form-inline">
+                                            <input id="txtErrorComb" data-id="4" type="text" placeholder="Base Granular (a2)" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                            <img src="~/Content/icon/Help_img_6.png" style="width:10%; height:10%;">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>&nbsp;</td>
+                                <td>
+                                    <div class="form-group col-md-12">
+                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">Sub-base (m3)</label>
+                                        <div class="form-inline">
+                                            <input id="txtErrorComb" data-id="4" type="text" placeholder="Sub-base (m3)" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                            <img src="~/Content/icon/Help_img_6.png" style="width:11%; height:11%;">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-group col-md-12">
+                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">Sub-base (m3)</label>
+                                        <div class="form-inline">
+                                            <input id="txtErrorComb" data-id="4" type="text" placeholder="Sub-base (m3)" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                            <img src="~/Content/icon/Help_img_6.png" style="width:10%; height:10%;">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-group col-md-12">
+                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">S/N PROPUESTO</label>
+                                        <div class="form-inline">
+                                            <input id="txtErrorComb" data-id="4" type="text" placeholder="S/N PROPUESTO" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                            <img src="~/Content/icon/" style="width:10%; height:10%;">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group col-md-12">
+                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">S/N REQUERIDO</label>
+                                        <input id="txtErrorComb" data-id="4" type="text" placeholder="S/N REQUERIDO" class="column_filter mr-1 col-sm-10 form-control form-control-sm">
+                                    </div>
+                                </td>
+                                <td width="260px" rowspan="3" colspan="2">
+                                    <div class="text-left">
+                                        <img src="~/Content/images/img_c.jpg" width="270" height="180">
+                                    </div>
+                                </td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td width="210px" rowspan="4">
+                                    <div class="form-group col-md-6 text-lg-right">
+                                        <img src="~/Content/images/img_a.jpg" width="220" height="300" class="">
+                                    </div>
+                                <td>
+                                    <div class="form-group col-md-12 text-md-center">
+                                        <input id="txtErrorComb" data-id="4" type="text" placeholder="" class="column_filter mr-1 col-sm-10 form-control form-control-sm">
+                                    </div>
+                                </td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-group col-md-12 text-md-center">
+                                        <input id="txtErrorComb" data-id="4" type="text" placeholder="" class="column_filter mr-1 col-sm-10 form-control form-control-sm">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group col-md-12">
+                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">SN Req.</label>
+                                        <input id="txtErrorComb" data-id="4" type="text" placeholder="SN Requerido" class="column_filter mr-1 col-sm-10 form-control form-control-sm">
+                                    </div>
+                                </td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-group col-md-12 text-md-center">
+                                        <input id="txtErrorComb" data-id="4" type="text" placeholder="" class="column_filter mr-1 col-sm-10 form-control form-control-sm">
+                                    </div>
+                                </td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-group col-md-12 text-md-center">
+                                        <input id="txtErrorComb" data-id="4" type="text" placeholder="" class="column_filter mr-1 col-sm-10 form-control form-control-sm">
+                                    </div>
+                                </td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="card-header">
+                        <div class=" clearfix">
+                            <div class="p-0">
+                                <div class="btn-group float-left" role="group" aria-label="Basic example">
+                                </div>
+                            </div>
+                            <div class="p-0">
+                                <div class="btn-group float-right" role="group" aria-label="Basic example">
+                                    <button type="button" id="btnSiguiente_c" class="btn btn-primary"><span class="icon-page"></span> Siguiente</button>
+                                </div>
+                                <div class="btn-group float-right" role="group" aria-label="Basic example">
+                                    &nbsp;
+                                </div>
+                                <div class="btn-group float-right" role="group" aria-label="Basic example">
+                                    <button type="button" id="btnCancelar_c" class="btn btn-secondary"><span class="icon-page"></span> Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+
+    });
+
+
+
+</script>
+
+

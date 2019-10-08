@@ -1,7 +1,16 @@
 ﻿@using SIS_Ga2.Entity
 
 @{
+    //Layout = null;
+
+    ViewBag.Title = "Proyecto";
     BEUsuario usuario = Session["sistema.usuario"] as BEUsuario;
+    Sistema sistema = Session["sistema.general"] as Sistema;
+    if (sistema == null)
+    {
+        Response.Redirect(Url.Action("Login", "Seguridad"));
+        return;
+    }
 }
 <!DOCTYPE html>
 
@@ -9,7 +18,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Bootstrap Material Admin by Bootstrapious.com</title>
+    <title>ASOCEM</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="robots" content="all,follow">
@@ -32,7 +41,7 @@
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
-    
+
 
 </head>
 <body>
@@ -115,7 +124,7 @@
                     <div class="avatar"><img src="~/Content/icon/img_user_3.png" alt="..." class="img-fluid rounded-circle"></div>
                     <div class="title">
                         <h1 class="h4">@usuario.Usuario</h1>
-                        <p>@usuario.Cargo</p>
+                        <p>@usuario.Apellido</p>
                     </div>
                 </div>
                 <!-- Sidebar Navidation Menus--><span class="heading">Menú</span>
@@ -221,54 +230,54 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.2.61/jspdf.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/2.3.0/jspdf.plugin.autotable.js"></script>
-     
 
-        <script type="text/javascript">
-            $(function () {
-                //$("#datetimepicker1").datepicker();
-                //$("#datetimepicker2").datepicker();
 
-                $('#datetimepicker1').bootstrapMaterialDatePicker({
-                    format: 'DD/MM/YYYY',
-                    shortTime: false,
-                    date: true,
-                    time: false,
-                    monthPicker: false,
-                    year: false,
-                    clearButton: true,
-                    nowButton: false,
-                    switchOnClick: true,
-                    cancelText: 'Cancelar',
-                    clearText: 'Limpiar',
-                    okText: 'OK',
-                    triggerEvent: 'focus',
-                    lang: 'es',
-                    weekStart: 1,
+    <script type="text/javascript">
+        $(function () {
+            //$("#datetimepicker1").datepicker();
+            //$("#datetimepicker2").datepicker();
 
-                });
+            $('#datetimepicker1').bootstrapMaterialDatePicker({
+                format: 'DD/MM/YYYY',
+                shortTime: false,
+                date: true,
+                time: false,
+                monthPicker: false,
+                year: false,
+                clearButton: true,
+                nowButton: false,
+                switchOnClick: true,
+                cancelText: 'Cancelar',
+                clearText: 'Limpiar',
+                okText: 'OK',
+                triggerEvent: 'focus',
+                lang: 'es',
+                weekStart: 1,
+
+            });
 
             $('#datetimepicker2').bootstrapMaterialDatePicker({
                 format: 'DD/MM/YYYY',
-            shortTime: false,
-            date: true,
-            time: false,
-            monthPicker: false,
-            year: false,
-            clearButton: true,
-            nowButton: false,
-            switchOnClick: true,
-            cancelText: 'Cancelar',
-            clearText: 'Limpiar',
+                shortTime: false,
+                date: true,
+                time: false,
+                monthPicker: false,
+                year: false,
+                clearButton: true,
+                nowButton: false,
+                switchOnClick: true,
+                cancelText: 'Cancelar',
+                clearText: 'Limpiar',
 
-            okText: 'OK',
-            triggerEvent: 'focus',
-            lang: 'es',
-            weekStart: 1,
+                okText: 'OK',
+                triggerEvent: 'focus',
+                lang: 'es',
+                weekStart: 1,
+
+            });
+
 
         });
-
-
-});
 
     </script>
 

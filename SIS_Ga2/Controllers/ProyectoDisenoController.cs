@@ -27,27 +27,55 @@ namespace SIS_Ga2.Controllers
         public ActionResult FormRegistraProyecto()
         {
 
-            BEProyecto Proyecto = new BEProyecto();
-       
-            Proyecto.Num_Proyecto = Request.Form["txtNombProyecto"];
-            Proyecto.Proyecto = "";
-            Proyecto.Fecha_Proyecto = 0;
-            Proyecto.Estado = Convert.ToBoolean(1);
-            Proyecto.id_Usuario = 1;
-            Proyecto.FechaCreacion = 0;
-            Proyecto.Fecha_Contrato = 0;
-            Proyecto.HoraCreacion = 0;
-            Proyecto.UsrCreacion = "Yo";
-            Proyecto.FechaActualizacion = 0;
-            Proyecto.HoraActualizacion = 0;
-            Proyecto.UsrActualizacion = "Yo";
-            Proyecto.Ingeniero = Request.Form["datetimepicker1"];
-            ProyectoBL BLProyecto = new ProyectoBL();
-            int id;
+            //BEProyecto Proyecto = new BEProyecto();
 
-            id = BLProyecto.GuardarProyecto(Proyecto);
+            //Proyecto.Num_Proyecto = Request.Form["txtNombProyecto"];
+            //Proyecto.Proyecto = "";
+            //Proyecto.Fecha_Proyecto = 0;
+            //Proyecto.Estado = Convert.ToBoolean(1);
+            //Proyecto.id_Usuario = 1;
+            //Proyecto.FechaCreacion = 0;
+            //Proyecto.Fecha_Contrato = 0;
+            //Proyecto.HoraCreacion = 0;
+            //Proyecto.UsrCreacion = "Yo";
+            //Proyecto.FechaActualizacion = 0;
+            //Proyecto.HoraActualizacion = 0;
+            //Proyecto.UsrActualizacion = "Yo";
+            //Proyecto.Ingeniero = Request.Form["datetimepicker1"];
+            //ProyectoBL BLProyecto = new ProyectoBL();
+            //int id;
 
-            return View(id);
+            //id = BLProyecto.GuardarProyecto(Proyecto);
+
+            return RedirectToAction("Index", "ProyectoDiseno");
         }
+
+        [HttpPost]
+        public ActionResult FormRegistraDiseno()
+        {
+
+            //BEProyecto Proyecto = new BEProyecto();
+
+            //Proyecto.Num_Proyecto = Request.Form["txtNombProyecto"];
+            //Proyecto.Proyecto = "";
+            //Proyecto.Fecha_Proyecto = 0;
+            //Proyecto.Estado = Convert.ToBoolean(1);
+            //Proyecto.id_Usuario = 1;
+            //Proyecto.FechaCreacion = 0;
+            //Proyecto.Fecha_Contrato = 0;
+            //Proyecto.HoraCreacion = 0;
+            //Proyecto.UsrCreacion = "Yo";
+            //Proyecto.FechaActualizacion = 0;
+            //Proyecto.HoraActualizacion = 0;
+            //Proyecto.UsrActualizacion = "Yo";
+            //Proyecto.Ingeniero = Request.Form["datetimepicker1"];
+            //ProyectoBL BLProyecto = new ProyectoBL();
+            //int id;
+
+            //id = BLProyecto.GuardarProyecto(Proyecto);
+
+            return RedirectToAction("Index", "Parametros");
+        }
+
     }
 }

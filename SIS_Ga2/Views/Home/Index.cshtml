@@ -53,10 +53,10 @@
                         <label for="inlineFormInput" class="col-form-label col-form-label-sm">Distrito</label>
                         @Html.DropDownList("ddlDistrito", null, new { @class = "mr-3  col-sm-10 form-control form-control-sm" })
                     </div>
-                    <div class="form-group col-md-4">
+                    @*<div class="form-group col-md-4">
                         <label for="inlineFormInput" class="col-form-label col-form-label-sm">Ingeniero</label>
                         <input id="txtIngeniero" data-id="4" type="text" placeholder="Apellidos y Nombres" class="column_filter mr-3 col-sm-10 form-control form-control-sm">
-                    </div>
+                    </div>*@
                 </div>
             </form>
         </div>
@@ -212,8 +212,8 @@
             $('#example').dataTable().fnDestroy();
 
 
-            var dd = document.getElementById("idIngeniero");
-            if ($('#txtIngeniero').val() == "") { dd.value = 0 };
+            //var dd = document.getElementById("idIngeniero");
+            //if ($('#txtIngeniero').val() == "") { dd.value = 0 };
             CargarGrilla();
 
         }
@@ -261,42 +261,42 @@
 
     });
 
-    function CargarCompleted() {
-        var idUsuario = document.getElementById("txtidUsuario").value;
+    //function CargarCompleted() {
+    //    var idUsuario = document.getElementById("txtidUsuario").value;
 
 
-        $('#txtIngeniero').autocomplete({
-            //source: DataProveedor,
-            source: function (request, response) {
-                $.ajax(
-                    {
-                        type: "POST",
-                        url: "/Home/ListaUsuarios",
-                        data: "{'strUsuario':'" + $.trim(idUsuario) + "'," +
-                            "'valorUsuario':'" + $.trim(request.term) + "'}",
-                        contentType: "application/json; charset=utf-8",
-                        dataType: "json",
-                        dataFilter: function (data) { return data; },
-                        success: function (data) {
-                            response($.map(data, function (item) {
-                                return {
-                                    label: item.Apellido + " " + item.Nombre,
-                                    value: item.Apellido + " " + item.Nombre,
-                                    id: item.Id_Usuario
-                                };
-                            }));
-                        },
-                        error: Error
-                    });
-            },
-            minLength: 2,
-            select: function (event, ui) {
+    //    $('#txtIngeniero').autocomplete({
+    //        //source: DataProveedor,
+    //        source: function (request, response) {
+    //            $.ajax(
+    //                {
+    //                    type: "POST",
+    //                    url: "/Home/ListaUsuarios",
+    //                    data: "{'strUsuario':'" + $.trim(idUsuario) + "'," +
+    //                        "'valorUsuario':'" + $.trim(request.term) + "'}",
+    //                    contentType: "application/json; charset=utf-8",
+    //                    dataType: "json",
+    //                    dataFilter: function (data) { return data; },
+    //                    success: function (data) {
+    //                        response($.map(data, function (item) {
+    //                            return {
+    //                                label: item.Apellido + " " + item.Nombre,
+    //                                value: item.Apellido + " " + item.Nombre,
+    //                                id: item.Id_Usuario
+    //                            };
+    //                        }));
+    //                    },
+    //                    error: Error
+    //                });
+    //        },
+    //        minLength: 2,
+    //        select: function (event, ui) {
 
-                var dd = document.getElementById("idIngeniero");
-                dd.value = ui.item.id
-            },
-        });
-    };
+    //            var dd = document.getElementById("idIngeniero");
+    //            dd.value = ui.item.id
+    //        },
+    //    });
+    //};
 
     function cambiaDepartamento(idDepartamento) {
         // var dd2 = document.getElementById("idIngeniero");

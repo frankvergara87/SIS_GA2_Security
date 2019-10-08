@@ -18,11 +18,13 @@ namespace SIS_Ga2.Controllers
 
         public ActionResult ListarDisenos()
         {
-            Sistema usuario = new Sistema();
-            usuario = ((Sistema)Session["sistema.general"]);
-            BLDisenos objDisenos = new BLDisenos();
-            List<BEDiseno> Disenos = objDisenos.ListarDisenos();
-            return Json(new { data = Disenos }, JsonRequestBehavior.AllowGet);
+            //Sistema usuario = new Sistema();
+            //usuario = ((Sistema)Session["sistema.general"]);
+            //BLDisenos objDisenos = new BLDisenos();
+            //List<BEDiseno> Disenos = objDisenos.ListarDisenos();
+            //return Json(new { data = Disenos }, JsonRequestBehavior.AllowGet);
+
+            return View();
 
         }
     }

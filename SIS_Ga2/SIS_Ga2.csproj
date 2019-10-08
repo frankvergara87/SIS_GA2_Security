@@ -128,6 +128,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DisenoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ParametrosController.cs" />
     <Compile Include="Controllers\ProyectoDisenoController.cs" />
     <Compile Include="Controllers\ProyectosController.cs" />
     <Compile Include="Controllers\SeguridadController.cs" />
@@ -535,6 +536,7 @@
     <Content Include="Views\Diseno\Index.cshtml" />
     <Content Include="Views\Diseno\ParamDiseño.cshtml" />
     <Content Include="Views\ProyectoDiseno\Index.cshtml" />
+    <Content Include="Views\Parametros\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -90,6 +90,20 @@ namespace SIS_Ga2.Controllers
                 Sistema sistema = (Sistema)Session["sistema.general"];
                 sistema.idAplicacion = IdAplicacion;
                 usuario.Aplicacion = IdAplicacion;
+
+                switch (IdAplicacion)
+                {
+                    case 1:
+                        ViewBag.NombDiseno = "Asfalto";
+                        break;
+                    case 2:
+                        ViewBag.NombDiseno = "Adoquin";
+                        break;
+                    case 3:
+                        ViewBag.NombDiseno = "Concreto";
+                        break;
+                }
+
                 return RedirectToAction("Index", "Home");
             }
             catch (Exception ex)
