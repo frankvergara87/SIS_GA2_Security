@@ -16,6 +16,8 @@
     }
 }
 
+<input type="hidden" id="txtidTipoDiseno" value="@sistema.idAplicacion" />
+<input type="hidden" id="txtidUsuario" value="@sistema.idUsuario" />
 
 <div class="col-lg-12">
     <div class="card">
@@ -30,40 +32,37 @@
                 </ol>
             </nav>
         </div>
-        @using (Html.BeginForm("FormRegistraProyecto", "ProyectoDiseno", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
-        {
-            <form>
-                <div class="card-body">
-                    <div class="row">
-                        <div class="form-group col-md-5">
-                            <label for="inlineFormInput" class="col-form-label col-form-label-sm">Nombre del Proyecto</label>
-                            <input id="txtNombProyecto" name="txtNombProyecto" data-id="1" type="text" placeholder="Nombre del Proyecto" class="column_filter mr-3 col-sm-12 form-control form-control-sm">
+        <form>
+            <div class="card-body">
+                <div class="row">
+                    <div class="form-group col-md-5">
+                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">Nombre del Proyecto</label>
+                        <input id="txtNombProyecto" name="txtNombProyecto" data-id="1" type="text" placeholder="Nombre del Proyecto" class="column_filter mr-3 col-sm-12 form-control form-control-sm">
+                    </div>
+                    <div class="form-group col-md-5">
+                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">Fecha Proyecto</label>
+                        <input id="txtFechaProyecto" name="txtFechaProyecto" data-id="4" type="text" placeholder="Fecha Proyecto" value="@proyecto.Fecha_Proyecto_Date" class="column_filter mr-3 col-sm-12 form-control form-control-sm" readonly="readonly">
+                    </div>
+                    <div class="form-group col-md-5">
+                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">Ingeniero</label>
+                        <input id="txtIngeniero" name="txtIngeniero" data-id="4" type="text" placeholder="Ingeniero" class="column_filter mr-3 col-sm-12 form-control form-control-sm">
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class=" clearfix">
+                    <div class="p-0">
+                        <div class="btn-group float-left" role="group" aria-label="Basic example">
                         </div>
-                        <div class="form-group col-md-5">
-                            <label for="inlineFormInput" class="col-form-label col-form-label-sm">Fecha Proyecto</label>
-                            <input id="txtFechaProyecto" name="txtFechaProyecto" data-id="4" type="text" placeholder="Fecha Proyecto" value="@proyecto.Fecha_Proyecto_Date" class="column_filter mr-3 col-sm-12 form-control form-control-sm" readonly="readonly">
-                        </div>
-                        <div class="form-group col-md-5">
-                            <label for="inlineFormInput" class="col-form-label col-form-label-sm">Ingeniero</label>
-                            <input id="txtIngeniero" name="txtIngeniero" data-id="4" type="text" placeholder="Ingeniero" class="column_filter mr-3 col-sm-12 form-control form-control-sm">
+                    </div>
+                    <div class="p-0">
+                        <div class="btn-group float-right" role="group" aria-label="Basic example">
+                            <button type="button" id="btnGuardarProyecto" class="btn btn-primary"><span class="icon-form"></span> Guardar</button>
                         </div>
                     </div>
                 </div>
-                <div class="card-footer">
-                    <div class=" clearfix">
-                        <div class="p-0">
-                            <div class="btn-group float-left" role="group" aria-label="Basic example">
-                            </div>
-                        </div>
-                        <div class="p-0">
-                            <div class="btn-group float-right" role="group" aria-label="Basic example">
-                                <button type="submit" id="btnSiguiente_a" class="btn btn-primary"><span class="icon-form"></span> Guardar</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </form>
-        }
+            </div>
+        </form>
     </div>
 
     <div class="card">
@@ -78,8 +77,6 @@
                 </ol>
             </nav>
         </div>
-        @using (Html.BeginForm("FormRegistraDiseno", "ProyectoDiseno", null, FormMethod.Post, new { enctype = "multipart/form-data" }))
-        {
             <form>
                 <div class="card-body">
                     <div class="row">
@@ -122,13 +119,12 @@
                         </div>
                         <div class="p-0">
                             <div class="btn-group float-right" role="group" aria-label="Basic example">
-                                <button type="submit" id="btnSiguiente_b" class="btn btn-primary"><span class="icon-form"></span> Guardar</button>
+                                <button type="button" id="btnGuardarDiseno" class="btn btn-primary"><span class="icon-form"></span> Guardar</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </form>
-        }
     </div>
 </div>
 
@@ -137,6 +133,9 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
+
+        var idTipoDiseno = document.getElementById("txtidTipoDiseno").value;
+        var idUsuario = document.getElementById("txtidUsuario").value;
 
         $("#ddlDepartamento").change(function () {
             cambiaDepartamento($("#ddlDepartamento").val());
@@ -150,6 +149,76 @@
         });
 
         cambiaDepartamento($("#ddlDepartamento").val());
+
+
+        $("#btnGuardarProyecto").on("click", function (event) {
+            var strNombProyecto = document.getElementById("txtNombProyecto").value;
+            var strFechaProyecto = document.getElementById("txtFechaProyecto").value;
+            var strIngeniero = document.getElementById("txtIngeniero").value;
+
+            var objData = {};
+
+            objData["NumProyecto"] = strNombProyecto;
+            objData["FechaProyecto"] = strFechaProyecto;
+            objData["Ingeniero"] = strIngeniero;
+            objData["idUsuario"] = idUsuario;
+
+            $.ajax
+                ({
+                    method: 'POST',
+                    url: '/ProyectoDiseno/RegistroProyecto',
+                    data: objData,
+                    success: function (respuesta) {
+                        if (respuesta==1) {
+                            toastr.success("Los datos se guardarón correctamente.", 'ASOCEM', { timeOut: 2000 });
+                            $('#btnGuardarProyecto').attr("disabled", true);
+                        }
+                        else {
+                            toastr.error("Ingrese los datos!", 'ERROR', { timeOut: 2000 });
+                        }
+                    },
+                    error: function (xhr, status) {
+                        toastr.error(status, 'ERROR', { timeOut: 2000 });
+                    }
+
+                });
+
+        });
+
+        $("#btnGuardarDiseno").on("click", function (event) {
+
+            var strNombProyecto = document.getElementById("txtNombProyecto").value;
+            var strFechaProyecto = document.getElementById("txtFechaProyecto").value;
+            var strIngeniero = document.getElementById("txtIngeniero").value;
+
+            var objData = {};
+
+            objData["NumProyecto"] = strNombProyecto;
+            objData["FechaProyecto"] = strFechaProyecto;
+            objData["Ingeniero"] = strIngeniero;
+            objData["idUsuario"] = idUsuario;
+
+
+            $.ajax
+                ({
+                    method: 'POST',
+                    url: '/ProyectoDiseno/RegistroDiseno',
+                    data: objData,
+                    success: function (respuesta) {
+                        if (respuesta==1) {
+                            toastr.success("Los datos se guardarón correctamente.", 'ASOCEM', { timeOut: 2000 });
+                            $('#btnGuardarDiseno').attr("disabled", true);
+                        }
+                        else {
+                            toastr.error("Ingrese los datos!", 'ERROR', { timeOut: 2000 });
+                        }
+                    },
+                    error: function (xhr, status) {
+                        toastr.error(status, 'ERROR', { timeOut: 2000 });
+                    }
+
+                });
+        });
 
     });
 

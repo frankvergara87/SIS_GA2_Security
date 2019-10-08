@@ -23,44 +23,55 @@ namespace SIS_Ga2.Controllers
             return View();
         }
 
-        [HttpPost]
-        public ActionResult FormRegistraProyecto()
+
+        public int RegistroProyecto(string NumProyecto, string FechaProyecto, string Ingeniero, int idUsuario)
         {
 
-            //BEProyecto Proyecto = new BEProyecto();
+                BEProyecto Proyecto = new BEProyecto();
+                ProyectoBL BLProyecto = new ProyectoBL();
 
-            //Proyecto.Num_Proyecto = Request.Form["txtNombProyecto"];
-            //Proyecto.Proyecto = "";
-            //Proyecto.Fecha_Proyecto = 0;
-            //Proyecto.Estado = Convert.ToBoolean(1);
-            //Proyecto.id_Usuario = 1;
-            //Proyecto.FechaCreacion = 0;
-            //Proyecto.Fecha_Contrato = 0;
-            //Proyecto.HoraCreacion = 0;
-            //Proyecto.UsrCreacion = "Yo";
-            //Proyecto.FechaActualizacion = 0;
-            //Proyecto.HoraActualizacion = 0;
-            //Proyecto.UsrActualizacion = "Yo";
-            //Proyecto.Ingeniero = Request.Form["datetimepicker1"];
-            //ProyectoBL BLProyecto = new ProyectoBL();
-            //int id;
+                Proyecto.Num_Proyecto = NumProyecto;
+                Proyecto.Proyecto = "";
+                Proyecto.Fecha_Proyecto_Date = FechaProyecto;
+                Proyecto.Estado = Convert.ToBoolean(1);
+                Proyecto.id_Usuario = idUsuario;
+                Proyecto.FechaCreacion = 0;
+                Proyecto.Fecha_Contrato = 0;
+                Proyecto.HoraCreacion = 0;
+                Proyecto.UsrCreacion = "Yo";
+                Proyecto.FechaActualizacion = 0;
+                Proyecto.HoraActualizacion = 0;
+                Proyecto.UsrActualizacion = "Yo";
+                Proyecto.Ingeniero = Ingeniero;
+                
+                
 
-            //id = BLProyecto.GuardarProyecto(Proyecto);
+            if (!String.IsNullOrEmpty(NumProyecto))
+            {
+                int id;
+                id = BLProyecto.GuardarProyecto(Proyecto);
 
-            return RedirectToAction("Index", "ProyectoDiseno");
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+                
         }
 
-        [HttpPost]
-        public ActionResult FormRegistraDiseno()
+
+        public int RegistroDiseno(string NumProyecto, string FechaProyecto, string Ingeniero, int idUsuario)
         {
 
             //BEProyecto Proyecto = new BEProyecto();
+            //ProyectoBL BLProyecto = new ProyectoBL();
 
-            //Proyecto.Num_Proyecto = Request.Form["txtNombProyecto"];
+            //Proyecto.Num_Proyecto = NumProyecto;
             //Proyecto.Proyecto = "";
-            //Proyecto.Fecha_Proyecto = 0;
+            //Proyecto.Fecha_Proyecto_Date = FechaProyecto;
             //Proyecto.Estado = Convert.ToBoolean(1);
-            //Proyecto.id_Usuario = 1;
+            //Proyecto.id_Usuario = idUsuario;
             //Proyecto.FechaCreacion = 0;
             //Proyecto.Fecha_Contrato = 0;
             //Proyecto.HoraCreacion = 0;
@@ -68,13 +79,23 @@ namespace SIS_Ga2.Controllers
             //Proyecto.FechaActualizacion = 0;
             //Proyecto.HoraActualizacion = 0;
             //Proyecto.UsrActualizacion = "Yo";
-            //Proyecto.Ingeniero = Request.Form["datetimepicker1"];
-            //ProyectoBL BLProyecto = new ProyectoBL();
-            //int id;
+            //Proyecto.Ingeniero = Ingeniero;
 
-            //id = BLProyecto.GuardarProyecto(Proyecto);
 
-            return RedirectToAction("Index", "Parametros");
+
+            //if (!String.IsNullOrEmpty(NumProyecto))
+            //{
+            //    int id;
+            //    id = BLProyecto.GuardarProyecto(Proyecto);
+
+            //    return 1;
+            //}
+            //else
+            //{
+            //    return 0;
+            //}
+
+            return 1;
         }
 
     }
