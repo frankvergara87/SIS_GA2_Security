@@ -8,9 +8,6 @@ namespace SIS_Ga2.Entity
 {
   public  class BEProyecto
     {
-
-
-
         public string Num_Proyecto { get; set; }
         public string Proyecto { get; set; }
         public decimal Fecha_Proyecto { get; set; }
@@ -19,7 +16,7 @@ namespace SIS_Ga2.Entity
         public string Ingeniero { get; set; }
         public string Cargo { get; set; }
         
-       public int Id_Diseno { get; set; }
+        public int Id_Diseno { get; set; }
 
         public decimal Fecha_Contrato { get; set; }
         public string Fecha_Contrato_Date { get; set; }
@@ -44,11 +41,7 @@ namespace SIS_Ga2.Entity
 
         public int Id_Proyecto { get; set; }
                
-     
-   
-
-
-
+        
 
     }
 

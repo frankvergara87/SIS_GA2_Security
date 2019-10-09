@@ -62,10 +62,9 @@ namespace SIS_Ga2.DataAccess
             }
         }
 
-        public int GuardarProyecto(BEProyecto DataProyecto)
+        public int GuardarProyecto(BEProyecto DataProyecto, BEDiseno DataDiseno)
         {
-           SqlManager objSql = new SqlManager(ConfigurationManager.AppSettings["ASOCEM"].ToString());
-             //SqlManager objSql = new SqlManager();
+            SqlManager objSql = new SqlManager(ConfigurationManager.AppSettings["ASOCEM"].ToString());
             int resultado = 0;
             Parameter param = new Parameter();
             param.Add("@Num_Proyecto", DataProyecto.Num_Proyecto);
@@ -80,7 +79,13 @@ namespace SIS_Ga2.DataAccess
             param.Add("@Fecha_Actualizacion", DataProyecto.FechaActualizacion);
             param.Add("@Hora_Actualizacion", DataProyecto.HoraActualizacion);
             param.Add("@Usr_Actualizacion", DataProyecto.UsrActualizacion);
-         try
+            param.Add("@Num_Diseno", DataDiseno.NumeroDiseno);
+            param.Add("@Id_Tramo", DataDiseno.idTramo);
+            param.Add("@Id_Reglamento", DataDiseno.idReglamento);
+            param.Add("@Id_TipoDiseno", DataDiseno.IdTipoDiseno);
+            param.Add("@Id_Distrito", DataDiseno.idDistrito);
+
+            try
             {
                objSql.ExecuteNonQuery("USP_Ins_Proyecto", param);
                resultado = 1;

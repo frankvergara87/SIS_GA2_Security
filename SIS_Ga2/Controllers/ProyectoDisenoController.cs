@@ -24,32 +24,37 @@ namespace SIS_Ga2.Controllers
         }
 
 
-        public int RegistroProyecto(string NumProyecto, string FechaProyecto, string Ingeniero, int idUsuario)
+        public int RegistroProyDiseno(BEProyecto ObjProyecto, BEDiseno ObjDiseno)
         {
 
-                BEProyecto Proyecto = new BEProyecto();
-                ProyectoBL BLProyecto = new ProyectoBL();
+            BEProyecto Proyecto = new BEProyecto();
+            BEDiseno Diseno = new BEDiseno();
+            ProyectoBL BLProyecto = new ProyectoBL();
 
-                Proyecto.Num_Proyecto = NumProyecto;
-                Proyecto.Proyecto = "";
-                Proyecto.Fecha_Proyecto_Date = FechaProyecto;
-                Proyecto.Estado = Convert.ToBoolean(1);
-                Proyecto.id_Usuario = idUsuario;
-                Proyecto.FechaCreacion = 0;
-                Proyecto.Fecha_Contrato = 0;
-                Proyecto.HoraCreacion = 0;
-                Proyecto.UsrCreacion = "Yo";
-                Proyecto.FechaActualizacion = 0;
-                Proyecto.HoraActualizacion = 0;
-                Proyecto.UsrActualizacion = "Yo";
-                Proyecto.Ingeniero = Ingeniero;
-                
-                
+            Proyecto.Num_Proyecto = ObjProyecto.Num_Proyecto;
+            Proyecto.Proyecto = ObjProyecto.Proyecto;
+            Proyecto.Fecha_Proyecto_Date = ObjProyecto.Fecha_Proyecto_Date;
+            Proyecto.Estado = Convert.ToBoolean(1);
+            Proyecto.id_Usuario = ObjProyecto.id_Usuario;
+            Proyecto.FechaCreacion = 0;
+            Proyecto.Fecha_Contrato = 0;
+            Proyecto.HoraCreacion = 0;
+            Proyecto.UsrCreacion = ObjProyecto.UsrCreacion;
+            Proyecto.FechaActualizacion = 0;
+            Proyecto.HoraActualizacion = 0;
+            Proyecto.UsrActualizacion = "";
+            Proyecto.Ingeniero = ObjProyecto.Ingeniero;
 
-            if (!String.IsNullOrEmpty(NumProyecto))
+            Diseno.NumeroDiseno = ObjDiseno.NumeroDiseno;
+            Diseno.idTramo = ObjDiseno.idTramo;
+            Diseno.idReglamento = ObjDiseno.idReglamento;
+            Diseno.IdTipoDiseno = ObjDiseno.IdTipoDiseno;
+            Diseno.idDistrito = ObjDiseno.idDistrito;
+
+            if (!String.IsNullOrEmpty(ObjProyecto.Num_Proyecto))
             {
                 int id;
-                id = BLProyecto.GuardarProyecto(Proyecto);
+                id = BLProyecto.GuardarProyecto(Proyecto, Diseno);
 
                 return 1;
             }
@@ -57,45 +62,6 @@ namespace SIS_Ga2.Controllers
             {
                 return 0;
             }
-                
-        }
-
-
-        public int RegistroDiseno(string NumProyecto, string FechaProyecto, string Ingeniero, int idUsuario)
-        {
-
-            //BEProyecto Proyecto = new BEProyecto();
-            //ProyectoBL BLProyecto = new ProyectoBL();
-
-            //Proyecto.Num_Proyecto = NumProyecto;
-            //Proyecto.Proyecto = "";
-            //Proyecto.Fecha_Proyecto_Date = FechaProyecto;
-            //Proyecto.Estado = Convert.ToBoolean(1);
-            //Proyecto.id_Usuario = idUsuario;
-            //Proyecto.FechaCreacion = 0;
-            //Proyecto.Fecha_Contrato = 0;
-            //Proyecto.HoraCreacion = 0;
-            //Proyecto.UsrCreacion = "Yo";
-            //Proyecto.FechaActualizacion = 0;
-            //Proyecto.HoraActualizacion = 0;
-            //Proyecto.UsrActualizacion = "Yo";
-            //Proyecto.Ingeniero = Ingeniero;
-
-
-
-            //if (!String.IsNullOrEmpty(NumProyecto))
-            //{
-            //    int id;
-            //    id = BLProyecto.GuardarProyecto(Proyecto);
-
-            //    return 1;
-            //}
-            //else
-            //{
-            //    return 0;
-            //}
-
-            return 1;
         }
 
     }

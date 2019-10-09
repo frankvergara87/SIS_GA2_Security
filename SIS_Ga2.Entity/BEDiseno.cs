@@ -14,9 +14,14 @@ namespace SIS_Ga2.Entity
         public double Fecha { get; set; }
         public bool Estado { get; set; }
         public int idTramo { get; set; }
+        public string Tramo { get; set; }
         public int idReglamento { get; set; }
+        public string Reglamento { get; set; }
         public int IdTipoDiseno { get; set; }
-        public int idDistrito { get; set; }      
+        public string TipoDiseno { get; set; }
+        public int idDistrito { get; set; }
+        public int idProvincia { get; set; }
+        public int idDepartamento{ get; set; }
         public double FechaCreacion { get; set; }
         public double HoraCreacion { get; set; }
         public string UsrCreacion { get; set; }

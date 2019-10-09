@@ -1,6 +1,12 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\SIS_Ga2",
+    "\\SIS_Ga2\\Controllers",
+    "\\SIS_Ga2\\Views",
+    "\\SIS_Ga2\\Views\\Home",
+    "\\SIS_Ga2\\Views\\ProyectoDiseno"
   ],
+  "SelectedNode": "\\SIS_Ga2\\Controllers\\ProyectoDisenoController.cs",
   "PreviewInSolutionExplorer": false
 }

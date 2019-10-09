@@ -64,14 +64,14 @@ namespace SIS_Ga2.Controllers
 
         //}
 
-        public int GuardarProyecto(BEProyecto DataProyecto)
-        {
-            ProyectoBL BLProyecto = new ProyectoBL();
-            int id;
+        //public int GuardarProyecto(BEProyecto DataProyecto)
+        //{
+        //    ProyectoBL BLProyecto = new ProyectoBL();
+        //    int id;
 
-            id = BLProyecto.GuardarProyecto(DataProyecto);
+        //    id = BLProyecto.GuardarProyecto(DataProyecto);
 
-            return id;
-        }
+        //    return id;
+        //}
     }
 }
