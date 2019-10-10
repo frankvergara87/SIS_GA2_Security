@@ -39,7 +39,7 @@ namespace SIS_Ga2.Controllers
             return Json(new { data = objProyecto }, JsonRequestBehavior.AllowGet);
         }
 
-        public JsonResult ListarProyectos(string NumProyecto, string FechaProyecto, string FechaContrato, string IdUsuario, string Distrito, string Provincia, string Departamento)
+        public JsonResult ListarProyectos(string NumProyecto, string FechaProyecto, string FechaContrato, string IdUsuario, string Distrito, string Provincia, string Departamento, string idTipoDiseno)
 
         {
             if (FechaProyecto == "") { FechaProyecto = "0"; }
@@ -51,7 +51,7 @@ namespace SIS_Ga2.Controllers
 
             ProyectoBL objProyecto = new ProyectoBL();
 
-            List<BEProyecto> Proyecto = objProyecto.ListarProyectos(NumProyecto, FechaProyecto, FechaContrato, Int32.Parse(IdUsuario), Int32.Parse(Distrito), Int32.Parse(Provincia), Int32.Parse(Departamento));
+            List<BEProyecto> Proyecto = objProyecto.ListarProyectos(NumProyecto, FechaProyecto, FechaContrato, Int32.Parse(IdUsuario), Int32.Parse(Distrito), Int32.Parse(Provincia), Int32.Parse(Departamento), Int32.Parse(idTipoDiseno));
             return Json(new { data = Proyecto }, JsonRequestBehavior.AllowGet);
 
         }

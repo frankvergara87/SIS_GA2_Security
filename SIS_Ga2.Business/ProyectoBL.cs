@@ -10,7 +10,7 @@ namespace SIS_Ga2.Business
 {
     public class ProyectoBL
     {
-        public List<BEProyecto> ListarProyectos(string NumProyecto, string FechaProyecto, string FechaContrato, int IdUsuario, int IdDistrito, int Provincia, int Departamento)
+        public List<BEProyecto> ListarProyectos(string NumProyecto, string FechaProyecto, string FechaContrato, int IdUsuario, int IdDistrito, int Provincia, int Departamento, int idTipoDiseno)
         {
             BEProyecto objbeDistrito = new BEProyecto();
             List<BEProyecto> lobjbeProyecto = new List<BEProyecto>();
@@ -21,7 +21,7 @@ namespace SIS_Ga2.Business
             Fecha_Proyecto = HelpClass.CFecha_a_Numero(FechaProyecto);
             Fecha_Contrato = HelpClass.CFecha_a_Numero(FechaContrato);
 
-            foreach (BEProyecto temp in objDAO.ListarProyectos(NumProyecto, Fecha_Proyecto, Fecha_Contrato, IdUsuario, IdDistrito, Provincia, Departamento))
+            foreach (BEProyecto temp in objDAO.ListarProyectos(NumProyecto, Fecha_Proyecto, Fecha_Contrato, IdUsuario, IdDistrito, Provincia, Departamento, idTipoDiseno))
             {
                 temp.Fecha_Proyecto_Date = HelpClass.CNumero_a_Fecha(temp.Fecha_Proyecto);
                 temp.Fecha_Contrato_Date = HelpClass.CNumero_a_Fecha(temp.Fecha_Contrato);

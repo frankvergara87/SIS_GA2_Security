@@ -71,7 +71,7 @@
                 <div class="p-0">
                     <div class="btn-group float-left" role="group" aria-label="Basic example">
                         <button type="submit" id="btnNuevoProyecto" class="btn btn-outline-primary" onclick="location.href='@Url.Action("NuevoProyecto", "Home")'"><span class="icon-form"></span> Proyecto</button>
-                        <button type="button" id="btnNuevoDiseno" class="btn btn-outline-primary"><span class="icon-form"></span> Diseño</button>
+                        @*<button type="button" id="btnNuevoDiseno" class="btn btn-outline-primary"><span class="icon-form"></span> Diseño</button>*@
                         <button type="button" id="btnEditar" class="btn btn-outline-primary editor_edit" data-id="1" data-toggle="modal" data-target="#exampleModal"><span class="icon-form"></span> Editar</button>
                         <button type="button" id="btnEliminar" class="btn btn-outline-danger editor_delete" data-id="3" data-toggle="modal" data-target="#deleteModal"><span class="icon-close"></span> Eliminar</button>
                         <button type="button" id="btnExportar" class="btn btn-outline-success"><span class="icon-screen"></span> Exportar</button>
@@ -92,13 +92,13 @@
                         <tr>
                             <th class="text-sm-center" id="Num_Proyecto">Num.</th>
                             <th class="text-sm-center" id="Proyecto">Proyecto</th>
-                            <th class="text-sm-center" id="Fecha">Fecha Proy.</th>
-                            <th class="text-sm-center" id="Dni">Dni</th>
+                            <th class="text-sm-center" id="Fecha">Fecha</th>
+                            @*<th class="text-sm-center" id="Dni">Dni</th>*@
                             <th class="text-sm-center" id="Ingeniero">Ingeniero</th>
-                            <th class="text-sm-center" id="Cargo">Cargo</th>
-                            <th class="text-sm-center" id="Fecha_Contrato">F.Contrato</th>
+                            @*<th class="text-sm-center" id="Cargo">Cargo</th>
+                            <th class="text-sm-center" id="Fecha_Contrato">F.Contrato</th>*@
                             <th class="text-sm-center" id="Num_Diseno">Num.Diseño</th>
-                            <th class="text-sm-center" id="Tipo_Diseno">Tipo Diseno</th>
+                            <th class="text-sm-center" id="Tipo_Diseno">Tip.Diseño</th>
                             <th class="text-sm-center" id="Tramo">Tramo</th>
                             <th class="text-sm-center" id="Ubigeo">Ubigeo</th>
                             <th class="text-sm-center" id="Reporte">Reporte</th>
@@ -195,7 +195,7 @@
         var idTipoDiseno = document.getElementById("txtidTipoDiseno").value;
         var idUsuario = document.getElementById("txtidUsuario").value;
 
-        //alert(idUsuario);
+        //alert(idTipoDiseno);
 
         // $("#btnBuscar").click(ProcesarQuery);
 
@@ -594,6 +594,8 @@
         var strIdProvincia = $("#ddlProvincia").val();
         var strIdDistrito = $("#ddlDistrito").val();
         var IdIngeniero = document.getElementById("idIngeniero").value;
+        var stridTipoDiseno = document.getElementById("txtidTipoDiseno").value;
+        var strIdUsuario = document.getElementById("txtidUsuario").value;        
 
         if (IdIngeniero == "") { IdIngeniero = 0; }
         if ($("#ddlDistrito").val() == "(Selecciona)") { strIdDistrito = 0; }
@@ -604,10 +606,11 @@
         objData["NumProyecto"] = strNumProyecto;
         objData["FechaProyecto"] = strFechaProyecto;
         objData["FechaContrato"] = strFechaContrato;
-        objData["IdUsuario"] = IdIngeniero;
+        objData["IdUsuario"] = strIdUsuario;
         objData["Distrito"] = strIdDistrito;
         objData["Provincia"] = strIdProvincia;
         objData["Departamento"] = strIdDepartamento;
+        objData["idTipoDiseno"] = stridTipoDiseno;
 
         table =
             $('#example').dataTable({
@@ -623,17 +626,17 @@
 
                 ],*/
                 "columns": [          
-                    { "data": "Num_Proyecto", "class": "text-center" },
-                    { "data": "Proyecto", "class": "text-center" },
+                    { "data": "Num_Proyecto", "class": "text-left" },
+                    { "data": "Proyecto", "class": "text-left" },
                     { "data": "Fecha_Proyecto_Date", "class": "text-center" },
-                    { "data": "Dni", "class": "text-center" },
+                    //{ "data": "Dni", "class": "text-center" },
                     { "data": "Ingeniero", "class": "text-center" },
-                    { "data": "Cargo", "class": "text-center" },
-                    { "data": "Fecha_Contrato_Date", "class": "text-center" },
-                    { "data": "Num_Diseno", "class": "text-center" },
+                    //{ "data": "Cargo", "class": "text-center" },
+                    //{ "data": "Fecha_Contrato_Date", "class": "text-center" },
+                    { "data": "Num_Diseno", "class": "text-left" },
                     { "data": "Tipo_Diseno", "class": "text-center" },
-                    { "data": "Tramo", "class": "text-center" },
-                    { "data": "Ubigeo", "class": "text-center" },
+                    { "data": "Tramo", "class": "text-left" },
+                    { "data": "Ubigeo", "class": "text-left" },
                     {
                         /*data: null,
                           className: "center",
