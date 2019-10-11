@@ -88,5 +88,16 @@ namespace SIS_Ga2.Controllers
         }
 
 
+
+        public int EliminarProyDiseno(Int32 Id_Proyecto, Int32 Id_Diseno)
+        {
+
+            return 1;
+
+        }
+
+
+
+
     }
 }
