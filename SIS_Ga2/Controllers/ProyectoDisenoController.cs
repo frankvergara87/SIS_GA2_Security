@@ -12,7 +12,7 @@ namespace SIS_Ga2.Controllers
     {
         // GET: ProyectoDiseno
       
-        public ActionResult Index()
+        public ActionResult Index(Int32 Id_Proyecto, Int32 Id_Diseno)
         {
             BLDepartamento objblDepartamento = new BLDepartamento();
             List<SelectListItem> data_list = new List<SelectListItem>();
@@ -20,6 +20,9 @@ namespace SIS_Ga2.Controllers
             ViewData["ddlDepartamento"] = data_list;
             ViewData["ddlProvincia"] = new SelectList(new[] { "(Selecciona)" });
             ViewData["ddlDistrito"] = new SelectList(new[] { "(Selecciona)" });
+
+            //Implementar el codigo para obtener los valores y cargarlos
+
             return View();
         }
 

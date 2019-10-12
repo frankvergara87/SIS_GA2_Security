@@ -71,8 +71,8 @@
                 <div class="p-0">
                     <div class="btn-group float-left" role="group" aria-label="Basic example">
                         <button type="submit" id="btnNuevoProyecto" class="btn btn-outline-primary" onclick="location.href='@Url.Action("NuevoProyecto", "Home")'"><span class="icon-form"></span> Proyecto</button>
-                        <button type="button" id="btnEditar" class="btn btn-outline-primary editor_edit" data-id="1" data-toggle="modal" data-target="#exampleModal"><span class="icon-form"></span> Editar</button>
-                        <button type="button" id="btnEliminar" class="btn btn-outline-danger editor_delete" data-id="3" data-toggle="modal" data-target="#deleteModal"><span class="icon-close"></span> Eliminar</button>
+                        @*<button type="button" id="btnEditar" class="btn btn-outline-primary editor_edit" data-id="1" data-toggle="modal" data-target="#exampleModal"><span class="icon-form"></span> Editar</button>
+                        <button type="button" id="btnEliminar" class="btn btn-outline-danger editor_delete" data-id="3" data-toggle="modal" data-target="#deleteModal"><span class="icon-close"></span> Eliminar</button>*@
                         <button type="button" id="btnExportar" class="btn btn-outline-success"><span class="icon-screen"></span> Exportar</button>
                     </div>
                 </div>
@@ -677,7 +677,7 @@
                         "render": function (data) {
                             var strDiv;
                             if (data.Id_Diseno != 0) {
-                                 strDiv = '<div class="btn-group btn-group-sm"><button type="button" id="ButtonReporte" onclick="CellClickReporte(\'' + data.Id_Proyecto  +  '\',\'' +  data.Id_Diseno +  '\' );"  class="btn btn-outline-primary editor_report" data-id="1" data-toggle="modal" data-target="#exampleModal"><span class="icon-list"></span></button></div> <div class="btn-group btn-group-sm"><button type="button" id="ButtonEliminar" onclick="EliminarProyectoDiseno(\'' + data.Id_Proyecto  +  '\',\'' +  data.Id_Diseno +  '\' );"  class="btn btn-outline-danger" data-id="1" data-toggle="modal" data-target="#deleteModal"><span class="icon-close"></span></button></div>';
+                                 strDiv = '<div class="btn-group btn-group-sm"><button type="button" id="ButtonReporte" onclick="CellClickReporte(\'' + data.Id_Proyecto  +  '\',\'' +  data.Id_Diseno +  '\' );"  class="btn btn-outline-primary editor_report" data-id="1" data-toggle="modal" data-target="#exampleModal"><span class="icon-list"></span></button><button type="button" id="ButtonEliminar" onclick="EliminarProyectoDiseno(\'' + data.Id_Proyecto  +  '\',\'' +  data.Id_Diseno +  '\' );"  class="btn btn-outline-danger" data-id="1" data-toggle="modal" data-target="#deleteModal"><span class="icon-close"></span></button><button type="button" id="ButtonEditar" onclick="EditarProyectoDiseno(\'' + data.Id_Proyecto  +  '\',\'' +  data.Id_Diseno +  '\' );" class="btn btn-outline-primary"><span class="icon-form"></span></button></div>';
                             }
                             else {
                                 strDiv = '';
@@ -685,21 +685,6 @@
                             return strDiv;
                         }
                     }
-                    //,
-                    //{
-                    //    data: null,
-                    //    className: "text-center",                   
-                    //    "render": function (data) {
-                    //        var strDiv;
-                    //        if (data.Id_Diseno != 0) {
-                    //             strDiv = '<div class="btn-group btn-group-sm"><button type="button" id="ButtonEliminar" onclick="EliminarProyectoDiseno(\'' + data.Id_Proyecto  +  '\',\'' +  data.Id_Diseno +  '\' );"  class="btn btn-outline-danger" data-id="1" data-toggle="modal" data-target="#deleteModal"><span class="icon-close"></span></button></div>';
-                    //        }
-                    //        else {
-                    //            strDiv = '';
-                    //        }
-                    //        return strDiv;
-                    //    }
-                    // }
                 ],
 
                 "lengthMenu": [[5, 10, 15, -1], [5, 10, 15, "All"]],
@@ -781,6 +766,13 @@
 
     }
 
+    function EditarProyectoDiseno(Id_Proyecto,Id_Diseno)
+    {
+        alert(Id_Proyecto + " - " +  Id_Diseno);
+
+        location.href = '@Url.Action("EditarProyDiseno", "Home")?Id_Proyecto=' + Id_Proyecto + '&Id_Diseno=' + Id_Diseno;
+
+    }
 
 </script>
 

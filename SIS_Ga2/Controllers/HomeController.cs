@@ -63,7 +63,6 @@ namespace SIS_Ga2.Controllers
             return Json(lobjbeDistrito);
         }
 
-
         public JsonResult ListaUsuarios(Int32 strUsuario, String valorUsuario)
         {
             BLusuario objBLusuario = new BLusuario();
@@ -78,25 +77,19 @@ namespace SIS_Ga2.Controllers
 
         public ActionResult NuevoProyecto()
         {
-            //Proyecto Proyecto = new Proyecto();
-            //ProyectosController RegistraProyecto = new ProyectosController();
-            //Proyecto.CodProyecto = Request.Form["frmProyecto"];
-            //Proyecto.NumDiseno = Request.Form["frmDiseno"];
-            //Proyecto.Reglamento = Request.Form["frmReglamento"];
-            //Session.Add("sistema.proyecto", Proyecto);
-            return RedirectToAction("Index", "ProyectoDiseno");
+            return RedirectToAction("Index", "ProyectoDiseno", new { Id_Proyecto = 0, Id_Diseno = 0 });
         }
 
-
-
+        
         public int EliminarProyDiseno(Int32 Id_Proyecto, Int32 Id_Diseno)
         {
-
-            return 1;
-
+            return 1; //Implementar metodos para la eliminacion lógica
         }
 
-
+        public ActionResult EditarProyDiseno(Int32 Id_Proyecto, Int32 Id_Diseno)
+        {
+            return RedirectToAction("Index", "ProyectoDiseno", new { Id_Proyecto = Id_Proyecto, Id_Diseno = Id_Diseno });
+        }
 
 
     }
