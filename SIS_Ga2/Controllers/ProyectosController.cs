@@ -56,22 +56,5 @@ namespace SIS_Ga2.Controllers
 
         }
 
-        //public JsonResult ListadoProyectos(String strNumProyecto, String strFechaProyecto, String strFechaContrato, int strIdUsuario, int strIdDistrito, int strIdProvincia, int strIdDepartamento )
-        //{
-        //    ProyectoBL objProyecto = new ProyectoBL();
-        //    List<BEProyecto> lObjBeProyecto = objProyecto.ListarProyectos2(strNumProyecto, strFechaProyecto, strFechaContrato, strIdUsuario, strIdDistrito, strIdProvincia, strIdDepartamento);
-        //    return Json(new { data = lObjBeProyecto }, JsonRequestBehavior.AllowGet);
-
-        //}
-
-        //public int GuardarProyecto(BEProyecto DataProyecto)
-        //{
-        //    ProyectoBL BLProyecto = new ProyectoBL();
-        //    int id;
-
-        //    id = BLProyecto.GuardarProyecto(DataProyecto);
-
-        //    return id;
-        //}
     }
 }

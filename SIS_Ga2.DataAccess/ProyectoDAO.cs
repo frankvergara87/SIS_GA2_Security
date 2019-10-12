@@ -99,5 +99,31 @@ namespace SIS_Ga2.DataAccess
             }
             return resultado;
         }
+
+        public int EliminarProyecto(Int32 Id_Proyecto, Int32 Id_Diseno, Int32 Id_Usuario)
+        {
+            SqlManager objSql = new SqlManager(ConfigurationManager.AppSettings["ASOCEM"].ToString());
+            int resultado = 0;
+            Parameter param = new Parameter();
+            param.Add("@Id_Proyecto", Id_Proyecto);
+            param.Add("@Id_Diseno", Id_Diseno);
+            param.Add("@Id_Usuario", Id_Usuario);
+            param.Add("@Fecha_Actualizacion", 0);
+            param.Add("@Hora_Actualizacion", 0);
+            param.Add("@Usr_Actualizacion", "");
+            try
+            {
+                objSql.ExecuteNonQuery("USP_Del_ProyDiseno", param);
+                resultado = 1;
+            }
+            catch (Exception ex)
+            {
+                //Rutina de Guardado en Log 
+                //afilogDAO.Save(0, 0, "CatalogoDAO", "GetCatalogoToCombo", ex);
+                throw ex;
+            }
+            return resultado;
+        }
+
     }
 }

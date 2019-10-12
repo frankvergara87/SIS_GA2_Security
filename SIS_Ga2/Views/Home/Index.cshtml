@@ -238,12 +238,13 @@
 
            val_Id_Proyecto = document.getElementById("hidIdProyecto").value;
            val_Id_Diseno = document.getElementById("hidIdDiseno").value;
+           strIdUsuario = document.getElementById("txtidUsuario").value; 
 
            $.ajax
             ({
                 method: 'POST',
                 url: '/Home/EliminarProyDiseno',
-                data: { 'Id_Proyecto': val_Id_Proyecto, 'Id_Diseno': val_Id_Diseno },
+                data: { 'Id_Proyecto': val_Id_Proyecto, 'Id_Diseno': val_Id_Diseno, 'Id_Usuario' : strIdUsuario },
                 success: function (respuesta) {
                     if (respuesta == 1) {
 
@@ -768,9 +769,9 @@
 
     function EditarProyectoDiseno(Id_Proyecto,Id_Diseno)
     {
-        alert(Id_Proyecto + " - " +  Id_Diseno);
+        var strIdUsuario = document.getElementById("txtidUsuario").value; 
 
-        location.href = '@Url.Action("EditarProyDiseno", "Home")?Id_Proyecto=' + Id_Proyecto + '&Id_Diseno=' + Id_Diseno;
+        location.href = '@Url.Action("EditarProyDiseno", "Home")?Id_Proyecto=' + Id_Proyecto + '&Id_Diseno=' + Id_Diseno+ '&Id_Usuario=' + strIdUsuario;
 
     }
 

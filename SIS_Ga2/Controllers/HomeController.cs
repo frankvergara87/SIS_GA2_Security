@@ -81,9 +81,24 @@ namespace SIS_Ga2.Controllers
         }
 
         
-        public int EliminarProyDiseno(Int32 Id_Proyecto, Int32 Id_Diseno)
+        public int EliminarProyDiseno(Int32 Id_Proyecto, Int32 Id_Diseno, Int32 Id_Usuario)
         {
-            return 1; //Implementar metodos para la eliminacion lógica
+            BEProyecto Proyecto = new BEProyecto();
+            BEDiseno Diseno = new BEDiseno();
+            ProyectoBL BLProyecto = new ProyectoBL();
+
+
+            Proyecto.Id_Proyecto = Id_Proyecto;
+            Diseno.idDiseno = Id_Diseno;
+            Proyecto.id_Usuario = Id_Usuario;
+            Proyecto.FechaActualizacion = 0;
+            Proyecto.HoraActualizacion = 0;
+            Proyecto.UsrActualizacion = "";
+
+            int id;
+            id = BLProyecto.EliminarProyecto(Id_Proyecto, Id_Diseno, Id_Usuario);
+
+            return 1;
         }
 
         public ActionResult EditarProyDiseno(Int32 Id_Proyecto, Int32 Id_Diseno)

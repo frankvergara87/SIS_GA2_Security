@@ -45,5 +45,15 @@ namespace SIS_Ga2.Business
             return objDAO.GuardarProyecto(DataProyecto, DataDiseno);
         }
 
+        public int EliminarProyecto(Int32 Id_Proyecto, Int32 Id_Diseno, Int32 Id_Usuario)
+        {
+            ProyectoDAO objDAO = new ProyectoDAO();
+            return objDAO.EliminarProyecto(Id_Proyecto, Id_Diseno, Id_Usuario);
+        }
+
+
+
+        
+
     }
 }
