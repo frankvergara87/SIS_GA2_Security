@@ -12,8 +12,6 @@ namespace SIS_Ga2.Controllers
 {
     public class SeguridadController : Controller
     {
-
-        String Variable = "";
         // GET: Seguridad
         public ActionResult Index()
         {
