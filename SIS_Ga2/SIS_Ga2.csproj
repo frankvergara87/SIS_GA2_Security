@@ -128,6 +128,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\DisenoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ParamEsalController.cs" />
     <Compile Include="Controllers\ParametrosController.cs" />
     <Compile Include="Controllers\ProyectoDisenoController.cs" />
     <Compile Include="Controllers\ProyectosController.cs" />
@@ -170,6 +171,7 @@
     <Content Include="Content\images\img_a.jpg" />
     <Content Include="Content\images\img_b.jpg" />
     <Content Include="Content\images\img_c.jpg" />
+    <Content Include="Content\images\Vehiculo_Moto_L3.jpg" />
     <Content Include="Content\img\avatar-0.jpg" />
     <Content Include="Content\img\avatar-1.jpg" />
     <Content Include="Content\img\avatar-10.jpg" />
@@ -538,6 +540,7 @@
     <Content Include="Views\Diseno\ParamDiseño.cshtml" />
     <Content Include="Views\ProyectoDiseno\Index.cshtml" />
     <Content Include="Views\Parametros\Index.cshtml" />
+    <Content Include="Views\ParamEsal\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
