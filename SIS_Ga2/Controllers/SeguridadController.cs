@@ -12,20 +12,25 @@ namespace SIS_Ga2.Controllers
 {
     public class SeguridadController : Controller
     {
+
+        String Variable = "";
         // GET: Seguridad
         public ActionResult Index()
         {
             return View();
         }
 
+        [HttpGet]
         public ActionResult Login()
         {
             try
             {
                 //bool usaAzure = Convert.ToBoolean(System.Configuration.ConfigurationManager.AppSettings["UsaAzure"].ToString());
-                bool usaAzure = false;
-                if (usaAzure) return RedirectToAction("Index", "Account");
-                else return View();
+                //bool usaAzure = false;
+                //if (usaAzure) return RedirectToAction("Index", "Account");
+
+                //else 
+                return View();
             }
             catch (Exception ex)
             {
@@ -33,17 +38,23 @@ namespace SIS_Ga2.Controllers
             }
         }
 
-        public ActionResult IniciarSesion()
+        [HttpPost]
+        public ActionResult Login(string loginUsername, string loginPassword)
         {
             BEUsuario usuario = new BEUsuario();
             Sistema sistema = new Sistema();
             BEProyecto proyecto = new BEProyecto();
-            usuario.Usuario = Request.Params["loginUsername"].ToString();
-            usuario.Clave = Request.Params["loginPassword"].ToString();
+            //usuario.Usuario = Request.Params["loginUsername"].ToString();
+            //usuario.Clave = Request.Params["loginPassword"].ToString();
+
+            usuario.Usuario = loginUsername;
+            usuario.Clave = loginPassword;
+
 
             SistemaBL autorizacion = new SistemaBL();
             usuario = autorizacion.login(usuario);
 
+            
             if (usuario.Usuario != null)
             {
                 AplicacionBL objBL = new AplicacionBL();
@@ -60,8 +71,9 @@ namespace SIS_Ga2.Controllers
                 return RedirectToAction("Aplicaciones", "Seguridad");
             }
 
-
-            return RedirectToAction("Login", "Seguridad");
+            ViewBag.Mensaje = "Usuario/Contraseña incorrecto";
+            return View();
+            //return RedirectToAction("Login", "Seguridad");
 
         }
 
