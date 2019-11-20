@@ -45,6 +45,7 @@
     <Compile Include="Aplicacion.cs" />
     <Compile Include="AuthorViewModel.cs" />
     <Compile Include="Autorizacionusuario.cs" />
+    <Compile Include="BECalculos.cs" />
     <Compile Include="BECapaPavimento.cs" />
     <Compile Include="BECargo.cs" />
     <Compile Include="BECoefEstructura.cs" />
