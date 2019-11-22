@@ -171,6 +171,11 @@
     <Content Include="Content\images\img_a.jpg" />
     <Content Include="Content\images\img_b.jpg" />
     <Content Include="Content\images\img_c.jpg" />
+    <Content Include="Content\images\param_esal_1.jpg" />
+    <Content Include="Content\images\param_esal_2.jpg" />
+    <Content Include="Content\images\param_esal_3.jpg" />
+    <Content Include="Content\images\param_esal_4.jpg" />
+    <Content Include="Content\images\param_esal_5.jpg" />
     <Content Include="Content\images\Vehiculo_Moto_L3.jpg" />
     <Content Include="Content\img\avatar-0.jpg" />
     <Content Include="Content\img\avatar-1.jpg" />

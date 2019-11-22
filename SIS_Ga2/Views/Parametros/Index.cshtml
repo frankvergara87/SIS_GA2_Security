@@ -44,46 +44,47 @@
                             <div class="row">
                                 <div class="form-group col-md-5">
                                     <label for="inlineFormInput" class="col-form-label col-form-label-sm">Periodo de Diseño</label>
-                                    <input id="txtPeriodoDiseno" data-id="1" type="text" placeholder="Periodo de Diseño" class="column_filter mr-3 col-sm-12 form-control form-control-sm">
+                                    <input id="txtPeriodoDiseno" data-id="1" type="text" placeholder="Periodo de Diseño" class="column_filter mr-3 col-sm-12 form-control form-control-sm input-number">
                                 </div>
                                 <div class="form-group col-md-5">
                                     <label for="inlineFormInput" class="col-form-label col-form-label-sm">Cantidad de ESAL&nbsp;&nbsp;&nbsp;</label>
                                     <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#EsalModal"><i class="fa fa-question-circle"></i></button>
-                                    <input id="txtCantidadESAL" type="text" placeholder="Cantidad de ESAL" class="mr-3 col-sm-10 form-control form-control-sm">
+                                    <input id="txtCantidadESAL" type="text" placeholder="Cantidad de ESAL" class="mr-3 col-sm-10 form-control form-control-sm input-number">
                                     <button type="button" id="btnCalcularEsal" class="btn btn-primary btn-sm" onclick="location.href='@Url.Action("Index", "ParamEsal")'"><span class="fa fa-etsy"></span></button>
                                 </div>
                                 <div class="form-group col-md-5">
                                     <label for="inlineFormInput" class="col-form-label col-form-label-sm">Confiabilidad (R%)&nbsp;&nbsp;&nbsp;</label>
                                     <button type="button" id="btninfoconfiab" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#ConfiabilidadModal"><i class="fa fa-question-circle"></i></button>
-                                    <input id="txtConfiab" type="text" placeholder="Confiabilidad (R%)" class="mr-3 col-sm-10 form-control form-control-sm">
+                                    <input id="txtConfiab" type="text" placeholder="Confiabilidad (R%)" class="mr-3 col-sm-10 form-control form-control-sm input-number">
                                 </div>
                                 <div class="form-group col-md-5">
                                     <label for="inlineFormInput" class="col-form-label col-form-label-sm">Error de Comb.Estándar (SO)</label>
-                                    <input id="txtErrorComb" data-id="4" type="text" placeholder="Error de Comb.Estándar (SO)" class="column_filter mr-3 col-sm-12 form-control form-control-sm">
+                                    <input id="txtErrorComb" data-id="4" type="text" placeholder="Error de Comb.Estándar (SO)" class="column_filter mr-3 col-sm-12 form-control form-control-sm input-number">
                                 </div>
                                 <div class="form-group col-md-5">
                                     <label for="inlineFormInput" class="col-form-label col-form-label-sm">Módulo de Resilencia (Subrasante)&nbsp;&nbsp;&nbsp;</label>
                                     <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#ResilenciaModal"><i class="fa fa-question-circle"></i></button>
-                                    <input id="txtModResilencia" data-id="1" type="text" placeholder="Módulo de Resilencia (Subrasante)" class="column_filter mr-3 col-sm-12 form-control form-control-sm">
+                                    <input id="txtModResilenciaSub" data-id="1" type="text" placeholder="Módulo de Resilencia (Subrasante)" readonly="readonly" class="column_filter mr-3 col-sm-10 form-control form-control-sm">
+                                    <button type="button" id="btnEvaluaResilencia" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#EvaluaResilenciaModal"><span class="fa fa-cog"></span></button>
                                 </div>
                                 <div class="form-group col-md-5">
                                     <label for="inlineFormInput" class="col-form-label col-form-label-sm">Servicialidad Inicial&nbsp;&nbsp;&nbsp;</label>
                                     <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#ServInicialModal"><i class="fa fa-question-circle"></i></button>
-                                    <input id="txtServInicial" type="text" placeholder="Servicialidad Inicial" class="mr-3 col-sm-12 form-control form-control-sm">
+                                    <input id="txtServInicial" type="text" placeholder="Servicialidad Inicial" class="mr-3 col-sm-12 form-control form-control-sm input-number">
                                 </div>
                                 <div class="form-group col-md-5">
                                     <label for="inlineFormInput" class="col-form-label col-form-label-sm">Servicialidad Final&nbsp;&nbsp;&nbsp;</label>
                                     <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#ServFinalModal"><i class="fa fa-question-circle"></i></button>
-                                    <input id="txtServFinal" type="text" placeholder="Servicialidad Final" class="mr-3 col-sm-12 form-control form-control-sm">
+                                    <input id="txtServFinal" type="text" placeholder="Servicialidad Final" class="mr-3 col-sm-12 form-control form-control-sm input-number">
                                 </div>
                                 <div class="form-group col-md-5">
                                     <label for="inlineFormInput" class="col-form-label col-form-label-sm">Diferencia de Servicialidad (∆PSI)&nbsp;&nbsp;&nbsp;</label>
                                     <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#DifServModal"><i class="fa fa-question-circle"></i></button>
-                                    <input id="txtDifServ" data-id="4" type="text" placeholder="Diferencia de Servicialidad (∆PSI)" class="column_filter mr-3 col-sm-12 form-control form-control-sm">
+                                    <input id="txtDifServ" data-id="4" type="text" placeholder="Diferencia de Servicialidad (∆PSI)" readonly="readonly" class="column_filter mr-3 col-sm-12 form-control form-control-sm">
                                 </div>
                                 <div class="form-group col-md-5">
                                     <label for="inlineFormInput" class="col-form-label col-form-label-sm">Desviación Estándar Normal (ZR)</label>
-                                    <input id="txtDesvEstandar" data-id="4" type="text" placeholder="Desviación Estándar Normal (ZR)" class="column_filter mr-3 col-sm-12 form-control form-control-sm">
+                                    <input id="txtDesvEstandar" data-id="4" type="text" placeholder="Desviación Estándar Normal (ZR)" readonly="readonly" class="column_filter mr-3 col-sm-12 form-control form-control-sm">
                                 </div>
                             </div>
                         </form>
@@ -450,17 +451,32 @@
                         <div class="table-responsive">
                             <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
                                 <tr>
+                                    <td colspan="4">
+                                        <p align="justify">
+                                            Cantidad de repeticiones del eje de carga de 8,2 tn para un periodo de diseño.
+                                            Es decir, número que representa el volumen de tránsito del carril de diseño. Se calcula a partir del IMD.
+                                        </p>
+                                    </td>
+                                    @*<td></td>
                                     <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td></td>*@
                                 </tr>
                                 <tr>
+                                    <td>
+                                        <img src="~/Content/images/param_esal_1.jpg" style="width:100%; height:70%;" />
+                                    </td>
                                     <td></td>
                                     <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td><img src="~/Content/images/param_esal_2.jpg" style="width:100%; height:70%;" /></td>
                                 </tr>
+                                @*<tr>
+                                    <td>
+
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>*@
                             </table>
                         </div>
                     </div>
@@ -476,7 +492,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content" style="width:650px;">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">CONFIABILIDAD</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">INDICE DE CONFIANZA (R%) </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -485,16 +501,12 @@
                         <div class="table-responsive">
                             <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
                                 <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td colspan="4">
+                                        <p align="justify">
+                                            Probabilidad de que el pavimento diseñado se comporte de manera satisfactoria
+                                            durante el periodo de diseño.
+                                        </p>
+                                    </td>
                                 </tr>
                             </table>
                         </div>
@@ -511,7 +523,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content" style="width:650px;">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">MODULO DE RESILENCIA</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">MODULO DE RESILENCIA (MR)</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -520,16 +532,12 @@
                         <div class="table-responsive">
                             <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
                                 <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td colspan="4">
+                                        <p align="justify">
+                                            Es el índice que describe la relación no lineal de esfuerzos - deformaciones
+                                            de los suelos bajo carga repetida.
+                                        </p>
+                                    </td>
                                 </tr>
                             </table>
                         </div>
@@ -546,7 +554,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content" style="width:650px;">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">SERVICIALIDAD INICIAL</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">INDICE DE SERVICIALIDAD INICIAL (Pi)</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -555,16 +563,24 @@
                         <div class="table-responsive">
                             <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
                                 <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td colspan="2">
+                                        <p align="justify">
+                                            Condición original del pavimento inmediatamente después de su construcción o rehabilitación.
+                                        </p>
+                                    </td>
                                 </tr>
                                 <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>
+                                        <p>
+                                            Pavimentos Flexibles 4.2&nbsp;&nbsp;&nbsp;
+                                        </p>
+                                        <p>
+                                            Pavimentos Rígidos 4.5&nbsp;&nbsp;&nbsp;
+                                        </p>
+                                    </td>
+                                    <td align="right">
+                                        <img src="~/Content/images/param_esal_3.jpg" style="width:80%; height:70%;" />
+                                    </td>
                                 </tr>
                             </table>
                         </div>
@@ -581,7 +597,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content" style="width:650px;">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">SERVICIALIDAD FINAL</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">INDICE DE SERVICIALIDAD FINAL (Pt)</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -590,16 +606,12 @@
                         <div class="table-responsive">
                             <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
                                 <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td colspan="4">
+                                        <p align="justify">
+                                            Condición en la cual el pavimento no cumple con las expectativas de comodidad
+                                            y seguridad exigidas por el usuario.
+                                        </p>
+                                    </td>
                                 </tr>
                             </table>
                         </div>
@@ -616,7 +628,7 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content" style="width:650px;">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">DIFERENCIA DE SERVICIALIDAD</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">INDICE DE SERVICIALIDAD INICIAL (∆PSI) </h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -625,21 +637,95 @@
                         <div class="table-responsive">
                             <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
                                 <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>
+                                        <img src="~/Content/images/param_esal_4.jpg" style="width:100%; height:70%;" />
+                                    </td>
+                                    <td align="right">
+                                        <img src="~/Content/images/param_esal_5.jpg" style="width:90%; height:60%;" />
+                                    </td>
                                 </tr>
                             </table>
                         </div>
                     </div>
                     <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- EVALUA RESILENCIA SUBRASANTE-->
+        <div class="modal fade" id="EvaluaResilenciaModal" tabindex="-1" role="dialog" aria-labelledby="EvaluaResilenciaModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="width:650px;">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">MÓDULO DE RESILENCIA </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="table-responsive">
+                            <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
+                                <tr>
+                                    <td align="left">
+                                        <b>
+                                            <label>CBR (SUBRASANTE) :</label>
+                                        </b>                                        
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td align="left">
+                                        <label>Colocar el CBR (%) </label>
+                                    </td>
+                                    <td>
+                                        <input id="txtCBR" type="text" placeholder="CBR" class="mr-3 col-sm-6 form-control form-control-sm input-number">
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td align="left">
+                                        <b>
+                                            <label>Cálculo de MR (Subrasante) :</label>
+                                        </b>                                        
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td align="left" style="color:#FF0000">
+                                        <label>MR(psi) = 2,555*CBR^0.64 </label>
+                                    </td>
+                                    <td>
+                                        <input id="txtMR" type="text" placeholder="MR" readonly="readonly" class="mr-3 col-sm-10 form-control form-control-sm">
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4">
+                                        <p align="justify">
+                                            * El cálculo se está realizando en base al CBR de la Subrasante.
+                                        </p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnCalcularMR" class="btn btn-primary">Guardar</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
@@ -657,7 +743,136 @@
     $(document).ready(function () {
 
 
+        $("#txtConfiab").keypress(function (e)
+        {
+            var code = (e.keyCode ? e.keyCode : e.which);
+            if (code == 13)
+            {
+                strConf = document.getElementById("txtConfiab").value; 
+
+                if (strConf == '') {
+                    toastr.error("Ingrese Confiabilidad!", 'ERROR', { timeOut: 2000 });
+                    return;
+                }
+
+
+                $.ajax
+                ({
+                    method: 'POST',
+                    url: '/Parametros/CalcularDesviacionEstandar',
+                    data: { 'ValorConfiabilidad': strConf },
+                    success: function (respuesta) {
+
+                        //alert(respuesta);
+
+                        document.getElementById("txtDesvEstandar").value = respuesta;
+                    },
+                    error: function (xhr, status) {
+                        alert("PLOP");
+                    }
+
+                });
+            }
+        });
+
+
+        $("#txtServInicial").keypress(function (e)
+        {
+            var code = (e.keyCode ? e.keyCode : e.which);
+            if (code == 13)
+            {
+                DiferenciaServicialidad();
+            }
+        });
+
+        $("#txtServFinal").keypress(function (e)
+        {
+            var code = (e.keyCode ? e.keyCode : e.which);
+            if (code == 13)
+            {
+                DiferenciaServicialidad();
+            }
+        });
+
+        
+        $("#btnEvaluaResilencia").click( function()
+        {                 
+            document.getElementById("txtCBR").value = '';
+            document.getElementById("txtMR").value = '';
+            document.getElementById("txtModResilenciaSub").value = '';
+        });
+
+        $("#btnCalcularMR").click( function()
+        {                 
+            document.getElementById("txtModResilenciaSub").value = document.getElementById("txtMR").value;
+            $("#EvaluaResilenciaModal .close").click();
+        });
+
+        $("#txtCBR").keypress(function (e)
+        {
+            var code = (e.keyCode ? e.keyCode : e.which);
+            if (code == 13)
+            {
+                strCBR = document.getElementById("txtCBR").value; 
+
+                $.ajax
+                ({
+                    method: 'POST',
+                    url: '/Parametros/CalcularResilenciaASF',
+                    data: { 'CBR': strCBR },
+                    success: function (respuesta) {
+
+                        //alert(respuesta);
+
+                        document.getElementById("txtMR").value = respuesta;
+                    },
+                    error: function (xhr, status) {
+                        alert("PLOP");
+                    }
+
+                });
+            }
+        });
+
+
+        $('.input-number').on('input', function () { 
+            this.value = this.value.replace(/[^0-9]/g,'');
+        });
+
     });
+
+    function DiferenciaServicialidad()
+    {
+        strServInicial = document.getElementById("txtServInicial").value; 
+        strServFinal = document.getElementById("txtServFinal").value; 
+
+        if (strServInicial == '') {
+            toastr.error("Ingrese Servicialidad Inicial!", 'ERROR', { timeOut: 2000 });
+            return;
+        }
+
+        if (strServFinal == '') {
+            toastr.error("Ingrese Servicialidad Final!", 'ERROR', { timeOut: 2000 });
+            return;
+        }
+
+        $.ajax
+        ({
+            method: 'POST',
+            url: '/Parametros/CalcularDifServiciabilidad',
+            data: { 'ServInicial': strServInicial,  'ServFinal': strServFinal},
+            success: function (respuesta) {
+
+                //alert(respuesta);
+
+                document.getElementById("txtDifServ").value = respuesta;
+            },
+            error: function (xhr, status) {
+                alert("PLOP");
+            }
+
+        });       
+    }
 
 
 
