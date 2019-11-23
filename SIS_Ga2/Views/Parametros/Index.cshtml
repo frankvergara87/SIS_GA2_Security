@@ -96,13 +96,13 @@
                                 </div>
                                 <div class="p-0">
                                     <div class="btn-group float-right" role="group" aria-label="Basic example">
-                                        <button type="button" id="btnSiguiente_c" class="btn btn-primary"><span class="fa fa-arrow-right"></span> Siguiente</button>
+                                        <button type="button" id="btnSiguiente_a" class="btn btn-primary"><span class="fa fa-arrow-right"></span> Siguiente</button>
                                     </div>
                                     <div class="btn-group float-right" role="group" aria-label="Basic example">
                                         &nbsp;
                                     </div>
                                     <div class="btn-group float-right" role="group" aria-label="Basic example">
-                                        <button type="button" id="btnCancelar_c" class="btn btn-secondary"><span class="fa fa-ban"></span> Cancelar</button>
+                                        <button type="button" id="btnCancelar_a" class="btn btn-secondary"><span class="fa fa-ban"></span> Cancelar</button>
                                     </div>
                                 </div>
                             </div>
@@ -742,6 +742,34 @@
 
     $(document).ready(function () {
 
+        //Limpiar Parmaretros
+        $("#btnCancelar_a").click( function()
+        {                 
+            document.getElementById("txtPeriodoDiseno").value = '';
+            document.getElementById("txtCantidadESAL").value = '';
+            document.getElementById("txtConfiab").value = '';
+            document.getElementById("txtErrorComb").value = '';
+            document.getElementById("txtModResilenciaSub").value = '';
+            document.getElementById("txtServInicial").value = '';
+            document.getElementById("txtServFinal").value = '';
+            document.getElementById("txtDifServ").value = '';
+            document.getElementById("txtDesvEstandar").value = '';
+        });
+        //Limpiar Parmaretros
+        //$("#btnSiguiente_a").click( function()
+        //{                 
+        //    document.getElementById("txtPeriodoDiseno").value = '';
+        //    document.getElementById("txtCantidadESAL").value = '';
+        //    document.getElementById("txtConfiab").value = '';
+        //    document.getElementById("txtErrorComb").value = '';
+        //    document.getElementById("txtModResilenciaSub").value = '';
+        //    document.getElementById("txtServInicial").value = '';
+        //    document.getElementById("txtServFinal").value = '';
+        //    document.getElementById("txtDifServ").value = '';
+        //    document.getElementById("txtDesvEstandar").value = '';
+        //});
+
+
 
         $("#txtConfiab").keypress(function (e)
         {
@@ -755,6 +783,10 @@
                     return;
                 }
 
+                if (strConf > 99) {
+                    toastr.warning("Ingrese un valor menor a 100", 'ADVERTENCIA', { timeOut: 2000 });
+                    return;
+                }
 
                 $.ajax
                 ({
@@ -835,10 +867,11 @@
         });
 
 
+        //Funcion solo Número
         $('.input-number').on('input', function () { 
             this.value = this.value.replace(/[^0-9]/g,'');
         });
-
+        //Funcion solo Número
     });
 
     function DiferenciaServicialidad()

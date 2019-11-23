@@ -164,11 +164,6 @@ namespace SIS_Ga2.Business
         //SN req
         public double calcularSNReq(BECalculos objEntidad)
         {
-
-            BECalculos objeBECalculos = new BECalculos();
-            //BLReglas2 objReglas = new BLReglas2();
-            //objeBECalculos.DesviEstandar = -0.84;
-            //objeBECalculos.ErrorCombiEstandar = 0.45;
             double resultadoN18Calc = 0;
 
             //double n18nom = 0;           
@@ -193,9 +188,8 @@ namespace SIS_Ga2.Business
                                     {
 
                                         valor = i.ToString() + "." + j.ToString() + k.ToString() + l.ToString();
-                                        objeBECalculos.SNReq = Convert.ToDouble(valor);
-                                        //objeBECalculos.N18Calc2 = -0.0334238;
-                                        //objeBECalculos.valorMR = 11153;
+                                        objEntidad.SNReq = Convert.ToDouble(valor);
+
                                         resultadoN18Calc = Math.Round(calcularN18Calc1(objEntidad), 5);
 
                                         //calculo = Math.Round(objEntidad.N18Nom - resultadoN18Calc, 3);
@@ -205,7 +199,7 @@ namespace SIS_Ga2.Business
                                         if ((Math.Round(objEntidad.N18Nom, 2) == Math.Round(resultadoN18Calc, 2)))
                                         {
                                             // textn18calc.Text = resultadoN18Calc.ToString();
-                                            ResultadoSNReq = Math.Round(objeBECalculos.SNReq, 3);
+                                            ResultadoSNReq = Math.Round(objEntidad.SNReq, 3);
                                             encontrado = 1;
                                             break;
                                         }
