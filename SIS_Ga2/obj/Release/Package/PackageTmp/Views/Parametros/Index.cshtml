@@ -783,6 +783,10 @@
                     return;
                 }
 
+                if (strConf > 99) {
+                    toastr.warning("Ingrese un valor menor a 100", 'ADVERTENCIA', { timeOut: 2000 });
+                    return;
+                }
 
                 $.ajax
                 ({
