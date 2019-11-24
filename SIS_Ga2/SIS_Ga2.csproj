@@ -126,10 +126,11 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\DisenoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ParamEsalController.cs" />
-    <Compile Include="Controllers\ParametrosController.cs" />
+    <Compile Include="Controllers\ParametrosAdoquinController.cs" />
+    <Compile Include="Controllers\ParametrosAsfaltoController.cs" />
+    <Compile Include="Controllers\ParametrosConcretoController.cs" />
     <Compile Include="Controllers\ProyectoDisenoController.cs" />
     <Compile Include="Controllers\ProyectosController.cs" />
     <Compile Include="Controllers\SeguridadController.cs" />
@@ -164,6 +165,10 @@
     <Content Include="Content\icon\img_user_3.png" />
     <Content Include="Content\icon\img_user_4.png" />
     <Content Include="Content\icon\img_user_5.png" />
+    <Content Include="Content\images\asfalto_1.jpg" />
+    <Content Include="Content\images\asfalto_2.jpg" />
+    <Content Include="Content\images\asfalto_3.jpg" />
+    <Content Include="Content\images\asfalto_4.jpg" />
     <Content Include="Content\images\Diseno_Adoquin.jpg" />
     <Content Include="Content\images\Diseno_Asfalto.jpg" />
     <Content Include="Content\images\Diseno_Concreto.jpg" />
@@ -543,11 +548,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Seguridad\Login.cshtml" />
     <Content Include="Views\Seguridad\Aplicaciones.cshtml" />
-    <Content Include="Views\Diseno\Index.cshtml" />
-    <Content Include="Views\Diseno\ParamDiseño.cshtml" />
     <Content Include="Views\ProyectoDiseno\Index.cshtml" />
-    <Content Include="Views\Parametros\Index.cshtml" />
     <Content Include="Views\ParamEsal\Index.cshtml" />
+    <Content Include="Views\ParametrosAsfalto\Index.cshtml" />
+    <Content Include="Views\ParametrosAdoquin\Index.cshtml" />
+    <Content Include="Views\ParametrosConcreto\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
