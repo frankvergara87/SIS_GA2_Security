@@ -18,7 +18,7 @@ namespace SIS_Ga2.Controllers
             return View();
         }
 
-        [HttpGet]
+        
         public ActionResult Login()
         {
             try

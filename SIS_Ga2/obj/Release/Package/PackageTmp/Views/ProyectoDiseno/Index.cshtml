@@ -84,7 +84,9 @@
                 <div class=" clearfix">
                     <div class="p-0">
                         <div class="btn-group float-left" role="group" aria-label="Basic example">
-                            <button type="button" id="btnIrParametros" class="btn btn-primary" style="display:none;" onclick="location.href='@Url.Action("Index", "Parametros")'">Click</button>
+                            <button type="button" id="btnIrParametrosAsfalto" class="btn btn-primary" style="display:none;" onclick="location.href='@Url.Action("Index", "ParametrosAsfalto")'">Click</button>
+                            <button type="button" id="btnIrParametrosAdoquin" class="btn btn-primary" style="display:none;" onclick="location.href='@Url.Action("Index", "ParametrosAdoquin")'">Click</button>
+                            <button type="button" id="btnIrParametrosConcreto" class="btn btn-primary" style="display:none;" onclick="location.href='@Url.Action("Index", "ParametrosConcreto")'">Click</button>
                         </div>
                     </div>
                     <div class="p-0">
@@ -159,6 +161,7 @@
             objDataDiseno["idReglamento"] = 1; //Hardcode: Regularizar
             objDataDiseno["idDistrito"] = strIdDistrito;
 
+
             $.ajax
                 ({
                     method: 'POST',
@@ -169,7 +172,14 @@
                             toastr.success("Los datos se guardarón correctamente.", 'ASOCEM', { timeOut: 2500 });
                             $('#btnGuardarProyDiseno').attr("disabled", true);
 
-                            setTimeout('redireccion()',3800);
+                            if (strTipoDiseno==1) {
+                                setTimeout('redireccion(1)', 3800);
+                            } else if (strTipoDiseno==2) {
+                                setTimeout('redireccion(2)', 3800);
+                            } else if (strTipoDiseno==3) {
+                                setTimeout('redireccion(3)', 3800);
+                            }
+                            
 
                         }
                         else {
@@ -273,9 +283,16 @@
 
     }
 
-    function redireccion()
+    function redireccion(Iden)
     {
-        $("#btnIrParametros").click();
+        if (Iden==1) {
+            $("#btnIrParametrosAsfalto").click();
+        } else if (Iden==2) {
+            $("#btnIrParametrosAdoquin").click();
+        } else if (Iden==3) {
+            $("#btnIrParametrosConcreto").click();
+        }
+        
     }
 
 

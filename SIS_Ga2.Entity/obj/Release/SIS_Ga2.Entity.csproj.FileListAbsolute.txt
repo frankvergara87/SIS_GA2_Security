@@ -13,4 +13,3 @@ C:\Users\Frank\source\repos\Aashto\SIS_GA2_Security\SIS_Ga2.Entity\bin\Release\S
 C:\Users\Frank\source\repos\Aashto\SIS_GA2_Security\SIS_Ga2.Entity\obj\Release\SIS_Ga2.Entity.csproj.CoreCompileInputs.cache
 C:\Users\Frank\source\repos\Aashto\SIS_GA2_Security\SIS_Ga2.Entity\obj\Release\SIS_Ga2.Entity.dll
 C:\Users\Frank\source\repos\Aashto\SIS_GA2_Security\SIS_Ga2.Entity\obj\Release\SIS_Ga2.Entity.pdb
-C:\Users\Frank\source\repos\Aashto\SIS_GA2_Security\SIS_Ga2.Entity\obj\Release\SIS_Ga2.Entity.csprojAssemblyReference.cache
