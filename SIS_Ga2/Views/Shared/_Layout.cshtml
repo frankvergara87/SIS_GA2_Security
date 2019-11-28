@@ -6,11 +6,11 @@
     ViewBag.Title = "Proyecto";
     BEUsuario usuario = Session["sistema.usuario"] as BEUsuario;
     Sistema sistema = Session["sistema.general"] as Sistema;
-    if (sistema == null)
-    {
-        Response.Redirect(Url.Action("Login", "Seguridad"));
-        return;
-    }
+    //if (sistema == null)
+    //{
+    //    Response.Redirect(Url.Action("Login", "Seguridad"));
+    //    return;
+    //}
 }
 <!DOCTYPE html>
 
