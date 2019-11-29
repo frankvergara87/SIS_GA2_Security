@@ -134,6 +134,13 @@
     <Compile Include="Controllers\ProyectoDisenoController.cs" />
     <Compile Include="Controllers\ProyectosController.cs" />
     <Compile Include="Controllers\SeguridadController.cs" />
+    <Compile Include="formTest.aspx.cs">
+      <DependentUpon>formTest.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="formTest.aspx.designer.cs">
+      <DependentUpon>formTest.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -501,6 +508,7 @@
     <Content Include="Content\style.default.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="formTest.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap-datepicker.min.js" />

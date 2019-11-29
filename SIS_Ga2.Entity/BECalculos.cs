@@ -31,5 +31,7 @@ namespace SIS_Ga2.Entity
         public double N18Nom { get; set; }
         public double BaseGranular { get; set; }
 
+        public double DifServiciabilidad { get; set; }
+
     }
 }

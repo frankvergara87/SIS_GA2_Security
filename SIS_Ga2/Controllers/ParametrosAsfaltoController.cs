@@ -73,7 +73,7 @@ namespace SIS_Ga2.Controllers
         }
 
 
-        public double calcularN18Calc1(string ErrorCombiEstandar, string DesviEstandar, string valorMR)
+        public double calcularN18Calc1(string ErrorCombiEstandar, string DesviEstandar, string valorMR, string DifServiciabilidad)
         {
             try
             {
@@ -84,7 +84,7 @@ namespace SIS_Ga2.Controllers
                 objCalculos.DesviEstandar = Convert.ToDouble(DesviEstandar);
                 objCalculos.valorMR = Convert.ToDouble(valorMR);
                 objCalculos.SNReq = Convert.ToDouble(0);
-                objCalculos.N18Calc2 = calcularN18Calc2(DesviEstandar);
+                objCalculos.N18Calc2 = calcularN18Calc2(DifServiciabilidad);
 
                 BLReglas blReglas = new BLReglas();
                 resultadoN18calc1 = blReglas.calcularN18Calc1(objCalculos);
@@ -99,14 +99,14 @@ namespace SIS_Ga2.Controllers
         }
 
 
-        public double calcularN18Calc2(string DesviEstandar)
+        public double calcularN18Calc2(string DifServiciabilidad)
         {
             try
             {
 
                 double resultadoN18calc2 = 0;
                 BECalculos objCalculos = new BECalculos();
-                objCalculos.DesviEstandar = Convert.ToDouble(DesviEstandar);
+                objCalculos.DifServiciabilidad = Convert.ToDouble(DifServiciabilidad);
 
                 BLReglas blReglas = new BLReglas();
                 resultadoN18calc2 = blReglas.calcularN18Calc2(objCalculos);

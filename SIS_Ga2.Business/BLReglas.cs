@@ -24,7 +24,8 @@ namespace SIS_Ga2.Business
                 Chart Chart1 = new Chart();
                 double resultadoMR = 0;
                 double constanteZR = Convert.ToDouble(ConfigurationManager.AppSettings["constanteZR"].ToString());//100               
-                resultadoMR = (Chart1.DataManipulator.Statistics.InverseNormalDistribution(objEntidad.valorConfiabR / constanteZR)) * -1;
+                //resultadoMR = (Chart1.DataManipulator.Statistics.InverseNormalDistribution(objEntidad.valorConfiabR / constanteZR)) * -1;
+                resultadoMR = Math.Round((Chart1.DataManipulator.Statistics.InverseNormalDistribution(objEntidad.valorConfiabR / constanteZR)) * -1, 2);
                 return resultadoMR;
             }
 
@@ -65,7 +66,8 @@ namespace SIS_Ga2.Business
                 double resultadoModResi_ASF = 0;
                 double potencia_asf = Convert.ToDouble(ConfigurationManager.AppSettings["potencia_ASF"].ToString());//0.64
                 double constanteCBR_ASF = Convert.ToDouble(ConfigurationManager.AppSettings["constanteCBR_ASF"].ToString());//2.555
-                resultadoModResi_ASF = Math.Pow(objEntidad.valorCBR, potencia_asf) * constanteCBR_ASF;
+                //resultadoModResi_ASF = Math.Pow(objEntidad.valorCBR, potencia_asf) * constanteCBR_ASF;
+                resultadoModResi_ASF = Math.Round(Math.Pow(objEntidad.valorCBR, potencia_asf) * constanteCBR_ASF, 0);
                 return resultadoModResi_ASF;
             }
 
@@ -143,13 +145,15 @@ namespace SIS_Ga2.Business
             try
             {
 
-                double resultadoN18calc2 = 0;
+                //double resultadoN18calc2 = 0;
+                double DifServiciabilidad = 0;
+                double resultadoN18calcLog = 0;
 
                 double constanteN18_1 = Convert.ToDouble(ConfigurationManager.AppSettings["constanteN18_1"].ToString());//4.2
                 double constanteN18_2 = Convert.ToDouble(ConfigurationManager.AppSettings["constanteN18_2"].ToString());//1.15
-
-                resultadoN18calc2 = Math.Log10(objEntidad.DesviEstandar / (constanteN18_1 - constanteN18_2));
-                return resultadoN18calc2;
+                DifServiciabilidad = Convert.ToDouble(objEntidad.DifServiciabilidad);
+                resultadoN18calcLog = Math.Log10(DifServiciabilidad / (constanteN18_1 - constanteN18_2));
+                return resultadoN18calcLog;
             }
 
             catch (Exception ex)
@@ -168,6 +172,7 @@ namespace SIS_Ga2.Business
 
             //double n18nom = 0;           
             int encontrado = 0;
+            int calculo = 0;
             double ResultadoSNReq = 0;
             string valor = "";
             //  calcular el sn req
@@ -183,11 +188,12 @@ namespace SIS_Ga2.Business
                             {
                                 for (double l = 0; l <= 9; l++)
                                 {
-
+                                    for (double m = 0; m <= 9; m++)
+                                    {
                                     if (encontrado == 0)
                                     {
 
-                                        valor = i.ToString() + "." + j.ToString() + k.ToString() + l.ToString();
+                                        valor = i.ToString() + "." + j.ToString() + k.ToString() + l.ToString() + m.ToString();
                                         objEntidad.SNReq = Convert.ToDouble(valor);
 
                                         resultadoN18Calc = Math.Round(calcularN18Calc1(objEntidad), 5);
@@ -196,10 +202,11 @@ namespace SIS_Ga2.Business
                                         //listBox1.ClearSelected(); 
 
                                         //if ((calculo<=0.01) && (calculo>0) )
-                                        if ((Math.Round(objEntidad.N18Nom, 2) == Math.Round(resultadoN18Calc, 2)))
+                                        if ((Math.Round(objEntidad.N18Nom, 3) == Math.Round(resultadoN18Calc,3)))
                                         {
                                             // textn18calc.Text = resultadoN18Calc.ToString();
-                                            ResultadoSNReq = Math.Round(objEntidad.SNReq, 3);
+                                            ResultadoSNReq = Math.Round(objEntidad.SNReq, 2);
+                                            calculo = 1;
                                             encontrado = 1;
                                             break;
                                         }
@@ -210,7 +217,16 @@ namespace SIS_Ga2.Business
                     }
                 }
             }
+            }
+            if  (calculo==0)
+              {
+                return 0;
+              }
+            else
+            {
             return ResultadoSNReq;
+
+            }
         }
     }
 }
