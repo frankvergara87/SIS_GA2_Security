@@ -1,1 +1,1657 @@
-﻿APARTADO ADOQUIN EN CONSTRUCCIÓN
+﻿@using SIS_Ga2.Entity
+@using SIS_Ga2.Controllers
+
+@model IEnumerable<SIS_Ga2.Entity.Proyecto>
+@{
+    //Layout = null;
+
+    ViewBag.Title = "Diseno";
+    BEUsuario usuario = Session["sistema.usuario"] as BEUsuario;
+    Proyecto GetProyecto = Session["sistema.proyecto"] as Proyecto;
+    Sistema sistema = Session["sistema.general"] as Sistema;
+    if (sistema == null)
+    {
+        Response.Redirect(Url.Action("Login", "Seguridad"));
+        return;
+    }
+}
+
+
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-header d-flex align-items-center">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active" aria-current="page">Registro de Parámetros</li>
+                </ol>
+            </nav>
+        </div>
+        <div class="card-body">
+            @*<button class="prevtab btn btn-primary">Prev</button>
+                <button class="nexttab btn btn-danger">Next</button>*@
+
+
+            <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="Proy-tab" data-toggle="tab" href="#Proy" role="tab" aria-controls="Proy" aria-selected="true">Parámetros de Diseño</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="Cap-tab" data-toggle="tab" href="#Cap" role="tab" aria-controls="Cap" aria-selected="false">Capas de Pavimento</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="Param-tab" data-toggle="tab" href="#Param" role="tab" aria-controls="Param" aria-selected="false">Coeficientes</a>
+                </li>
+            </ul>
+
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="Proy" role="tabpanel" aria-labelledby="Proy-tab">
+                    <form class="form-inline">
+                        <div class="row">
+                            <div class="form-group col-md-5">
+                                <label for="inlineFormInput" class="col-form-label col-form-label-sm">Periodo de Diseño</label>
+                                <input id="txtPeriodoDiseno" data-id="1" type="text" placeholder="Periodo de Diseño" class="column_filter mr-3 col-sm-12 form-control form-control-sm input-number mascara">
+                            </div>
+                            <div class="form-group col-md-5">
+                                <label for="inlineFormInput" class="col-form-label col-form-label-sm">Cantidad de ESAL&nbsp;&nbsp;&nbsp;</label>
+                                <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#EsalModal"><i class="fa fa-question-circle"></i></button>
+                                <input id="txtCantidadESAL" type="text" placeholder="Cantidad de ESAL" class="mr-3 col-sm-10 form-control form-control-sm input-number input-number mascara">
+                                @*<button type="button" id="btnCalcularEsal" class="btn btn-primary btn-sm" onclick="location.href='@Url.Action("Index", "ParamEsal")'"><span class="fa fa-etsy"></span></button>*@
+                                <button type="button" id="btnCalcularEsal" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#Esal_Modal"><span class="fa fa-etsy"></span></button>
+                            </div>
+                            <div class="form-group col-md-5">
+                                <label for="inlineFormInput" class="col-form-label col-form-label-sm">Confiabilidad (R%)&nbsp;&nbsp;&nbsp;</label>
+                                <button type="button" id="btninfoconfiab" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#ConfiabilidadModal"><i class="fa fa-question-circle"></i></button>
+                                <input id="txtConfiab" type="text" placeholder="Confiabilidad (R%)" class="mr-3 col-sm-10 form-control form-control-sm input-number mascara">
+                            </div>
+                            <div class="form-group col-md-5">
+                                <label for="inlineFormInput" class="col-form-label col-form-label-sm">Error de Comb.Estándar (SO)</label>
+                                <input id="txtErrorComb" data-id="4" type="text" placeholder="Error de Comb.Estándar (SO)" class="column_filter mr-3 col-sm-12 form-control form-control-sm input-number mascara">
+                            </div>
+                            <div class="form-group col-md-5">
+                                <label for="inlineFormInput" class="col-form-label col-form-label-sm">Módulo de Resilencia (Subrasante)&nbsp;&nbsp;&nbsp;</label>
+                                <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#ResilenciaModal"><i class="fa fa-question-circle"></i></button>
+                                <input id="txtModResilenciaSub" data-id="1" type="text" placeholder="Módulo de Resilencia (Subrasante)" readonly="readonly" class="column_filter mr-3 col-sm-10 form-control form-control-sm">
+                                <button type="button" id="btnEvaluaResilencia" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#EvaluaResilenciaModal"><span class="fa fa-cog"></span></button>
+                            </div>
+                            <div class="form-group col-md-5">
+                                <label for="inlineFormInput" class="col-form-label col-form-label-sm">Servicialidad Inicial&nbsp;&nbsp;&nbsp;</label>
+                                <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#ServInicialModal"><i class="fa fa-question-circle"></i></button>
+                                <input id="txtServInicial" type="text" placeholder="Servicialidad Inicial" class="mr-3 col-sm-12 form-control form-control-sm input-number mascara">
+                            </div>
+                            <div class="form-group col-md-5">
+                                <label for="inlineFormInput" class="col-form-label col-form-label-sm">Servicialidad Final&nbsp;&nbsp;&nbsp;</label>
+                                <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#ServFinalModal"><i class="fa fa-question-circle"></i></button>
+                                <input id="txtServFinal" type="text" placeholder="Servicialidad Final" class="mr-3 col-sm-12 form-control form-control-sm input-number mascara">
+                            </div>
+                            <div class="form-group col-md-5">
+                                <label for="inlineFormInput" class="col-form-label col-form-label-sm">Diferencia de Servicialidad (∆PSI)&nbsp;&nbsp;&nbsp;</label>
+                                <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#DifServModal"><i class="fa fa-question-circle"></i></button>
+                                <input id="txtDifServ" data-id="4" type="text" placeholder="Diferencia de Servicialidad (∆PSI)" readonly="readonly" class="column_filter mr-3 col-sm-12 form-control form-control-sm">
+                            </div>
+                            <div class="form-group col-md-5">
+                                <label for="inlineFormInput" class="col-form-label col-form-label-sm">Desviación Estándar Normal (ZR)</label>
+                                <input id="txtDesvEstandar" data-id="4" type="text" placeholder="Desviación Estándar Normal (ZR)" readonly="readonly" class="column_filter mr-3 col-sm-12 form-control form-control-sm">
+                            </div>
+                        </div>
+                    </form>
+                    <div class="card-footer">
+                        <div class=" clearfix">
+                            <div class="p-0">
+                                <div class="btn-group float-left" role="group" aria-label="Basic example">
+                                </div>
+                            </div>
+                            <div class="p-0">
+                                <div class="btn-group float-right" role="group" aria-label="Basic example">
+                                    <button type="button" id="btnSiguiente_a" class="btn btn-primary"><span class="fa fa-arrow-right"></span> Siguiente</button>
+                                </div>
+                                <div class="btn-group float-right" role="group" aria-label="Basic example">
+                                    &nbsp;
+                                </div>
+                                <div class="btn-group float-right" role="group" aria-label="Basic example">
+                                    <button type="button" id="btnCancelar_a" class="btn btn-secondary"><span class="fa fa-ban"></span> Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="Cap" role="tabpanel" aria-labelledby="Cap-tab">
+                    <div class="table-responsive">
+                        <div class="form-group col-md-8">
+                        </div>
+                        <table border="0" cellspacing="0" cellpadding="0" style="width:100%;">
+                            <tr>
+                                <td width="160px" rowspan="4">
+                                    <div class="form-group col-md-6 text-lg-right">
+                                        <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#BaseSubModal"><i class="fa fa-question-circle"></i></button>
+                                        <img src="~/Content/images/img_a.jpg" width="190" height="190" class="">
+                                    </div>
+                                </td>
+                                <td width="70px"></td>
+                                <td>
+                                    <div class="form-group col-md-12">
+                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">ME</label>
+                                        <div class="form-inline">
+                                            <input id="txtME" data-id="4" type="text" value="400,000" placeholder="ME" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                            <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#MEModal"><i class="fa fa-question-circle"></i></button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <div class="form-group col-md-12">
+                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">California Bearing Ratio (CBR)</label>
+                                        <div class="form-inline">
+                                            <input id="txtCBR_1" data-id="1" type="text" value="80.00" placeholder="California Bearing Ratio (CBR" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                            <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#CBR_1_Modal"><i class="fa fa-question-circle"></i></button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button type="button" id="btninfoCBR" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#infoCBRModal">
+                                        <img src="~/Content/images/asfalto_2.jpg" width="70" height="90" class="">
+                                    </button>
+                                </td>
+                                <td>
+                                    <div class="form-group col-md-12">
+                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">California Bearing Ratio (CBR)</label>
+                                        <div class="form-inline">
+                                            <input id="txtCBR_2" data-id="1" type="text" value="40.00" placeholder="California Bearing Ratio (CBR)" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                            <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#CBR_2_Modal"><i class="fa fa-question-circle"></i></button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <div class="form-group col-md-12">
+                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">California Bearing Ratio (CBR)</label>
+                                        <div class="form-inline">
+                                            <input id="txtCBR_3" data-id="1" type="text" value="10.00" placeholder="California Bearing Ratio (CBR)" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                            <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#CBR_3_Modal"><i class="fa fa-question-circle"></i></button>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group col-md-12">
+                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">Módulo de Rotura PSI</label>
+                                        <div class="form-inline">
+                                            <input id="txtModRoturaPSI" data-id="1" type="text" readonly="readonly" placeholder="Módulo de Rotura PSI" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                            <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#MR_Modal"><i class="fa fa-question-circle"></i></button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4">&nbsp;&nbsp;&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td colspan="4">
+                                    <div class="text-center">
+                                        <img src="~/Content/images/img_b.jpg">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4">&nbsp;&nbsp;&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-group col-md-12">
+                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">N18 Nominal</label>
+                                        <div class="form-inline">
+                                            <input id="txtN18Nominal" data-id="1" type="text" readonly="readonly" placeholder="N18 Nominal" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td align="center">
+                                    <img src="~/Content/icon/equal.png" style="width:17%; height:17%;">
+                                </td>
+                                <td>
+                                    <div class="form-group col-md-12">
+                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">N18 Calculado</label>
+                                        <input id="txtN18Calculado" data-id="1" type="text" readonly="readonly" placeholder="N18 Calculado" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group col-md-12">
+                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">S/N Requerido</label>
+
+                                        <div class="form-inline">
+                                            <input id="txtSNRequerido" data-id="1" type="text" readonly="readonly" placeholder="S/N Requerido" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                            <button type="button" id="btnIgualarSNRequerido" class="btn btn-success btn-sm"><span class="fa fa-exchange"></span> Igualar</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-group col-md-12">
+                                        <div class="form-inline">
+                                            <input id="txtGT" data-id="1" type="text" readonly="readonly" value="Gt" placeholder="" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td align="center" valign="top">
+                                    <img src="~/Content/icon/equal.png" style="width:17%; height:17%;">
+                                </td>
+                                <td>
+                                    <div class="form-group col-md-12">
+                                        <input id="txtN18Calculado2" data-id="1" type="text" readonly="readonly" placeholder="" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                    </div>
+                                </td>
+                                <td>&nbsp;</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="card-header">
+                        <div class=" clearfix">
+                            <div class="p-0">
+                                <div class="btn-group float-left" role="group" aria-label="Basic example">
+                                </div>
+                            </div>
+                            <div class="p-0">
+                                <div class="btn-group float-right" role="group" aria-label="Basic example">
+                                    <button type="button" id="btnSiguiente_b" class="nexttab btn btn-primary"><span class="fa fa-arrow-right"></span> Siguiente</button>
+                                </div>
+                                <div class="btn-group float-right" role="group" aria-label="Basic example">
+                                    &nbsp;
+                                </div>
+                                <div class="btn-group float-right" role="group" aria-label="Basic example">
+                                    <button type="button" id="btnCancelar_b" class="btn btn-secondary"><span class="fa fa-ban"></span> Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="Param" role="tabpanel" aria-labelledby="Param-tab">
+                    <div class="table-responsive">
+                        <div class="form-group col-md-8">
+                        </div>
+                        <table border="0" cellspacing="0" cellpadding="0" style="width:100%;">
+                            <tr>
+                                <td width="200px">
+                                    <div class="form-group col-md-12">
+                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">Coeficientes Estructuras de Capas</label>
+                                    </div>
+                                </td>
+                                <td width="200px">&nbsp;</td>
+                                <td width="200px">
+                                    <div class="form-group col-md-12">
+                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">Coeficientes Drenaje de Capas</label>
+                                    </div>
+                                </td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-group col-md-12">
+                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">Concreto Asfáltico Conv.</label>
+                                        <div class="form-inline">
+                                            <input id="txtErrorComb" data-id="4" type="text" placeholder="Concreto Asfáltico Convencional" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                            <img src="~/Content/icon/Help_img_6.png" style="width:10%; height:10%;">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>&nbsp;</td>
+                                <td>
+                                    <div class="form-group col-md-12">
+                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">Base Granular (m2)</label>
+                                        <div class="form-inline">
+                                            <input id="txtErrorComb" data-id="4" type="text" placeholder="Base Granular (m2)" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                            <img src="~/Content/icon/Help_img_6.png" style="width:11%; height:11%;">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-group col-md-12">
+                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">Base Granular (a2)</label>
+                                        <div class="form-inline">
+                                            <input id="txtErrorComb" data-id="4" type="text" placeholder="Base Granular (a2)" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                            <img src="~/Content/icon/Help_img_6.png" style="width:10%; height:10%;">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>&nbsp;</td>
+                                <td>
+                                    <div class="form-group col-md-12">
+                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">Sub-base (m3)</label>
+                                        <div class="form-inline">
+                                            <input id="txtErrorComb" data-id="4" type="text" placeholder="Sub-base (m3)" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                            <img src="~/Content/icon/Help_img_6.png" style="width:11%; height:11%;">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-group col-md-12">
+                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">Sub-base (m3)</label>
+                                        <div class="form-inline">
+                                            <input id="txtErrorComb" data-id="4" type="text" placeholder="Sub-base (m3)" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                            <img src="~/Content/icon/Help_img_6.png" style="width:10%; height:10%;">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-group col-md-12">
+                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">S/N PROPUESTO</label>
+                                        <div class="form-inline">
+                                            <input id="txtErrorComb" data-id="4" type="text" placeholder="S/N PROPUESTO" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                            <img src="~/Content/icon/" style="width:10%; height:10%;">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group col-md-12">
+                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">S/N REQUERIDO</label>
+                                        <input id="txtErrorComb" data-id="4" type="text" placeholder="S/N REQUERIDO" class="column_filter mr-1 col-sm-10 form-control form-control-sm">
+                                    </div>
+                                </td>
+                                <td width="260px" rowspan="3" colspan="2">
+                                    <div class="text-left">
+                                        <img src="~/Content/images/img_c.jpg" width="270" height="180">
+                                    </div>
+                                </td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td width="210px" rowspan="4">
+                                    <div class="form-group col-md-6 text-lg-right">
+                                        <img src="~/Content/images/img_a.jpg" width="220" height="300" class="">
+                                    </div>
+                                <td>
+                                    <div class="form-group col-md-12 text-md-center">
+                                        <input id="txtErrorComb" data-id="4" type="text" placeholder="" class="column_filter mr-1 col-sm-10 form-control form-control-sm">
+                                    </div>
+                                </td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-group col-md-12 text-md-center">
+                                        <input id="txtErrorComb" data-id="4" type="text" placeholder="" class="column_filter mr-1 col-sm-10 form-control form-control-sm">
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="form-group col-md-12">
+                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">SN Req.</label>
+                                        <input id="txtErrorComb" data-id="4" type="text" placeholder="SN Requerido" class="column_filter mr-1 col-sm-10 form-control form-control-sm">
+                                    </div>
+                                </td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-group col-md-12 text-md-center">
+                                        <input id="txtErrorComb" data-id="4" type="text" placeholder="" class="column_filter mr-1 col-sm-10 form-control form-control-sm">
+                                    </div>
+                                </td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="form-group col-md-12 text-md-center">
+                                        <input id="txtErrorComb" data-id="4" type="text" placeholder="" class="column_filter mr-1 col-sm-10 form-control form-control-sm">
+                                    </div>
+                                </td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="card-header">
+                        <div class=" clearfix">
+                            <div class="p-0">
+                                <div class="btn-group float-left" role="group" aria-label="Basic example">
+                                </div>
+                            </div>
+                            <div class="p-0">
+                                <div class="btn-group float-right" role="group" aria-label="Basic example">
+                                    <button type="button" id="btnSiguiente_c" class="btn btn-primary"><span class="fa fa-arrow-right"></span> Siguiente</button>
+                                </div>
+                                <div class="btn-group float-right" role="group" aria-label="Basic example">
+                                    &nbsp;
+                                </div>
+                                <div class="btn-group float-right" role="group" aria-label="Basic example">
+                                    <button type="button" id="btnCancelar_c" class="btn btn-secondary"><span class="fa fa-ban"></span> Cancelar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Modal-->
+    <!-- ESAL-->
+    <div class="modal fade" id="EsalModal" tabindex="-1" role="dialog" aria-labelledby="EsalModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="width:650px;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">ESAL</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
+                            <tr>
+                                <td colspan="4">
+                                    <p align="justify">
+                                        Cantidad de repeticiones del eje de carga de 8,2 tn para un periodo de diseño.
+                                        Es decir, número que representa el volumen de tránsito del carril de diseño. Se calcula a partir del IMD.
+                                    </p>
+                                </td>
+                                @*<td></td>
+                                    <td></td>
+                                    <td></td>*@
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="~/Content/images/param_esal_1.jpg" style="width:100%; height:70%;" />
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td><img src="~/Content/images/param_esal_2.jpg" style="width:100%; height:70%;" /></td>
+                            </tr>
+                            @*<tr>
+                                    <td>
+
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>*@
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONFIABILIDAD-->
+    <div class="modal fade" id="ConfiabilidadModal" tabindex="-1" role="dialog" aria-labelledby="ConfiabilidadModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="width:650px;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">INDICE DE CONFIANZA (R%) </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
+                            <tr>
+                                <td colspan="4">
+                                    <p align="justify">
+                                        Probabilidad de que el pavimento diseñado se comporte de manera satisfactoria
+                                        durante el periodo de diseño.
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- RESILENCIA-->
+    <div class="modal fade" id="ResilenciaModal" tabindex="-1" role="dialog" aria-labelledby="ResilenciaModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="width:650px;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">MODULO DE RESILENCIA (MR)</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
+                            <tr>
+                                <td colspan="4">
+                                    <p align="justify">
+                                        Es el índice que describe la relación no lineal de esfuerzos - deformaciones
+                                        de los suelos bajo carga repetida.
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SERVICIALIDAD INICIAL-->
+    <div class="modal fade" id="ServInicialModal" tabindex="-1" role="dialog" aria-labelledby="ServInicialModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="width:650px;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">INDICE DE SERVICIALIDAD INICIAL (Pi)</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
+                            <tr>
+                                <td colspan="2">
+                                    <p align="justify">
+                                        Condición original del pavimento inmediatamente después de su construcción o rehabilitación.
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>
+                                        Pavimentos Flexibles 4.2&nbsp;&nbsp;&nbsp;
+                                    </p>
+                                    <p>
+                                        Pavimentos Rígidos 4.5&nbsp;&nbsp;&nbsp;
+                                    </p>
+                                </td>
+                                <td align="right">
+                                    <img src="~/Content/images/param_esal_3.jpg" style="width:80%; height:70%;" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SERVICIALIDAD FINAL-->
+    <div class="modal fade" id="ServFinalModal" tabindex="-1" role="dialog" aria-labelledby="ServFinalModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="width:650px;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">INDICE DE SERVICIALIDAD FINAL (Pt)</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
+                            <tr>
+                                <td colspan="4">
+                                    <p align="justify">
+                                        Condición en la cual el pavimento no cumple con las expectativas de comodidad
+                                        y seguridad exigidas por el usuario.
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DIFERENCIA DE SERVICIALIDAD-->
+    <div class="modal fade" id="DifServModal" tabindex="-1" role="dialog" aria-labelledby="DifServModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="width:650px;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">INDICE DE SERVICIALIDAD INICIAL (∆PSI) </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
+                            <tr>
+                                <td>
+                                    <img src="~/Content/images/param_esal_4.jpg" style="width:100%; height:70%;" />
+                                </td>
+                                <td align="right">
+                                    <img src="~/Content/images/param_esal_5.jpg" style="width:90%; height:60%;" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- SUBMODAL --- EVALUA RESILENCIA SUBRASANTE-->
+    <div class="modal fade" id="EvaluaResilenciaModal" tabindex="-1" role="dialog" aria-labelledby="EvaluaResilenciaModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="width:650px;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">MÓDULO DE RESILENCIA </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
+                            <tr>
+                                <td align="left">
+                                    <b>
+                                        <label>CBR (SUBRASANTE) :</label>
+                                    </b>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td align="left">
+                                    <label>Colocar el CBR (%) </label>
+                                </td>
+                                <td>
+                                    <input id="txtCBR" type="text" placeholder="CBR" class="mr-3 col-sm-6 form-control form-control-sm input-number">
+                                </td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td align="left">
+                                    <b>
+                                        <label>Cálculo de MR (Subrasante) :</label>
+                                    </b>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td align="left" style="color:#FF0000">
+                                    <label>MR(psi) = 2,555*CBR^0.64 </label>
+                                </td>
+                                <td>
+                                    <input id="txtMR" type="text" placeholder="MR" readonly="readonly" class="mr-3 col-sm-10 form-control form-control-sm mascara">
+                                </td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="4">
+                                    <p align="justify">
+                                        * El cálculo se está realizando en base al CBR de la Subrasante.
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btnCalcularMR" class="btn btn-primary">Aplicar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- BASE SUB-BASE SUB-RASANTE -->
+    <div class="modal fade" id="BaseSubModal" tabindex="-1" role="dialog" aria-labelledby="BaseSubModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="width:650px;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">INFORMACIÓN </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
+                            <tr>
+                                <td>
+                                    <img src="~/Content/images/pavimento_1.jpg" style="width:100%; height:70%;" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ME -->
+    <div class="modal fade" id="MEModal" tabindex="-1" role="dialog" aria-labelledby="MEModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="width:650px;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">MÓDULO DE ELÁSTICO (ME) </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
+                            <tr>
+                                <td colspan="4">
+                                    <p align="center">
+                                        Es la medida de la tenacidad y rigidez del material o su capacidad elástica.
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CBR 1 -->
+    <div class="modal fade" id="CBR_1_Modal" tabindex="-1" role="dialog" aria-labelledby="CBR_1_ModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="width:650px;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">CBR (BASE) </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
+                            <tr>
+                                <td colspan="4">
+                                    <p align="justify">
+                                        Para carreteras con un tráfico en EE menores o igual a 10,000,000; el CBR
+                                        de la base debe ser mínimo 80%.
+                                    </p>
+                                    <p align="justify">
+                                        Para carreteras con un tráfico en EE mayores a 10,000,000; el CBR
+                                        de la base debe ser mínimo 100%.
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CBR 2 -->
+    <div class="modal fade" id="CBR_2_Modal" tabindex="-1" role="dialog" aria-labelledby="CBR_2_ModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="width:550px;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">CBR (SUB BASE) </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
+                            <tr>
+                                <td colspan="4">
+                                    <p align="justify">
+                                        El CBR debe ser mayor o igual a 40%.
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CBR 3 -->
+    <div class="modal fade" id="CBR_3_Modal" tabindex="-1" role="dialog" aria-labelledby="CBR_3_ModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="width:660px;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">CBR (SUB RASANTE) </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
+                            <tr>
+                                <td>
+                                    <img src="~/Content/images/pavimento_2.jpg" style="width:100%; height:90%;" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODULO DE RESILENCIA (MR) -->
+    <div class="modal fade" id="MR_Modal" tabindex="-1" role="dialog" aria-labelledby="MR_ModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="width:650px;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">MÓDULO DE RESILENCIA (MR) </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
+                            <tr>
+                                <td colspan="4">
+                                    <p align="justify">
+                                        Es el índice que describe la relación no lineal de esfuerzos - deformaciones de los
+                                        suelos bajo cargas repetidas.
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- info CBR MODAL -->
+    <div class="modal fade" id="infoCBRModal" tabindex="-1" role="dialog" aria-labelledby="infoCBRModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="width:650px;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">CBR</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
+                            <tr>
+                                <td colspan="2">
+                                    <p align="justify">
+                                        CBR (California Bearing Ratio): Evalúa la calidad del suelo por medio de la
+                                        resistencia al esfuerzo cortante. Se efectúa bajo condiciones controladas de humedad
+                                        y densidad.
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">CUADRO CBR</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">GRÁFICO CBR</a>
+                                        </li>
+                                    </ul>
+                                    <div class="tab-content" id="myTabContent">
+                                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                            <p> &nbsp; &nbsp; &nbsp;</p>
+                                            <img src="~/Content/images/asfalto_3.jpg" style="width:100%; height:70%;" />
+                                        </div>
+                                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab" style="text-align:center;">
+                                            <p> &nbsp; &nbsp; &nbsp;</p>
+                                            <img src="~/Content/images/asfalto_4.jpg" style="width:70%; height:100%;" />
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- Modals para Evaluar ESAL -->
+
+    <div class="modal fade" id="Esal_Modal" tabindex="-1" role="dialog" aria-labelledby="Esal_ModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document" style="margin-right: 80px; margin-left: 280px;">
+            <div class="modal-content" style="width:800px;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Cálculo de Repeticiones de Ejes Equivalentes </h5>
+                    <button type="button" class="btn btn-sm btn-outline-primary" data-dismiss="modal">
+                        <span class="fa fa-arrow-left"></span> Regresar
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="card-body">
+                        <form class="form-inline">
+                            <div class="row">
+                                <div class="form-group col-md-4">
+                                    <label for="FdxFc" class="col-form-label col-form-label-sm">Fd x Fc :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                    <input id="FdxFc" type="text" placeholder="Fd x Fc" class="mr-3 col-sm-10 form-control form-control-sm">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="TasaCrecimiento" class="col-form-label col-form-label-sm">Tasa de Crecimiento (%) :</label>
+                                    <input id="TasaCrecimiento" type="text" placeholder="Tasa de Crecimiento (%)" class="mr-3 col-sm-10 form-control form-control-sm">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="PeriodoDiseno" class="col-form-label col-form-label-sm">Periodo de Diseño :</label>
+                                    <input id="PeriodoDiseno" type="text" placeholder="Periodo de Diseño" class="mr-3 col-sm-10 form-control form-control-sm">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="DiasAno" class="col-form-label col-form-label-sm">Días del Año :</label>
+                                    <input id="DiasAno" type="text" placeholder="Días del Año" class="mr-3 col-sm-10 form-control form-control-sm">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="Fp" class="col-form-label col-form-label-sm">Fp :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                    <input id="Fp" type="text" placeholder="Fp" class="mr-3 col-sm-10 form-control form-control-sm">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card-header">
+                        <div class=" clearfix">
+                            <div class="p-0">
+                                <div class="btn-group float-left" role="group" aria-label="Basic example">
+                                    <button type="button" id="btnNuevo" class="btn btn-outline-primary small" data-toggle="modal" data-target="#SubModal"><span class="fa fa-square-o"></span> Nuevo</button>
+                                    <button type="button" id="btnEditar" class="btn btn-outline-success small"><span class="fa fa-pencil-square-o"></span> Editar</button>
+                                    <button type="button" id="btnEliminar" class="btn btn-outline-danger small" data-id="3" data-toggle="modal" data-target="#deleteModal"><span class="icon-close"></span> Eliminar</button>
+                                </div>
+                            </div>
+                            <div class="p-0">
+                                <div class="btn-group float-right" role="group" aria-label="Basic example">
+                                    <button type="button" id="btnBuscar" class="btn btn-primary small"><span class="fa fa-spinner"></span> Calcular EE</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table id="example" class="display" style="width:800px;">
+                                <thead>
+                                    <tr>
+                                        <th class="text-sm-center" id="Num_Proyecto">Vehiculo</th>
+                                        <th class="text-sm-center" id="Proyecto">Img</th>
+                                        <th class="text-sm-center" id="Fecha">IMD Base</th>
+                                        <th class="text-sm-center" id="Ingeniero">Tipo Eje 1</th>
+                                        <th class="text-sm-center" id="Num_Diseno">Peso Eje 1</th>
+                                        <th class="text-sm-center" id="Tipo_Diseno">Tipo Eje 2</th>
+                                        <th class="text-sm-center" id="Tramo">Peso Eje 2</th>
+                                        <th class="text-sm-center" id="Ubigeo">FVP</th>
+                                        <th class="text-sm-center" id="Reporte">EE</th>
+                                    </tr>
+                                </thead>
+
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal fade" id="SubModal" tabindex="-1" role="dialog" aria-labelledby="SubModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="width:650px;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Calculo de EE</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
+                            <tr>
+                                <td>
+                                    <label for="inlineFormInput" class="col-form-label col-form-label-sm">Vehiculo</label>
+                                </td>
+                                <td>
+                                    <input id="txtErrorComb" data-id="4" type="text" placeholder="Vehiculo" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                </td>
+                                <td>&nbsp;</td>
+                                <td width="230px" rowspan="4">
+                                    <div class="form-group col-md-6 text-lg-right">
+                                        <img src="~/Content/images/Vehiculo_Moto_L3.jpg" width="200" height="200" class="">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="inlineFormInput" class="col-form-label col-form-label-sm">IMD Base</label>
+                                </td>
+                                <td>
+                                    <input id="txtErrorComb" data-id="4" type="text" placeholder="IMD Base" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                </td>
+                                <td>&nbsp;</td>
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="inlineFormInput" class="col-form-label col-form-label-sm">FVP</label>
+                                </td>
+                                <td>
+                                    <input id="txtErrorComb" data-id="4" type="text" placeholder="FVP" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                </td>
+                                <td>&nbsp;</td>
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="inlineFormInput" class="col-form-label col-form-label-sm">EE</label>
+                                </td>
+                                <td>
+                                    <input id="txtErrorComb" data-id="4" type="text" placeholder="EE" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                </td>
+                                <td>&nbsp;</td>
+
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="inlineFormInput" class="col-form-label col-form-label-sm">Tipo Eje 1</label>
+                                </td>
+                                <td>
+                                    <input id="txtErrorComb" data-id="4" type="text" placeholder="Tipo Eje 1" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                </td>
+                                <td>
+                                    <label for="inlineFormInput" class="col-form-label col-form-label-sm">Peso Eje 1</label>
+                                </td>
+                                <td>
+                                    <input id="txtErrorComb" data-id="4" type="text" placeholder="Peso Eje 1" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="inlineFormInput" class="col-form-label col-form-label-sm">Tipo Eje 2</label>
+                                </td>
+                                <td>
+                                    <input id="txtErrorComb" data-id="4" type="text" placeholder="Tipo Eje 2" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                </td>
+                                <td>
+                                    <label for="inlineFormInput" class="col-form-label col-form-label-sm">Peso Eje 2</label>
+                                </td>
+                                <td>
+                                    <input id="txtErrorComb" data-id="4" type="text" placeholder="Peso Eje 2" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="inlineFormInput" class="col-form-label col-form-label-sm">Tipo Eje 3</label>
+                                </td>
+                                <td>
+                                    <input id="txtErrorComb" data-id="4" type="text" placeholder="Tipo Eje 3" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                </td>
+                                <td>
+                                    <label for="inlineFormInput" class="col-form-label col-form-label-sm">Peso Eje 3</label>
+                                </td>
+                                <td>
+                                    <input id="txtErrorComb" data-id="4" type="text" placeholder="Peso Eje 3" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="inlineFormInput" class="col-form-label col-form-label-sm">Tipo Eje 4</label>
+                                </td>
+                                <td>
+                                    <input id="txtErrorComb" data-id="4" type="text" placeholder="Tipo Eje 4" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                </td>
+                                <td>
+                                    <label for="inlineFormInput" class="col-form-label col-form-label-sm">Peso Eje 4</label>
+                                </td>
+                                <td>
+                                    <input id="txtErrorComb" data-id="4" type="text" placeholder="Peso Eje 4" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                                <td>&nbsp;</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <label for="inlineFormInput" class="col-form-label col-form-label-sm">Tipo Eje 5</label>
+                                </td>
+                                <td>
+                                    <input id="txtErrorComb" data-id="4" type="text" placeholder="Tipo Eje 5" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                </td>
+                                <td>
+                                    <label for="inlineFormInput" class="col-form-label col-form-label-sm">Peso Eje 5</label>
+                                </td>
+                                <td>
+                                    <input id="txtErrorComb" data-id="4" type="text" placeholder="Peso Eje 5" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+
+<script src="~/Scripts/jquery-3.3.1.js"></script>
+
+
+<script src="Scripts/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.13.4/jquery.mask.min.js"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+
+        $('.mascara').mask("#,##0.00", { reverse: true }); //Aplica la mascara
+
+        //Limpiar Parmaretros
+        $("#btnCancelar_a").click(function () {
+            document.getElementById("txtPeriodoDiseno").value = '';
+            document.getElementById("txtCantidadESAL").value = '';
+            document.getElementById("txtConfiab").value = '';
+            document.getElementById("txtErrorComb").value = '';
+            document.getElementById("txtModResilenciaSub").value = '';
+            document.getElementById("txtServInicial").value = '';
+            document.getElementById("txtServFinal").value = '';
+            document.getElementById("txtDifServ").value = '';
+            document.getElementById("txtDesvEstandar").value = '';
+        });
+
+        $("#btnSiguiente_a").click(function () {
+
+
+            //Validamos campos vacíos
+            varConfiabilidad = document.getElementById("txtConfiab").value;
+            if (varConfiabilidad == '') {
+                toastr.error("Ingrese Confiabilidad!", 'ERROR', { timeOut: 2000 });
+                return;
+            }
+
+            varModResilenciaSub = document.getElementById("txtModResilenciaSub").value;
+            if (varModResilenciaSub == '') {
+                toastr.error("Ingrese Módulo de Resilencia!", 'ERROR', { timeOut: 2000 });
+                return;
+            }
+
+            varServInicial = document.getElementById("txtServInicial").value;
+            if (varServInicial == '') {
+                toastr.error("Ingrese Servicialidad Inicial", 'ERROR', { timeOut: 2000 });
+                return;
+            }
+
+            varServFinal = document.getElementById("txtServFinal").value;
+            if (varServFinal == '') {
+                toastr.error("Ingrese Servicialidad Final", 'ERROR', { timeOut: 2000 });
+                return;
+            }
+
+            varCantidadESAL = document.getElementById("txtCantidadESAL").value;
+            if (varCantidadESAL == '') {
+                toastr.error("Ingrese Cantidad de ESAL", 'ERROR', { timeOut: 2000 });
+                return;
+            }
+
+            varErrorComb = document.getElementById("txtErrorComb").value;
+            if (varErrorComb == '') {
+                toastr.error("Ingrese Error de Comb.Estándar", 'ERROR', { timeOut: 2000 });
+                return;
+            }
+            //Validamos campos vacíos
+
+
+
+            var i, j, items = $('.nav-link'), pane = $('.tab-pane');
+            j = 2;
+            i = 0;
+            $(items[j]).removeClass('active');
+            $(items[j + 1]).addClass('active');
+            // for pane
+            $(pane[i]).removeClass('show active');
+            $(pane[i + 1]).addClass('show active');
+
+
+
+
+            CantidadESAL = document.getElementById("txtCantidadESAL").value;
+            DesviEstandar = document.getElementById("txtDesvEstandar").value;
+            DifServiciabilidad = document.getElementById("txtDifServ").value;
+            ErrorCombiEstandar = document.getElementById("txtErrorComb").value;
+            valorMR = document.getElementById("txtModRoturaPSI").value;
+
+
+            if (CantidadESAL == '') {
+                CantidadESAL = 0;
+            }
+
+            $.ajax
+                ({
+                    method: 'POST',
+                    url: '/ParametrosAdoquin/calcularN18Nom',
+                    data: { 'CantESAL': CantidadESAL },
+                    success: function (respuesta) {
+
+                        document.getElementById("txtN18Nominal").value = roundNumber(respuesta);
+
+                    },
+                    error: function (xhr, status) {
+                        alert("PLOP");
+                    }
+
+                });
+
+
+            $.ajax
+                ({
+                    method: 'POST',
+                    url: '/ParametrosAdoquin/calcularN18Calc2',
+                    data: { 'DifServiciabilidad': DifServiciabilidad },
+                    success: function (respuesta) {
+
+                        document.getElementById("txtN18Calculado2").value = roundNumber(respuesta);
+
+                    },
+                    error: function (xhr, status) {
+                        alert("PLOP");
+                    }
+
+                });
+
+
+
+            $.ajax
+                ({
+                    method: 'POST',
+                    url: '/ParametrosAdoquin/calcularN18Calc1',
+                    data: { 'ErrorCombiEstandar': ErrorCombiEstandar, 'DesviEstandar': DesviEstandar, 'valorMR': valorMR, 'DifServiciabilidad': DifServiciabilidad },
+                    success: function (respuesta) {
+
+                        document.getElementById("txtN18Calculado").value = roundNumber(respuesta);
+
+                    },
+                    error: function (xhr, status) {
+                        alert("PLOP");
+                    }
+
+                });
+
+
+        });
+
+
+
+        $("#btnIgualarSNRequerido").click(function () {
+
+            ErrorCombiEstandar = document.getElementById("txtErrorComb").value;
+            DesviEstandar = document.getElementById("txtDesvEstandar").value;
+
+            valorMR = document.getElementById("txtModRoturaPSI").value;
+            N18Calc2 = document.getElementById("txtN18Calculado2").value;
+            N18Nominal = document.getElementById("txtN18Nominal").value;
+
+
+            if (ErrorCombiEstandar == '') {
+                toastr.error("Ingrese ErrorCombiEstandar!", 'ERROR', { timeOut: 2000 });
+                return;
+            }
+            if (DesviEstandar == '') {
+                toastr.error("Ingrese DesviEstandar!", 'ERROR', { timeOut: 2000 });
+                return;
+            }
+            if (valorMR == '') {
+                toastr.error("Ingrese valorMR!", 'ERROR', { timeOut: 2000 });
+                return;
+            }
+            if (N18Calc2 == '') {
+                toastr.error("Ingrese N18Calc2!", 'ERROR', { timeOut: 2000 });
+                return;
+            }
+            if (N18Nominal == '') {
+                toastr.error("Ingrese N18Nominal!", 'ERROR', { timeOut: 2000 });
+                return;
+            }
+
+
+            $.ajax
+                ({
+                    method: 'POST',
+                    url: '/ParametrosAdoquin/calcularSNReq',
+                    data: { 'ErrorCombiEstandar': ErrorCombiEstandar, 'DesviEstandar': DesviEstandar, 'valorMR': valorMR, 'N18Calc2': N18Calc2, 'N18Nominal': N18Nominal },
+                    success: function (respuesta) {
+
+                        document.getElementById("txtSNRequerido").value = respuesta;
+
+                    },
+                    error: function (xhr, status) {
+                        alert("PLOP");
+                    }
+
+                });
+
+        });
+
+
+
+        $("#txtConfiab").focusout(function (e) {
+
+            strConf = document.getElementById("txtConfiab").value;
+
+            if (strConf == '') {
+                toastr.error("Ingrese Confiabilidad!", 'ERROR', { timeOut: 2000 });
+                return;
+            }
+
+            if (strConf > 99) {
+                toastr.warning("Ingrese un valor menor a 100", 'ADVERTENCIA', { timeOut: 2000 });
+                document.getElementById("txtConfiab").value = '';
+                return;
+            }
+
+            $.ajax
+                ({
+                    method: 'POST',
+                    url: '/ParametrosAdoquin/CalcularDesviacionEstandar',
+                    data: { 'ValorConfiabilidad': strConf },
+                    success: function (respuesta) {
+
+                        document.getElementById("txtDesvEstandar").value = respuesta;
+
+                    },
+                    error: function (xhr, status) {
+                        alert("PLOP");
+                    }
+
+                });
+
+        });
+
+
+        $("#txtServInicial").focusout(function (e) {
+
+            DiferenciaServicialidad();
+        });
+
+        $("#txtServFinal").focusout(function (e) {
+
+            DiferenciaServicialidad();
+        });
+
+
+        $("#btnEvaluaResilencia").click(function () {
+            document.getElementById("txtCBR").value = '';
+            document.getElementById("txtMR").value = '';
+            document.getElementById("txtModResilenciaSub").value = '';
+        });
+
+        $("#btnCalcularMR").click(function () {
+            document.getElementById("txtModResilenciaSub").value = delimitNumbers(document.getElementById("txtMR").value);
+            document.getElementById("txtModRoturaPSI").value = delimitNumbers(document.getElementById("txtMR").value);
+
+            $("#EvaluaResilenciaModal .close").click();
+        });
+
+        $("#txtCBR").focusout(function (e) {
+            strCBR = document.getElementById("txtCBR").value;
+
+            if (strCBR == '') {
+                document.getElementById("txtMR").value = '';
+                return;
+            }
+
+            $.ajax
+                ({
+                    method: 'POST',
+                    url: '/ParametrosAdoquin/CalcularResilenciaADO',
+                    data: { 'CBR': strCBR },
+                    success: function (respuesta) {
+
+                        //alert(respuesta);
+
+                        document.getElementById("txtMR").value = delimitNumbers(respuesta);
+                    },
+                    error: function (xhr, status) {
+                        alert("PLOP");
+                    }
+
+                });
+        });
+
+
+        //Funcion solo Número
+        $('.input-number').on('input', function () {
+            this.value = this.value.replace(/[^.0-9]/g, '');
+        });
+        //Funcion solo Número
+
+
+
+
+    });
+
+    function DiferenciaServicialidad() {
+        strServInicial = document.getElementById("txtServInicial").value;
+        strServFinal = document.getElementById("txtServFinal").value;
+
+        if (strServInicial == '') {
+            toastr.error("Ingrese Servicialidad Inicial!", 'ERROR', { timeOut: 2000 });
+            return;
+        }
+
+        if (strServFinal == '') {
+            toastr.error("Ingrese Servicialidad Final!", 'ERROR', { timeOut: 2000 });
+            return;
+        }
+
+        $.ajax
+            ({
+                method: 'POST',
+                url: '/ParametrosAdoquin/CalcularDifServiciabilidad',
+                data: { 'ServInicial': strServInicial, 'ServFinal': strServFinal },
+                success: function (respuesta) {
+
+                    //alert(respuesta);
+
+                    document.getElementById("txtDifServ").value = respuesta;
+                },
+                error: function (xhr, status) {
+                    alert("PLOP");
+                }
+
+            });
+    }
+
+    function bootstrapTabControl() {
+        var i, items = $('.nav-link'), pane = $('.tab-pane');
+        // next
+        $('.nexttab').on('click', function () {
+            for (i = 0; i < pane.length; i++) {
+
+                if ($(pane[i]).hasClass('active') == true) {
+                    break;
+                }
+            }
+
+            for (j = 0; j < items.length; j++) {
+
+                if ($(items[j]).hasClass('active') == true) {
+                    break;
+                }
+            }
+
+            //alert("items: " + j);
+            //alert("pane: " + i);
+
+            //if (i < items.length - 1) {
+            if (i + 1 <= 2) {
+                // for tab
+                $(items[j]).removeClass('active');
+                $(items[j + 1]).addClass('active');
+                // for pane
+                $(pane[i]).removeClass('show active');
+                $(pane[i + 1]).addClass('show active');
+            }
+
+        });
+        // Prev
+        $('.prevtab').on('click', function () {
+            for (i = 0; i < pane.length; i++) {
+                if ($(pane[i]).hasClass('active') == true) {
+                    break;
+                }
+            }
+
+            for (j = 0; j < items.length; j++) {
+                if ($(items[j]).hasClass('active') == true) {
+                    break;
+                }
+            }
+
+
+            if (i != 0) {
+                // for tab
+                $(items[j]).removeClass('active');
+                $(items[j - 1]).addClass('active');
+                // for pane
+                $(pane[i]).removeClass('show active');
+                $(pane[i - 1]).addClass('show active');
+            }
+        });
+    }
+
+    function delimitNumbers(str) {
+        return (str + "").replace(/\b(\d+)((\.\d+)*)\b/g,
+            function (a, b, c) {
+                return (b.charAt(0) > 0 && !(c || ".").lastIndexOf(".") ? b.replace(/(\d)(?=(\d{3})+$)/g, "$1,") : b) + c;
+            });
+    }
+
+    function roundNumber (num) {
+          //Respuesta de Rubén
+          return Math.round(num * 100) / 100 ;
+    }
+
+
+
+    bootstrapTabControl();
+</script>
+
+
+
+

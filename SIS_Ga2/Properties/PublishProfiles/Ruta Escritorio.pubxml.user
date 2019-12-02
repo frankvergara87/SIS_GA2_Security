@@ -151,7 +151,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>11/28/2019 17:46:16</publishTime>
     </File>
     <File Include="bin/SIS_Ga2.dll">
-      <publishTime>11/28/2019 17:46:18</publishTime>
+      <publishTime>11/29/2019 14:24:03</publishTime>
     </File>
     <File Include="bin/SIS_Ga2.Entity.dll">
       <publishTime>11/28/2019 17:46:16</publishTime>
@@ -160,7 +160,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>11/28/2019 17:46:16</publishTime>
     </File>
     <File Include="bin/SIS_Ga2.pdb">
-      <publishTime>11/28/2019 17:46:18</publishTime>
+      <publishTime>11/29/2019 14:24:03</publishTime>
     </File>
     <File Include="bin/System.Web.Helpers.dll">
       <publishTime>10/10/2019 01:54:02</publishTime>
@@ -1323,6 +1323,9 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
     <File Include="fonts/glyphicons-halflings-regular.woff2">
       <publishTime>10/10/2019 01:54:01</publishTime>
     </File>
+    <File Include="formTest.aspx">
+      <publishTime>11/29/2019 11:34:12</publishTime>
+    </File>
     <File Include="Global.asax">
       <publishTime>10/10/2019 01:54:00</publishTime>
     </File>
@@ -1408,7 +1411,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>11/23/2019 22:32:16</publishTime>
     </File>
     <File Include="Views/ParametrosAsfalto/Index.cshtml">
-      <publishTime>11/28/2019 17:13:03</publishTime>
+      <publishTime>11/29/2019 12:44:41</publishTime>
     </File>
     <File Include="Views/ParametrosConcreto/Index.cshtml">
       <publishTime>11/23/2019 22:32:37</publishTime>
