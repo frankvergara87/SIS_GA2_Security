@@ -48,6 +48,7 @@
     <Compile Include="BLDisenos.cs" />
     <Compile Include="BLDistrito.cs" />
     <Compile Include="BLPeriodos.cs" />
+    <Compile Include="BLPropFactorDistribucion.cs" />
     <Compile Include="BLProvincia.cs" />
     <Compile Include="BLProyectos.cs" />
     <Compile Include="BLReglas.cs" />
@@ -55,8 +56,10 @@
     <Compile Include="BLTasaCrecimiento.cs" />
     <Compile Include="BLTipoDiseno.cs" />
     <Compile Include="BLTipoPavimento.cs" />
+    <Compile Include="BLTipoVehiculo.cs" />
     <Compile Include="BLTramo.cs" />
     <Compile Include="BLUsuario.cs" />
+    <Compile Include="BLVehiculos.cs" />
     <Compile Include="DisenoBL.cs" />
     <Compile Include="GenericBL.cs" />
     <Compile Include="HelpClass.cs" />

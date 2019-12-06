@@ -15,6 +15,35 @@ namespace SIS_Ga2.Controllers
         // GET: ParametrosAsfalto
         public ActionResult Index()
         {
+            BLTasaCrecimiento objblTasaCrecimiento = new BLTasaCrecimiento();
+            List<SelectListItem> data_list = new List<SelectListItem>();
+            data_list.AddRange(objblTasaCrecimiento.ListarTasaCrecimiento(0).Select(a => new SelectListItem() { Text = a.TasaCrecimiento.ToUpper(), Value = Convert.ToString(a.IdTasaCrecimiento) }));
+            ViewData["ddlTasaCrecimiento"] = data_list;
+
+
+            List<SelectListItem> lstPeriodo = new List<SelectListItem>();
+            lstPeriodo.Add(new SelectListItem() { Text = "10", Value = "1" });
+            lstPeriodo.Add(new SelectListItem() { Text = "20", Value = "2" });
+            lstPeriodo.Add(new SelectListItem() { Text = "30", Value = "3" });
+            lstPeriodo.Add(new SelectListItem() { Text = "40", Value = "4" });
+            lstPeriodo.Add(new SelectListItem() { Text = "50", Value = "5" });
+            ViewData["ddlPeriodoDiseno"] = lstPeriodo;
+
+
+            BLPropFactorDistribucion objblPropFactorDistribucion = new BLPropFactorDistribucion();
+            List<SelectListItem> data_list_2 = new List<SelectListItem>();
+            data_list_2.AddRange(objblPropFactorDistribucion.ListarFactorDistribucion(1).Select(a => new SelectListItem() { Text = a.Numero_Calzada.ToString(), Value = Convert.ToString(a.Numero_Calzada) }));
+            ViewData["ddlCalzada"] = data_list_2;
+
+            List<SelectListItem> data_list_3 = new List<SelectListItem>();
+            data_list_3.AddRange(objblPropFactorDistribucion.ListarFactorDistribucion(3).Select(a => new SelectListItem() { Text = a.Numero_Carril_x_Sentido.ToString(), Value = Convert.ToString(a.Numero_Carril_x_Sentido) }));
+            ViewData["ddlCarrilxSentido"] = data_list_3;
+
+            List<SelectListItem> data_list_4 = new List<SelectListItem>();
+            data_list_4.AddRange(objblPropFactorDistribucion.ListarFactorDistribucion(2).Select(a => new SelectListItem() { Text = a.Numero_Sentido.ToString(), Value = Convert.ToString(a.Numero_Sentido) }));
+            ViewData["ddlNumSentido"] = data_list_4;
+
+
             return View();
         }
 
@@ -138,6 +167,33 @@ namespace SIS_Ga2.Controllers
                 ResultadoSNReq = blReglas.calcularSNReq(objeBECalculos);
 
                 return ResultadoSNReq;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+
+        public decimal ListarValorFactorDistrib(string Numero_Calzada, string Numero_Sentido, string Numero_Carril_x_Sentido)
+        {
+
+            try
+            {
+                decimal Val_Distrib_Calculado = 0;
+                List<BEPropFactorDistribucion> listadoFactorDistribucion = new List<BEPropFactorDistribucion>();
+                BLPropFactorDistribucion blpropFactorDistribucion = new BLPropFactorDistribucion();
+                listadoFactorDistribucion = blpropFactorDistribucion.ListarValorFactorDistrib(Convert.ToInt32(Numero_Calzada), Convert.ToInt32(Numero_Sentido), Convert.ToInt32(Numero_Carril_x_Sentido));
+
+                foreach (BEPropFactorDistribucion fd in listadoFactorDistribucion)
+                {
+                    Val_Distrib_Calculado = fd.Valor_Distrib_Calculado;
+                    break;
+                }
+
+                return Val_Distrib_Calculado;
             }
             catch (Exception)
             {

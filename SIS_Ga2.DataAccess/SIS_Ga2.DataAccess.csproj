@@ -50,14 +50,17 @@
     <Compile Include="DACDiseno.cs" />
     <Compile Include="DACDistrito.cs" />
     <Compile Include="DACPeriodo.cs" />
+    <Compile Include="DACPropFactorDistribucion.cs" />
     <Compile Include="DACProvincia.cs" />
     <Compile Include="DACProyectos.cs" />
     <Compile Include="DACReglamentos.cs" />
     <Compile Include="DACTasaCrecimiento.cs" />
     <Compile Include="DACTipoDiseno.cs" />
     <Compile Include="DACTipoPavimento.cs" />
+    <Compile Include="DACTipoVehiculo.cs" />
     <Compile Include="DACTramo.cs" />
     <Compile Include="DACUsuario.cs" />
+    <Compile Include="DACVehiculos.cs" />
     <Compile Include="DisenoDAO.cs" />
     <Compile Include="GenericDAO.cs" />
     <Compile Include="ProyectoDAO.cs" />

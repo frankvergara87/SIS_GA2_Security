@@ -54,6 +54,7 @@
     <Compile Include="BEDistrito.cs" />
     <Compile Include="BEParametroDiseno.cs" />
     <Compile Include="BEPeriodo.cs" />
+    <Compile Include="BEPropFactorDistribucion.cs" />
     <Compile Include="BEProvincia.cs" />
     <Compile Include="BEProyecto.cs" />
     <Compile Include="BEReglamentos.cs" />
@@ -61,7 +62,10 @@
     <Compile Include="BETasaCrecimiento.cs" />
     <Compile Include="BETipoDiseno.cs" />
     <Compile Include="BETipoPavimento.cs" />
+    <Compile Include="BETipoVehiculos.cs" />
     <Compile Include="BETramo.cs" />
+    <Compile Include="BEVehiculos.cs" />
+    <Compile Include="BEVehiculosIMD.cs" />
     <Compile Include="BookViewModel.cs" />
     <Compile Include="Catalogo.cs" />
     <Compile Include="Cliente.cs" />

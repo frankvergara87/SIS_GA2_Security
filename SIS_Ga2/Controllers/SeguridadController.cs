@@ -7,6 +7,9 @@ using System.Web.Mvc;
 using SIS_Ga2.Business;
 using SIS_Ga2.Entity;
 
+using System.Net.Mail;
+using System.Security.Cryptography;
+
 
 namespace SIS_Ga2.Controllers
 {
@@ -156,5 +159,58 @@ namespace SIS_Ga2.Controllers
             }
 
         }
+
+        public string SendEmail(string EmailDestino)
+        {
+            string EmailOrigen = "geslid.consultoria@gmail.com";
+            string Contrasena = "SVergara2014";
+
+            string emailCript; 
+
+            MailMessage oMailMessage = new MailMessage(EmailOrigen, EmailDestino, "Prueba - Recuperación de Contraseña",
+                "<p>Correo de recuperación de contraseña</p><br>" +
+                "<p>Version de prueba desarrollado por Frank Vergara.</p><br>" +
+                "<p>Pendiente credenciales para su ACCESO al sistema SIS-Ga2.</p><br>"
+                );
+            oMailMessage.IsBodyHtml = true;
+
+            SmtpClient oSmtpClient = new SmtpClient("smtp.gmail.com");
+            oSmtpClient.EnableSsl = true;
+            oSmtpClient.UseDefaultCredentials = false;
+
+            oSmtpClient.Port = 587;
+            oSmtpClient.Credentials = new System.Net.NetworkCredential(EmailOrigen, Contrasena);
+
+            oSmtpClient.Send(oMailMessage);
+            oSmtpClient.Dispose();
+
+            emailCript = HideEmail(EmailDestino);
+
+            return emailCript;
+        }
+
+
+        public string HideEmail(string email)
+        {
+            //string email = "ejemplo123@ejemplo.com";
+            string[] separada = email.Split('@');
+            int inicio = 1; //Caracteres al inicio de la cadena que dejamos visibles
+            int final = 3; //Caracteres al final de la cadena que dejamos visibles
+            int longitud;
+            if (separada[0].Length > inicio + final)
+                longitud = separada[0].Length - final - inicio;
+            else
+                longitud = 1;
+
+            separada[0] = separada[0].Remove(inicio, longitud).Insert(inicio, new string('*', longitud));
+            email = String.Join("@", separada);
+
+            return email;
+
+        }
+
+
+
+
     }
 }

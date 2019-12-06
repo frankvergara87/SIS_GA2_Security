@@ -9,3 +9,4 @@ C:\Users\Frank\source\repos\Aashto\SIS_GA2_Security\Dbmanager\obj\Release\DbMana
 C:\Users\Frank\source\repos\Aashto\SIS_GA2_Security\Dbmanager\obj\Release\DbManager.dll
 C:\Users\Frank\source\repos\Aashto\SIS_GA2_Security\Dbmanager\obj\Release\DbManager.xml
 C:\Users\Frank\source\repos\Aashto\SIS_GA2_Security\Dbmanager\obj\Release\DbManager.pdb
+C:\Users\Frank\source\repos\Aashto\SIS_GA2_Security\Dbmanager\obj\Release\DbManager.vbprojAssemblyReference.cache
