@@ -1011,7 +1011,7 @@
                                 <div class="row">
                                     <div class="form-group col-md-4">
                                         <label for="FdxFc" class="col-form-label col-form-label-sm">Fd x Fc :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                                        <input id="FdxFc" type="text" placeholder="Fd x Fc" class="mr-3 col-sm-8 form-control form-control-sm">
+                                        <input id="FdxFc" type="text" readonly="readonly" placeholder="Fd x Fc" class="mr-3 col-sm-8 form-control form-control-sm">
                                         <button type="button" id="btnFdxFc" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#SubModal_2"><span class="fa fa-flask"></span></button>
                                     </div>
                                     <div class="form-group col-md-4">
@@ -1319,7 +1319,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" id="btnGuardarFdxFc" class="btn btn-primary small"><span class="fa fa-road"></span> Guardar</button>
+                        <button type="button" class="btn btn-secondary small" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
             </div>
@@ -1645,7 +1646,29 @@
 
         });
 
+
+
+        $("#btnGuardarFdxFc").click(function () {
+
+            var FdxFc_Calculado = document.getElementById("FdxFc_Calculado").value;
+            var FdxFc_Ingresado = document.getElementById("FdxFc_Ingresado").value;
+
+            if (FdxFc_Calculado != '') {
+                document.getElementById("FdxFc").value = document.getElementById("FdxFc_Calculado").value;
+                $("#SubModal_2 .close").click();
+            } else 
+                 if (FdxFc_Ingresado != '') {
+                     document.getElementById("FdxFc").value = document.getElementById("FdxFc_Ingresado").value;
+                     $("#SubModal_2 .close").click();
+                 } else {
+                     return;
+                 }
+            
+        });
+
         
+
+
 
         //Funcion solo Número
         $('.input-number').on('input', function () {
