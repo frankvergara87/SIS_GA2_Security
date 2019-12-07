@@ -20,6 +20,8 @@ namespace SIS_Ga2.Entity
         public double Fecha_Creacion { get; set; }
         public double Hora_Creacion { get; set; }
         public string Usr_Creacion { get; set; }
-      
+
+        public string url_img { get; set; }
+
     }
 }

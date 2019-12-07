@@ -176,6 +176,14 @@
     <Content Include="Content\images\asfalto_2.jpg" />
     <Content Include="Content\images\asfalto_3.jpg" />
     <Content Include="Content\images\asfalto_4.jpg" />
+    <Content Include="Content\images\calzadas\1_1_1.jpg" />
+    <Content Include="Content\images\calzadas\1_2_1.jpg" />
+    <Content Include="Content\images\calzadas\1_2_2.jpg" />
+    <Content Include="Content\images\calzadas\2_2_1.jpg" />
+    <Content Include="Content\images\calzadas\2_2_2.jpg" />
+    <Content Include="Content\images\calzadas\2_2_3.jpg" />
+    <Content Include="Content\images\calzadas\2_2_4.jpg" />
+    <Content Include="Content\images\calzadas\NoImage.png" />
     <Content Include="Content\images\Diseno_Adoquin.jpg" />
     <Content Include="Content\images\Diseno_Asfalto.jpg" />
     <Content Include="Content\images\Diseno_Concreto.jpg" />

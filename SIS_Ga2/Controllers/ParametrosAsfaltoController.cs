@@ -177,23 +177,16 @@ namespace SIS_Ga2.Controllers
         }
 
 
-        public decimal ListarValorFactorDistrib(string Numero_Calzada, string Numero_Sentido, string Numero_Carril_x_Sentido)
+        public JsonResult ListarValorFactorDistrib(string Numero_Calzada, string Numero_Sentido, string Numero_Carril_x_Sentido)
         {
 
             try
             {
-                decimal Val_Distrib_Calculado = 0;
                 List<BEPropFactorDistribucion> listadoFactorDistribucion = new List<BEPropFactorDistribucion>();
                 BLPropFactorDistribucion blpropFactorDistribucion = new BLPropFactorDistribucion();
                 listadoFactorDistribucion = blpropFactorDistribucion.ListarValorFactorDistrib(Convert.ToInt32(Numero_Calzada), Convert.ToInt32(Numero_Sentido), Convert.ToInt32(Numero_Carril_x_Sentido));
 
-                foreach (BEPropFactorDistribucion fd in listadoFactorDistribucion)
-                {
-                    Val_Distrib_Calculado = fd.Valor_Distrib_Calculado;
-                    break;
-                }
-
-                return Val_Distrib_Calculado;
+                return Json(listadoFactorDistribucion);
             }
             catch (Exception)
             {

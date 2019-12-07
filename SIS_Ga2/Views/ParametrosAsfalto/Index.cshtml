@@ -1265,7 +1265,7 @@
                                     </td>
                                     <td width="400px" rowspan="3" colspan="2">
                                         <div class="form-group col-md-6 text-lg-right">
-                                            <img src="~/Content/images/Vehiculo_Moto_L3.jpg" width="200" height="200" class="">
+                                            <img id="img_calzadacarril" src="~/Content/images/Vehiculo_Moto_L3.jpg" width="200" height="200" class="">
                                         </div>
                                     </td>
                                 </tr>
@@ -1626,6 +1626,7 @@
 
             obtenerFactorDistrib(Calzada, NumSentido, CarrilxSentido);
 
+
         });
         $("#ddlCarrilxSentido").change(function () {
 
@@ -1780,12 +1781,31 @@
                 data: { 'Numero_Calzada': Calzada, 'Numero_Sentido': NumSentido, 'Numero_Carril_x_Sentido': CarrilxSentido },
                 success: function (respuesta) {
 
-                    if (respuesta != 0)
-                    {
-                        document.getElementById("FdxFc_Calculado").value = respuesta;
+                    if (respuesta!='') {
+                    
+                        var obj = (typeof respuesta) == 'string' ? eval('(' + respuesta + ')') : respuesta;
+
+                        $.each(obj, function (i, item) {
+                            
+                            if (item.Valor_Distrib_Calculado != '')
+                            {
+                                document.getElementById("FdxFc_Calculado").value = item.Valor_Distrib_Calculado;
+                            } else {
+                                document.getElementById("FdxFc_Calculado").value = '';
+                            } 
+
+                            if (item.url_img != '' || item.url_img.length > 0)
+                            {
+                                $("#img_calzadacarril").attr("src", item.url_img);
+                            } else {
+                                $("#img_calzadacarril").attr("src", "/Content/images/calzadas/NoImage.png");
+                            } 
+
+                        });
                     } else {
                         document.getElementById("FdxFc_Calculado").value = '';
-                    }                    
+                        $("#img_calzadacarril").attr("src", "/Content/images/calzadas/NoImage.png");
+                    }
 
                 },
                 error: function (xhr, status) {
