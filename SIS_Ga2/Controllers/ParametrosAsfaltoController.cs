@@ -15,19 +15,19 @@ namespace SIS_Ga2.Controllers
         // GET: ParametrosAsfalto
         public ActionResult Index()
         {
+            List<SelectListItem> lstPeriodoDiseno = new List<SelectListItem>();
+            lstPeriodoDiseno.Add(new SelectListItem() { Text = "5.00", Value = "1" });
+            lstPeriodoDiseno.Add(new SelectListItem() { Text = "10.00", Value = "2" });
+            lstPeriodoDiseno.Add(new SelectListItem() { Text = "15.00", Value = "3" });
+            lstPeriodoDiseno.Add(new SelectListItem() { Text = "20.00", Value = "4" });
+            ViewData["ddlPeriodoDisenoParam"] = lstPeriodoDiseno;
+
+
             BLTasaCrecimiento objblTasaCrecimiento = new BLTasaCrecimiento();
             List<SelectListItem> data_list = new List<SelectListItem>();
             data_list.AddRange(objblTasaCrecimiento.ListarTasaCrecimiento(0).Select(a => new SelectListItem() { Text = a.TasaCrecimiento.ToUpper(), Value = Convert.ToString(a.IdTasaCrecimiento) }));
             ViewData["ddlTasaCrecimiento"] = data_list;
 
-
-            List<SelectListItem> lstPeriodo = new List<SelectListItem>();
-            lstPeriodo.Add(new SelectListItem() { Text = "10", Value = "1" });
-            lstPeriodo.Add(new SelectListItem() { Text = "20", Value = "2" });
-            lstPeriodo.Add(new SelectListItem() { Text = "30", Value = "3" });
-            lstPeriodo.Add(new SelectListItem() { Text = "40", Value = "4" });
-            lstPeriodo.Add(new SelectListItem() { Text = "50", Value = "5" });
-            ViewData["ddlPeriodoDiseno"] = lstPeriodo;
 
 
             BLPropFactorDistribucion objblPropFactorDistribucion = new BLPropFactorDistribucion();
@@ -43,6 +43,41 @@ namespace SIS_Ga2.Controllers
             data_list_4.AddRange(objblPropFactorDistribucion.ListarFactorDistribucion(2).Select(a => new SelectListItem() { Text = a.Numero_Sentido.ToString(), Value = Convert.ToString(a.Numero_Sentido) }));
             ViewData["ddlNumSentido"] = data_list_4;
 
+
+            List<SelectListItem> lstTipoVehiculo = new List<SelectListItem>();
+            lstTipoVehiculo.Add(new SelectListItem() { Text = "Vehiculos", Value = "1" });
+            lstTipoVehiculo.Add(new SelectListItem() { Text = "Camionetas", Value = "2" });
+            lstTipoVehiculo.Add(new SelectListItem() { Text = "Buses", Value = "3" });
+            lstTipoVehiculo.Add(new SelectListItem() { Text = "Camiones", Value = "4" });
+            lstTipoVehiculo.Add(new SelectListItem() { Text = "Semi Trailers", Value = "5" });
+            lstTipoVehiculo.Add(new SelectListItem() { Text = "Trailers", Value = "6" });
+            ViewData["ddlTipoVehiculo"] = lstTipoVehiculo;
+
+
+            List<SelectListItem> lstVehiculo = new List<SelectListItem>();
+            lstVehiculo.Add(new SelectListItem() { Text = "MOTO L3", Value = "1" });
+            lstVehiculo.Add(new SelectListItem() { Text = "MOTOTAXI L5", Value = "2" });
+            lstVehiculo.Add(new SelectListItem() { Text = "AUTO M1", Value = "3" });
+            lstVehiculo.Add(new SelectListItem() { Text = "PANEL N1", Value = "4" });
+            lstVehiculo.Add(new SelectListItem() { Text = "PICK UP N2", Value = "5" });
+            lstVehiculo.Add(new SelectListItem() { Text = "RURAL COMBI M2", Value = "6" });
+            lstVehiculo.Add(new SelectListItem() { Text = "B2", Value = "7" });
+            lstVehiculo.Add(new SelectListItem() { Text = "B3", Value = "8" });
+            lstVehiculo.Add(new SelectListItem() { Text = "B4", Value = "9" });
+            lstVehiculo.Add(new SelectListItem() { Text = "C2", Value = "10" });
+            lstVehiculo.Add(new SelectListItem() { Text = "C3", Value = "11" });
+            lstVehiculo.Add(new SelectListItem() { Text = "C4", Value = "12" });
+            lstVehiculo.Add(new SelectListItem() { Text = "2S1", Value = "13" });
+            lstVehiculo.Add(new SelectListItem() { Text = "2S2", Value = "14" });
+            lstVehiculo.Add(new SelectListItem() { Text = "2S3", Value = "15" });
+            lstVehiculo.Add(new SelectListItem() { Text = "3S1", Value = "16" });
+            lstVehiculo.Add(new SelectListItem() { Text = "3S2", Value = "17" });
+            lstVehiculo.Add(new SelectListItem() { Text = "3S3", Value = "18" });
+            lstVehiculo.Add(new SelectListItem() { Text = "2T2", Value = "19" });
+            lstVehiculo.Add(new SelectListItem() { Text = "2T3", Value = "20" });
+            lstVehiculo.Add(new SelectListItem() { Text = "3T2", Value = "21" });
+            lstVehiculo.Add(new SelectListItem() { Text = "> 3T3", Value = "22" });
+            ViewData["ddlVehiculo"] = lstVehiculo;
 
             return View();
         }
@@ -194,6 +229,19 @@ namespace SIS_Ga2.Controllers
                 throw;
             }
 
+        }
+
+
+        public JsonResult ListaVehiculo(int idTipoVehiculo)
+        {
+
+            BLVehiculos objblVehiculos = new BLVehiculos();
+            List<BEVehiculos> lobjVehiculos = new List<BEVehiculos>();
+            lobjVehiculos = objblVehiculos.ListarVehiculos(idTipoVehiculo);
+
+            if (lobjVehiculos == null)
+                throw new ArgumentException("Vehiculo " + idTipoVehiculo + " no es correcto");
+            return Json(lobjVehiculos);
         }
 
     }

@@ -1011,7 +1011,7 @@
                                 <div class="row">
                                     <div class="form-group col-md-4">
                                         <label for="FdxFc" class="col-form-label col-form-label-sm">Fd x Fc :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                                        <input id="FdxFc" type="text" placeholder="Fd x Fc" class="mr-3 col-sm-8 form-control form-control-sm">
+                                        <input id="FdxFc" type="text" readonly="readonly" placeholder="Fd x Fc" class="mr-3 col-sm-8 form-control form-control-sm">
                                         <button type="button" id="btnFdxFc" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#SubModal_2"><span class="fa fa-flask"></span></button>
                                     </div>
                                     <div class="form-group col-md-4">
@@ -1265,7 +1265,7 @@
                                     </td>
                                     <td width="400px" rowspan="3" colspan="2">
                                         <div class="form-group col-md-6 text-lg-right">
-                                            <img src="~/Content/images/Vehiculo_Moto_L3.jpg" width="200" height="200" class="">
+                                            <img id="img_calzadacarril" src="~/Content/images/Vehiculo_Moto_L3.jpg" width="200" height="200" class="">
                                         </div>
                                     </td>
                                 </tr>
@@ -1299,13 +1299,13 @@
                                         <label for="inlineFormInput" class="col-form-label col-form-label-sm">Fd x Fc</label>
                                     </td>
                                     <td>
-                                        <input id="txtErrorComb" data-id="4" type="text" placeholder="Fd x Fc" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                        <input id="FdxFc_Calculado" data-id="4" type="text" placeholder="Fd x Fc" readonly="readonly" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
                                     </td>
                                     <td>
                                         <label for="inlineFormInput" class="col-form-label col-form-label-sm">Fd x Fc</label>
                                     </td>
                                     <td>
-                                        <input id="txtErrorComb" data-id="4" type="text" placeholder="Fd x Fc" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                        <input id="FdxFc_Ingresado" data-id="4" type="text" placeholder="Fd x Fc" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
                                     </td>
 
                                 </tr>
@@ -1319,7 +1319,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                        <button type="button" id="btnGuardarFdxFc" class="btn btn-primary small"><span class="fa fa-road"></span> Guardar</button>
+                        <button type="button" class="btn btn-secondary small" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
             </div>
@@ -1617,6 +1618,59 @@
         });
 
 
+        $("#ddlCalzada").change(function () {
+
+            var Calzada = document.getElementById("ddlCalzada").value;
+            var CarrilxSentido = document.getElementById("ddlCarrilxSentido").value;
+            var NumSentido = document.getElementById("ddlNumSentido").value;
+
+            obtenerFactorDistrib(Calzada, NumSentido, CarrilxSentido);
+
+
+        });
+        $("#ddlCarrilxSentido").change(function () {
+
+            var Calzada = document.getElementById("ddlCalzada").value;
+            var CarrilxSentido = document.getElementById("ddlCarrilxSentido").value;
+            var NumSentido = document.getElementById("ddlNumSentido").value;
+
+            obtenerFactorDistrib(Calzada, NumSentido, CarrilxSentido);
+
+        });
+        $("#ddlNumSentido").change(function () {
+
+            var Calzada = document.getElementById("ddlCalzada").value;
+            var CarrilxSentido = document.getElementById("ddlCarrilxSentido").value;
+            var NumSentido = document.getElementById("ddlNumSentido").value;
+
+            obtenerFactorDistrib(Calzada, NumSentido, CarrilxSentido);
+
+        });
+
+
+
+        $("#btnGuardarFdxFc").click(function () {
+
+            var FdxFc_Calculado = document.getElementById("FdxFc_Calculado").value;
+            var FdxFc_Ingresado = document.getElementById("FdxFc_Ingresado").value;
+
+            if (FdxFc_Calculado != '') {
+                document.getElementById("FdxFc").value = document.getElementById("FdxFc_Calculado").value;
+                $("#SubModal_2 .close").click();
+            } else 
+                 if (FdxFc_Ingresado != '') {
+                     document.getElementById("FdxFc").value = document.getElementById("FdxFc_Ingresado").value;
+                     $("#SubModal_2 .close").click();
+                 } else {
+                     return;
+                 }
+            
+        });
+
+        
+
+
+
         //Funcion solo Número
         $('.input-number').on('input', function () {
             this.value = this.value.replace(/[^.0-9]/g, '');
@@ -1717,6 +1771,52 @@
             }
         });
     }
+
+    function obtenerFactorDistrib(Calzada, NumSentido, CarrilxSentido) {
+
+        $.ajax
+            ({
+                method: 'POST',
+                url: '/ParametrosAsfalto/ListarValorFactorDistrib',
+                data: { 'Numero_Calzada': Calzada, 'Numero_Sentido': NumSentido, 'Numero_Carril_x_Sentido': CarrilxSentido },
+                success: function (respuesta) {
+
+                    if (respuesta!='') {
+                    
+                        var obj = (typeof respuesta) == 'string' ? eval('(' + respuesta + ')') : respuesta;
+
+                        $.each(obj, function (i, item) {
+                            
+                            if (item.Valor_Distrib_Calculado != '')
+                            {
+                                document.getElementById("FdxFc_Calculado").value = item.Valor_Distrib_Calculado;
+                            } else {
+                                document.getElementById("FdxFc_Calculado").value = '';
+                            } 
+
+                            if (item.url_img != '' || item.url_img.length > 0)
+                            {
+                                $("#img_calzadacarril").attr("src", item.url_img);
+                            } else {
+                                $("#img_calzadacarril").attr("src", "/Content/images/calzadas/NoImage.png");
+                            } 
+
+                        });
+                    } else {
+                        document.getElementById("FdxFc_Calculado").value = '';
+                        $("#img_calzadacarril").attr("src", "/Content/images/calzadas/NoImage.png");
+                    }
+
+                },
+                error: function (xhr, status) {
+                    alert("PLOP");
+                }
+
+            });
+
+    }
+
+
 
     function delimitNumbers(str) {
         return (str + "").replace(/\b(\d+)((\.\d+)*)\b/g,

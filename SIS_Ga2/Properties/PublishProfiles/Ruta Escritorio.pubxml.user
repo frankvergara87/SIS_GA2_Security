@@ -139,28 +139,28 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>10/10/2019 01:54:02</publishTime>
     </File>
     <File Include="bin/SIS_Ga2.Business.dll">
-      <publishTime>12/05/2019 19:35:34</publishTime>
+      <publishTime>12/06/2019 21:08:43</publishTime>
     </File>
     <File Include="bin/SIS_Ga2.Business.pdb">
-      <publishTime>12/05/2019 19:35:34</publishTime>
+      <publishTime>12/06/2019 21:08:43</publishTime>
     </File>
     <File Include="bin/SIS_Ga2.DataAccess.dll">
-      <publishTime>12/05/2019 19:35:32</publishTime>
+      <publishTime>12/06/2019 21:08:42</publishTime>
     </File>
     <File Include="bin/SIS_Ga2.DataAccess.pdb">
-      <publishTime>12/05/2019 19:35:32</publishTime>
+      <publishTime>12/06/2019 21:08:42</publishTime>
     </File>
     <File Include="bin/SIS_Ga2.dll">
-      <publishTime>12/05/2019 19:35:36</publishTime>
+      <publishTime>12/06/2019 21:08:44</publishTime>
     </File>
     <File Include="bin/SIS_Ga2.Entity.dll">
-      <publishTime>12/05/2019 19:35:27</publishTime>
+      <publishTime>12/06/2019 21:08:40</publishTime>
     </File>
     <File Include="bin/SIS_Ga2.Entity.pdb">
-      <publishTime>12/05/2019 19:35:27</publishTime>
+      <publishTime>12/06/2019 21:08:40</publishTime>
     </File>
     <File Include="bin/SIS_Ga2.pdb">
-      <publishTime>12/05/2019 19:35:36</publishTime>
+      <publishTime>12/06/2019 21:08:44</publishTime>
     </File>
     <File Include="bin/System.Web.Helpers.dll">
       <publishTime>10/10/2019 01:54:02</publishTime>
@@ -311,6 +311,30 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
     </File>
     <File Include="Content/images/asfalto_4.jpg">
       <publishTime>11/23/2019 23:25:27</publishTime>
+    </File>
+    <File Include="Content/images/calzadas/1_1_1.jpg">
+      <publishTime>12/06/2019 18:40:59</publishTime>
+    </File>
+    <File Include="Content/images/calzadas/1_2_1.jpg">
+      <publishTime>12/06/2019 18:40:59</publishTime>
+    </File>
+    <File Include="Content/images/calzadas/1_2_2.jpg">
+      <publishTime>12/06/2019 18:40:59</publishTime>
+    </File>
+    <File Include="Content/images/calzadas/2_2_1.jpg">
+      <publishTime>12/06/2019 18:40:59</publishTime>
+    </File>
+    <File Include="Content/images/calzadas/2_2_2.jpg">
+      <publishTime>12/06/2019 18:40:59</publishTime>
+    </File>
+    <File Include="Content/images/calzadas/2_2_3.jpg">
+      <publishTime>12/06/2019 18:40:59</publishTime>
+    </File>
+    <File Include="Content/images/calzadas/2_2_4.jpg">
+      <publishTime>12/06/2019 18:40:59</publishTime>
+    </File>
+    <File Include="Content/images/calzadas/NoImage.png">
+      <publishTime>12/06/2019 18:48:07</publishTime>
     </File>
     <File Include="Content/images/Diseno_Adoquin.jpg">
       <publishTime>10/10/2019 01:54:00</publishTime>
@@ -1411,7 +1435,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>12/02/2019 00:26:58</publishTime>
     </File>
     <File Include="Views/ParametrosAsfalto/Index.cshtml">
-      <publishTime>12/04/2019 00:31:45</publishTime>
+      <publishTime>12/06/2019 19:08:33</publishTime>
     </File>
     <File Include="Views/ParametrosConcreto/Index.cshtml">
       <publishTime>11/23/2019 22:32:37</publishTime>

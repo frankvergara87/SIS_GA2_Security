@@ -22,7 +22,7 @@
             <div class="card-header d-flex align-items-center">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                        <li class="breadcrumb-item active" aria-current="page">Registro de Parámetros</li>
+                        <li class="breadcrumb-item active" aria-current="page">Registro de Parámetros: < @sistema.TipoDiseno ></li>
                     </ol>
                 </nav>
             </div>
@@ -49,7 +49,7 @@
                             <div class="row">
                                 <div class="form-group col-md-5">
                                     <label for="inlineFormInput" class="col-form-label col-form-label-sm">Periodo de Diseño</label>
-                                    <input id="txtPeriodoDiseno" data-id="1" type="text" placeholder="Periodo de Diseño" class="column_filter mr-3 col-sm-12 form-control form-control-sm input-number mascara">
+                                    @Html.DropDownList("ddlPeriodoDisenoParam", null, new { @class = "mr-3 col-sm-8 form-control form-control-sm" })
                                 </div>
                                 <div class="form-group col-md-5">
                                     <label for="inlineFormInput" class="col-form-label col-form-label-sm">Cantidad de ESAL&nbsp;&nbsp;&nbsp;</label>
@@ -1020,15 +1020,15 @@
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="PeriodoDiseno" class="col-form-label col-form-label-sm">Periodo de Diseño :</label>
-                                        @Html.DropDownList("ddlPeriodoDiseno", null, new { @class = "mr-3 col-sm-8 form-control form-control-sm" })
+                                        <input id="PeriodoDiseno" type="text" readonly="readonly" placeholder="Periodo" class="mr-3 col-sm-10 form-control form-control-sm">
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="DiasAno" class="col-form-label col-form-label-sm">Días del Año :</label>
-                                        <input id="DiasAno" type="text" placeholder="Días del Año" class="mr-3 col-sm-10 form-control form-control-sm">
+                                        <input id="DiasAno" type="text" placeholder="Días del Año" value="365" class="mr-3 col-sm-10 form-control form-control-sm">
                                     </div>
                                     <div class="form-group col-md-4">
                                         <label for="Fp" class="col-form-label col-form-label-sm">Fp :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                                        <input id="Fp" type="text" placeholder="Fp" class="mr-3 col-sm-10 form-control form-control-sm">
+                                        <input id="Fp" type="text" placeholder="Fp" value="1.00" class="mr-3 col-sm-10 form-control form-control-sm">
                                     </div>
                                 </div>
                             </form>
@@ -1091,10 +1091,10 @@
                             <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
                                 <tr>
                                     <td>
-                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">Vehiculo</label>
+                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">Tipo Vehiculo</label>
                                     </td>
                                     <td>
-                                        <input id="txtErrorComb" data-id="4" type="text" placeholder="Vehiculo" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                        @Html.DropDownList("ddlTipoVehiculo", null, new { @class = "mr-3 col-sm-10 form-control form-control-sm" })
                                     </td>
                                     <td>&nbsp;</td>
                                     <td width="230px" rowspan="4">
@@ -1102,6 +1102,15 @@
                                             <img src="~/Content/images/Vehiculo_Moto_L3.jpg" width="200" height="200" class="">
                                         </div>
                                     </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">Vehiculo</label>
+                                    </td>
+                                    <td>
+                                        @Html.DropDownList("ddlVehiculo", null, new { @class = "mr-3 col-sm-10 form-control form-control-sm" })
+                                    </td>
+                                    <td>&nbsp;</td>
                                 </tr>
                                 <tr>
                                     <td>
@@ -1131,7 +1140,7 @@
                                         <input id="txtErrorComb" data-id="4" type="text" placeholder="EE" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
                                     </td>
                                     <td>&nbsp;</td>
-
+                                    <td>&nbsp;</td>
                                 </tr>
                                 <tr>
                                     <td>&nbsp;</td>
@@ -1265,7 +1274,7 @@
                                     </td>
                                     <td width="400px" rowspan="3" colspan="2">
                                         <div class="form-group col-md-6 text-lg-right">
-                                            <img id="img_calzadacarril" src="~/Content/images/Vehiculo_Moto_L3.jpg" width="200" height="200" class="">
+                                            <img id="img_calzadacarril" src="/Content/images/calzadas/NoImage.png" width="200" height="200" class="">
                                         </div>
                                     </td>
                                 </tr>
@@ -1345,10 +1354,18 @@
 
 
         $('.mascara').mask("#,##0.00", { reverse: true }); //Aplica la mascara
+        
+        document.getElementById("PeriodoDiseno").value = $("#ddlPeriodoDisenoParam :selected").text();
+
+        var Calzada = document.getElementById("ddlCalzada").value;
+        var CarrilxSentido = document.getElementById("ddlCarrilxSentido").value;
+        var NumSentido = document.getElementById("ddlNumSentido").value;
+
+        obtenerFactorDistrib(Calzada, NumSentido, CarrilxSentido);
+
 
         //Limpiar Parmaretros
         $("#btnCancelar_a").click(function () {
-            document.getElementById("txtPeriodoDiseno").value = '';
             document.getElementById("txtCantidadESAL").value = '';
             document.getElementById("txtConfiab").value = '';
             document.getElementById("txtErrorComb").value = '';
@@ -1476,6 +1493,13 @@
 
                 });
 
+
+        });
+
+
+        $("#ddlPeriodoDisenoParam").change(function () {
+
+            document.getElementById("PeriodoDiseno").value = $("#ddlPeriodoDisenoParam :selected").text();
 
         });
 
@@ -1667,7 +1691,16 @@
             
         });
 
+
+
+        $("#ddlTipoVehiculo").change(function () {
+            cambiaVehiculo($("#ddlTipoVehiculo").val());
+            //var id = $(this).val();
+            //var text = $(this).find('option:selected').text();
+        });
         
+        cambiaVehiculo($("#ddlTipoVehiculo").val());
+
 
 
 
@@ -1786,7 +1819,7 @@
                         var obj = (typeof respuesta) == 'string' ? eval('(' + respuesta + ')') : respuesta;
 
                         $.each(obj, function (i, item) {
-                            
+
                             if (item.Valor_Distrib_Calculado != '')
                             {
                                 document.getElementById("FdxFc_Calculado").value = item.Valor_Distrib_Calculado;
@@ -1814,6 +1847,48 @@
 
             });
 
+    }
+
+    function cambiaVehiculo(idTipoVehiculo) {
+        // var dd2 = document.getElementById("idIngeniero");
+        //alert(dd2.value);
+        var dd = document.getElementById("ddlVehiculo");
+
+        dd.options.length = 0;
+        dd.options[0] = new Option("Espere...");
+        dd.selectedIndex = 0;
+        dd.disabled = true;
+
+        // Control de errores
+        $("#ddlVehiculo").ajaxError(function (event, request, settings) {
+            dd.options[0] = new Option("TipoVehiculo incorrecto");
+        });
+
+
+        var objData = {};
+        objData["idTipoVehiculo"] = idTipoVehiculo;
+
+        $.ajax({
+            type: "POST",
+            url: '/ParametrosAsfalto/ListaVehiculo',
+            data: JSON.stringify(objData),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (Vehiculos) {
+
+                var obj = (typeof Vehiculos) == 'string' ? eval('(' + Vehiculos + ')') : Vehiculos;
+
+                $.each(obj, function (i, item) {
+
+                    dd.options[i] = new Option(item.Vehiculos, item.Id_Vehiculos);
+
+                });
+
+
+                dd.disabled = false;
+            }
+
+        });
     }
 
 
