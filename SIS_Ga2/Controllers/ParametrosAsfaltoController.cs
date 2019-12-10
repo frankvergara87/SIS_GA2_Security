@@ -55,29 +55,29 @@ namespace SIS_Ga2.Controllers
 
 
             List<SelectListItem> lstVehiculo = new List<SelectListItem>();
-            lstVehiculo.Add(new SelectListItem() { Text = "MOTO L3", Value = "1" });
-            lstVehiculo.Add(new SelectListItem() { Text = "MOTOTAXI L5", Value = "2" });
-            lstVehiculo.Add(new SelectListItem() { Text = "AUTO M1", Value = "3" });
-            lstVehiculo.Add(new SelectListItem() { Text = "PANEL N1", Value = "4" });
-            lstVehiculo.Add(new SelectListItem() { Text = "PICK UP N2", Value = "5" });
-            lstVehiculo.Add(new SelectListItem() { Text = "RURAL COMBI M2", Value = "6" });
-            lstVehiculo.Add(new SelectListItem() { Text = "B2", Value = "7" });
-            lstVehiculo.Add(new SelectListItem() { Text = "B3", Value = "8" });
-            lstVehiculo.Add(new SelectListItem() { Text = "B4", Value = "9" });
-            lstVehiculo.Add(new SelectListItem() { Text = "C2", Value = "10" });
-            lstVehiculo.Add(new SelectListItem() { Text = "C3", Value = "11" });
-            lstVehiculo.Add(new SelectListItem() { Text = "C4", Value = "12" });
-            lstVehiculo.Add(new SelectListItem() { Text = "2S1", Value = "13" });
-            lstVehiculo.Add(new SelectListItem() { Text = "2S2", Value = "14" });
-            lstVehiculo.Add(new SelectListItem() { Text = "2S3", Value = "15" });
-            lstVehiculo.Add(new SelectListItem() { Text = "3S1", Value = "16" });
-            lstVehiculo.Add(new SelectListItem() { Text = "3S2", Value = "17" });
-            lstVehiculo.Add(new SelectListItem() { Text = "3S3", Value = "18" });
-            lstVehiculo.Add(new SelectListItem() { Text = "2T2", Value = "19" });
-            lstVehiculo.Add(new SelectListItem() { Text = "2T3", Value = "20" });
-            lstVehiculo.Add(new SelectListItem() { Text = "3T2", Value = "21" });
-            lstVehiculo.Add(new SelectListItem() { Text = "> 3T3", Value = "22" });
+            lstVehiculo.Add(new SelectListItem() { Text = "Seleccione", Value = "0" });
             ViewData["ddlVehiculo"] = lstVehiculo;
+
+            List<SelectListItem> lstTipoEje_1 = new List<SelectListItem>();
+            lstTipoEje_1.Add(new SelectListItem() { Text = " ", Value = "0" });
+            ViewData["ddlTipoEje_1"] = lstTipoEje_1;
+
+            List<SelectListItem> lstTipoEje_2 = new List<SelectListItem>();
+            lstTipoEje_2.Add(new SelectListItem() { Text = " ", Value = "0" });
+            ViewData["ddlTipoEje_2"] = lstTipoEje_2;
+
+            List<SelectListItem> lstTipoEje_3 = new List<SelectListItem>();
+            lstTipoEje_3.Add(new SelectListItem() { Text = " ", Value = "0" });
+            ViewData["ddlTipoEje_3"] = lstTipoEje_3;
+
+            List<SelectListItem> lstTipoEje_4 = new List<SelectListItem>();
+            lstTipoEje_4.Add(new SelectListItem() { Text = " ", Value = "0" });
+            ViewData["ddlTipoEje_4"] = lstTipoEje_4;
+
+            List<SelectListItem> lstTipoEje_5 = new List<SelectListItem>();
+            lstTipoEje_5.Add(new SelectListItem() { Text = " ", Value = "0" });
+            ViewData["ddlTipoEje_5"] = lstTipoEje_5;
+
 
             return View();
         }
@@ -243,6 +243,37 @@ namespace SIS_Ga2.Controllers
                 throw new ArgumentException("Vehiculo " + idTipoVehiculo + " no es correcto");
             return Json(lobjVehiculos);
         }
+
+
+
+
+        //ListarCantidadEjes
+        public int ObtenerCantidadEjes(int idVehiculo)
+        {
+            int CantEjes = 0;
+            BLEjes objblCantEjes = new BLEjes();
+            List<BEEjes> lobjCantEjes = new List<BEEjes>();
+            lobjCantEjes = objblCantEjes.ListarCantidadEjes(idVehiculo);
+
+            foreach (BEEjes ce in lobjCantEjes)
+            {
+                CantEjes = ce.Total_Ejes;
+            }            
+
+            return CantEjes;
+        }
+
+        public JsonResult ListarEjesxVehiculo(int idVehiculo)
+        {
+            BLEjes objblEjes = new BLEjes();
+            List<BEEjes> lobjEjes = new List<BEEjes>();
+            lobjEjes = objblEjes.ListarEjesxVehiculo(idVehiculo);
+
+            if (lobjEjes == null)
+                throw new ArgumentException("Vehiculo " + idVehiculo + " no es correcto");
+            return Json(lobjEjes);
+        }
+
 
     }
 }

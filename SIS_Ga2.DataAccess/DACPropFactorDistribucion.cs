@@ -9,7 +9,7 @@ using SIS_Ga2.Entity;
 
 namespace SIS_Ga2.DataAccess
 {
-   public  class DACPropFactorDistribucion
+    public class DACPropFactorDistribucion
     {
         public List<BEPropFactorDistribucion> ListarValorFactorDistrib(BEPropFactorDistribucion objEntidad)
         {
@@ -64,12 +64,13 @@ namespace SIS_Ga2.DataAccess
             param.Add("@Fecha_Creacion", objEntidad.Fecha_Creacion);
             param.Add("@Hora_Creacion", objEntidad.Hora_Creacion);
             param.Add("@Usr_Creacion", objEntidad.Usr_Creacion);
-          
+            param.Add("@Id_Prop_Factor_Distrib", 0, System.Data.ParameterDirection.Output);
 
             try
             {
                 objSql.ExecuteNonQuery("USP_Ins_Prop_Factor_Distrib", param);
                 resultado = 1;
+
             }
             catch (Exception ex)
             {

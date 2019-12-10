@@ -33,5 +33,13 @@ namespace SIS_Ga2.Entity
 
         public double DifServiciabilidad { get; set; }
 
+        public string TipoVehiculo { get; set; }
+        public double PesoE1 { get; set; }
+        public double PesoE2 { get; set; }
+        public double PesoE3 { get; set; }
+
+        public double PesoE4 { get; set; }
+        public double PesoE5 { get; set; }
+
     }
 }

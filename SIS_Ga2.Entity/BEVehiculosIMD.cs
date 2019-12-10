@@ -7,10 +7,11 @@ using System.Threading.Tasks;
 namespace SIS_Ga2.Entity
 {
     public class BEVehiculosIMD
-    { 
+    {
         public int Id_Vehiculos_IMD { get; set; }
         public int Id_Vehiculos { get; set; }
         public int Id_Repet_Equivalentes { get; set; }
+        public int Estado { get; set; }
         public double IMD_Base { get; set; }
         public string Tipo_Eje_E1 { get; set; }
         public double Peso_Tonelada_E1 { get; set; }
@@ -30,12 +31,14 @@ namespace SIS_Ga2.Entity
         public double Valor_FVP { get; set; }
         public double Valor_EE { get; set; }
 
-        public double FechaCreacion { get; set; }
-        public double HoraCreacion { get; set; }
-        public string UsrCreacion { get; set; }
-        public double FechaActualizacion { get; set; }
-        public double HoraActualizacion { get; set; }
-        public string UsrActualizacion { get; set; }
+
+        public double Fecha_Creacion { get; set; }
+        public double Hora_Creacion { get; set; }
+        public string Usr_Creacion { get; set; }
+
+        public double Fecha_Actualizacion { get; set; }
+        public double Hora_Actualizacion { get; set; }
+        public string Usr_Actualizacion { get; set; }
 
     }
 }

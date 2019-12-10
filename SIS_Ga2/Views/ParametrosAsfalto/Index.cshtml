@@ -1153,13 +1153,13 @@
                                         <label for="inlineFormInput" class="col-form-label col-form-label-sm">Tipo Eje 1</label>
                                     </td>
                                     <td>
-                                        <input id="txtErrorComb" data-id="4" type="text" placeholder="Tipo Eje 1" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                        @Html.DropDownList("ddlTipoEje_1", null, new { @class = "mr-3 col-sm-10 form-control form-control-sm", @disabled = "disabled" })
                                     </td>
                                     <td>
                                         <label for="inlineFormInput" class="col-form-label col-form-label-sm">Peso Eje 1</label>
                                     </td>
                                     <td>
-                                        <input id="txtErrorComb" data-id="4" type="text" placeholder="Peso Eje 1" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                        <input id="txtPesoEje_1" data-id="4" type="text" placeholder="Peso Eje 1" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
                                     </td>
                                 </tr>
                                 <tr>
@@ -1173,13 +1173,13 @@
                                         <label for="inlineFormInput" class="col-form-label col-form-label-sm">Tipo Eje 2</label>
                                     </td>
                                     <td>
-                                        <input id="txtErrorComb" data-id="4" type="text" placeholder="Tipo Eje 2" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                        @Html.DropDownList("ddlTipoEje_2", null, new { @class = "mr-3 col-sm-10 form-control form-control-sm", @disabled = "disabled" })
                                     </td>
                                     <td>
                                         <label for="inlineFormInput" class="col-form-label col-form-label-sm">Peso Eje 2</label>
                                     </td>
                                     <td>
-                                        <input id="txtErrorComb" data-id="4" type="text" placeholder="Peso Eje 2" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                        <input id="txtPesoEje_2" data-id="4" type="text" placeholder="Peso Eje 2" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
                                     </td>
                                 </tr>
                                 <tr>
@@ -1193,13 +1193,13 @@
                                         <label for="inlineFormInput" class="col-form-label col-form-label-sm">Tipo Eje 3</label>
                                     </td>
                                     <td>
-                                        <input id="txtErrorComb" data-id="4" type="text" placeholder="Tipo Eje 3" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                        @Html.DropDownList("ddlTipoEje_3", null, new { @class = "mr-3 col-sm-10 form-control form-control-sm", @disabled = "disabled" })
                                     </td>
                                     <td>
                                         <label for="inlineFormInput" class="col-form-label col-form-label-sm">Peso Eje 3</label>
                                     </td>
                                     <td>
-                                        <input id="txtErrorComb" data-id="4" type="text" placeholder="Peso Eje 3" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                        <input id="txtPesoEje_3" data-id="4" type="text" placeholder="Peso Eje 3" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
                                     </td>
                                 </tr>
                                 <tr>
@@ -1213,13 +1213,13 @@
                                         <label for="inlineFormInput" class="col-form-label col-form-label-sm">Tipo Eje 4</label>
                                     </td>
                                     <td>
-                                        <input id="txtErrorComb" data-id="4" type="text" placeholder="Tipo Eje 4" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                        @Html.DropDownList("ddlTipoEje_4", null, new { @class = "mr-3 col-sm-10 form-control form-control-sm", @disabled = "disabled" })
                                     </td>
                                     <td>
                                         <label for="inlineFormInput" class="col-form-label col-form-label-sm">Peso Eje 4</label>
                                     </td>
                                     <td>
-                                        <input id="txtErrorComb" data-id="4" type="text" placeholder="Peso Eje 4" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                        <input id="txtPesoEje_4" data-id="4" type="text" placeholder="Peso Eje 4" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
                                     </td>
                                 </tr>
                                 <tr>
@@ -1233,13 +1233,13 @@
                                         <label for="inlineFormInput" class="col-form-label col-form-label-sm">Tipo Eje 5</label>
                                     </td>
                                     <td>
-                                        <input id="txtErrorComb" data-id="4" type="text" placeholder="Tipo Eje 5" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                        @Html.DropDownList("ddlTipoEje_5", null, new { @class = "mr-3 col-sm-10 form-control form-control-sm", @disabled = "disabled" })
                                     </td>
                                     <td>
                                         <label for="inlineFormInput" class="col-form-label col-form-label-sm">Peso Eje 5</label>
                                     </td>
                                     <td>
-                                        <input id="txtErrorComb" data-id="4" type="text" placeholder="Peso Eje 5" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                        <input id="txtPesoEje_5" data-id="4" type="text" placeholder="Peso Eje 5" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
                                     </td>
                                 </tr>
                             </table>
@@ -1694,12 +1694,33 @@
 
 
         $("#ddlTipoVehiculo").change(function () {
+
+            document.getElementById("ddlTipoEje_1").disabled = true;
+            document.getElementById("ddlTipoEje_2").disabled = true;
+            document.getElementById("ddlTipoEje_3").disabled = true;
+            document.getElementById("ddlTipoEje_4").disabled = true;
+            document.getElementById("ddlTipoEje_5").disabled = true;
+
+            $('#ddlTipoEje_1').val(0);
+            $('#ddlTipoEje_2').val(0);
+            $('#ddlTipoEje_3').val(0);
+            $('#ddlTipoEje_4').val(0);
+            $('#ddlTipoEje_5').val(0);
+
             cambiaVehiculo($("#ddlTipoVehiculo").val());
-            //var id = $(this).val();
-            //var text = $(this).find('option:selected').text();
         });
-        
+
+
+        $("#ddlVehiculo").change(function () {
+            //cambiaEjexVehiculo($("#ddlVehiculo").val());
+
+            ObtenerCantidadEjes($("#ddlVehiculo").val());
+        });
+
         cambiaVehiculo($("#ddlTipoVehiculo").val());
+        //cambiaEjexVehiculo($("#ddlVehiculo").val());
+        //ObtenerCantidadEjes($("#ddlVehiculo").val());
+
 
 
 
@@ -1891,6 +1912,73 @@
         });
     }
 
+
+
+
+
+    function ObtenerCantidadEjes(idVehiculo) {
+
+        $.ajax
+        ({
+            method: 'POST',
+            url: '/ParametrosAsfalto/ObtenerCantidadEjes',
+            data: { 'idVehiculo': idVehiculo },
+            success: function (respuesta) {
+
+                for (var i = 1; i <= respuesta; i++){
+                    document.getElementById("ddlTipoEje_" + i).disabled = true;
+
+                    cambiaEjexVehiculo(idVehiculo, i)
+                }
+            },
+            error: function (xhr, status) {
+                alert("ERROR");
+            }
+
+        });
+
+    }
+
+    function cambiaEjexVehiculo(idVehiculo, i) {
+        var dd = document.getElementById("ddlTipoEje_" + i);
+
+        dd.options.length = 0;
+        dd.options[0] = new Option("Espere...");
+        dd.selectedIndex = 0;
+        dd.disabled = true;
+
+        // Control de errores
+        $("ddlTipoEje_" + i).ajaxError(function (event, request, settings) {
+            dd.options[0] = new Option("TipoEje incorrecto");
+        });
+
+
+        var objData = {};
+        objData["idVehiculo"] = idVehiculo;
+
+        $.ajax({
+            type: "POST",
+            url: '/ParametrosAsfalto/ListarEjesxVehiculo',
+            data: JSON.stringify(objData),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (TipoEje) {
+
+                var obj = (typeof TipoEje) == 'string' ? eval('(' + TipoEje + ')') : TipoEje;
+
+                $.each(obj, function (i, item) {
+
+                    dd.options[i] = new Option(item.Valor, item.Id_Eje);
+
+                });
+
+
+                dd.disabled = false;
+            }
+
+            
+        });
+    }
 
 
     function delimitNumbers(str) {

@@ -190,25 +190,26 @@ namespace SIS_Ga2.Business
                                 {
                                     for (double m = 0; m <= 9; m++)
                                     {
-                                    if (encontrado == 0)
-                                    {
-
-                                        valor = i.ToString() + "." + j.ToString() + k.ToString() + l.ToString() + m.ToString();
-                                        objEntidad.SNReq = Convert.ToDouble(valor);
-
-                                        resultadoN18Calc = Math.Round(calcularN18Calc1(objEntidad), 5);
-
-                                        //calculo = Math.Round(objEntidad.N18Nom - resultadoN18Calc, 3);
-                                        //listBox1.ClearSelected(); 
-
-                                        //if ((calculo<=0.01) && (calculo>0) )
-                                        if ((Math.Round(objEntidad.N18Nom, 3) == Math.Round(resultadoN18Calc,3)))
+                                        if (encontrado == 0)
                                         {
-                                            // textn18calc.Text = resultadoN18Calc.ToString();
-                                            ResultadoSNReq = Math.Round(objEntidad.SNReq, 2);
-                                            calculo = 1;
-                                            encontrado = 1;
-                                            break;
+
+                                            valor = i.ToString() + "." + j.ToString() + k.ToString() + l.ToString() + m.ToString();
+                                            objEntidad.SNReq = Convert.ToDouble(valor);
+
+                                            resultadoN18Calc = Math.Round(calcularN18Calc1(objEntidad), 5);
+
+                                            //calculo = Math.Round(objEntidad.N18Nom - resultadoN18Calc, 3);
+                                            //listBox1.ClearSelected(); 
+
+                                            //if ((calculo<=0.01) && (calculo>0) )
+                                            if ((Math.Round(objEntidad.N18Nom, 3) == Math.Round(resultadoN18Calc, 3)))
+                                            {
+                                                // textn18calc.Text = resultadoN18Calc.ToString();
+                                                ResultadoSNReq = Math.Round(objEntidad.SNReq, 2);
+                                                calculo = 1;
+                                                encontrado = 1;
+                                                break;
+                                            }
                                         }
                                     }
                                 }
@@ -217,16 +218,66 @@ namespace SIS_Ga2.Business
                     }
                 }
             }
-            }
-            if  (calculo==0)
-              {
+            if (calculo == 0)
+            {
                 return 0;
-              }
+            }
             else
             {
-            return ResultadoSNReq;
+                return ResultadoSNReq;
 
             }
         }
+
+
+        public double calcularFVP(BECalculos objEntidad)
+        {
+            try
+            {
+                string TipoDiseno, Id_TipoVehiculo;
+                TipoDiseno = ConfigurationManager.AppSettings["TipoAsfalto"].ToString();
+                Id_TipoVehiculo = ConfigurationManager.AppSettings["Id_TipoVehiculo1"].ToString();
+                double constanteVehiculos = Convert.ToDouble(ConfigurationManager.AppSettings["constanteVehi"].ToString());// 6.6
+                double constantePotencia1 = Convert.ToDouble(ConfigurationManager.AppSettings["constantePotencia1"].ToString());// 4
+                double constantePotencia2 = Convert.ToDouble(ConfigurationManager.AppSettings["constantePotencia2"].ToString());// 4.4
+                double resultE1 = 0;
+                double resultE2 = 0;
+                double PotenciaE1 = 0;
+                double PotenciaE2 = 0;
+                resultE1 = objEntidad.PesoE1 / constanteVehiculos;
+                resultE2 = objEntidad.PesoE2 / constanteVehiculos;
+
+                if (objEntidad.TipoDiseno == TipoDiseno)// si es ASFALTO
+                {
+
+                    PotenciaE1 = Math.Pow(resultE1, 4);
+                    PotenciaE2 = Math.Pow(resultE2, 4);
+                }
+                else
+                {
+                    PotenciaE1 = Math.Pow(resultE1, 4.1);
+                    PotenciaE2 = Math.Pow(resultE2, 4.1);
+                }
+
+
+
+                //double resultadoN18calc2 = 0;
+                double DifServiciabilidad = 0;
+                double resultadoN18calcLog = 0;
+
+                double constanteN18_1 = Convert.ToDouble(ConfigurationManager.AppSettings["constanteN18_1"].ToString());//4.2
+                double constanteN18_2 = Convert.ToDouble(ConfigurationManager.AppSettings["constanteN18_2"].ToString());//1.15
+                DifServiciabilidad = Convert.ToDouble(objEntidad.DifServiciabilidad);
+                resultadoN18calcLog = Math.Log10(DifServiciabilidad / (constanteN18_1 - constanteN18_2));
+                return resultadoN18calcLog;
+            }
+
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
     }
 }
