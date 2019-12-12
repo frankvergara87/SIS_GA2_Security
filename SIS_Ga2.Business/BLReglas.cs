@@ -234,42 +234,139 @@ namespace SIS_Ga2.Business
         {
             try
             {
-                string TipoDiseno, Id_TipoVehiculo;
-                TipoDiseno = ConfigurationManager.AppSettings["TipoAsfalto"].ToString();
-                Id_TipoVehiculo = ConfigurationManager.AppSettings["Id_TipoVehiculo1"].ToString();
-                double constanteVehiculos = Convert.ToDouble(ConfigurationManager.AppSettings["constanteVehi"].ToString());// 6.6
-                double constantePotencia1 = Convert.ToDouble(ConfigurationManager.AppSettings["constantePotencia1"].ToString());// 4
-                double constantePotencia2 = Convert.ToDouble(ConfigurationManager.AppSettings["constantePotencia2"].ToString());// 4.4
+                string TipoDiseno, Id_TipoVehiculo, Id_Vehiculo;
+                double resultadoFVP = 0;
+                TipoDiseno = ConfigurationManager.AppSettings["TipoAsfalto"].ToString();//ASFALTO (MAYUSCULA)
+                Id_TipoVehiculo = ConfigurationManager.AppSettings["Id_TipoVehiculo"].ToString();//1,2,3,4,5,6 (id de tipo vehiculo tabla Tipo_Vehiculo)
+                Id_Vehiculo = ConfigurationManager.AppSettings["Id_Vehiculo"].ToString();//1,2,3,4,5,6..hasta el ultimo que es 22 (id de vehiculo tabla [Tipo_Vehiculo])
+
+                //Constantes para Vehiculos
+                double constanteVehiculos = Convert.ToDouble(ConfigurationManager.AppSettings["constanteVehiculos"].ToString());// 6.6
+                double constantePotVehi1 = Convert.ToDouble(ConfigurationManager.AppSettings["constantePotVehi1"].ToString());// 4
+                double constantePotVehi2 = Convert.ToDouble(ConfigurationManager.AppSettings["constantePotVehi2"].ToString());// 4.1
+
+                //Constantes para Camionetas
+                double constanteCamionetas = Convert.ToDouble(ConfigurationManager.AppSettings["constanteCamionetas"].ToString());// 6.6
+                double constantePotCam1 = Convert.ToDouble(ConfigurationManager.AppSettings["constantePotCam1"].ToString());// 4
+                double constantePotCam2 = Convert.ToDouble(ConfigurationManager.AppSettings["constantePotCam2"].ToString());// 4.1
+
+                //Constantes para Buses
+                double constanteBuses1 = Convert.ToDouble(ConfigurationManager.AppSettings["constanteBuses1"].ToString());// 6.6
+                double constanteBuses2 = Convert.ToDouble(ConfigurationManager.AppSettings["constanteBuses2"].ToString());// 8.2
+                double constantePotBus1 = Convert.ToDouble(ConfigurationManager.AppSettings["constantePotBus1"].ToString());// 4
+                double constantePotBus2 = Convert.ToDouble(ConfigurationManager.AppSettings["constantePotBus2"].ToString());// 4.1
+                //Buses - Vehiculo=B3
+
+                double constanteBuses3 = Convert.ToDouble(ConfigurationManager.AppSettings["constanteBuses3"].ToString());// 15.1
+                double constanteBuses4 = Convert.ToDouble(ConfigurationManager.AppSettings["constanteBuses4"].ToString());// 13.3
+
                 double resultE1 = 0;
                 double resultE2 = 0;
                 double PotenciaE1 = 0;
                 double PotenciaE2 = 0;
-                resultE1 = objEntidad.PesoE1 / constanteVehiculos;
-                resultE2 = objEntidad.PesoE2 / constanteVehiculos;
 
-                if (objEntidad.TipoDiseno == TipoDiseno)// si es ASFALTO
+                //Vehiculos
+                if (objEntidad.Id_TipoVehiculo.ToString() == Id_TipoVehiculo.Substring(0, 1))
                 {
 
-                    PotenciaE1 = Math.Pow(resultE1, 4);
-                    PotenciaE2 = Math.Pow(resultE2, 4);
+                    resultE1 = objEntidad.PesoE1 / constanteVehiculos;
+                    resultE2 = objEntidad.PesoE2 / constanteVehiculos;
+
+                }
+                //Camionetas
+                if (objEntidad.Id_TipoVehiculo.ToString() == Id_TipoVehiculo.Substring(2, 1))
+                {
+
+                    resultE1 = objEntidad.PesoE1 / constanteCamionetas;
+                    resultE2 = objEntidad.PesoE2 / constanteCamionetas;
+
+                }
+
+
+                //Buses Y TIPO DE vehiculo "B2" = id_vehiculo=7
+                if ((objEntidad.TipoDiseno.ToUpper() == TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(12, 1)))
+                {
+                    resultE1 = objEntidad.PesoE1 / constanteBuses1;
+                    resultE2 = objEntidad.PesoE2 / constanteBuses2;
+                }
+
+
+
+
+                //Buses Y TIPO DE vehiculo "B3" = id_vehiculo=8
+                if ((objEntidad.TipoDiseno.ToUpper() == TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(14, 1)))
+                {
+                    resultE1 = objEntidad.PesoE1 / constanteBuses1;
+                    resultE2 = objEntidad.PesoE2 / constanteBuses3;
+                }
+                else if ((objEntidad.TipoDiseno.ToUpper() != TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(14, 1)))
+
+                {
+                    resultE1 = objEntidad.PesoE1 / constanteBuses1;
+                    resultE2 = objEntidad.PesoE2 / constanteBuses4;
+
+                }
+
+                //CALCULO DE POTENCIAS
+                //============================
+
+                //1 - Vehiculos
+                if ((objEntidad.TipoDiseno.ToUpper() == TipoDiseno) && (objEntidad.Id_TipoVehiculo.ToString() == Id_TipoVehiculo.Substring(0, 1)))// si es ASFALTO y si es Vehiculos (Id_Tipo_Vehiculo=1)
+                {
+
+                    PotenciaE1 = Math.Pow(resultE1, constantePotVehi1);
+                    PotenciaE2 = Math.Pow(resultE2, constantePotVehi1);
                 }
                 else
                 {
-                    PotenciaE1 = Math.Pow(resultE1, 4.1);
-                    PotenciaE2 = Math.Pow(resultE2, 4.1);
+                    PotenciaE1 = Math.Pow(resultE1, constantePotVehi2);
+                    PotenciaE2 = Math.Pow(resultE2, constantePotVehi2);
+                }
+                //2- Camionetas
+                if ((objEntidad.TipoDiseno.ToUpper() == TipoDiseno) && (objEntidad.Id_TipoVehiculo.ToString() == Id_TipoVehiculo.Substring(2, 1)))// si es ASFALTO y si es Camioneta (Id_Tipo_Vehiculo=2)
+                {
+
+                    PotenciaE1 = Math.Pow(resultE1, constantePotCam1);
+                    PotenciaE2 = Math.Pow(resultE2, constantePotCam1);
+                }
+                else
+                {
+                    PotenciaE1 = Math.Pow(resultE1, constantePotCam2);
+                    PotenciaE2 = Math.Pow(resultE2, constantePotCam2);
                 }
 
+                //3- Buses
 
 
+                if ((objEntidad.TipoDiseno.ToUpper() == TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(12, 1)))//SI ES ASFALTO Y B2
+                {
+
+                    PotenciaE1 = Math.Pow(resultE1, constantePotBus1);
+                    PotenciaE2 = Math.Pow(resultE2, constantePotBus1);
+                }
+                else
+                {
+                    PotenciaE1 = Math.Pow(resultE1, constantePotBus2);
+                    PotenciaE2 = Math.Pow(resultE2, constantePotBus2);
+                }
+
+                //Buses Y TIPO DE vehiculo "B3" = id_vehiculo=8
+                if ((objEntidad.TipoDiseno.ToUpper() == TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(14, 1)))//SI ES ASFALTO Y B3
+                {
+
+                    PotenciaE1 = Math.Pow(resultE1, constantePotBus1);
+                    PotenciaE2 = Math.Pow(resultE2, constantePotBus1);
+                }
+                else if ((objEntidad.TipoDiseno.ToUpper() != TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(14, 1)))//SI NO ES ASFALTO Y B3
+                {
+                    PotenciaE1 = Math.Pow(resultE1, constantePotBus2);
+                    PotenciaE2 = Math.Pow(resultE2, constantePotBus2);
+                }
+
+                //Buses enviado el ID VEhiculo
+                return resultadoFVP = PotenciaE1 + PotenciaE2;
                 //double resultadoN18calc2 = 0;
-                double DifServiciabilidad = 0;
-                double resultadoN18calcLog = 0;
 
-                double constanteN18_1 = Convert.ToDouble(ConfigurationManager.AppSettings["constanteN18_1"].ToString());//4.2
-                double constanteN18_2 = Convert.ToDouble(ConfigurationManager.AppSettings["constanteN18_2"].ToString());//1.15
-                DifServiciabilidad = Convert.ToDouble(objEntidad.DifServiciabilidad);
-                resultadoN18calcLog = Math.Log10(DifServiciabilidad / (constanteN18_1 - constanteN18_2));
-                return resultadoN18calcLog;
             }
 
             catch (Exception ex)

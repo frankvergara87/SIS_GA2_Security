@@ -18,6 +18,7 @@ namespace SIS_Ga2.DataAccess
             SqlManager objSql = new SqlManager(ConfigurationManager.AppSettings["ASOCEM"].ToString());
             int resultado = 0;
             Parameter param = new Parameter();
+            param.Add("@Id_Vehiculos", objEntidad.Id_Vehiculos);
             param.Add("@Id_Repet_Equivalentes", objEntidad.Id_Repet_Equivalentes);
             param.Add("@IMD_Base", objEntidad.IMD_Base);
             param.Add("@Estado", objEntidad.Estado);
@@ -37,6 +38,11 @@ namespace SIS_Ga2.DataAccess
             param.Add("@Fecha_Creacion", objEntidad.Fecha_Creacion);
             param.Add("@Hora_Creacion", objEntidad.Hora_Creacion);
             param.Add("@Usr_Creacion", objEntidad.Usr_Creacion);
+
+            param.Add("@Fecha_Actualizacion", objEntidad.Fecha_Actualizacion);
+            param.Add("@Hora_Actualizacion", objEntidad.Hora_Actualizacion);
+            param.Add("@Usr_Actualizacion", objEntidad.Usr_Actualizacion);
+
             param.Add("@Id_Vehiculos_IMD", 0, System.Data.ParameterDirection.Output);
             try
             {

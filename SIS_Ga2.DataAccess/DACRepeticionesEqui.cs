@@ -17,6 +17,9 @@ namespace SIS_Ga2.DataAccess
         {
             SqlManager objSql = new SqlManager(ConfigurationManager.AppSettings["ASOCEM"].ToString());
             int resultado = 0;
+
+            string val;
+             
             Parameter param = new Parameter();
             param.Add("@Id_Tasa_Crecimiento", objEntidad.Id_Tasa_Crecimiento);
             param.Add("@Id_Prop_Factor_Distrib", objEntidad.Id_Prop_Factor_Distrib);
@@ -29,11 +32,17 @@ namespace SIS_Ga2.DataAccess
             param.Add("@Fecha_Creacion", objEntidad.Fecha_Creacion);
             param.Add("@Hora_Creacion", objEntidad.Hora_Creacion);
             param.Add("@Usr_Creacion", objEntidad.Usr_Creacion);
-            param.Add("@Id_Repet_Equivalentes", 0, System.Data.ParameterDirection.Output);
+
+
+            //param.Add("@Id_Repet_Equivalentes", 0, System.Data.ParameterDirection.Output);
+
             try
             {
-                objSql.ExecuteNonQuery("USP_Ins_Repetic_Equivalentes", param);
-                resultado = 1;
+                //objSql.ExecuteNoQuery("USP_Ins_Repetic_Equivalentes", param);
+                val = objSql.ExecuteScalar("USP_Ins_Repetic_Equivalentes", param);
+
+
+                resultado = Convert.ToInt32(val);
             }
             catch (Exception ex)
             {

@@ -11,7 +11,7 @@ namespace SIS_Ga2.Entity
         public int Id_Eje { get; set; }
         public int Id_Vehiculo { get; set; }
         public string Valor { get; set; }
-        public double Peso { get; set; }
+        public decimal Peso { get; set; }
         public int cantidadEjes { get; set; }
         public int Total_Ejes { get; set; }        
         public double FechaCreacion { get; set; }

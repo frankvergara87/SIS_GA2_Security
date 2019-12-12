@@ -247,7 +247,7 @@ namespace SIS_Ga2.Controllers
 
 
 
-        //ListarCantidadEjes
+
         public int ObtenerCantidadEjes(int idVehiculo)
         {
             int CantEjes = 0;
@@ -263,6 +263,21 @@ namespace SIS_Ga2.Controllers
             return CantEjes;
         }
 
+        public decimal ListarEjesPeso(int idVehiculo, int idEje)
+        {
+            decimal EjePeso = 0;
+            BLEjes objblPesoEjes = new BLEjes();
+            List<BEEjes> lobjPesoEjes = new List<BEEjes>();
+            lobjPesoEjes = objblPesoEjes.ListarEjesPeso(idVehiculo, idEje);
+
+            foreach (BEEjes ce in lobjPesoEjes)
+            {
+                EjePeso = ce.Peso;
+            }
+
+            return EjePeso;
+        }
+
         public JsonResult ListarEjesxVehiculo(int idVehiculo)
         {
             BLEjes objblEjes = new BLEjes();
@@ -274,6 +289,98 @@ namespace SIS_Ga2.Controllers
             return Json(lobjEjes);
         }
 
+
+        public double CalcularFVP(string idTipoVehiculo, string idVehiculo, string TipoDiseno, string PesoE1, string PesoE2)
+        {
+            double FVP = 0;
+            BLReglas objblReglas = new BLReglas();
+            BECalculos lobjCalculos = new BECalculos();
+            lobjCalculos.Id_TipoVehiculo = Convert.ToInt32(idTipoVehiculo);
+            lobjCalculos.Id_Vehiculo = Convert.ToInt32(idVehiculo);
+            lobjCalculos.TipoDiseno = TipoDiseno;
+
+
+
+            if (PesoE1 == null || PesoE1.Length == 0)
+            {
+                lobjCalculos.PesoE1 = 0;
+            }
+            else
+            {
+                lobjCalculos.PesoE1 = Convert.ToDouble(PesoE1);
+            }
+
+            if (PesoE2 == null || PesoE2.Length == 0)
+            {
+                lobjCalculos.PesoE2 = 0;
+            }
+            else
+            {
+                lobjCalculos.PesoE2 = Convert.ToDouble(PesoE2);
+            }    
+
+            FVP = objblReglas.calcularFVP(lobjCalculos);
+
+            return FVP;
+        }
+
+
+
+
+        public int GuardarVehiculosIMD(int idVehiculo)
+        {
+
+            int Id_Repet_Equivalentes;
+            BLRepeticionesEqui objblRepeticionesEqui = new BLRepeticionesEqui();
+            BERepeticionesEqui lobjRepeticionesEqu = new BERepeticionesEqui();
+
+            lobjRepeticionesEqu.Id_Tasa_Crecimiento = 2;
+            lobjRepeticionesEqu.Id_Prop_Factor_Distrib = 1;
+            lobjRepeticionesEqu.Dias_Diseno = 34;
+            lobjRepeticionesEqu.FP = 54;
+            lobjRepeticionesEqu.Tipo_Diseno = 2;
+            lobjRepeticionesEqu.Periodo = 12;
+            lobjRepeticionesEqu.Valor_EE_Total = 123;
+            lobjRepeticionesEqu.Id_Parametro = 2;
+            lobjRepeticionesEqu.Fecha_Creacion = 0;
+            lobjRepeticionesEqu.Hora_Creacion = 0;
+            lobjRepeticionesEqu.Usr_Creacion = "fvergara";
+
+            Id_Repet_Equivalentes = objblRepeticionesEqui.GuardarRepeticionesEqui(lobjRepeticionesEqu);
+
+
+            int Id_Vehiculos_IMD;
+            BLVehiculosIMD objblVehiculosIMD = new BLVehiculosIMD();
+            BEVehiculosIMD lobjVehiculosIMD = new BEVehiculosIMD();
+            lobjVehiculosIMD.Id_Vehiculos = idVehiculo;
+            lobjVehiculosIMD.Id_Repet_Equivalentes = Id_Repet_Equivalentes;
+            lobjVehiculosIMD.IMD_Base = 123;
+            lobjVehiculosIMD.Estado = 0;
+            lobjVehiculosIMD.Tipo_Eje_E1 = "xx";
+            lobjVehiculosIMD.Peso_Tonelada_E1 = 0;
+            lobjVehiculosIMD.Tipo_Eje_E1 = "xx";
+            lobjVehiculosIMD.Peso_Tonelada_E1 = 0;
+            lobjVehiculosIMD.Tipo_Eje_E1 = "xx";
+            lobjVehiculosIMD.Peso_Tonelada_E1 = 0;
+            lobjVehiculosIMD.Tipo_Eje_E1 = "xx";
+            lobjVehiculosIMD.Peso_Tonelada_E1 = 0;
+            lobjVehiculosIMD.Tipo_Eje_E1 = "xx";
+            lobjVehiculosIMD.Peso_Tonelada_E1 = 0;
+            lobjVehiculosIMD.Valor_FVP = 2;
+            lobjVehiculosIMD.Valor_EE = 3;
+            lobjVehiculosIMD.Fecha_Creacion = 0;
+            lobjVehiculosIMD.Hora_Creacion = 0;
+            lobjVehiculosIMD.Usr_Creacion = "fvergara";
+
+            lobjVehiculosIMD.Fecha_Actualizacion = 0;
+            lobjVehiculosIMD.Hora_Actualizacion = 0;
+            lobjVehiculosIMD.Usr_Actualizacion = "fvergara";
+
+            Id_Vehiculos_IMD = objblVehiculosIMD.GuardarVehiculosIMD(lobjVehiculosIMD);
+
+
+            return Id_Vehiculos_IMD;
+        }
 
     }
 }
