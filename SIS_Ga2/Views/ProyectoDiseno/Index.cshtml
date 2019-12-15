@@ -64,7 +64,7 @@
                     </div>
                     <div class="form-group col-md-5">
                         <label for="inlineFormInput" class="col-form-label col-form-label-sm">Reglamento</label>
-                        <input id="txtReglamento" data-id="4" type="text" placeholder="Reglamento" class="column_filter mr-3 col-sm-12 form-control form-control-sm">
+                        @Html.DropDownList("ddlReglamento", null, new { @class = "mr-3 col-sm-12 form-control form-control-sm" })
                     </div>
                     <div class="form-group col-md-5">
                         <label for="inlineFormInput" class="col-form-label col-form-label-sm">Departamento</label>
@@ -139,7 +139,7 @@
             var strNumDiseno = document.getElementById("txtDiseno").value;
 
             var strTramo = document.getElementById("txtTramo").value;
-            var strReglamento = document.getElementById("txtReglamento").value;
+            var strReglamento = document.getElementById("ddlReglamento").value;
 
             var strIdDepartamento = $("#ddlDepartamento").val();
             var strIdProvincia = $("#ddlProvincia").val();
@@ -158,7 +158,7 @@
             objDataDiseno["IdTipoDiseno"] = strTipoDiseno;
             objDataDiseno["NumeroDiseno"] = strNumDiseno;
             objDataDiseno["idTramo"] = 1; //Hardcode: Regularizar
-            objDataDiseno["idReglamento"] = 1; //Hardcode: Regularizar
+            objDataDiseno["idReglamento"] = strReglamento; //Hardcode: Regularizar
             objDataDiseno["idDistrito"] = strIdDistrito;
 
 

@@ -293,8 +293,9 @@
                                         <div class="form-group col-md-12">
                                             <label for="inlineFormInput" class="col-form-label col-form-label-sm">Concreto Asfáltico Conv.</label>
                                             <div class="form-inline">
-                                                <input id="txtErrorComb" data-id="4" type="text" placeholder="Concreto Asfáltico Convencional" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
-                                                <img src="~/Content/icon/Help_img_6.png" style="width:10%; height:10%;">
+                                                <input id="txtCoefConcrAsfal" data-id="4" type="text" value="0.44" readonly="readonly" placeholder="Concreto Asfáltico Convencional" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                                @*<button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#ConcretoAsfalticoModal"><i class="fa fa-question-circle"></i></button>*@
+                                                <button type="button" id="btnCalcularEsal" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ConcretoAsfalticoModal"><span class="fa fa-ellipsis-h"></span></button>
                                             </div>
                                         </div>
                                     </td>
@@ -303,8 +304,8 @@
                                         <div class="form-group col-md-12">
                                             <label for="inlineFormInput" class="col-form-label col-form-label-sm">Base Granular (m2)</label>
                                             <div class="form-inline">
-                                                <input id="txtErrorComb" data-id="4" type="text" placeholder="Base Granular (m2)" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
-                                                <img src="~/Content/icon/Help_img_6.png" style="width:11%; height:11%;">
+                                                <input id="txtBaseGranularm2" data-id="4" type="text" readonly="readonly" placeholder="Base Granular (m2)" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                                <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#"><i class="fa fa-question-circle"></i></button>
                                             </div>
                                         </div>
                                     </td>
@@ -316,8 +317,9 @@
                                         <div class="form-group col-md-12">
                                             <label for="inlineFormInput" class="col-form-label col-form-label-sm">Base Granular (a2)</label>
                                             <div class="form-inline">
-                                                <input id="txtErrorComb" data-id="4" type="text" placeholder="Base Granular (a2)" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
-                                                <img src="~/Content/icon/Help_img_6.png" style="width:10%; height:10%;">
+                                                <input id="txtBaseGranulara2" data-id="4" type="text" readonly="readonly" placeholder="Base Granular (a2)" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                                @*<button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#BaseGranularModal"><i class="fa fa-question-circle"></i></button>*@
+                                                <button type="button" id="btnCalcularEsal" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#BaseGranularModal"><span class="fa fa-ellipsis-h"></span></button>
                                             </div>
                                         </div>
                                     </td>
@@ -326,8 +328,8 @@
                                         <div class="form-group col-md-12">
                                             <label for="inlineFormInput" class="col-form-label col-form-label-sm">Sub-base (m3)</label>
                                             <div class="form-inline">
-                                                <input id="txtErrorComb" data-id="4" type="text" placeholder="Sub-base (m3)" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
-                                                <img src="~/Content/icon/Help_img_6.png" style="width:11%; height:11%;">
+                                                <input id="txtSubBasem3" data-id="4" type="text" readonly="readonly" placeholder="Sub-base (m3)" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                                <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#"><i class="fa fa-question-circle"></i></button>
                                             </div>
                                         </div>
                                     </td>
@@ -337,10 +339,11 @@
                                 <tr>
                                     <td>
                                         <div class="form-group col-md-12">
-                                            <label for="inlineFormInput" class="col-form-label col-form-label-sm">Sub-base (m3)</label>
+                                            <label for="inlineFormInput" class="col-form-label col-form-label-sm">Sub-base (a3)</label>
                                             <div class="form-inline">
-                                                <input id="txtErrorComb" data-id="4" type="text" placeholder="Sub-base (m3)" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
-                                                <img src="~/Content/icon/Help_img_6.png" style="width:10%; height:10%;">
+                                                <input id="txtSubBasea3" data-id="4" type="text" readonly="readonly" placeholder="Sub-base (m3)" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                                @*<button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#SubBaseModal"><i class="fa fa-question-circle"></i></button>*@
+                                                <button type="button" id="btnCalcularEsal" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#SubBaseModal"><span class="fa fa-ellipsis-h"></span></button>
                                             </div>
                                         </div>
                                     </td>
@@ -1119,14 +1122,6 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>
-                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">EE</label>
-                                    </td>
-                                    <td>
-                                        <input id="txtErrorComb" data-id="4" type="text" placeholder="EE" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
-                                    </td>
-                                </tr>
-                                <tr>
                                     <td>&nbsp;</td>
                                     <td>&nbsp;</td>
                                     <td>&nbsp;</td>
@@ -1237,7 +1232,7 @@
                                         <label for="inlineFormInput" class="col-form-label col-form-label-sm">FVP</label>
                                     </td>
                                     <td>
-                                        <input id="txtFVP" data-id="4" type="text"  readonly="readonly" placeholder="FVP" class="column_filter mr-1 col-sm-10 form-control form-control-sm">
+                                        <input id="txtFVP" data-id="4" type="text" readonly="readonly" placeholder="FVP" class="column_filter mr-1 col-sm-10 form-control form-control-sm">
                                     </td>
                                     <td>&nbsp;</td>
                                     <td>&nbsp;</td>
@@ -1335,6 +1330,221 @@
                 </div>
             </div>
         </div>
+
+
+        <!-- info Concreto Asfáltico Conv. -->
+        <div class="modal fade" id="ConcretoAsfalticoModal" tabindex="-1" role="dialog" aria-labelledby="ConcretoAsfalticoModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="width:650px;">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">CONCRETO ASFÁLTICO  CONVENCIONAL (a1)</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="table-responsive">
+                            <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
+                                <tr>
+                                    <td align="left">
+                                        <b>
+                                            <label>COEFICIENTE DE CAPA PARA EL CONCRETO ASFÁLTICO: </label>
+                                        </b>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2">
+                                        <img src="~/Content/images/coeficiente_1.jpg" style="width:100%; height:70%;" />
+                                    </td>
+                                    <td></td>
+                                    <td colspan="2" style="text-align:center;">
+                                        <label>Se recomienda un coeficiente de 0.44/pulg </label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td style="color:#FF0000">
+                                        <label>Escribe el valor: </label>
+                                    </td>
+                                    <td>
+                                        <input id="txtCoefConcrAsfalModal" type="text" placeholder="" class="mr-3 col-sm-6 form-control form-control-sm input-number mascara">
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnCoefConcrAsfal" class="btn btn-primary btn-sm">Aplicar</button>
+                        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- info Base Granular -->
+        <div class="modal fade" id="BaseGranularModal" tabindex="-1" role="dialog" aria-labelledby="BaseGranularModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="width:650px;">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">BASE GRANULAR (a2)</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="table-responsive">
+                            <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
+                                <tr>
+                                    <td align="left">
+                                        <b>
+                                            <label>COEFICIENTE DE CAPA PARA BASE GRANULAR: </label>
+                                        </b>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2" width="350px">
+                                        <img src="~/Content/images/coeficiente_2.jpg" style="width:100%; height:70%;" />
+                                    </td>
+                                    <td></td>
+                                    <td colspan="4" style="text-align:left;">
+                                        <p>*Se recomienda un coeficiente de 0.44/pulg</p>
+                                        <p>*La fórmula que correlaciona el MR del CBR con el a2 es: </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td style="text-align:right;">
+                                        <label>a2 =</label>
+                                    </td>
+                                    <td>
+                                        <label>0.249*logMr - 0.977</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td style="text-align:right;">
+                                        <label>a2 =</label>
+                                    </td>
+                                    <td>
+                                        <input id="txta2" type="text" readonly="readonly" placeholder="" class="mr-3 col-sm-6 form-control form-control-sm input-number">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <br/>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td align="right" style="color:#FF0000">
+                                        <label>Escribe el valor: </label>
+                                    </td>
+                                    <td>
+                                        <input id="txtBaseGranularModal" type="text" placeholder="" class="mr-3 col-sm-6 form-control form-control-sm input-number mascara">
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnBaseGranular" class="btn btn-primary btn-sm">Aplicar</button>
+                        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- info Sub-Base -->
+        <div class="modal fade" id="SubBaseModal" tabindex="-1" role="dialog" aria-labelledby="SubBaseModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="width:650px;">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">SUB BASE (a3)</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="table-responsive">
+                            <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
+                                <tr>
+                                    <td align="left">
+                                        <b>
+                                            <label>COEFICIENTE DE CAPA PARA BASE GRANULAR: </label>
+                                        </b>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2" width="350px">
+                                        <img src="~/Content/images/coeficiente_2.jpg" style="width:100%; height:70%;" />
+                                    </td>
+                                    <td></td>
+                                    <td colspan="4" style="text-align:left;">
+                                        <p>*Se recomienda un coeficiente de 0.11/pulg</p>
+                                        <p>*La fórmula que correlaciona el MR del CBR con el a3 es: </p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td style="text-align:right;">
+                                        <label>a3 =</label>
+                                    </td>
+                                    <td>
+                                        <label>0.227*logMr - 0.839</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td style="text-align:right;">
+                                        <label>a3 =</label>
+                                    </td>
+                                    <td>
+                                        <input id="txta3" type="text" readonly="readonly" placeholder="" class="mr-3 col-sm-6 form-control form-control-sm input-number">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <br />
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td align="right" style="color:#FF0000">
+                                        <label>Escribe el valor: </label>
+                                    </td>
+                                    <td>
+                                        <input id="txtSubBasea3Modal" type="text" placeholder="" class="mr-3 col-sm-6 form-control form-control-sm input-number mascara">
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnSubBase" class="btn btn-primary btn-sm">Aplicar</button>
+                        <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
 
     </div>
 
@@ -1708,6 +1918,7 @@
             document.getElementById("txtPesoEje_4").disabled = true;
             document.getElementById("txtPesoEje_5").disabled = true;
 
+            document.getElementById("txtFVP").disabled = true;
 
             $('#ddlTipoEje_1').val(0);
             $('#ddlTipoEje_2').val(0);
@@ -1721,6 +1932,7 @@
             $('#txtPesoEje_4').val("");
             $('#txtPesoEje_5').val("");
 
+            $('#txtFVP').val("");
 
             cambiaVehiculo($("#ddlTipoVehiculo").val());
 
@@ -1743,11 +1955,18 @@
             document.getElementById("txtPesoEje_4").disabled = true;
             document.getElementById("txtPesoEje_5").disabled = true;
 
+            document.getElementById("txtFVP").disabled = true;
+
             $('#txtPesoEje_1').val("");
             $('#txtPesoEje_2').val("");
             $('#txtPesoEje_3').val("");
             $('#txtPesoEje_4').val("");
             $('#txtPesoEje_5').val("");
+
+            $('#txtFVP').val("");
+
+
+            
 
 
             ObtenerCantidadEjes($("#ddlVehiculo").val());           
@@ -1864,6 +2083,50 @@
         //Funcion solo Número
 
 
+
+
+        //SECCION COEFICIENTES
+
+        $("#btnCoefConcrAsfal").click(function () {
+
+            var CoefConcrAsfalModal = document.getElementById("txtCoefConcrAsfalModal").value;
+
+            if (CoefConcrAsfalModal.length > 0) {
+                document.getElementById("txtCoefConcrAsfal").value = CoefConcrAsfalModal;
+                $("#ConcretoAsfalticoModal .close").click();
+            } else { return; }
+
+
+        });
+
+        $("#btnBaseGranular").click(function () {
+
+            var BaseGranularModal = document.getElementById("txtBaseGranularModal").value;
+
+            if (BaseGranularModal.length > 0) {
+                document.getElementById("txtBaseGranulara2").value = BaseGranularModal;
+                $("#BaseGranularModal .close").click();
+            } else { return; }
+
+
+        });
+
+        $("#btnSubBase").click(function () {
+
+            var SubBasea3Modal = document.getElementById("txtSubBasea3Modal").value;
+
+            if (SubBasea3Modal.length > 0) {
+                document.getElementById("txtSubBasea3").value = SubBasea3Modal;
+                $("#SubBaseModal .close").click();
+            } else { return; }
+
+
+        });
+
+
+        //txtCBR_1 - txtCBR_2
+        ObtenerCoeficienteA2(document.getElementById("txtCBR_1").value);
+        ObtenerCoeficienteA3(document.getElementById("txtCBR_2").value);
 
 
     });
@@ -2164,6 +2427,49 @@
         });
 
     }
+
+
+
+    function ObtenerCoeficienteA2(valorCBRBase) {
+
+        $.ajax
+        ({
+            method: 'POST',
+            url: '/ParametrosAsfalto/CoeficienteA2',
+            data: { 'valorCBRBase': valorCBRBase },
+            success: function (respuesta) {
+
+                document.getElementById("txta2").value = respuesta;
+
+            },
+            error: function (xhr, status) {
+                alert("ERROR");
+            }
+
+        });
+
+    }
+
+    function ObtenerCoeficienteA3(valorCBRSubBase) {
+
+        $.ajax
+        ({
+            method: 'POST',
+            url: '/ParametrosAsfalto/CoeficienteA3',
+            data: { 'valorCBRSubBase': valorCBRSubBase },
+            success: function (respuesta) {
+
+                document.getElementById("txta3").value = respuesta;
+
+            },
+            error: function (xhr, status) {
+                alert("ERROR");
+            }
+
+        });
+
+    }
+
 
 
 

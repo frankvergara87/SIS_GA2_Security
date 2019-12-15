@@ -14,6 +14,14 @@ namespace SIS_Ga2.Controllers
       
         public ActionResult Index(Int32 Id_Proyecto, Int32 Id_Diseno)
         {
+
+
+            List<SelectListItem> lstReglamento = new List<SelectListItem>();
+            lstReglamento.Add(new SelectListItem() { Text = "Manual de Carreteras MTC", Value = "1" });
+            lstReglamento.Add(new SelectListItem() { Text = "Pavimentos Urbanos CE. 010", Value = "2" });
+            ViewData["ddlReglamento"] = lstReglamento;
+
+
             BLDepartamento objblDepartamento = new BLDepartamento();
             List<SelectListItem> data_list = new List<SelectListItem>();
             data_list.AddRange(objblDepartamento.ListarDepartamentos(0).Select(a => new SelectListItem() { Text = a.Departamento.ToUpper(), Value = Convert.ToString(a.Id_Departamento) }));

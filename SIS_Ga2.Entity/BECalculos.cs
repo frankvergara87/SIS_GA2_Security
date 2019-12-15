@@ -40,11 +40,11 @@ namespace SIS_Ga2.Entity
 
         public double PesoE4 { get; set; }
         public double PesoE5 { get; set; }
-
-
         public int Id_TipoVehiculo { get; set; }
         public int Id_Vehiculo { get; set; }
-        
+
+        public double valorCBRBase { get; set; }
+        public double valorCBRSubBase { get; set; }
 
     }
 }

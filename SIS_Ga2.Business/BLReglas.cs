@@ -376,5 +376,57 @@ namespace SIS_Ga2.Business
             }
         }
 
+
+        public double CoeficienteA2(BECalculos objEntidad)
+        {
+
+            //constante1_A2=2555 
+            //constante2_A2=0.64
+            //constante3_A2=0.249
+            //constante4_A2=0.977
+            //constante5_A2=0.15
+            double CoeficienteA2 = 0;
+            double CalculoMR = (Convert.ToDouble(ConfigurationManager.AppSettings["constante1_A2"].ToString())) * Math.Pow(objEntidad.valorCBRBase, Convert.ToDouble(ConfigurationManager.AppSettings["constante2_A2"].ToString()));
+            double Valor = Math.Round((Convert.ToDouble(ConfigurationManager.AppSettings["constante3_A2"].ToString()) * Math.Log10(CalculoMR)) - Convert.ToDouble(ConfigurationManager.AppSettings["constante4_A2"].ToString()),2);
+
+         if (Valor>= Convert.ToDouble(ConfigurationManager.AppSettings["constante5_A2"].ToString()))
+            {
+                CoeficienteA2 = Convert.ToDouble(ConfigurationManager.AppSettings["constante5_A2"].ToString());
+            }
+         else
+            {
+                CoeficienteA2 = Valor;
+            }
+
+            return CoeficienteA2;
+
+        }
+
+        public double CoeficienteA3(BECalculos objEntidad)
+        {
+
+            //constante1_A3=2555 
+            //constante2_A3=0.64
+
+            //constante3_A3=0.227
+            //constante4_A3=0.839
+            //constante5_A3=0.13
+            double CoeficienteA2 = 0;
+            double CalculoMR = (Convert.ToDouble(ConfigurationManager.AppSettings["constante1_A3"].ToString())) * Math.Pow(objEntidad.valorCBRSubBase, Convert.ToDouble(ConfigurationManager.AppSettings["constante2_A3"].ToString()));
+            double Valor = Math.Round((Convert.ToDouble(ConfigurationManager.AppSettings["constante3_A3"].ToString()) * Math.Log10(CalculoMR)) - Convert.ToDouble(ConfigurationManager.AppSettings["constante4_A3"].ToString()), 2);
+
+            if (Valor >= Convert.ToDouble(ConfigurationManager.AppSettings["constante5_A3"].ToString()))
+            {
+                CoeficienteA2 = Convert.ToDouble(ConfigurationManager.AppSettings["constante5_A3"].ToString());
+            }
+            else
+            {
+                CoeficienteA2 = Valor;
+            }
+
+            return CoeficienteA2;
+
+        }
+
     }
 }

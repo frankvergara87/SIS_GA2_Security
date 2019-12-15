@@ -382,5 +382,51 @@ namespace SIS_Ga2.Controllers
             return Id_Vehiculos_IMD;
         }
 
+
+
+        public decimal CoeficienteA2(string valorCBRBase)
+        {
+
+            try
+            {
+                decimal ValorA2 = 0;
+                BECalculos objeBECalculos = new BECalculos();
+                objeBECalculos.valorCBRBase = Convert.ToDouble(valorCBRBase);
+
+                BLReglas blReglas = new BLReglas();
+                ValorA2 = Convert.ToDecimal(blReglas.CoeficienteA2(objeBECalculos));
+
+                return ValorA2;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        public decimal CoeficienteA3(string valorCBRSubBase)
+        {
+
+            try
+            {
+                decimal ValorA3 = 0;
+                BECalculos objeBECalculos = new BECalculos();
+                objeBECalculos.valorCBRSubBase = Convert.ToDouble(valorCBRSubBase);
+
+                BLReglas blReglas = new BLReglas();
+                ValorA3 = Convert.ToDecimal(blReglas.CoeficienteA3(objeBECalculos));
+
+                return ValorA3;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
     }
 }
