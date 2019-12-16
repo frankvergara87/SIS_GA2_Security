@@ -127,8 +127,11 @@
                 <div class="sidebar-header d-flex align-items-center">
                     <div class="avatar"><img src="~/Content/icon/img_user_3.png" alt="..." class="img-fluid rounded-circle"></div>
                     <div class="title">
+                        @if (usuario != null)
+                        {
                         <h1 class="h4">@usuario.Usuario</h1>
                         <p>@usuario.Apellido</p>
+                        }
                     </div>
                 </div>
                 <!-- Sidebar Navidation Menus--><span class="heading">Menú</span>

@@ -17,6 +17,9 @@
 }
 
 
+    <input type="hidden" id="hidTipoDiseno" value="@sistema.idTipoDiseno" />
+    <input type="hidden" id="hidId_Prop_Factor_Distrib" />
+
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header d-flex align-items-center">
@@ -1118,7 +1121,7 @@
                                         <label for="inlineFormInput" class="col-form-label col-form-label-sm">IMD Base</label>
                                     </td>
                                     <td>
-                                        <input id="txtErrorComb" data-id="4" type="text" placeholder="IMD Base" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                        <input id="txtIMDBase" data-id="4" type="text" placeholder="IMD Base" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
                                     </td>
                                 </tr>
                                 <tr>
@@ -1899,7 +1902,32 @@
                  } else {
                      return;
                  }
-            
+
+            var objPropFactorDistribucion = {};            
+            objPropFactorDistribucion["Numero_Calzada"] = document.getElementById("ddlCalzada").value;
+            objPropFactorDistribucion["Numero_Sentido"] = document.getElementById("ddlNumSentido").value;
+            objPropFactorDistribucion["Numero_Carril_x_Sentido"] = document.getElementById("ddlCarrilxSentido").value;
+            objPropFactorDistribucion["Valor_Distrib_Calculado"] = document.getElementById("FdxFc_Calculado").value;
+            objPropFactorDistribucion["Valor_Distrib_Ingresado"] = document.getElementById("FdxFc_Ingresado").value;
+
+            $.ajax
+            ({
+                method: 'POST',
+                url: '/ParametrosAsfalto/GuardarFdxFc',
+                data: { 'objPropFactorDistribucion': objPropFactorDistribucion },
+                success: function (respuesta) {
+
+                    document.getElementById("hidId_Prop_Factor_Distrib").value = respuesta;
+
+                },
+                error: function (xhr, status) {
+                    alert("ERROR");
+                }
+
+            });
+
+
+
         });
 
 
@@ -2048,16 +2076,46 @@
         });
 
 
+        $("#ddlTasaCrecimiento").change(function () {
+
+            alert($("#ddlTasaCrecimiento").val());
+
+
+        });
+
         $("#btnGuardarVehiculoIMD").on("click", function (event) {
 
-            var strVehiculo = document.getElementById("ddlVehiculo").value;
+            var objRepeticionesEqui = {};
+            objRepeticionesEqui["Id_Tasa_Crecimiento"] = document.getElementById("ddlTasaCrecimiento").value;
+            objRepeticionesEqui["Dias_Diseno"] = document.getElementById("DiasAno").value;
+            objRepeticionesEqui["FP"] = document.getElementById("Fp").value;
+            objRepeticionesEqui["Tipo_Diseno"] = document.getElementById("hidTipoDiseno").value;
+            objRepeticionesEqui["Periodo"] = document.getElementById("PeriodoDiseno").value;
+            objRepeticionesEqui["Id_Prop_Factor_Distrib"] = document.getElementById("hidId_Prop_Factor_Distrib").value;
+            
+
+            var objVehiculosIMD = {};
+            objVehiculosIMD["Id_Vehiculos"] = document.getElementById("ddlVehiculo").value;
+            objVehiculosIMD["IMD_Base"] = document.getElementById("txtIMDBase").value;
+            objVehiculosIMD["Tipo_Eje_E1"] = $("#ddlTipoEje_1 :selected").text();
+            objVehiculosIMD["Peso_Tonelada_E1"] = document.getElementById("txtPesoEje_1").value;
+            objVehiculosIMD["Tipo_Eje_E2"] = $("#ddlTipoEje_2 :selected").text();
+            objVehiculosIMD["Peso_Tonelada_E2"] = document.getElementById("txtPesoEje_2").value;
+            objVehiculosIMD["Tipo_Eje_E3"] = $("#ddlTipoEje_3 :selected").text();
+            objVehiculosIMD["Peso_Tonelada_E3"] = document.getElementById("txtPesoEje_3").value;
+            objVehiculosIMD["Tipo_Eje_E4"] = $("#ddlTipoEje_4 :selected").text();
+            objVehiculosIMD["Peso_Tonelada_E4"] = document.getElementById("txtPesoEje_4").value;
+            objVehiculosIMD["Tipo_Eje_E5"] = $("#ddlTipoEje_5 :selected").text();
+            objVehiculosIMD["Peso_Tonelada_E5"] = document.getElementById("txtPesoEje_5").value;
+            objVehiculosIMD["Valor_FVP"] = document.getElementById("txtFVP").value;
+            
 
 
             $.ajax
                 ({
                     method: 'POST',
                     url: '/ParametrosAsfalto/GuardarVehiculosIMD',
-                    data: { 'idVehiculo': strVehiculo },
+                    data: { 'objVehiculosIMD': objVehiculosIMD, 'objRepeticionesEqui' : objRepeticionesEqui },
                     success: function (respuesta) {
                         if (respuesta == 1) {
                             toastr.success("Los datos se guardarón correctamente.", 'ASOCEM', { timeOut: 2500 });
@@ -2417,7 +2475,7 @@
             data: { 'idTipoVehiculo': idTipoVehiculo, 'idVehiculo': idVehiculo, 'TipoDiseno': TipoDiseno, 'PesoE1': PesoE1, 'PesoE2': PesoE2 },
             success: function (respuesta) {
 
-                document.getElementById("txtFVP").value = respuesta;
+                document.getElementById("txtFVP").value = roundNumber(respuesta);
 
             },
             error: function (xhr, status) {

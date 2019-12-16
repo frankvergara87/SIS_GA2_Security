@@ -54,22 +54,27 @@ namespace SIS_Ga2.DataAccess
         {
             SqlManager objSql = new SqlManager(ConfigurationManager.AppSettings["ASOCEM"].ToString());
             int resultado = 0;
+            string val;
+
             Parameter param = new Parameter();
             param.Add("@Id_Factor_Distribucion", objEntidad.Id_Factor_Distribucion);
             param.Add("@Numero_Calzada", objEntidad.Numero_Calzada);
             param.Add("@Numero_Sentido", objEntidad.Numero_Sentido);
             param.Add("@Numero_Carril_x_Sentido", objEntidad.Numero_Carril_x_Sentido);
             param.Add("@Valor_Distrib_Calculado", objEntidad.Valor_Distrib_Calculado);
-            param.Add("@@Valor_Distrib_Ingresado", objEntidad.Valor_Distrib_Ingresado);
+            param.Add("@Valor_Distrib_Ingresado", objEntidad.Valor_Distrib_Ingresado);
             param.Add("@Fecha_Creacion", objEntidad.Fecha_Creacion);
             param.Add("@Hora_Creacion", objEntidad.Hora_Creacion);
             param.Add("@Usr_Creacion", objEntidad.Usr_Creacion);
-            param.Add("@Id_Prop_Factor_Distrib", 0, System.Data.ParameterDirection.Output);
+
+            //param.Add("@Id_Prop_Factor_Distrib", 0, System.Data.ParameterDirection.Output);
 
             try
             {
-                objSql.ExecuteNonQuery("USP_Ins_Prop_Factor_Distrib", param);
-                resultado = 1;
+                //objSql.ExecuteNonQuery("USP_Ins_Prop_Factor_Distrib", param);
+                val = objSql.ExecuteScalar("USP_Ins_Prop_Factor_Distrib", param);
+
+                resultado = Convert.ToInt32(val);
 
             }
             catch (Exception ex)

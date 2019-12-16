@@ -289,6 +289,51 @@ namespace SIS_Ga2.Controllers
             return Json(lobjEjes);
         }
 
+        public int GuardarFdxFc(BEPropFactorDistribucion objPropFactorDistribucion)
+        {
+
+            int Id_Prop_Factor_Distrib;
+
+            BLPropFactorDistribucion objblPropFactorDistribucion = new BLPropFactorDistribucion();
+            BEPropFactorDistribucion objbePropFactorDistribucion = new BEPropFactorDistribucion();
+
+            objbePropFactorDistribucion.Id_Factor_Distribucion = 8;
+            objbePropFactorDistribucion.Numero_Calzada = objPropFactorDistribucion.Numero_Calzada;
+            objbePropFactorDistribucion.Numero_Sentido = objPropFactorDistribucion.Numero_Sentido;
+            objbePropFactorDistribucion.Numero_Carril_x_Sentido = objPropFactorDistribucion.Numero_Carril_x_Sentido;
+
+            if (objPropFactorDistribucion.Valor_Distrib_Calculado.ToString().Length > 0)
+            {
+                objbePropFactorDistribucion.Valor_Distrib_Calculado = objPropFactorDistribucion.Valor_Distrib_Calculado;
+            }
+            else
+            {
+                objbePropFactorDistribucion.Valor_Distrib_Calculado = 0;
+            }                
+
+            if (objPropFactorDistribucion.Valor_Distrib_Ingresado.ToString().Length > 0)
+            {
+                objbePropFactorDistribucion.Valor_Distrib_Ingresado = objPropFactorDistribucion.Valor_Distrib_Ingresado;
+            }
+            else
+            {
+                objbePropFactorDistribucion.Valor_Distrib_Ingresado = 0;
+            }
+                
+
+
+            objPropFactorDistribucion.Fecha_Creacion = Convert.ToDouble(DateTime.Now.ToString("yyyyMMdd")); 
+            objPropFactorDistribucion.Usr_Creacion = "fvergara";
+
+
+            Id_Prop_Factor_Distrib = objblPropFactorDistribucion.GuardarFactorDistrib(objPropFactorDistribucion);
+
+
+            return Id_Prop_Factor_Distrib;
+        }
+
+
+
 
         public double CalcularFVP(string idTipoVehiculo, string idVehiculo, string TipoDiseno, string PesoE1, string PesoE2)
         {
@@ -327,23 +372,23 @@ namespace SIS_Ga2.Controllers
 
 
 
-        public int GuardarVehiculosIMD(int idVehiculo)
+        public int GuardarVehiculosIMD(BEVehiculosIMD objVehiculosIMD, BERepeticionesEqui objRepeticionesEqui)
         {
 
             int Id_Repet_Equivalentes;
             BLRepeticionesEqui objblRepeticionesEqui = new BLRepeticionesEqui();
             BERepeticionesEqui lobjRepeticionesEqu = new BERepeticionesEqui();
 
-            lobjRepeticionesEqu.Id_Tasa_Crecimiento = 2;
-            lobjRepeticionesEqu.Id_Prop_Factor_Distrib = 1;
-            lobjRepeticionesEqu.Dias_Diseno = 34;
-            lobjRepeticionesEqu.FP = 54;
-            lobjRepeticionesEqu.Tipo_Diseno = 2;
-            lobjRepeticionesEqu.Periodo = 12;
+            lobjRepeticionesEqu.Id_Tasa_Crecimiento = objRepeticionesEqui.Id_Tasa_Crecimiento;
+            lobjRepeticionesEqu.Id_Prop_Factor_Distrib = objRepeticionesEqui.Id_Prop_Factor_Distrib;
+            lobjRepeticionesEqu.Dias_Diseno = objRepeticionesEqui.Dias_Diseno;
+            lobjRepeticionesEqu.FP = objRepeticionesEqui.FP;
+            lobjRepeticionesEqu.Tipo_Diseno = objRepeticionesEqui.Tipo_Diseno;
+            lobjRepeticionesEqu.Periodo = objRepeticionesEqui.Periodo;
             lobjRepeticionesEqu.Valor_EE_Total = 123;
-            lobjRepeticionesEqu.Id_Parametro = 2;
-            lobjRepeticionesEqu.Fecha_Creacion = 0;
-            lobjRepeticionesEqu.Hora_Creacion = 0;
+            lobjRepeticionesEqu.Id_Parametro = 6;
+            lobjRepeticionesEqu.Fecha_Creacion = Convert.ToDouble(DateTime.Now.ToString("yyyyMMdd"));
+            lobjRepeticionesEqu.Hora_Creacion = Convert.ToDouble(DateTime.Now.ToString("hhmmss").ToString());
             lobjRepeticionesEqu.Usr_Creacion = "fvergara";
 
             Id_Repet_Equivalentes = objblRepeticionesEqui.GuardarRepeticionesEqui(lobjRepeticionesEqu);
@@ -352,29 +397,31 @@ namespace SIS_Ga2.Controllers
             int Id_Vehiculos_IMD;
             BLVehiculosIMD objblVehiculosIMD = new BLVehiculosIMD();
             BEVehiculosIMD lobjVehiculosIMD = new BEVehiculosIMD();
-            lobjVehiculosIMD.Id_Vehiculos = idVehiculo;
+            lobjVehiculosIMD.Id_Vehiculos = objVehiculosIMD.Id_Vehiculos;
             lobjVehiculosIMD.Id_Repet_Equivalentes = Id_Repet_Equivalentes;
-            lobjVehiculosIMD.IMD_Base = 123;
-            lobjVehiculosIMD.Estado = 0;
-            lobjVehiculosIMD.Tipo_Eje_E1 = "xx";
-            lobjVehiculosIMD.Peso_Tonelada_E1 = 0;
-            lobjVehiculosIMD.Tipo_Eje_E1 = "xx";
-            lobjVehiculosIMD.Peso_Tonelada_E1 = 0;
-            lobjVehiculosIMD.Tipo_Eje_E1 = "xx";
-            lobjVehiculosIMD.Peso_Tonelada_E1 = 0;
-            lobjVehiculosIMD.Tipo_Eje_E1 = "xx";
-            lobjVehiculosIMD.Peso_Tonelada_E1 = 0;
-            lobjVehiculosIMD.Tipo_Eje_E1 = "xx";
-            lobjVehiculosIMD.Peso_Tonelada_E1 = 0;
-            lobjVehiculosIMD.Valor_FVP = 2;
-            lobjVehiculosIMD.Valor_EE = 3;
-            lobjVehiculosIMD.Fecha_Creacion = 0;
-            lobjVehiculosIMD.Hora_Creacion = 0;
+            lobjVehiculosIMD.IMD_Base = objVehiculosIMD.IMD_Base;
+            lobjVehiculosIMD.Estado = 1;
+
+            lobjVehiculosIMD.Tipo_Eje_E1 = objVehiculosIMD.Tipo_Eje_E1;
+            lobjVehiculosIMD.Peso_Tonelada_E1 = objVehiculosIMD.Peso_Tonelada_E1;
+            lobjVehiculosIMD.Tipo_Eje_E2 = objVehiculosIMD.Tipo_Eje_E2;
+            lobjVehiculosIMD.Peso_Tonelada_E2 = objVehiculosIMD.Peso_Tonelada_E2;
+            lobjVehiculosIMD.Tipo_Eje_E3 = objVehiculosIMD.Tipo_Eje_E3;
+            lobjVehiculosIMD.Peso_Tonelada_E3 = objVehiculosIMD.Peso_Tonelada_E3;
+            lobjVehiculosIMD.Tipo_Eje_E4 = objVehiculosIMD.Tipo_Eje_E4;
+            lobjVehiculosIMD.Peso_Tonelada_E4 = objVehiculosIMD.Peso_Tonelada_E4;
+            lobjVehiculosIMD.Tipo_Eje_E5 = objVehiculosIMD.Tipo_Eje_E5;
+            lobjVehiculosIMD.Peso_Tonelada_E5 = objVehiculosIMD.Peso_Tonelada_E5;
+
+            lobjVehiculosIMD.Valor_FVP = objVehiculosIMD.Valor_FVP;
+            lobjVehiculosIMD.Valor_EE = 2305;
+            lobjVehiculosIMD.Fecha_Creacion = Convert.ToDouble(DateTime.Now.ToString("yyyyMMdd"));
+            lobjVehiculosIMD.Hora_Creacion = Convert.ToDouble(DateTime.Now.ToString("hhmmss").ToString());
             lobjVehiculosIMD.Usr_Creacion = "fvergara";
 
             lobjVehiculosIMD.Fecha_Actualizacion = 0;
             lobjVehiculosIMD.Hora_Actualizacion = 0;
-            lobjVehiculosIMD.Usr_Actualizacion = "fvergara";
+            lobjVehiculosIMD.Usr_Actualizacion = "";
 
             Id_Vehiculos_IMD = objblVehiculosIMD.GuardarVehiculosIMD(lobjVehiculosIMD);
 

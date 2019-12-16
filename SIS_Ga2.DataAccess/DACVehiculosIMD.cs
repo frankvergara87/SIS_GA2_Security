@@ -24,14 +24,14 @@ namespace SIS_Ga2.DataAccess
             param.Add("@Estado", objEntidad.Estado);
             param.Add("@Tipo_Eje_E1", objEntidad.Tipo_Eje_E1);
             param.Add("@Peso_Tonelada_E1", objEntidad.Peso_Tonelada_E1);
-            param.Add("@Tipo_Eje_E2", objEntidad.Tipo_Eje_E1);
-            param.Add("@Peso_Tonelada_E2", objEntidad.Peso_Tonelada_E1);
-            param.Add("@Tipo_Eje_E3", objEntidad.Tipo_Eje_E1);
-            param.Add("@Peso_Tonelada_E3", objEntidad.Peso_Tonelada_E1);
-            param.Add("@Tipo_Eje_E4", objEntidad.Tipo_Eje_E1);
-            param.Add("@Peso_Tonelada_E4", objEntidad.Peso_Tonelada_E1);
-            param.Add("@Tipo_Eje_E5", objEntidad.Tipo_Eje_E1);
-            param.Add("@Peso_Tonelada_E5", objEntidad.Peso_Tonelada_E1);
+            param.Add("@Tipo_Eje_E2", objEntidad.Tipo_Eje_E2);
+            param.Add("@Peso_Tonelada_E2", objEntidad.Peso_Tonelada_E2);
+            param.Add("@Tipo_Eje_E3", objEntidad.Tipo_Eje_E3);
+            param.Add("@Peso_Tonelada_E3", objEntidad.Peso_Tonelada_E3);
+            param.Add("@Tipo_Eje_E4", objEntidad.Tipo_Eje_E4);
+            param.Add("@Peso_Tonelada_E4", objEntidad.Peso_Tonelada_E4);
+            param.Add("@Tipo_Eje_E5", objEntidad.Tipo_Eje_E5);
+            param.Add("@Peso_Tonelada_E5", objEntidad.Peso_Tonelada_E5);
 
             param.Add("@Valor_FVP", objEntidad.Valor_FVP);
             param.Add("@Valor_EE", objEntidad.Valor_EE);

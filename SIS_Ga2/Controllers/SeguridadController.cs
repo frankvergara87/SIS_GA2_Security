@@ -114,12 +114,15 @@ namespace SIS_Ga2.Controllers
                 {
                     case 1:
                         sistema.TipoDiseno = "ASFALTO";
+                        sistema.idTipoDiseno = 1;
                         break;
                     case 2:
                         sistema.TipoDiseno = "ADOQUIN";
+                        sistema.idTipoDiseno = 2;
                         break;
                     case 3:
                         sistema.TipoDiseno = "CONCRETO";
+                        sistema.idTipoDiseno = 3;
                         break;
                 }
 
