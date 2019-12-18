@@ -57,5 +57,24 @@ namespace SIS_Ga2.DataAccess
             }
             return resultado;
         }
+        public List<BEVehiculosIMD> ListarVehiculosIMDByID(int Id_Repet_Equivalentes)
+        {
+            try
+            {
+                Parameter param = new Parameter();
+                param.Add("@Id_Repet_Equivalentes", Id_Repet_Equivalentes);
+                SqlManager objSql = new SqlManager();
+                List<BEVehiculosIMD> lista = objSql.getStatement<BEVehiculosIMD>("USP_Sel_Vehiculos_IMD", param);
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                //Rutina de Guardado en Log 
+                //afilogDAO.Save(0, 0, "CatalogoDAO", "GetCatalogoToCombo", ex);
+                throw ex;
+            }
+        }
+
+
     }
 }

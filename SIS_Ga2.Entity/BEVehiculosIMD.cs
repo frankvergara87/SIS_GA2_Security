@@ -17,6 +17,8 @@ namespace SIS_Ga2.Entity
         public double Peso_Tonelada_E1 { get; set; }
 
         public string Tipo_Eje_E2 { get; set; }
+        public string Vehiculos  { get; set; }
+        public string Ruta_imagen { get; set; }
         public double Peso_Tonelada_E2 { get; set; }
 
         public string Tipo_Eje_E3 { get; set; }
