@@ -369,9 +369,6 @@ namespace SIS_Ga2.Controllers
             return FVP;
         }
 
-
-
-
         public int GuardarVehiculosIMD(BEVehiculosIMD objVehiculosIMD, BERepeticionesEqui objRepeticionesEqui)
         {
 
@@ -427,6 +424,19 @@ namespace SIS_Ga2.Controllers
 
 
             return Id_Vehiculos_IMD;
+        }
+
+
+        public JsonResult CargarListadoVehiculosIMD(int Id_Repet_Equivalentes)
+        {
+            BLVehiculosIMD objblVehiculosIMD = new BLVehiculosIMD();
+            List<BEVehiculosIMD> lobjVehiculosIMD = new List<BEVehiculosIMD>();
+            lobjVehiculosIMD = objblVehiculosIMD.ListarVehiculosIMDByID(Id_Repet_Equivalentes);
+
+            if (lobjVehiculosIMD == null)
+                throw new ArgumentException("Rep.Equivalentes " + Id_Repet_Equivalentes + " no es correcto");
+
+            return Json(new { data = lobjVehiculosIMD }, JsonRequestBehavior.AllowGet);
         }
 
 

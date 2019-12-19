@@ -162,9 +162,11 @@
                 <!-- Page Header-->
                 <header class="page-header">
                     <div class="container-fluid">
-                        <h2 class="no-margin-bottom lead">Hola @usuario.Nombre, Bienvenido.!</h2>
+                        @if (usuario != null)
+                        {
+                            <h2 class="no-margin-bottom lead">Hola @usuario.Nombre, Bienvenido.!</h2>
+                        }
                     </div>
-
 
                     @*<div class="jumbotron">
                             <h1 class="display-4">Hello, world!</h1>

@@ -1012,7 +1012,7 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <div class="card-body">
+                        @*<div class="card-body">*@
                             <form class="form-inline">
                                 <div class="row">
                                     <div class="form-group col-md-4">
@@ -1038,7 +1038,7 @@
                                     </div>
                                 </div>
                             </form>
-                        </div>
+                        @*</div>*@
                         <div class="card-header">
                             <div class=" clearfix">
                                 <div class="p-0">
@@ -1058,18 +1058,24 @@
 
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table id="example" class="display" style="width:800px;">
+                                <table id="dgvListadoVehiculosIMD" class="display" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th class="text-sm-center" id="Num_Proyecto">Vehiculo</th>
-                                            <th class="text-sm-center" id="Proyecto">Img</th>
-                                            <th class="text-sm-center" id="Fecha">IMD Base</th>
-                                            <th class="text-sm-center" id="Ingeniero">Tipo Eje 1</th>
-                                            <th class="text-sm-center" id="Num_Diseno">Peso Eje 1</th>
-                                            <th class="text-sm-center" id="Tipo_Diseno">Tipo Eje 2</th>
-                                            <th class="text-sm-center" id="Tramo">Peso Eje 2</th>
-                                            <th class="text-sm-center" id="Ubigeo">FVP</th>
-                                            <th class="text-sm-center" id="Reporte">EE</th>
+                                            <th class="text-sm-center" id="Id_Vehiculos">Id</th>
+                                            <th class="text-sm-center" id="ruta_imagen">VistaPreviaVehiculo</th>
+                                            <th class="text-sm-center" id="Vehiculos">Tipo_Vehículo</th>
+                                            <th class="text-sm-center" id="Tipo_Eje_E1">E1</th>
+                                            <th class="text-sm-center" id="Peso_Tonelada_E1">Peso_E1</th>
+                                            <th class="text-sm-center" id="Tipo_Eje_E2">E2</th>
+                                            <th class="text-sm-center" id="Peso_Tonelada_E2">Peso_E2</th>
+                                            <th class="text-sm-center" id="Tipo_Eje_E3">E3</th>
+                                            <th class="text-sm-center" id="Peso_Tonelada_E3">Peso_E3</th>
+                                            <th class="text-sm-center" id="Tipo_Eje_E4">E4</th>
+                                            <th class="text-sm-center" id="Peso_Tonelada_E4">Peso_E4</th>
+                                            <th class="text-sm-center" id="Tipo_Eje_E5">E4</th>
+                                            <th class="text-sm-center" id="Peso_Tonelada_E5">Peso_E5</th>
+                                            <th class="text-sm-center" id="Valor_FVP">Valor_FVP</th>
+                                            <th class="text-sm-center" id="Valor_EE">Valor_EE</th>                                            
                                         </tr>
                                     </thead>
 
@@ -2119,7 +2125,12 @@
                     success: function (respuesta) {
                         if (respuesta == 1) {
                             toastr.success("Los datos se guardarón correctamente.", 'ASOCEM', { timeOut: 2500 });
+
+                            $('#dgvListadoVehiculosIMD').dataTable().fnDestroy();
+                            CargarListadoVehiculosIMD(); //Cargamos el DataTable
+
                             $("#SubModal .close").click();
+
                         }
                         else {
                             toastr.error("Ingrese los datos!", 'ERROR', { timeOut: 2000 });
@@ -2186,6 +2197,10 @@
         ObtenerCoeficienteA2(document.getElementById("txtCBR_1").value);
         ObtenerCoeficienteA3(document.getElementById("txtCBR_2").value);
 
+
+
+
+        CargarListadoVehiculosIMD();
 
     });
 
@@ -2525,6 +2540,111 @@
             }
 
         });
+
+    }
+
+
+
+
+    function CargarListadoVehiculosIMD() {
+
+        var objData = {};
+        objData["Id_Repet_Equivalentes"] = 0;
+
+        table =
+            $('#dgvListadoVehiculosIMD').dataTable({
+                "searching": false,
+                "scrollY": 200,
+                "scrollCollapse": true,
+                "scrollX": true,
+                "paging": false,
+                "info":     false,
+
+                "ajax": {
+                    "url": "/ParametrosAsfalto/CargarListadoVehiculosIMD",
+                    "type": "POST",
+                    "data": objData,
+                    "dataType": "json"
+                },
+                /*"columnDefs": [
+                    { "targets": [0], "visible": false, "searchable": false }
+
+                ],*/
+                "columns": [          
+                    { "data": "Id_Vehiculos", "class": "text-bold text-center" },
+                    {
+                        data: null,
+                        className: "text-center",                   
+                        "render": function (data) {
+                            var strDiv;
+                            if (data.ruta_imagen != 0) {
+                                strDiv = '<div><img id="img_vehiculoIMD" src=\'' + data.ruta_imagen + '\' width="80" height="60" class=""></div> ';
+
+                            }
+                            else {
+                                strDiv = '';
+                            }
+                            return strDiv;
+                        }
+                    },
+                    { "data": "Vehiculos", "class": "text-left" },
+                    { "data": "Tipo_Eje_E1", "class": "text-center" },
+                    { "data": "Peso_Tonelada_E1", "class": "text-center" },
+                    { "data": "Tipo_Eje_E2", "class": "text-center" },
+                    { "data": "Peso_Tonelada_E2", "class": "text-center" },
+                    { "data": "Tipo_Eje_E3", "class": "text-center" },
+                    { "data": "Peso_Tonelada_E3", "class": "text-center" },
+                    { "data": "Tipo_Eje_E4", "class": "text-center" },
+                    { "data": "Peso_Tonelada_E4", "class": "text-center" },
+                    { "data": "Tipo_Eje_E5", "class": "text-center" },
+                    { "data": "Peso_Tonelada_E5", "class": "text-center" },
+                    { "data": "Valor_FVP", "class": "text-center" },
+                    { "data": "Valor_EE", "class": "text-center" }
+
+                ],
+
+                //"lengthMenu": [[3, -1], [3, "Todo"]],
+                "language": {
+                    "sProcessing": "Procesando...",
+                    "sLengthMenu": "Mostrar _MENU_ registros",
+                    "sZeroRecords": "No se encontraron resultados",
+                    "sEmptyTable": "Ningún dato disponible en esta tabla",
+                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sSearch": "Buscar:",
+                    "sUrl": "",
+                    "sInfoThousands": ",",
+                    "sLoadingRecords": "Cargando...",
+                    "oPaginate": {
+                        "sFirst": "Primero",
+                        "sLast": "Último",
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                    }
+                }
+
+            });
+
+
+        //para seleccionar una opcion
+        $('#dgvListadoVehiculosIMD tbody').on('click', 'tr', function () {
+
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+            }
+            else {
+                table.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
+        });
+
+
 
     }
 

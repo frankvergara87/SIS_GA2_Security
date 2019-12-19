@@ -63,7 +63,7 @@ namespace SIS_Ga2.DataAccess
             {
                 Parameter param = new Parameter();
                 param.Add("@Id_Repet_Equivalentes", Id_Repet_Equivalentes);
-                SqlManager objSql = new SqlManager();
+                SqlManager objSql = new SqlManager(ConfigurationManager.AppSettings["ASOCEM"].ToString());
                 List<BEVehiculosIMD> lista = objSql.getStatement<BEVehiculosIMD>("USP_Sel_Vehiculos_IMD", param);
                 return lista;
             }
