@@ -308,11 +308,15 @@
                                             <label for="inlineFormInput" class="col-form-label col-form-label-sm">Base Granular (m2)</label>
                                             <div class="form-inline">
                                                 <input id="txtBaseGranularm2" data-id="4" type="text" readonly="readonly" placeholder="Base Granular (m2)" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
-                                                <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#"><i class="fa fa-question-circle"></i></button>
+                                                @*<button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#"><i class="fa fa-question-circle"></i></button>*@
                                             </div>
                                         </div>
                                     </td>
-                                    <td>&nbsp;</td>
+                                    <td rowspan="2">
+                                        @*<img src="~/Content/images/LlaveDerecha.png" width="40" height="150">
+                                        &nbsp;*@
+                                        <button type="button" id="btnDrenajeCapas" style="height:50px;" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#infoDrenajePrincipalModal"><span class="fa fa-th-large"></span> Seleccione</button>
+                                    </td>
                                     <td>&nbsp;</td>
                                 </tr>
                                 <tr>
@@ -332,11 +336,11 @@
                                             <label for="inlineFormInput" class="col-form-label col-form-label-sm">Sub-base (m3)</label>
                                             <div class="form-inline">
                                                 <input id="txtSubBasem3" data-id="4" type="text" readonly="readonly" placeholder="Sub-base (m3)" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
-                                                <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#"><i class="fa fa-question-circle"></i></button>
+                                                @*<button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#"><i class="fa fa-question-circle"></i></button>*@
                                             </div>
                                         </div>
                                     </td>
-                                    <td>&nbsp;</td>
+                                    @*<td>&nbsp;</td>*@
                                     <td>&nbsp;</td>
                                 </tr>
                                 <tr>
@@ -1013,31 +1017,31 @@
                     </div>
                     <div class="modal-body">
                         @*<div class="card-body">*@
-                            <form class="form-inline">
-                                <div class="row">
-                                    <div class="form-group col-md-4">
-                                        <label for="FdxFc" class="col-form-label col-form-label-sm">Fd x Fc :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                                        <input id="FdxFc" type="text" readonly="readonly" placeholder="Fd x Fc" class="mr-3 col-sm-8 form-control form-control-sm">
-                                        <button type="button" id="btnFdxFc" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#SubModal_2"><span class="fa fa-flask"></span></button>
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="TasaCrecimiento" class="col-form-label col-form-label-sm">Tasa de Crecimiento (%) :</label>
-                                        @Html.DropDownList("ddlTasaCrecimiento", null, new { @class = "mr-3 col-sm-10 form-control form-control-sm" })
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="PeriodoDiseno" class="col-form-label col-form-label-sm">Periodo de Diseño :</label>
-                                        <input id="PeriodoDiseno" type="text" readonly="readonly" placeholder="Periodo" class="mr-3 col-sm-10 form-control form-control-sm">
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="DiasAno" class="col-form-label col-form-label-sm">Días del Año :</label>
-                                        <input id="DiasAno" type="text" placeholder="Días del Año" value="365" class="mr-3 col-sm-10 form-control form-control-sm">
-                                    </div>
-                                    <div class="form-group col-md-4">
-                                        <label for="Fp" class="col-form-label col-form-label-sm">Fp :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                                        <input id="Fp" type="text" placeholder="Fp" value="1.00" class="mr-3 col-sm-10 form-control form-control-sm">
-                                    </div>
+                        <form class="form-inline">
+                            <div class="row">
+                                <div class="form-group col-md-4">
+                                    <label for="FdxFc" class="col-form-label col-form-label-sm">Fd x Fc :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                    <input id="FdxFc" type="text" readonly="readonly" placeholder="Fd x Fc" class="mr-3 col-sm-8 form-control form-control-sm">
+                                    <button type="button" id="btnFdxFc" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#SubModal_2"><span class="fa fa-flask"></span></button>
                                 </div>
-                            </form>
+                                <div class="form-group col-md-4">
+                                    <label for="TasaCrecimiento" class="col-form-label col-form-label-sm">Tasa de Crecimiento (%) :</label>
+                                    @Html.DropDownList("ddlTasaCrecimiento", null, new { @class = "mr-3 col-sm-10 form-control form-control-sm" })
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="PeriodoDiseno" class="col-form-label col-form-label-sm">Periodo de Diseño :</label>
+                                    <input id="PeriodoDiseno" type="text" readonly="readonly" placeholder="Periodo" class="mr-3 col-sm-10 form-control form-control-sm">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="DiasAno" class="col-form-label col-form-label-sm">Días del Año :</label>
+                                    <input id="DiasAno" type="text" placeholder="Días del Año" value="365" class="mr-3 col-sm-10 form-control form-control-sm">
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="Fp" class="col-form-label col-form-label-sm">Fp :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                    <input id="Fp" type="text" placeholder="Fp" value="1.00" class="mr-3 col-sm-10 form-control form-control-sm">
+                                </div>
+                            </div>
+                        </form>
                         @*</div>*@
                         <div class="card-header">
                             <div class=" clearfix">
@@ -1075,7 +1079,7 @@
                                             <th class="text-sm-center" id="Tipo_Eje_E5">E4</th>
                                             <th class="text-sm-center" id="Peso_Tonelada_E5">Peso_E5</th>
                                             <th class="text-sm-center" id="Valor_FVP">Valor_FVP</th>
-                                            <th class="text-sm-center" id="Valor_EE">Valor_EE</th>                                            
+                                            <th class="text-sm-center" id="Valor_EE">Valor_EE</th>
                                         </tr>
                                     </thead>
 
@@ -1446,7 +1450,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <br/>
+                                        <br />
                                     </td>
                                     <td></td>
                                     <td></td>
@@ -1548,6 +1552,185 @@
                     <div class="modal-footer">
                         <button type="button" id="btnSubBase" class="btn btn-primary btn-sm">Aplicar</button>
                         <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <!-- info Drenaje Principal - Drenaje Tiempo / Drenaje Porcentaje -->
+
+        <div class="modal fade" id="infoDrenajePrincipalModal" tabindex="-1" role="dialog" aria-labelledby="infoDrenajePrincipalModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="width:800px;">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">COEFICIENTES </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="table-responsive">
+                            <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
+                                <tr>
+                                    <td align="left" style="color:#FF0000">
+                                        <b>
+                                            <label>BASE GRANULAR(m2): </label>
+                                        </b>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td align="left">
+                                        <label>Calidad de Drenaje </label>
+                                    </td>
+                                    <td>
+                                        <div class="form-group col-md-10">
+                                            <div class="form-inline">
+                                                @Html.DropDownList("ddlCalidadDrenaje", null, new { @class = "mr-3 col-sm-8 form-control form-control-sm" })
+                                                <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#infoDrenajeTiempoModal"><i class="fa fa-info-circle"></i></button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td align="left" rowspan="2">
+                                        <label>Coeficiente de Drenaje de la Base Granular </label>
+                                    </td>
+                                    <td rowspan="2">
+                                        <input id="txtMR" type="text" readonly="readonly" class="mr-3 col-sm-8 form-control form-control-sm mascara">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="left">
+                                         <label>Porcentaje de Exposición a Saturación </label>
+                                    </td>
+                                    <td>
+                                        <div class="form-group col-md-10">
+                                            <div class="form-inline">
+                                                <input id="txtMR" type="text" class="mr-3 col-sm-8 form-control form-control-sm mascara">
+                                                <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#infoDrenajePorcentajeModal"><i class="fa fa-info-circle"></i></button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td align="left" style="color:#FF0000">
+                                        <b>
+                                            <label>SUBBASE GRANULAR(m3):</label>
+                                        </b>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td align="left">
+                                        <label>Calidad de Drenaje de la Sub Base Granular </label>
+                                    </td>
+                                    <td>
+                                        <div class="form-group col-md-10">
+                                            <div class="form-inline">
+                                                @Html.DropDownList("ddlCalidadDrenajeSubBase", null, new { @class = "mr-3 col-sm-8 form-control form-control-sm" })
+                                                <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#infoDrenajePorcentajeModal"><i class="fa fa-info-circle"></i></button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td align="left">
+                                        <label>Coeficiente de Drenaje de la Sub Base Granular </label>
+                                    </td>
+                                    <td>
+                                        <input id="txtMR" type="text" readonly="readonly" class="mr-3 col-sm-8 form-control form-control-sm mascara">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="left">
+                                        <label>Porcentaje de Exposición a Saturación </label>
+                                    </td>
+                                    <td>
+                                        <div class="form-group col-md-10">
+                                            <div class="form-inline">
+                                                <input id="txtMR" type="text" class="mr-3 col-sm-8 form-control form-control-sm mascara">
+                                                <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#infoDrenajePorcentajeModal"><i class="fa fa-info-circle"></i></button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnCalcularMR" class="btn btn-primary">Aplicar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="infoDrenajeTiempoModal" tabindex="-1" role="dialog" aria-labelledby="infoDrenajeTiempoModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="width:450px;">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">COEFICIENTE</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="table-responsive">
+                            <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
+                                <tr>
+                                    <td>
+                                        <img src="~/Content/images/Coeficiente_Drenaje_Tiempo.jpg" style="width:100%; height:80%;" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="infoDrenajePorcentajeModal" tabindex="-1" role="dialog" aria-labelledby="infoDrenajePorcentajeModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="width:720px;">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">COEFICIENTE</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="table-responsive">
+                            <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
+                                <tr>
+                                    <td>
+                                        <img src="~/Content/images/Coeficiente_Drenaje_Porcentaje.jpg" style="width:100%; height:60%;" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
             </div>

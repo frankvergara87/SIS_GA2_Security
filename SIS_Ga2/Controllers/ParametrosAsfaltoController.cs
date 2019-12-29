@@ -79,6 +79,24 @@ namespace SIS_Ga2.Controllers
             ViewData["ddlTipoEje_5"] = lstTipoEje_5;
 
 
+            List<SelectListItem> lstCalidadDrenaje = new List<SelectListItem>();
+            lstCalidadDrenaje.Add(new SelectListItem() { Text = "Excelente", Value = "1" });
+            lstCalidadDrenaje.Add(new SelectListItem() { Text = "Bueno", Value = "2" });
+            lstCalidadDrenaje.Add(new SelectListItem() { Text = "Regular", Value = "3" });
+            lstCalidadDrenaje.Add(new SelectListItem() { Text = "Pobre", Value = "4" });
+            lstCalidadDrenaje.Add(new SelectListItem() { Text = "Malo", Value = "5" });
+            ViewData["ddlCalidadDrenaje"] = lstCalidadDrenaje;
+
+
+            List<SelectListItem> lstCalidadDrenajeSubBase = new List<SelectListItem>();
+            lstCalidadDrenajeSubBase.Add(new SelectListItem() { Text = "Excelente", Value = "1" });
+            lstCalidadDrenajeSubBase.Add(new SelectListItem() { Text = "Bueno", Value = "2" });
+            lstCalidadDrenajeSubBase.Add(new SelectListItem() { Text = "Regular", Value = "3" });
+            lstCalidadDrenajeSubBase.Add(new SelectListItem() { Text = "Pobre", Value = "4" });
+            lstCalidadDrenajeSubBase.Add(new SelectListItem() { Text = "Malo", Value = "5" });
+            ViewData["ddlCalidadDrenajeSubBase"] = lstCalidadDrenajeSubBase;
+
+
             return View();
         }
 
