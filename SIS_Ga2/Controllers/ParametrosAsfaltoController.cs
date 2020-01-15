@@ -97,6 +97,17 @@ namespace SIS_Ga2.Controllers
             ViewData["ddlCalidadDrenajeSubBase"] = lstCalidadDrenajeSubBase;
 
 
+            BLCoefEspesor objblCoefEspesor = new BLCoefEspesor();
+            List<SelectListItem> lstEspesor = new List<SelectListItem>();
+            lstEspesor.AddRange(objblCoefEspesor.ListaCoefEspesor().Select(a => new SelectListItem() { Text = a.Espesor.ToString(), Value = Convert.ToString(a.Id_Espesor) }));
+            ViewData["ddlEspesor"] = lstEspesor;
+
+            BLCoefPresion objblCoefPresion = new BLCoefPresion();
+            List<SelectListItem> lstPresion = new List<SelectListItem>();
+            lstPresion.AddRange(objblCoefPresion.ListaCoefPresion().Select(a => new SelectListItem() { Text = a.Presion.ToString(), Value = Convert.ToString(a.Id_Presion) }));
+            ViewData["ddlPresion"] = lstPresion;
+
+
             return View();
         }
 
@@ -502,6 +513,89 @@ namespace SIS_Ga2.Controllers
             }
 
         }
+
+
+
+
+        public JsonResult CargarTiempoDrenaje(int Id)
+        {
+            BLTiempoElimAgua objblTiempoElimAgua = new BLTiempoElimAgua();
+            List<BETiempoElimAgua> lobjTiempoElimAgua = new List<BETiempoElimAgua>();
+            lobjTiempoElimAgua = objblTiempoElimAgua.ListarTiempoElimAguaXID(Id);
+
+            if (lobjTiempoElimAgua == null)
+                throw new ArgumentException("Id " + Id + " no es correcto");
+
+            return Json(new { data = lobjTiempoElimAgua }, JsonRequestBehavior.AllowGet);
+        }
+
+
+        public JsonResult CargarPorcentajeDrenaje(int Id)
+        {
+            BLPorcEstrucPavimento objblPorcEstrucPavimento = new BLPorcEstrucPavimento();
+            List<BEPorcEstructPavimento> lobjPorcEstructPavimento = new List<BEPorcEstructPavimento>();
+            lobjPorcEstructPavimento = objblPorcEstrucPavimento.ListarPorcEstrucPavimento(Id);
+
+            if (lobjPorcEstructPavimento == null)
+                throw new ArgumentException("Id " + Id + " no es correcto");
+
+            return Json(new { data = lobjPorcEstructPavimento }, JsonRequestBehavior.AllowGet);
+        }
+
+
+
+        public decimal ObtenerCoefDrenaje(int IdCalidadDre, decimal ValorPorcentaje, string IDProyecto)
+        {
+            decimal coefdrenaje = 0;
+            BLCoefDreBaseReg objblCoefDreBaseReg = new BLCoefDreBaseReg();
+            List<BECoefDreBaseReg> lobjCoefDreBaseReg = new List<BECoefDreBaseReg>();
+            lobjCoefDreBaseReg = objblCoefDreBaseReg.ListarCoefDrenaje(IdCalidadDre, ValorPorcentaje, IDProyecto);
+
+
+            foreach (BECoefDreBaseReg ce in lobjCoefDreBaseReg)
+            {
+                coefdrenaje = Convert.ToDecimal(ce.VALOR_CALIDAD_DRENA);
+            }
+            
+            return coefdrenaje;
+        }
+
+
+        public int GuardarCoefDrenajeCapas(BEVehiculosIMD objVehiculosIMD, BERepeticionesEqui objRepeticionesEqui)
+        {
+            //EN PRUEBA
+            int CoefDrenajeCapas = 0;
+
+            BLProyectos blProyectos = new BLProyectos();
+            BECoefEstructura lobjBECoefEstructura = new BECoefEstructura();
+            lobjBECoefEstructura.Coeficiente_Drenaje_Calc = Convert.ToDouble("20.00");
+            CoefDrenajeCapas = blProyectos.GuardarCoeficientes(lobjBECoefEstructura);
+
+
+            return CoefDrenajeCapas;
+        }
+
+
+        public JsonResult obtenerFpCalculado(int Espesor, int Presion)
+        {
+
+            try
+            {
+                List<BEPresContacNeum> listadoPresContacNeum = new List<BEPresContacNeum>();
+                BLPresContacNeum blBLPresContacNeum = new BLPresContacNeum();
+                listadoPresContacNeum = blBLPresContacNeum.ListarValorFP(Espesor, Presion);
+
+
+                return Json(listadoPresContacNeum);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
 
     }
 }

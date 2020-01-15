@@ -19,10 +19,10 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>10/10/2019 01:54:00</publishTime>
     </File>
     <File Include="bin/DbManager.dll">
-      <publishTime>12/05/2019 19:35:31</publishTime>
+      <publishTime>01/10/2020 00:20:48</publishTime>
     </File>
     <File Include="bin/DbManager.pdb">
-      <publishTime>12/05/2019 19:35:31</publishTime>
+      <publishTime>01/10/2020 00:20:48</publishTime>
     </File>
     <File Include="bin/EntityFramework.dll">
       <publishTime>10/10/2019 01:54:01</publishTime>
@@ -139,28 +139,28 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>10/10/2019 01:54:02</publishTime>
     </File>
     <File Include="bin/SIS_Ga2.Business.dll">
-      <publishTime>12/08/2019 23:00:58</publishTime>
+      <publishTime>01/10/2020 00:20:49</publishTime>
     </File>
     <File Include="bin/SIS_Ga2.Business.pdb">
-      <publishTime>12/08/2019 23:00:58</publishTime>
+      <publishTime>01/10/2020 00:20:49</publishTime>
     </File>
     <File Include="bin/SIS_Ga2.DataAccess.dll">
-      <publishTime>12/06/2019 21:08:42</publishTime>
+      <publishTime>01/10/2020 00:20:49</publishTime>
     </File>
     <File Include="bin/SIS_Ga2.DataAccess.pdb">
-      <publishTime>12/06/2019 21:08:42</publishTime>
+      <publishTime>01/10/2020 00:20:49</publishTime>
     </File>
     <File Include="bin/SIS_Ga2.dll">
-      <publishTime>12/08/2019 23:00:59</publishTime>
+      <publishTime>01/10/2020 00:20:50</publishTime>
     </File>
     <File Include="bin/SIS_Ga2.Entity.dll">
-      <publishTime>12/06/2019 21:08:40</publishTime>
+      <publishTime>01/10/2020 00:20:47</publishTime>
     </File>
     <File Include="bin/SIS_Ga2.Entity.pdb">
-      <publishTime>12/06/2019 21:08:40</publishTime>
+      <publishTime>01/10/2020 00:20:47</publishTime>
     </File>
     <File Include="bin/SIS_Ga2.pdb">
-      <publishTime>12/08/2019 23:00:59</publishTime>
+      <publishTime>01/10/2020 00:20:50</publishTime>
     </File>
     <File Include="bin/System.Web.Helpers.dll">
       <publishTime>10/10/2019 01:54:02</publishTime>
@@ -202,13 +202,13 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>10/10/2019 01:54:00</publishTime>
     </File>
     <File Include="Content/bootstrap.css">
-      <publishTime>10/10/2019 01:54:00</publishTime>
+      <publishTime>12/19/2019 00:28:58</publishTime>
     </File>
     <File Include="Content/bootstrap.css.map">
       <publishTime>10/10/2019 01:54:00</publishTime>
     </File>
     <File Include="Content/bootstrap.min.css">
-      <publishTime>10/10/2019 01:54:00</publishTime>
+      <publishTime>12/19/2019 00:27:49</publishTime>
     </File>
     <File Include="Content/bootstrap.min.css.map">
       <publishTime>10/10/2019 01:54:00</publishTime>
@@ -336,6 +336,18 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
     <File Include="Content/images/calzadas/NoImage.png">
       <publishTime>12/06/2019 18:48:07</publishTime>
     </File>
+    <File Include="Content/images/coeficiente_1.jpg">
+      <publishTime>12/14/2019 18:53:03</publishTime>
+    </File>
+    <File Include="Content/images/coeficiente_2.jpg">
+      <publishTime>12/14/2019 18:53:06</publishTime>
+    </File>
+    <File Include="Content/images/Coeficiente_Drenaje_Porcentaje.jpg">
+      <publishTime>12/28/2019 02:21:39</publishTime>
+    </File>
+    <File Include="Content/images/Coeficiente_Drenaje_Tiempo.jpg">
+      <publishTime>12/28/2019 02:21:39</publishTime>
+    </File>
     <File Include="Content/images/Diseno_Adoquin.jpg">
       <publishTime>10/10/2019 01:54:00</publishTime>
     </File>
@@ -357,6 +369,9 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
     <File Include="Content/images/img_c.jpg">
       <publishTime>10/10/2019 01:54:00</publishTime>
     </File>
+    <File Include="Content/images/LlaveDerecha.png">
+      <publishTime>12/28/2019 00:38:38</publishTime>
+    </File>
     <File Include="Content/images/param_esal_1.jpg">
       <publishTime>11/21/2019 16:15:18</publishTime>
     </File>
@@ -377,6 +392,69 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
     </File>
     <File Include="Content/images/pavimento_2.jpg">
       <publishTime>11/23/2019 15:54:15</publishTime>
+    </File>
+    <File Include="Content/images/vehiculos/1.jpg">
+      <publishTime>12/11/2019 22:51:31</publishTime>
+    </File>
+    <File Include="Content/images/vehiculos/10.jpg">
+      <publishTime>12/11/2019 22:51:32</publishTime>
+    </File>
+    <File Include="Content/images/vehiculos/11.jpg">
+      <publishTime>12/11/2019 22:51:32</publishTime>
+    </File>
+    <File Include="Content/images/vehiculos/12.jpg">
+      <publishTime>12/11/2019 22:51:32</publishTime>
+    </File>
+    <File Include="Content/images/vehiculos/13.jpg">
+      <publishTime>12/11/2019 22:51:32</publishTime>
+    </File>
+    <File Include="Content/images/vehiculos/14.jpg">
+      <publishTime>12/11/2019 22:51:32</publishTime>
+    </File>
+    <File Include="Content/images/vehiculos/15.jpg">
+      <publishTime>12/11/2019 22:51:32</publishTime>
+    </File>
+    <File Include="Content/images/vehiculos/16.jpg">
+      <publishTime>12/11/2019 22:51:32</publishTime>
+    </File>
+    <File Include="Content/images/vehiculos/17.jpg">
+      <publishTime>12/11/2019 22:51:32</publishTime>
+    </File>
+    <File Include="Content/images/vehiculos/18.jpg">
+      <publishTime>12/11/2019 22:51:32</publishTime>
+    </File>
+    <File Include="Content/images/vehiculos/19.jpg">
+      <publishTime>12/11/2019 22:51:32</publishTime>
+    </File>
+    <File Include="Content/images/vehiculos/2.jpg">
+      <publishTime>12/11/2019 22:51:31</publishTime>
+    </File>
+    <File Include="Content/images/vehiculos/20.jpg">
+      <publishTime>12/11/2019 22:51:32</publishTime>
+    </File>
+    <File Include="Content/images/vehiculos/21.jpg">
+      <publishTime>12/11/2019 22:51:32</publishTime>
+    </File>
+    <File Include="Content/images/vehiculos/3.jpg">
+      <publishTime>12/11/2019 22:51:31</publishTime>
+    </File>
+    <File Include="Content/images/vehiculos/4.jpg">
+      <publishTime>12/11/2019 22:51:31</publishTime>
+    </File>
+    <File Include="Content/images/vehiculos/5.jpg">
+      <publishTime>12/11/2019 22:51:31</publishTime>
+    </File>
+    <File Include="Content/images/vehiculos/6.jpg">
+      <publishTime>12/11/2019 22:51:32</publishTime>
+    </File>
+    <File Include="Content/images/vehiculos/7.jpg">
+      <publishTime>12/11/2019 22:51:32</publishTime>
+    </File>
+    <File Include="Content/images/vehiculos/8.jpg">
+      <publishTime>12/11/2019 22:51:32</publishTime>
+    </File>
+    <File Include="Content/images/vehiculos/9.jpg">
+      <publishTime>12/11/2019 22:51:32</publishTime>
     </File>
     <File Include="Content/images/Vehiculo_Moto_L3.jpg">
       <publishTime>11/19/2019 18:08:19</publishTime>
@@ -1423,7 +1501,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>10/10/2019 01:54:00</publishTime>
     </File>
     <File Include="Views/Home/Index.cshtml">
-      <publishTime>11/20/2019 23:46:17</publishTime>
+      <publishTime>12/19/2019 01:22:05</publishTime>
     </File>
     <File Include="Views/ParamEsal/Index.cshtml">
       <publishTime>11/26/2019 10:43:10</publishTime>
@@ -1435,25 +1513,25 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>12/06/2019 22:54:08</publishTime>
     </File>
     <File Include="Views/ParametrosAsfalto/Index.cshtml">
-      <publishTime>12/08/2019 22:53:28</publishTime>
+      <publishTime>01/09/2020 14:07:48</publishTime>
     </File>
     <File Include="Views/ParametrosConcreto/Index.cshtml">
       <publishTime>11/23/2019 22:32:37</publishTime>
     </File>
     <File Include="Views/ProyectoDiseno/Index.cshtml">
-      <publishTime>12/06/2019 22:54:31</publishTime>
+      <publishTime>12/12/2019 13:22:23</publishTime>
     </File>
     <File Include="Views/Seguridad/Aplicaciones.cshtml">
       <publishTime>10/10/2019 01:54:00</publishTime>
     </File>
     <File Include="Views/Seguridad/Login.cshtml">
-      <publishTime>12/02/2019 11:26:25</publishTime>
+      <publishTime>01/09/2020 11:45:59</publishTime>
     </File>
     <File Include="Views/Shared/Error.cshtml">
       <publishTime>10/10/2019 01:54:00</publishTime>
     </File>
     <File Include="Views/Shared/_Layout.cshtml">
-      <publishTime>11/27/2019 21:23:10</publishTime>
+      <publishTime>12/18/2019 23:12:47</publishTime>
     </File>
     <File Include="Views/Web.config">
       <publishTime>10/10/2019 01:54:00</publishTime>
@@ -1462,7 +1540,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>10/10/2019 01:54:00</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>12/08/2019 23:01:01</publishTime>
+      <publishTime>01/10/2020 00:20:52</publishTime>
     </File>
   </ItemGroup>
 </Project>

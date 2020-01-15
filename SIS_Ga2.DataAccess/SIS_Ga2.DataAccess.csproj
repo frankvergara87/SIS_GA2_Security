@@ -45,18 +45,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AplicacionDAO.cs" />
+    <Compile Include="DACCalidadDre.cs" />
     <Compile Include="DACCargo.cs" />
+    <Compile Include="DACCoefDreBaseReg.cs" />
+    <Compile Include="DACCoefEspesor.cs" />
+    <Compile Include="DACCoefPresion.cs" />
     <Compile Include="DACDepartamento.cs" />
     <Compile Include="DACDiseno.cs" />
     <Compile Include="DACDistrito.cs" />
     <Compile Include="DACEjes.cs" />
     <Compile Include="DACPeriodo.cs" />
+    <Compile Include="DACPorcEstrucPavimento.cs" />
+    <Compile Include="DACPresContacNeum.cs" />
     <Compile Include="DACPropFactorDistribucion.cs" />
     <Compile Include="DACProvincia.cs" />
     <Compile Include="DACProyectos.cs" />
     <Compile Include="DACReglamentos.cs" />
     <Compile Include="DACRepeticionesEqui.cs" />
     <Compile Include="DACTasaCrecimiento.cs" />
+    <Compile Include="DACTiempoElimAgua.cs" />
     <Compile Include="DACTipoDiseno.cs" />
     <Compile Include="DACTipoPavimento.cs" />
     <Compile Include="DACTipoVehiculo.cs" />

@@ -1038,7 +1038,10 @@
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="Fp" class="col-form-label col-form-label-sm">Fp :&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
-                                    <input id="Fp" type="text" placeholder="Fp" value="1.00" class="mr-3 col-sm-10 form-control form-control-sm">
+                                    <div class="form-inline">
+                                        <input id="Fp" type="text" placeholder="Fp" value="1.00" class="mr-3 col-sm-6 form-control form-control-sm">
+                                        <button type="button" id="btnFP" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#SubModal_3"><span class="fa fa-flask"></span></button>
+                                    </div>
                                 </div>
                             </div>
                         </form>
@@ -1345,6 +1348,111 @@
         </div>
 
 
+        <div class="modal fade" id="SubModal_3" tabindex="-1" role="dialog" aria-labelledby="EvaluaResilenciaModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="width:650px;">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">CÁLCULO FP </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="table-responsive">
+                            <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
+                                <tr>
+                                    <td align="left" style="color:#FF0000">
+                                        <b>
+                                            <label>*Si conoce el Espesor y la Presión Neumática </label>
+                                        </b>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td align="left">
+                                        <label>Espesor </label>
+                                    </td>
+                                    <td>
+                                        @Html.DropDownList("ddlEspesor", null, new { @class = "mr-3 col-sm-8 form-control form-control-sm" })
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td align="left">
+                                        <label>Presión </label>
+                                    </td>
+                                    <td>
+                                        @Html.DropDownList("ddlPresion", null, new { @class = "mr-3 col-sm-8 form-control form-control-sm" })
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td align="left">
+                                        <label>Fp (Calculado) </label>
+                                    </td>
+                                    <td>
+                                        <input id="txtFpCalculado" type="text" readonly="readonly" class="mr-3 col-sm-6 form-control form-control-sm input-number">
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td align="left" style="color:#FF0000">
+                                        <b>
+                                            <label>*Valor Recomendado </label>
+                                        </b>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td align="left">
+                                        <label>Fp (Recomendado) </label>
+                                    </td>
+                                    <td>
+                                        <input id="txtFpRecomendado" type="text" value="1.00" readonly="readonly" class="mr-3 col-sm-6 form-control form-control-sm input-number">
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td align="left">
+                                        <label>Ingrese Valor FP </label>
+                                    </td>
+                                    <td>
+                                        <input id="txtvalorFp" type="text" class="mr-3 col-sm-6 form-control form-control-sm input-number mascara">
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                </tr>
+
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnAceptarFp" class="btn btn-primary">Aceptar</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
         <!-- info Concreto Asfáltico Conv. -->
         <div class="modal fade" id="ConcretoAsfalticoModal" tabindex="-1" role="dialog" aria-labelledby="ConcretoAsfalticoModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
@@ -1564,7 +1672,7 @@
         <!-- info Drenaje Principal - Drenaje Tiempo / Drenaje Porcentaje -->
 
         <div class="modal fade" id="infoDrenajePrincipalModal" tabindex="-1" role="dialog" aria-labelledby="infoDrenajePrincipalModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog" role="document" style="margin-right: 80px; margin-left: 280px;">
                 <div class="modal-content" style="width:800px;">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">COEFICIENTES </h5>
@@ -1601,17 +1709,17 @@
                                         <label>Coeficiente de Drenaje de la Base Granular </label>
                                     </td>
                                     <td rowspan="2">
-                                        <input id="txtMR" type="text" readonly="readonly" class="mr-3 col-sm-8 form-control form-control-sm mascara">
+                                        <input id="txtPorcDrenajeBase" type="text" readonly="readonly" class="mr-3 col-sm-8 form-control form-control-sm mascara">
                                     </td>
                                 </tr>
                                 <tr>
                                     <td align="left">
-                                         <label>Porcentaje de Exposición a Saturación </label>
+                                        <label>Porcentaje de Exposición a Saturación </label>
                                     </td>
                                     <td>
                                         <div class="form-group col-md-10">
                                             <div class="form-inline">
-                                                <input id="txtMR" type="text" class="mr-3 col-sm-8 form-control form-control-sm mascara">
+                                                <input id="txtPorcDrenajeBaseIng" type="text" value="20.00" class="mr-3 col-sm-8 form-control form-control-sm mascara">
                                                 <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#infoDrenajePorcentajeModal"><i class="fa fa-info-circle"></i></button>
                                             </div>
                                         </div>
@@ -1639,7 +1747,7 @@
                                         <div class="form-group col-md-10">
                                             <div class="form-inline">
                                                 @Html.DropDownList("ddlCalidadDrenajeSubBase", null, new { @class = "mr-3 col-sm-8 form-control form-control-sm" })
-                                                <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#infoDrenajePorcentajeModal"><i class="fa fa-info-circle"></i></button>
+                                                <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#infoDrenajeTiempoModal"><i class="fa fa-info-circle"></i></button>
                                             </div>
                                         </div>
                                     </td>
@@ -1647,7 +1755,7 @@
                                         <label>Coeficiente de Drenaje de la Sub Base Granular </label>
                                     </td>
                                     <td>
-                                        <input id="txtMR" type="text" readonly="readonly" class="mr-3 col-sm-8 form-control form-control-sm mascara">
+                                        <input id="txtPorcDrenajeSubBase" type="text" readonly="readonly" class="mr-3 col-sm-8 form-control form-control-sm mascara">
                                     </td>
                                 </tr>
                                 <tr>
@@ -1657,7 +1765,7 @@
                                     <td>
                                         <div class="form-group col-md-10">
                                             <div class="form-inline">
-                                                <input id="txtMR" type="text" class="mr-3 col-sm-8 form-control form-control-sm mascara">
+                                                <input id="txtPorcDrenajeSubBaseIng" type="text" value="25.00" class="mr-3 col-sm-8 form-control form-control-sm mascara">
                                                 <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#infoDrenajePorcentajeModal"><i class="fa fa-info-circle"></i></button>
                                             </div>
                                         </div>
@@ -1669,13 +1777,48 @@
                                     <td></td>
                                 </tr>
                                 <tr>
+                                    <td align="left" style="color:#FF0000">
+                                        <b>
+                                            <label>(ESCRIBE LOS VALORES)</label>
+                                        </b>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td align="left">
+                                        <label>Coeficiente de Drenaje de la Base Granular (m2) </label>
+                                    </td>
+                                    <td>
+                                        <div class="form-group col-md-10">
+                                            <div class="form-inline">
+                                                <input id="txtPorcDrenajeInput" type="text" class="mr-3 col-sm-8 form-control form-control-sm mascara">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td align="left">
+                                        <label>Coeficiente de Drenaje de la Sub Base Granular (m3) </label>
+                                    </td>
+                                    <td>
+                                        <div class="form-group col-md-10">
+                                            <div class="form-inline">
+                                                <input id="txtPorcDrenajeSubBaseInput" type="text" class="mr-3 col-sm-8 form-control form-control-sm mascara">
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td></td>
                                     <td></td>
                                 </tr>
                             </table>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" id="btnCalcularMR" class="btn btn-primary">Aplicar</button>
+                        <button type="button" id="btnFinalizaCoeficientes" class="btn btn-primary">Finalizar</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
@@ -1683,7 +1826,7 @@
         </div>
 
         <div class="modal fade" id="infoDrenajeTiempoModal" tabindex="-1" role="dialog" aria-labelledby="infoDrenajeTiempoModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog" role="document" style="margin-right: 80px; margin-left: 450px;">
                 <div class="modal-content" style="width:450px;">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">COEFICIENTE</h5>
@@ -1693,12 +1836,14 @@
                     </div>
                     <div class="modal-body">
                         <div class="table-responsive">
-                            <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
-                                <tr>
-                                    <td>
-                                        <img src="~/Content/images/Coeficiente_Drenaje_Tiempo.jpg" style="width:100%; height:80%;" />
-                                    </td>
-                                </tr>
+                            <table id="dgvDrenajeTiempo" class="display" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th class="text-sm-center" id="CalidadDrenaje">Calidad de Drenaje</th>
+                                        <th class="text-sm-center" id="EliminaTiempoElimAgua">Tiempo de Eliminación del Agua en</th>
+                                    </tr>
+                                </thead>
+
                             </table>
                         </div>
                     </div>
@@ -1710,8 +1855,8 @@
         </div>
 
         <div class="modal fade" id="infoDrenajePorcentajeModal" tabindex="-1" role="dialog" aria-labelledby="infoDrenajePorcentajeModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content" style="width:720px;">
+            <div class="modal-dialog" role="document" style="margin-right: 80px; margin-left: 250px;">
+                <div class="modal-content" style="width:850px;">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">COEFICIENTE</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -1720,12 +1865,28 @@
                     </div>
                     <div class="modal-body">
                         <div class="table-responsive">
-                            <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
-                                <tr>
-                                    <td>
-                                        <img src="~/Content/images/Coeficiente_Drenaje_Porcentaje.jpg" style="width:100%; height:60%;" />
-                                    </td>
-                                </tr>
+                            <table id="dgvDrenajePorcentaje" class="display" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th class="text-sm-center">*</th>
+                                        <th class="text-sm-center" colspan="8">
+                                            Porcentaje de tiempo anual en que la
+                                            estructura del pavimento está expuesta a niveles cercanos a saturación
+                                        </th>
+                                    </tr>
+                                    <tr>
+                                        @*<th class="text-sm-center" id="Id_Porc_Estruc_Pavimento">Id</th>*@
+                                        <th class="text-sm-center" id="CalidadDrenaje">Calidad_Drenaje</th>
+                                        <th class="text-sm-center" id="Desde_0">Desde 0%</th>
+                                        <th class="text-sm-center" id="Hasta_1">Hasta 1%</th>
+                                        <th class="text-sm-center" id="Desde_1">Desde 1%</th>
+                                        <th class="text-sm-center" id="Hasta_5">Hasta 5%</th>
+                                        <th class="text-sm-center" id="Desde_5">Desde 5%</th>
+                                        <th class="text-sm-center" id="Hasta_25">Hasta 25%</th>
+                                        <th class="text-sm-center" id="Desde_25">Desde 25%</th>
+                                        <th class="text-sm-center" id="Hasta_Mas">Hasta Mas</th>
+                                    </tr>
+                                </thead>
                             </table>
                         </div>
                     </div>
@@ -2070,7 +2231,7 @@
             var CarrilxSentido = document.getElementById("ddlCarrilxSentido").value;
             var NumSentido = document.getElementById("ddlNumSentido").value;
 
-            obtenerFactorDistrib(Calzada, NumSentido, CarrilxSentido);
+            CFV(Calzada, NumSentido, CarrilxSentido);
 
         });
 
@@ -2384,6 +2545,121 @@
 
 
         CargarListadoVehiculosIMD();
+        CargarTiempoDrenaje();
+        CargarPorcentajeDrenaje();
+
+
+
+
+
+
+        //en prueba
+        ObtenerCoefDrenajeBase();
+        ObtenerCoefDrenajeSubBase();
+
+
+        $("#ddlCalidadDrenaje").change(function () {
+
+            if (document.getElementById("txtPorcDrenajeBaseIng").value.length>0) {
+                ObtenerCoefDrenajeBase();
+            } else {
+                toastr.error("Ingrese Porcentaje de Saturación!", 'ERROR', { timeOut: 2000 });
+                return;
+            }
+
+        });
+
+        $("#ddlCalidadDrenajeSubBase").change(function () {
+
+            if (document.getElementById("txtPorcDrenajeSubBaseIng").value.length>0) {
+                ObtenerCoefDrenajeSubBase();
+            } else {
+                toastr.error("Ingrese Porcentaje de Saturación!", 'ERROR', { timeOut: 2000 });
+                return;
+            }
+
+        });
+
+
+        $("#txtPorcDrenajeBaseIng").focusout(function (e) {
+
+            if (document.getElementById("txtPorcDrenajeBaseIng").value.length>0) {
+                ObtenerCoefDrenajeBase();
+            } else {
+                toastr.error("Ingrese Porcentaje de Saturación!", 'ERROR', { timeOut: 2000 });
+                return;
+            }
+            
+        });
+
+        $("#txtPorcDrenajeSubBaseIng").focusout(function (e) {
+
+            if (document.getElementById("txtPorcDrenajeSubBaseIng").value.length>0) {
+                ObtenerCoefDrenajeSubBase();
+            } else {
+                toastr.error("Ingrese Porcentaje de Saturación!", 'ERROR', { timeOut: 2000 });
+                return;
+            }
+
+        });
+
+
+        $("#btnFinalizaCoeficientes").click(function () {
+
+            
+            if (document.getElementById("txtPorcDrenajeInput").value.length>0) {
+                document.getElementById("txtBaseGranularm2").value = document.getElementById("txtPorcDrenajeInput").value;
+            } else {                
+                document.getElementById("txtBaseGranularm2").value = document.getElementById("txtPorcDrenajeBase").value;
+            }
+
+
+            if (document.getElementById("txtPorcDrenajeSubBaseInput").value.length>0) {
+               document.getElementById("txtSubBasem3").value = document.getElementById("txtPorcDrenajeSubBaseInput").value;
+            } else {                
+                document.getElementById("txtSubBasem3").value = document.getElementById("txtPorcDrenajeSubBase").value;
+            }
+
+            $("#infoDrenajePrincipalModal .close").click();
+
+        });
+
+
+
+
+        $("#ddlEspesor").change(function () {
+
+            varEspesor = document.getElementById("ddlEspesor").value;
+            varPresion = document.getElementById("ddlPresion").value;
+
+            obtenerFpCalculado(varEspesor, varPresion)
+
+        });
+
+        $("#ddlPresion").change(function () {
+
+            varEspesor = document.getElementById("ddlEspesor").value;
+            varPresion = document.getElementById("ddlPresion").value;
+
+            obtenerFpCalculado(varEspesor, varPresion)
+
+        });
+
+
+        $("#btnAceptarFp").click(function () {
+
+            var FpCalculado = document.getElementById("txtFpCalculado").value;
+            var FpIngresado = document.getElementById("txtvalorFp").value;
+
+            if (FpIngresado.length > 0) {
+                document.getElementById("Fp").value = FpIngresado;                
+            } else { document.getElementById("Fp").value = FpCalculado; }
+
+            $("#SubModal_3 .close").click();
+
+        });
+
+        obtenerFpCalculado(document.getElementById("ddlEspesor").value, document.getElementById("ddlPresion").value)
 
     });
 
@@ -2830,6 +3106,248 @@
 
 
     }
+
+    function CargarTiempoDrenaje() {
+
+        var objData = {};
+        objData["Id"] = 0;
+
+        table =
+            $('#dgvDrenajeTiempo').dataTable({
+                "searching": false,
+                //"scrollY": 200,
+                //"scrollCollapse": true,
+                //"scrollX": true,
+                "paging": false,
+                "info":     false,
+
+                "ajax": {
+                    "url": "/ParametrosAsfalto/CargarTiempoDrenaje",
+                    "type": "POST",
+                    "data": objData,
+                    "dataType": "json"
+                },
+                /*"columnDefs": [
+                    { "targets": [0], "visible": false, "searchable": false }
+
+                ],*/
+                "columns": [          
+                    //{ "data": "Id_Tiempo_Elim_Agua", "class": "text-bold text-center" },
+                    { "data": "CalidadDrenaje", "class": "text-left" },
+                    { "data": "EliminaTiempoElimAgua", "class": "text-left" }
+                ],
+
+                //"lengthMenu": [[3, -1], [3, "Todo"]],
+                "language": {
+                    "sProcessing": "Procesando...",
+                    "sLengthMenu": "Mostrar _MENU_ registros",
+                    "sZeroRecords": "No se encontraron resultados",
+                    "sEmptyTable": "Ningún dato disponible en esta tabla",
+                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sSearch": "Buscar:",
+                    "sUrl": "",
+                    "sInfoThousands": ",",
+                    "sLoadingRecords": "Cargando...",
+                    "oPaginate": {
+                        "sFirst": "Primero",
+                        "sLast": "Último",
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                    }
+                }
+
+            });
+
+
+        //para seleccionar una opcion
+        $('#dgvDrenajeTiempo tbody').on('click', 'tr', function () {
+
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+            }
+            else {
+                table.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
+        });
+
+
+
+    }
+
+    function CargarPorcentajeDrenaje() {
+
+        var objData = {};
+        objData["Id"] = 0;
+
+        table =
+            $('#dgvDrenajePorcentaje').dataTable({
+                "searching": false,
+                //"scrollY": 200,
+                //"scrollCollapse": true,
+                //"scrollX": true,
+                "paging": false,
+                "info":     false,
+
+                "ajax": {
+                    "url": "/ParametrosAsfalto/CargarPorcentajeDrenaje",
+                    "type": "POST",
+                    "data": objData,
+                    "dataType": "json"
+                },
+                /*"columnDefs": [
+                    { "targets": [0], "visible": false, "searchable": false }
+
+                ],*/
+                "columns": [          
+                    //{ "data": "Id_Porc_Estruc_Pavimento", "class": "text-left" },
+                    { "data": "CalidadDrenaje", "class": "text-center" },
+                    { "data": "Desde_0", "class": "text-center" },
+                    { "data": "Hasta_1", "class": "text-center" },
+                    { "data": "Desde_1", "class": "text-center" },
+                    { "data": "Hasta_5", "class": "text-center" },
+                    { "data": "Desde_5", "class": "text-center" },
+                    { "data": "Hasta_25", "class": "text-center" },
+                    { "data": "Desde_25", "class": "text-center" },
+                    { "data": "Hasta_Mas", "class": "text-center" }
+
+                ],
+
+                //"lengthMenu": [[3, -1], [3, "Todo"]],
+                "language": {
+                    "sProcessing": "Procesando...",
+                    "sLengthMenu": "Mostrar _MENU_ registros",
+                    "sZeroRecords": "No se encontraron resultados",
+                    "sEmptyTable": "Ningún dato disponible en esta tabla",
+                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sSearch": "Buscar:",
+                    "sUrl": "",
+                    "sInfoThousands": ",",
+                    "sLoadingRecords": "Cargando...",
+                    "oPaginate": {
+                        "sFirst": "Primero",
+                        "sLast": "Último",
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                    }
+                }
+
+            });
+
+
+        //para seleccionar una opcion
+        $('#dgvDrenajePorcentaje tbody').on('click', 'tr', function () {
+
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+            }
+            else {
+                table.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
+        });
+
+
+
+    }
+
+    function ObtenerCoefDrenajeBase() {
+
+        var IdCalidadDre, ValorPorcentaje, IDProyecto
+
+        IdCalidadDre = document.getElementById("ddlCalidadDrenaje").value;
+        ValorPorcentaje = document.getElementById("txtPorcDrenajeBaseIng").value;
+        IDProyecto = document.getElementById("hidTipoDiseno").value;
+
+        $.ajax
+        ({
+            method: 'POST',
+            url: '/ParametrosAsfalto/ObtenerCoefDrenaje',
+            data: { 'IdCalidadDre': IdCalidadDre, 'ValorPorcentaje': ValorPorcentaje, 'IDProyecto': IDProyecto },
+            success: function (respuesta) {
+
+                document.getElementById("txtPorcDrenajeBase").value = respuesta;
+
+            },
+            error: function (xhr, status) {
+                alert("ERROR");
+            }
+
+        });
+
+    }
+
+    function ObtenerCoefDrenajeSubBase() {
+
+        var IdCalidadDre, ValorPorcentaje, IDProyecto
+
+        IdCalidadDre = document.getElementById("ddlCalidadDrenajeSubBase").value;
+        ValorPorcentaje = document.getElementById("txtPorcDrenajeSubBaseIng").value;
+        IDProyecto = document.getElementById("hidTipoDiseno").value;
+
+        $.ajax
+        ({
+            method: 'POST',
+            url: '/ParametrosAsfalto/ObtenerCoefDrenaje',
+            data: { 'IdCalidadDre': IdCalidadDre, 'ValorPorcentaje': ValorPorcentaje, 'IDProyecto': IDProyecto },
+            success: function (respuesta) {
+
+                document.getElementById("txtPorcDrenajeSubBase").value = respuesta;
+
+            },
+            error: function (xhr, status) {
+                alert("ERROR");
+            }
+
+        });
+
+    }
+
+
+    function obtenerFpCalculado(Espesor, Presion) {
+
+        $.ajax
+            ({
+                method: 'POST',
+                url: '/ParametrosAsfalto/obtenerFpCalculado',
+                data: { 'Espesor': Espesor, 'Presion': Presion },
+                success: function (respuesta) {
+
+                    if (respuesta!='') {
+                    
+                        var obj = (typeof respuesta) == 'string' ? eval('(' + respuesta + ')') : respuesta;
+
+                        $.each(obj, function (i, item) {                            
+                            document.getElementById("txtFpCalculado").value = item.valorFP;
+                        });
+                    } else {
+                        document.getElementById("txtFpCalculado").value = '';
+                    }
+
+                },
+                error: function (xhr, status) {
+                    alert("PLOP");
+                }
+
+            });
+
+    }
+
+
 
 
 

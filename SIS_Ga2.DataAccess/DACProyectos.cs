@@ -50,5 +50,36 @@ namespace SIS_Ga2.DataAccess
             }
         }
 
+
+
+
+        public int GuardarCoeficientes(BECoefEstructura objEntidad)
+        {
+            SqlManager objSql = new SqlManager(ConfigurationManager.AppSettings["ASOCEM"].ToString());
+            int resultado = 0;
+            Parameter param = new Parameter();
+            param.Add("@Id_Diseno", objEntidad.idDiseno);
+            param.Add("@Id_TipoPavimento", objEntidad.idTipoPavimento);
+            param.Add("@Coeficiente_Drenaje_Calc", objEntidad.Coeficiente_Drenaje_Calc);
+            param.Add("@Coeficiente_Drenaje_Ingresado", objEntidad.Coeficiente_Drenaje_Ingresado);
+            param.Add("@Coeficiente_Estructural_Calc", objEntidad.Coeficiente_Estructural_Calc);
+            param.Add("@Coeficiente_Estructural_Ingresado", objEntidad.Coeficiente_Estructural_Ingresado);
+            param.Add("@Fecha_Creacion", objEntidad.FechaCreacion);
+            param.Add("@Hora_Creacion", objEntidad.HoraCreacion);
+            param.Add("@Usr_Creacion", objEntidad.UsrCreacion);
+         
+            try
+            {
+                objSql.ExecuteNonQuery("USP_Ins_Coeficientes", param);
+                resultado = 1;
+            }
+            catch (Exception ex)
+            {
+                //Rutina de Guardado en Log 
+                //afilogDAO.Save(0, 0, "CatalogoDAO", "GetCatalogoToCombo", ex);
+                throw ex;
+            }
+            return resultado;
+        }
     }
 }

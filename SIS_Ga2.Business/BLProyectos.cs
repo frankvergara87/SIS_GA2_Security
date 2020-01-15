@@ -23,5 +23,13 @@ namespace SIS_Ga2.Business
             DACProyectos objDAO = new DACProyectos();
             return objDAO.ListarProyectos();
         }
+
+        public int GuardarCoeficientes(BECoefEstructura objEntidad)
+        {
+            DACProyectos objDAO = new DACProyectos();
+            return objDAO.GuardarCoeficientes(objEntidad);
+        }
     }
 }
+
+ 

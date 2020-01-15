@@ -13,6 +13,11 @@ namespace SIS_Ga2.Entity
         public int idTipoPavimento { get; set; }
         public double CoefDrenaje { get; set; }
         public double CoefEstructural { get; set; } 
+
+        public double Coeficiente_Drenaje_Calc { get; set; }
+        public double Coeficiente_Drenaje_Ingresado { get; set; }
+        public double Coeficiente_Estructural_Calc { get; set; }
+        public double Coeficiente_Estructural_Ingresado { get; set; }
         public double FechaCreacion { get; set; }
         public double HoraCreacion { get; set; }
         public string UsrCreacion { get; set; }
