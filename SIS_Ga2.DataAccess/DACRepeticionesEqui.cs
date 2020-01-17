@@ -32,9 +32,9 @@ namespace SIS_Ga2.DataAccess
             param.Add("@Fecha_Creacion", objEntidad.Fecha_Creacion);
             param.Add("@Hora_Creacion", objEntidad.Hora_Creacion);
             param.Add("@Usr_Creacion", objEntidad.Usr_Creacion);
+            param.Add("@Id_Repet_Equivalentes", 0, System.Data.ParameterDirection.Output);
 
-
-            //param.Add("@Id_Repet_Equivalentes", 0, System.Data.ParameterDirection.Output);
+            
 
             try
             {

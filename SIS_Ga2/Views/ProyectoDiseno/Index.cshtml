@@ -143,7 +143,53 @@
 
             var strIdDepartamento = $("#ddlDepartamento").val();
             var strIdProvincia = $("#ddlProvincia").val();
-            var strIdDistrito = 23;//document.getElementById("ddlDistrito").value;
+            var strIdDistrito = $("#ddlDistrito").val();
+
+
+            //Validacion de variables
+            if (strNumProyecto.length==0) {
+                toastr.error("Ingrese Num. Proyecto!", 'ERROR', { timeOut: 2000 });
+                return;
+            }
+
+            if (strProyecto.length==0) {
+                toastr.error("Ingrese Proyecto!", 'ERROR', { timeOut: 2000 });
+                return;
+            }
+
+            if (strIngeniero.length==0) {
+                toastr.error("Ingrese Ingeniero!", 'ERROR', { timeOut: 2000 });
+                return;
+            }
+
+            if (strNumDiseno.length==0) {
+                toastr.error("Ingrese Diseño!", 'ERROR', { timeOut: 2000 });
+                return;
+            }
+
+            if (strTramo.length==0) {
+                toastr.error("Ingrese Tramo!", 'ERROR', { timeOut: 2000 });
+                return;
+            }
+
+
+            if (strIdDepartamento==0) {
+                toastr.error("Seleccione Departamento!", 'ERROR', { timeOut: 2000 });
+                return;
+            }
+
+            if (strIdProvincia==0) {
+                toastr.error("Seleccione Provincia!", 'ERROR', { timeOut: 2000 });
+                return;
+            }
+
+            if (strIdDistrito==0) {
+                toastr.error("Seleccione Distrito!", 'ERROR', { timeOut: 2000 });
+                return;
+            }
+
+            //Fin Validacion
+
 
             var objDataProy = {};
 

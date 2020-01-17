@@ -1,0 +1,291 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Bootstrap Material Admin by Bootstrapious.com</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="robots" content="all,follow">
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="~/Content/bootstrap.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="~/Content/font-awesome.min.css">
+    <!-- Fontastic Custom icon font-->
+    <link rel="stylesheet" href="~/Content/fontastic.css">
+    <!-- Google fonts - Poppins -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="~/Content/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="~/Content/custom.css">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="~/Content/img/favicon.ico">
+    <!-- Tweaks for older IEs-->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+</head>
+<body>
+    <div class="page login-page">
+        <div class="container d-flex align-items-center">
+            <div class="form-holder has-shadow">
+                <div class="row">
+                    <!-- Logo & Information Panel-->
+                    <div class="col-lg-6">
+                        <div class="info d-flex align-items-center">
+                            <div class="content">
+                                <div class="logo">
+                                    <h1>ASOCEM</h1>
+                                </div>
+                                <p>
+                                    Bienvenidos a Ga2 Sistemas y Servicios.
+                                    <i> Porfavor ingrese sus credenciales.</i>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Form Panel    -->
+                    <div class="col-lg-6 bg-white">
+                        <div class="form d-flex align-items-center">
+                            <div class="content">
+
+                                <ul class="nav nav-tabs">
+                                    <li class="active invisible"><a data-toggle="tab" href="#home">LOGIN</a></li>
+                                    <li class="invisible"><a data-toggle="tab" href="#menu1">EMAIL</a></li>
+                                    <li class="invisible"><a data-toggle="tab" href="#menu2">ACTUALIZA</a></li>
+                                </ul>
+
+                                <div class="tab-content">
+                                    <div id="home" class="tab-pane fade show active">
+                                        </br>
+
+                                        @using (Html.BeginForm("Login", "Seguridad", FormMethod.Post))
+                                        {
+                                            <form method="post" class="form-validate">
+                                                <div class="form-group">
+                                                    <input id="login-username" type="text" name="loginUsername" value="FV" required data-msg="Please enter your username" class="input-material">
+                                                    <label for="login-username" class="label-material">Usuario</label>
+                                                </div>
+                                                <div class="form-group">
+                                                    <input id="login-password" type="password" name="loginPassword" value="GA4" required data-msg="Please enter your password" class="input-material">
+                                                    <label for="login-password" class="label-material">Contraseña</label>
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">
+                                                    <span class="fa fa-user-o"></span> Login
+                                                </button>
+                                                <div>
+                                                    <label for="login-password" class="label-material">@ViewBag.Mensaje</label>
+                                                </div>
+                                            </form>
+                                        }
+
+                                        <small>No puede acceder a su cuenta? </small><a href="#" class="signup"></a>
+                                        <br>
+                                        <a id="btnSig_a" href="#" class="forgot-pass">Recuperar Contraseña?</a>
+                                    </div>
+                                    <div id="menu1" class="tab-pane fade">
+                                        </br>
+                                        <h3>
+                                            <small>Ingrese su correo electronico. </small><a href="#" class="signup"></a>
+                                        </h3>
+                                        <div class="form-group">
+                                            <input id="login-email" type="text" name="loginEmail" required data-msg="Please enter your email" class="input-material ">
+                                            <label for="login-email" class="label-material">Email</label>
+                                        </div>
+
+                                        <button type="button" id="btnAnt_b" class="prevtab btn btn-primary"><span class="fa fa-user-o"></span> Login</button>
+                                        <button type="button" id="btnSig_b" class="btn btn-primary"><span class="fa fa-envelope-o"></span> Enviar</button>
+                                    </div>
+                                    <div id="menu2" class="tab-pane fade">
+                                        </br>
+                                        <h3>
+                                            <small>
+                                                Sus credenciales fueron enviadas a su correo  <label id="lblCorreo"></label>
+                                            </small>
+                                            <small>Porfavor revise su bandeja de correo. </small><a href="#" class="signup"></a>
+                                        </h3>
+                                        </br>
+                                        <button type="button" id="btnAnt_c" class="btn btn-primary"><span class="fa fa-user-o"></span> Login</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <div class="copyrights text-center">
+            <p>
+                <a href="#" class="external">
+                    Ga2 Sistemas y Servicios &copy; 2019
+                </a>
+            </p>
+        </div>
+    </div>
+    <!-- JavaScript files-->
+    <script src="~/Scripts/jquery.min.js"></script>
+    @*<script src="~/Scripts/popper.min.js"></script>*@
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery.cookie.js"></script>
+    <script src="~/Scripts/Chart.min.js"></script>
+    <!--<script src="~/Scripts/jquery-validation/jquery.validate.min.js"></script>-->
+    <!-- Main File-->
+    <script src="~/Scripts/front.js"></script>
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $("#btnSig_a").click(function () {
+
+                document.getElementById("login-email").value = '';
+               
+                var i, j, items = $('.nav-link'), pane = $('.tab-pane');
+                j = 0;
+                i = 0;
+                //if (i < items.length - 1) {
+                if (i + 1 <= 2) {
+                    // for tab
+                    $(items[j]).removeClass('active');
+                    $(items[j + 1]).addClass('active');
+                    // for pane
+                    $(pane[i]).removeClass('show active');
+                    $(pane[i + 1]).addClass('show active');
+                }
+
+            });
+
+            $("#btnSig_b").click(function () {
+
+                email = document.getElementById("login-email").value;
+
+                if (email=='') {
+                    return;
+                }
+
+                $.ajax
+                ({
+                    method: 'POST',
+                    url: '/Seguridad/SendEmail',
+                    data: { 'EmailDestino': email},
+                    success: function (respuesta) {
+
+                        document.getElementById('lblCorreo').innerHTML = respuesta;
+                        
+                        var i, j, items = $('.nav-link'), pane = $('.tab-pane');
+                        j = 1;
+                        i = 1;
+                        //if (i < items.length - 1) {
+                        if (i + 1 <= 2) {
+                            // for tab
+                            $(items[j]).removeClass('active');
+                            $(items[j + 1]).addClass('active');
+                            // for pane
+                            $(pane[i]).removeClass('show active');
+                            $(pane[i + 1]).addClass('show active');
+                        }
+
+
+                    },
+                    error: function (xhr, status) {
+                        alert("Error de Proceso");
+                    }
+
+                });
+
+
+            });
+
+
+            $("#btnAnt_c").click(function () {
+
+                var items = $('.nav-link'), pane = $('.tab-pane');
+
+                // for tab
+                $(items[2]).removeClass('active');
+                $(items[0]).addClass('active');
+                // for pane
+                $(pane[2]).removeClass('show active');
+                $(pane[0]).addClass('show active');
+
+            });
+
+        });
+
+
+        function bootstrapTabControl() {
+            var i, items = $('.nav-link'), pane = $('.tab-pane');
+            // next
+            $('.nexttab').on('click', function () {
+                for (i = 0; i < pane.length; i++) {
+
+                    if ($(pane[i]).hasClass('active') == true) {
+                        break;
+                    }
+                }
+
+                for (j = 0; j < items.length; j++) {
+
+                    if ($(items[j]).hasClass('active') == true) {
+                        break;
+                    }
+                }
+
+                //alert("items: " + j);
+                //alert("pane: " + i);
+
+                //if (i < items.length - 1) {
+                if (i + 1 <= 2) {
+                    // for tab
+                    $(items[j]).removeClass('active');
+                    $(items[j + 1]).addClass('active');
+                    // for pane
+                    $(pane[i]).removeClass('show active');
+                    $(pane[i + 1]).addClass('show active');
+                }
+
+            });
+            // Prev
+            $('.prevtab').on('click', function () {
+                for (i = 0; i < pane.length; i++) {
+                    if ($(pane[i]).hasClass('active') == true) {
+                        break;
+                    }
+                }
+
+                for (j = 0; j < items.length; j++) {
+                    if ($(items[j]).hasClass('active') == true) {
+                        break;
+                    }
+                }
+
+
+                if (i != 0) {
+                    // for tab
+                    $(items[j]).removeClass('active');
+                    $(items[j - 1]).addClass('active');
+                    // for pane
+                    $(pane[i]).removeClass('show active');
+                    $(pane[i - 1]).addClass('show active');
+                }
+            });
+        }
+
+
+
+
+        bootstrapTabControl();
+    </script>
+
+</body>
+</html>
+

@@ -398,27 +398,35 @@ namespace SIS_Ga2.Controllers
             return FVP;
         }
 
-        public int GuardarVehiculosIMD(BEVehiculosIMD objVehiculosIMD, BERepeticionesEqui objRepeticionesEqui)
+        public int GuardarVehiculosIMD(BEVehiculosIMD objVehiculosIMD, BERepeticionesEqui objRepeticionesEqui, int hid_Id_Repet_Equi)
         {
 
             int Id_Repet_Equivalentes;
-            BLRepeticionesEqui objblRepeticionesEqui = new BLRepeticionesEqui();
-            BERepeticionesEqui lobjRepeticionesEqu = new BERepeticionesEqui();
 
-            lobjRepeticionesEqu.Id_Tasa_Crecimiento = objRepeticionesEqui.Id_Tasa_Crecimiento;
-            lobjRepeticionesEqu.Id_Prop_Factor_Distrib = objRepeticionesEqui.Id_Prop_Factor_Distrib;
-            lobjRepeticionesEqu.Dias_Diseno = objRepeticionesEqui.Dias_Diseno;
-            lobjRepeticionesEqu.FP = objRepeticionesEqui.FP;
-            lobjRepeticionesEqu.Tipo_Diseno = objRepeticionesEqui.Tipo_Diseno;
-            lobjRepeticionesEqu.Periodo = objRepeticionesEqui.Periodo;
-            lobjRepeticionesEqu.Valor_EE_Total = 123;
-            lobjRepeticionesEqu.Id_Parametro = 6;
-            lobjRepeticionesEqu.Fecha_Creacion = Convert.ToDouble(DateTime.Now.ToString("yyyyMMdd"));
-            lobjRepeticionesEqu.Hora_Creacion = Convert.ToDouble(DateTime.Now.ToString("hhmmss").ToString());
-            lobjRepeticionesEqu.Usr_Creacion = "fvergara";
+            if (hid_Id_Repet_Equi == 0) //Validamos si ya se creo la cabecera
+            {
+                BLRepeticionesEqui objblRepeticionesEqui = new BLRepeticionesEqui();
+                BERepeticionesEqui lobjRepeticionesEqu = new BERepeticionesEqui();
 
-            Id_Repet_Equivalentes = objblRepeticionesEqui.GuardarRepeticionesEqui(lobjRepeticionesEqu);
+                lobjRepeticionesEqu.Id_Tasa_Crecimiento = objRepeticionesEqui.Id_Tasa_Crecimiento;
+                lobjRepeticionesEqu.Id_Prop_Factor_Distrib = objRepeticionesEqui.Id_Prop_Factor_Distrib;
+                lobjRepeticionesEqu.Dias_Diseno = objRepeticionesEqui.Dias_Diseno;
+                lobjRepeticionesEqu.FP = objRepeticionesEqui.FP;
+                lobjRepeticionesEqu.Tipo_Diseno = objRepeticionesEqui.Tipo_Diseno;
+                lobjRepeticionesEqu.Periodo = objRepeticionesEqui.Periodo;
+                lobjRepeticionesEqu.Valor_EE_Total = 123;
+                lobjRepeticionesEqu.Id_Parametro = 6;
+                lobjRepeticionesEqu.Fecha_Creacion = Convert.ToDouble(DateTime.Now.ToString("yyyyMMdd"));
+                lobjRepeticionesEqu.Hora_Creacion = Convert.ToDouble(DateTime.Now.ToString("hhmmss").ToString());
+                lobjRepeticionesEqu.Usr_Creacion = "fvergara";
 
+                Id_Repet_Equivalentes = objblRepeticionesEqui.GuardarRepeticionesEqui(lobjRepeticionesEqu);
+            }
+            else
+            {
+                Id_Repet_Equivalentes = hid_Id_Repet_Equi;
+            }
+            
 
             int Id_Vehiculos_IMD;
             BLVehiculosIMD objblVehiculosIMD = new BLVehiculosIMD();
@@ -452,7 +460,7 @@ namespace SIS_Ga2.Controllers
             Id_Vehiculos_IMD = objblVehiculosIMD.GuardarVehiculosIMD(lobjVehiculosIMD);
 
 
-            return Id_Vehiculos_IMD;
+            return Id_Repet_Equivalentes;
         }
 
 
