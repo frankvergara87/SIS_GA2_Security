@@ -87,7 +87,7 @@ namespace SIS_Ga2.DataAccess
             SqlManager objSql = new SqlManager(ConfigurationManager.AppSettings["ASOCEM"].ToString());
             int resultado = 0;
             Parameter param = new Parameter();
-            param.Add("@Id_Diseno", objEntidad.Id_Parametro);
+            param.Add("@Id_Diseno", objEntidad.Id_Diseno);
             param.Add("@Nro_Anio", objEntidad.NroAnio);        
             param.Add("@Valor", objEntidad.Valor);
 
@@ -109,7 +109,7 @@ namespace SIS_Ga2.DataAccess
             SqlManager objSql = new SqlManager(ConfigurationManager.AppSettings["ASOCEM"].ToString());
             int resultado = 0;
             Parameter param = new Parameter();
-            param.Add("@Id_Diseno", objEntidad.Id_Parametro);
+            param.Add("@Id_Diseno", objEntidad.Id_Diseno);
             param.Add("@Id_Tipo_Vehiculo", objEntidad.Id_Tipo_Vehiculo);
             param.Add("@Valor", objEntidad.Valor);
 

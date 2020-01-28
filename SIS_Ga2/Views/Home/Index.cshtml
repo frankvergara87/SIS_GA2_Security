@@ -70,19 +70,53 @@
             <div class=" clearfix">
                 <div class="p-0">
                     <div class="btn-group float-left" role="group" aria-label="Basic example">
-                        <button type="submit" id="btnNuevoProyecto" class="btn btn-outline-primary" onclick="location.href='@Url.Action("NuevoProyecto", "Home")'"><span class="fa fa-superpowers"></span> Proyecto</button>
+                        <button type="submit" id="btnNuevoProyecto" class="btn btn-outline-primary small" onclick="location.href='@Url.Action("NuevoProyecto", "Home")'"><span class="fa fa-superpowers"></span> Proyecto</button>
                         @*<button type="button" id="btnEditar" class="btn btn-outline-primary editor_edit" data-id="1" data-toggle="modal" data-target="#exampleModal"><span class="icon-form"></span> Editar</button>
                         <button type="button" id="btnEliminar" class="btn btn-outline-danger editor_delete" data-id="3" data-toggle="modal" data-target="#deleteModal"><span class="icon-close"></span> Eliminar</button>*@
-                        <button type="button" id="btnExportar" class="btn btn-outline-success"><span class="fa fa-file-excel-o"></span> Exportar</button>
+                        <button type="button" id="btnExportar" class="btn btn-outline-success small"><span class="fa fa-file-excel-o"></span> Exportar</button>
                     </div>
                 </div>
                 <div class="p-0">
-                    <div class="btn-group float-right" role="group" aria-label="Basic example">
-                        <button type="button" id="btnBuscar" class="btn btn-primary"><span class="icon-search"></span> Buscar</button>
+                    <div class="btn-group float-right" role="group">
+                        <button type="button" id="btnBuscar" class="btn btn-primary small"><span class="icon-search"></span> Buscar</button>
                     </div>
                 </div>
             </div>
         </div>
+
+        <div class="card-header badge badge-info">
+            <div class=" clearfix">
+                <div class="p-0">
+                    <div class="float-left" role="group" >
+                                            
+                    </div>
+                </div>
+                <div class="p-0">
+                    <div class="float-right" role="group">
+                        <table class="display" cellspacing="0" style="width:100%">
+                            <tr>
+                                <td>
+                                    <button type="button" id="a" class="btn btn-outline-primary small"><span class="icon-list"></span></button>
+                                </td>
+                                <td align="left">&nbsp;Ver Reporte</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button type="button" id="b" class="btn btn-outline-danger small"><span class="icon-close"></span></button>
+                                </td>
+                                <td align="left">&nbsp;Eliminar Proyecto</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button type="button" id="c" class="btn btn-outline-primary small"><span class="icon-form"></span></button>
+                                </td>
+                                <td align="left">&nbsp;Editar Proyecto</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+         </div>
 
         <div class="card-body">
             <div class="table-responsive">
@@ -95,7 +129,7 @@
                             @*<th class="text-sm-center" id="Dni">Dni</th>*@
                             <th class="text-sm-center" id="Ingeniero">Ingeniero</th>
                             @*<th class="text-sm-center" id="Cargo">Cargo</th>
-        <th class="text-sm-center" id="Fecha_Contrato">F.Contrato</th>*@
+                            <th class="text-sm-center" id="Fecha_Contrato">F.Contrato</th>*@
                             <th class="text-sm-center" id="Num_Diseno">Num.Diseño</th>
                             <th class="text-sm-center" id="Tipo_Diseno">Tip.Diseño</th>
                             <th class="text-sm-center" id="Tramo">Tramo</th>

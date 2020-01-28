@@ -633,7 +633,7 @@ namespace SIS_Ga2.Controllers
         }
 
 
-        public int GuardarCrecXTiempo(int NroAnio, string Valor)
+        public int GuardarCrecXTiempo(int NroAnio, string Valor, int IdDiseno)
         {
             try
             {
@@ -643,6 +643,7 @@ namespace SIS_Ga2.Controllers
                 BETasaCrecimiento beTasaCrecimiento = new BETasaCrecimiento();
                 beTasaCrecimiento.NroAnio = NroAnio;
                 beTasaCrecimiento.Valor = Convert.ToDecimal(Valor);
+                beTasaCrecimiento.Id_Diseno = IdDiseno;
 
                 Id_Tasa_Crec_X_Tiempo = bLTasaCrecimiento.GuardarCrecXTiempo(beTasaCrecimiento);
 
@@ -657,7 +658,7 @@ namespace SIS_Ga2.Controllers
 
         }
 
-        public int GuardarCrecXVehiculo(int Id_Tipo_Vehiculo, string Valor)
+        public int GuardarCrecXVehiculo(int Id_Tipo_Vehiculo, string Valor, int IdDiseno)
         {
             try
             {
@@ -667,6 +668,7 @@ namespace SIS_Ga2.Controllers
                 BETasaCrecimiento beTasaCrecimiento = new BETasaCrecimiento();
                 beTasaCrecimiento.Id_Tipo_Vehiculo = Id_Tipo_Vehiculo;
                 beTasaCrecimiento.Valor = Convert.ToDecimal(Valor);
+                beTasaCrecimiento.Id_Diseno = IdDiseno;
 
                 Id_Tasa_Crec_X_Vehiculo = bLTasaCrecimiento.GuardarCrecXVehiculo(beTasaCrecimiento);
 
@@ -680,7 +682,6 @@ namespace SIS_Ga2.Controllers
             }
 
         }
-
 
 
     }

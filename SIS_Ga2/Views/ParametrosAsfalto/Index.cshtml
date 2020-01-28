@@ -1008,7 +1008,7 @@
         <!-- Modals para Evaluar ESAL -->
 
         <div class="modal fade" id="Esal_Modal" tabindex="-1" role="dialog" aria-labelledby="Esal_ModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document" style="margin-right: 80px; margin-left: 280px;">
+            <div class="modal-dialog modal-dialog-centered" role="document" style="margin-right: 80px; margin-left: 260px;">
                 <div class="modal-content" style="width:800px;">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Cálculo de Repeticiones de Ejes Equivalentes </h5>
@@ -1027,7 +1027,7 @@
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="TasaCrecimiento" class="col-form-label col-form-label-sm">Tasa de Crecimiento (%) :</label>
-                                    <input id="TasaCrecimiento" type="text" readonly="readonly" placeholder="T.Crecimiento" class="mr-3 col-sm-8 form-control form-control-sm">
+                                    <input id="TasaCrecimiento" type="text" readonly="readonly" placeholder="T.Crecimiento" class="mr-3 col-sm-9 form-control form-control-sm">
                                     <button type="button" id="btnTasaCrecimiento" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#SubModal_4"><span class="fa fa-percent"></span></button>
 
                                     <button type="button" id="btnIrVariableConstante" class="btn btn-primary" style="display:none;" data-toggle="modal" data-target="#SubModal_VariableConstante">Click</button>
@@ -1457,7 +1457,7 @@
 
 
         <div class="modal fade" id="SubModal_4" tabindex="-1" role="dialog" aria-labelledby="SubModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog" role="document" style="margin-right: 80px; margin-left: 330px;">
                 <div class="modal-content" style="width:650px;">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">TASA DE CRECIMIENTO (%) </h5>
@@ -1491,7 +1491,7 @@
 
 
         <div class="modal fade" id="SubModal_VariableConstante" tabindex="-1" role="dialog" aria-labelledby="SubModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
+            <div class="modal-dialog " role="document" style="margin-right: 80px; margin-left: 450px;">
                 <div class="modal-content" style="width:400px;">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">T. CRECIMIENTO CONSTANTE (%) </h5>
@@ -1507,14 +1507,14 @@
                                         <label for="inlineFormInput" class="col-form-label col-form-label-sm">Escribe el Valor (%): </label>
                                     </td>
                                     <td align="right">
-                                        <input id="TasaCrecimientoConstante" type="text" placeholder="T.Crecimiento" class="mr-3 col-sm-8 form-control form-control-sm">
+                                        <input id="ValorTasaCrecConstante" type="text" placeholder="T.Crecimiento" class="mr-3 col-sm-8 form-control form-control-sm mascara">
                                     </td>
                                 </tr>
                             </table>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" id="btnAceptarTasa" class="btn btn-primary small"><span class="fa fa-road"></span> Aceptar</button>
+                        <button type="button" id="btnAceptarTasaCrecConstante" class="btn btn-primary small"><span class="fa fa-road"></span> Aceptar</button>
                         <button type="button" class="btn btn-secondary small" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
@@ -1538,7 +1538,7 @@
                                         <label for="inlineFormInput" class="col-form-label col-form-label-sm">Periodo: </label>
                                     </td>
                                     <td>
-                                        <input id="PeriodoTasaCrec" type="text" placeholder="Periodo" class="mr-3 col-sm-6 form-control form-control-sm">
+                                        <input id="PeriodoTasaCrecxTiempo" type="text" placeholder="Periodo" class="mr-3 col-sm-6 form-control form-control-sm SoloNumeros">
                                     </td>
                                     <td>
                                     </td>
@@ -1549,8 +1549,8 @@
                                     </td>
                                     <td>
                                         <div class="form-inline">
-                                            <input id="ValorTasaCrec" type="text" class="mr-3 col-sm-6 form-control form-control-sm">
-                                            <button type="button" id="btnAgregarVariableTiempo" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#SubModal_2"><span class="fa fa-plus-circle"></span></button>
+                                            <input id="ValorTasaCrecxTiempo" type="text" class="mr-3 col-sm-6 form-control form-control-sm mascara">
+                                            <button type="button" id="btnAgregarTasaCrecxTiempo" class="btn btn-primary btn-sm"><span class="fa fa-plus-circle"></span></button>
                                         </div>
                                     </td>
                                     <td>
@@ -1562,6 +1562,7 @@
                             <table id="dgvListadoVariableTiempo" class="display" cellspacing="0" align="left" width="500px">
                                 <thead>
                                     <tr>
+                                        <th class="text-sm-center" id="Id">Id</th>
                                         <th class="text-sm-center" id="Anio">Periodo - Año</th>
                                         <th class="text-sm-center" id="Valor">Valor (R%)</th>
                                         <th class="text-sm-center" id="Reporte">Opc</th>
@@ -1571,7 +1572,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" id="btnAceptarTasa" class="btn btn-primary small"><span class="fa fa-road"></span> Aceptar</button>
+                        <button type="button" id="btnAceptarTasaCrecxTiempo" class="btn btn-primary small"><span class="fa fa-road"></span> Aceptar</button>
                         <button type="button" class="btn btn-secondary small" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
@@ -1607,8 +1608,8 @@
                                         </td>
                                         <td>
                                             <div class="form-inline">
-                                                <input id="ValorTasaCrec" type="text" class="mr-3 col-sm-6 form-control form-control-sm">
-                                                <button type="button" id="btnAgregarVariableVehiculo" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#SubModal_2"><span class="fa fa-plus-circle"></span></button>
+                                                <input id="ValorTasaCrecxVehiculo" type="text" class="mr-3 col-sm-6 form-control form-control-sm mascara">
+                                                <button type="button" id="btnAgregarTasaCrecxVehiculo" class="btn btn-primary btn-sm"><span class="fa fa-plus-circle"></span></button>
                                             </div>
                                         </td>
                                         <td>
@@ -1621,6 +1622,7 @@
                             <table id="dgvListadoVariableVehiculo" class="display" cellspacing="0" align="left" width="550px">
                                 <thead>
                                     <tr>
+                                        <th class="text-sm-center" id="Id">Id</th>
                                         <th class="text-sm-center" id="Vehiculo">Tipo Vehículo</th>
                                         <th class="text-sm-center" id="Valor">Valor (R%)</th>
                                         <th class="text-sm-center" id="Valor">Opc</th>
@@ -1630,7 +1632,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" id="btnAceptarTasa" class="btn btn-primary small"><span class="fa fa-road"></span> Aceptar</button>
+                        <button type="button" id="btnAceptarTasaCrecxVehiculo" class="btn btn-primary small"><span class="fa fa-road"></span> Aceptar</button>
                         <button type="button" class="btn btn-secondary small" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
@@ -2107,6 +2109,7 @@
 
 
         $('.mascara').mask("#,##0.00", { reverse: true }); //Aplica la mascara
+        $('.SoloNumeros').mask("99", { reverse: true }); //Aplica la mascara
         
         document.getElementById("PeriodoDiseno").value = $("#ddlPeriodoDisenoParam :selected").text();
 
@@ -2641,63 +2644,74 @@
 
 
         $("#btnGuardarVehiculoIMD").on("click", function (event) {
+            
+            var ipt = document.getElementById("FdxFc").value;            
 
-            var objRepeticionesEqui = {};
-            objRepeticionesEqui["Id_Tasa_Crecimiento"] = document.getElementById("ddlTasaCrecimiento").value;
-            objRepeticionesEqui["Dias_Diseno"] = document.getElementById("DiasAno").value;
-            objRepeticionesEqui["FP"] = document.getElementById("Fp").value;
-            objRepeticionesEqui["Tipo_Diseno"] = document.getElementById("hidTipoDiseno").value;
-            objRepeticionesEqui["Periodo"] = document.getElementById("PeriodoDiseno").value;
-            objRepeticionesEqui["Id_Prop_Factor_Distrib"] = document.getElementById("hidId_Prop_Factor_Distrib").value;
+            if (ipt.length == 0) {
+                $("#SubModal .close").click();
+                toastr.error("Ingrese un valor Fd x Fc.", 'ASOCEM', { timeOut: 4500 });
+                return;
+            } else {
+
+                    var objRepeticionesEqui = {};
+                    objRepeticionesEqui["Id_Tasa_Crecimiento"] = document.getElementById("ddlTasaCrecimiento").value;
+                    objRepeticionesEqui["Dias_Diseno"] = document.getElementById("DiasAno").value;
+                    objRepeticionesEqui["FP"] = document.getElementById("Fp").value;
+                    objRepeticionesEqui["Tipo_Diseno"] = document.getElementById("hidTipoDiseno").value;
+                    objRepeticionesEqui["Periodo"] = document.getElementById("PeriodoDiseno").value;
+                    objRepeticionesEqui["Id_Prop_Factor_Distrib"] = document.getElementById("hidId_Prop_Factor_Distrib").value;
             
 
-            var objVehiculosIMD = {};
-            objVehiculosIMD["Id_Vehiculos"] = document.getElementById("ddlVehiculo").value;
-            objVehiculosIMD["IMD_Base"] = document.getElementById("txtIMDBase").value;
-            objVehiculosIMD["Tipo_Eje_E1"] = $("#ddlTipoEje_1 :selected").text();
-            objVehiculosIMD["Peso_Tonelada_E1"] = document.getElementById("txtPesoEje_1").value;
-            objVehiculosIMD["Tipo_Eje_E2"] = $("#ddlTipoEje_2 :selected").text();
-            objVehiculosIMD["Peso_Tonelada_E2"] = document.getElementById("txtPesoEje_2").value;
-            objVehiculosIMD["Tipo_Eje_E3"] = $("#ddlTipoEje_3 :selected").text();
-            objVehiculosIMD["Peso_Tonelada_E3"] = document.getElementById("txtPesoEje_3").value;
-            objVehiculosIMD["Tipo_Eje_E4"] = $("#ddlTipoEje_4 :selected").text();
-            objVehiculosIMD["Peso_Tonelada_E4"] = document.getElementById("txtPesoEje_4").value;
-            objVehiculosIMD["Tipo_Eje_E5"] = $("#ddlTipoEje_5 :selected").text();
-            objVehiculosIMD["Peso_Tonelada_E5"] = document.getElementById("txtPesoEje_5").value;
-            objVehiculosIMD["Valor_FVP"] = document.getElementById("txtFVP").value;
+                    var objVehiculosIMD = {};
+                    objVehiculosIMD["Id_Vehiculos"] = document.getElementById("ddlVehiculo").value;
+                    objVehiculosIMD["IMD_Base"] = document.getElementById("txtIMDBase").value;
+                    objVehiculosIMD["Tipo_Eje_E1"] = $("#ddlTipoEje_1 :selected").text();
+                    objVehiculosIMD["Peso_Tonelada_E1"] = document.getElementById("txtPesoEje_1").value;
+                    objVehiculosIMD["Tipo_Eje_E2"] = $("#ddlTipoEje_2 :selected").text();
+                    objVehiculosIMD["Peso_Tonelada_E2"] = document.getElementById("txtPesoEje_2").value;
+                    objVehiculosIMD["Tipo_Eje_E3"] = $("#ddlTipoEje_3 :selected").text();
+                    objVehiculosIMD["Peso_Tonelada_E3"] = document.getElementById("txtPesoEje_3").value;
+                    objVehiculosIMD["Tipo_Eje_E4"] = $("#ddlTipoEje_4 :selected").text();
+                    objVehiculosIMD["Peso_Tonelada_E4"] = document.getElementById("txtPesoEje_4").value;
+                    objVehiculosIMD["Tipo_Eje_E5"] = $("#ddlTipoEje_5 :selected").text();
+                    objVehiculosIMD["Peso_Tonelada_E5"] = document.getElementById("txtPesoEje_5").value;
+                    objVehiculosIMD["Valor_FVP"] = document.getElementById("txtFVP").value;
             
-            hid_Id_Repet_Equi = document.getElementById("hid_Id_Repet_Equi").value;
+                    hid_Id_Repet_Equi = document.getElementById("hid_Id_Repet_Equi").value;
 
-            $.ajax
-                ({
-                    method: 'POST',
-                    url: '/ParametrosAsfalto/GuardarVehiculosIMD',
-                    data: { 'objVehiculosIMD': objVehiculosIMD, 'objRepeticionesEqui' : objRepeticionesEqui, 'hid_Id_Repet_Equi' : hid_Id_Repet_Equi },
-                    success: function (respuesta) {
-                        if (respuesta.length > 0) {
-                            toastr.success("Los datos se guardarón correctamente.", 'ASOCEM', { timeOut: 2500 });
+                    $.ajax
+                        ({
+                            method: 'POST',
+                            url: '/ParametrosAsfalto/GuardarVehiculosIMD',
+                            data: { 'objVehiculosIMD': objVehiculosIMD, 'objRepeticionesEqui' : objRepeticionesEqui, 'hid_Id_Repet_Equi' : hid_Id_Repet_Equi },
+                            success: function (respuesta) {
+                                if (respuesta.length > 0) {
+                                    toastr.success("Los datos se guardarón correctamente.", 'ASOCEM', { timeOut: 2500 });
 
-                            $('#dgvListadoVehiculosIMD').dataTable().fnDestroy();
+                                    $('#dgvListadoVehiculosIMD').dataTable().fnDestroy();
 
 
-                            if (document.getElementById("hid_Id_Repet_Equi").value == 0) {
-                                document.getElementById("hid_Id_Repet_Equi").value = respuesta;
+                                    if (document.getElementById("hid_Id_Repet_Equi").value == 0) {
+                                        document.getElementById("hid_Id_Repet_Equi").value = respuesta;
+                                    }
+
+                                    CargarListadoVehiculosIMD(respuesta); //Cargamos el DataTable
+
+                                    $("#SubModal .close").click();
+
+                                }
+                                else {
+                                    toastr.error("Ingrese los datos!", 'ERROR', { timeOut: 2000 });
+                                }
+                            },
+                            error: function (xhr, status) {
+                                toastr.error(status, 'ERROR', { timeOut: 2000 });
                             }
 
-                            CargarListadoVehiculosIMD(respuesta); //Cargamos el DataTable
+                        });
 
-                            $("#SubModal .close").click();
 
-                        }
-                        else {
-                            toastr.error("Ingrese los datos!", 'ERROR', { timeOut: 2000 });
-                        }
-                    },
-                    error: function (xhr, status) {
-                        toastr.error(status, 'ERROR', { timeOut: 2000 });
-                    }
-
-                });
+            }
 
         });
 
@@ -2877,6 +2891,109 @@
 
         CargarVariableTiempo();
         CargarVariableVehiculo();
+
+
+
+        $("#btnAgregarTasaCrecxTiempo").click(function () {
+
+            var NroAnio = document.getElementById("PeriodoTasaCrecxTiempo").value;
+            var Valor = document.getElementById("ValorTasaCrecxTiempo").value;
+            var IdDiseno = 254;
+
+            $.ajax
+                ({
+                    method: 'POST',
+                    url: '/ParametrosAsfalto/GuardarCrecXTiempo',
+                    data: { 'NroAnio': NroAnio, 'Valor' : Valor, 'IdDiseno' : IdDiseno },
+                    success: function (respuesta) {
+                        if (respuesta.length > 0) {
+                            toastr.success("Los datos se guardarón correctamente.", 'ASOCEM', { timeOut: 2500 });
+
+                            $('#dgvListadoVariableTiempo').dataTable().fnDestroy();
+
+                            CargarVariableTiempo(); //Cargamos el DataTable
+
+                            //$("#SubModal_VariableTiempo .close").click();
+
+                        }
+                        else {
+                            toastr.error("Ingrese los datos!", 'ERROR', { timeOut: 2000 });
+                        }
+                    },
+                    error: function (xhr, status) {
+                        toastr.error(status, 'ERROR', { timeOut: 2000 });
+                    }
+
+                });
+
+            
+
+        });
+
+        $("#btnAgregarTasaCrecxVehiculo").click(function () {
+
+            var Id_Tipo_Vehiculo = document.getElementById("ddlTasaTipoVehiculo").value;
+            var Valor = document.getElementById("ValorTasaCrecxVehiculo").value;
+            var IdDiseno = 254;
+
+            $.ajax
+                ({
+                    method: 'POST',
+                    url: '/ParametrosAsfalto/GuardarCrecXVehiculo',
+                    data: { 'Id_Tipo_Vehiculo': Id_Tipo_Vehiculo, 'Valor' : Valor, 'IdDiseno' : IdDiseno },
+                    success: function (respuesta) {
+                        if (respuesta.length > 0) {
+                            toastr.success("Los datos se guardarón correctamente.", 'ASOCEM', { timeOut: 2500 });
+
+                            $('#dgvListadoVariableVehiculo').dataTable().fnDestroy();
+
+                            CargarVariableVehiculo(); //Cargamos el DataTable
+
+                            //$("#SubModal_VariableVehiculo .close").click();
+
+                        }
+                        else {
+                            toastr.error("Ingrese los datos!", 'ERROR', { timeOut: 2000 });
+                        }
+                    },
+                    error: function (xhr, status) {
+                        toastr.error(status, 'ERROR', { timeOut: 2000 });
+                    }
+
+                });            
+
+        });
+
+
+        $("#btnAceptarTasaCrecConstante").click(function () {
+
+            var input = document.getElementById("ValorTasaCrecConstante").value;            
+
+            if (input.length > 0) {
+                document.getElementById("TasaCrecimiento").value = $("#ddlTasaCrecimiento :selected").text();
+                $("#SubModal_VariableConstante .close").click();
+            } else {
+                toastr.error("Ingrese un valor.", 'ASOCEM', { timeOut: 2500 });
+                return;
+            }
+            
+        });
+
+        $("#btnAceptarTasaCrecxTiempo").click(function () {
+
+             document.getElementById("TasaCrecimiento").value = $("#ddlTasaCrecimiento :selected").text();
+             $("#SubModal_VariableTiempo .close").click();
+        });
+
+
+        $("#btnAceptarTasaCrecxVehiculo").click(function () {
+
+            document.getElementById("TasaCrecimiento").value = $("#ddlTasaCrecimiento :selected").text();
+            $("#SubModal_VariableVehiculo .close").click();
+        });
+
+
+
 
     });
 
@@ -3585,11 +3702,12 @@
                     "data": objData,
                     "dataType": "json"
                 },
-                /*"columnDefs": [
-                    { "targets": [0], "visible": false, "searchable": false }
+                "columnDefs": [
+                    { "targets": [0], "visible": false }
 
-                ],*/
-                "columns": [          
+                ],
+                "columns": [       
+                    { "data": "Id_Tasa_Crec_X_Tiempo", "class": "text-center" },
                     { "data": "NroAnio", "class": "text-center" },
                     {
                         data: 'Valor',
@@ -3600,9 +3718,12 @@
                         data: null,
                         className: "text-center",                   
                         "render": function (data) {
-                            var strDiv;
-                            strDiv = '<div class="btn-group btn-group-sm"><button type="button" id="ButtonEliminar" onclick="EliminarProyectoDiseno(\'' + data.NroAnio  +  '\',\'' +  data.Valor +  '\' );"  class="btn btn-outline-danger" data-id="1" data-toggle="modal" data-target="#deleteModal"><span class="icon-close"></span></button></div>';
-                            return strDiv;
+                        var strDiv;
+                        var ValorA = data.Id_Tasa_Crec_X_Tiempo;
+                        var ValorB = data.NroAnio;
+
+                        strDiv = '<div class="btn-group btn-group-sm"><button type="button" id="ButtonEliminar" onclick="EliminarTasaCrecimiento(\'' + ValorA  +  '\',\'' +  ValorB +  '\' );"  class="btn btn-outline-danger"><span class="icon-close"></span></button></div>';
+                        return strDiv;
                         }
                     }
 
@@ -3673,24 +3794,29 @@
                     "data": objData,
                     "dataType": "json"
                 },
-                /*"columnDefs": [
+                "columnDefs": [
                     { "targets": [0], "visible": false, "searchable": false }
 
-                ],*/
-                "columns": [          
+                ],
+                "columns": [  
+                    { "data": "Id_Tasa_Crec_X_Vehiculo", "class": "text-center" },
                     { "data": "Vehiculo", "class": "text-center" },
                     {
                        data: 'Valor',
                        className: "text-center",
-                        render: $.fn.dataTable.render.number(',', '.', 2, '')
+                       render: $.fn.dataTable.render.number(',', '.', 2, '')
                     },
                     {
                         data: null,
                         className: "text-center",                   
                         "render": function (data) {
-                            var strDiv;
-                            strDiv = '<div class="btn-group btn-group-sm"><button type="button" id="ButtonEliminar" onclick="EliminarProyectoDiseno(\'' + data.Id_Tipo_Vehiculo  +  '\',\'' +  data.Vehiculo +  '\' );"  class="btn btn-outline-danger" data-id="1" data-toggle="modal" data-target="#deleteModal"><span class="icon-close"></span></button></div>';
-                            return strDiv;
+                        var strDiv;
+                        var ValorA = data.Id_Tasa_Crec_X_Vehiculo;
+                        var ValorB = data.Id_Tipo_Vehiculo;
+
+                        strDiv = '<div class="btn-group btn-group-sm"><button type="button" id="ButtonEliminar" onclick="EliminarTasaCrecimiento(\'' + ValorA  +  '\',\'' +  ValorB +  '\' );"  class="btn btn-outline-danger"><span class="icon-close"></span></button></div>';
+                        return strDiv;
+
                         }
                     }
                 ],
@@ -3739,6 +3865,13 @@
 
 
     }
+
+    function EliminarTasaCrecimiento(ValorA,ValorB)
+    {
+        alert("Las variables a eliminar son :" + ValorA + " y " + ValorB);
+    }
+
+
 
 
 
