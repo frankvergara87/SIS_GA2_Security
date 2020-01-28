@@ -44,14 +44,13 @@ namespace SIS_Ga2.Controllers
             ViewData["ddlNumSentido"] = data_list_4;
 
 
+
+
+            BLTipoVehiculo objblTipoVehiculo = new BLTipoVehiculo();
             List<SelectListItem> lstTipoVehiculo = new List<SelectListItem>();
-            lstTipoVehiculo.Add(new SelectListItem() { Text = "Vehiculos", Value = "1" });
-            lstTipoVehiculo.Add(new SelectListItem() { Text = "Camionetas", Value = "2" });
-            lstTipoVehiculo.Add(new SelectListItem() { Text = "Buses", Value = "3" });
-            lstTipoVehiculo.Add(new SelectListItem() { Text = "Camiones", Value = "4" });
-            lstTipoVehiculo.Add(new SelectListItem() { Text = "Semi Trailers", Value = "5" });
-            lstTipoVehiculo.Add(new SelectListItem() { Text = "Trailers", Value = "6" });
+            lstTipoVehiculo.AddRange(objblTipoVehiculo.ListarTipoVehiculos(0).Select(a => new SelectListItem() { Text = a.Tipo_Vehiculo.ToString(), Value = Convert.ToString(a.Id_Tipo_Vehiculo) }));
             ViewData["ddlTipoVehiculo"] = lstTipoVehiculo;
+            ViewData["ddlTasaTipoVehiculo"] = lstTipoVehiculo;
 
 
             List<SelectListItem> lstVehiculo = new List<SelectListItem>();
@@ -603,6 +602,85 @@ namespace SIS_Ga2.Controllers
             }
 
         }
+
+
+
+
+
+
+        public JsonResult CargarVariableTiempo(int Id)
+        {
+            BLTasaCrecimiento objblTasaCrecimiento = new BLTasaCrecimiento();
+            List<BETasaCrecimiento> lobjBETasaCrecimiento = new List<BETasaCrecimiento>();
+            lobjBETasaCrecimiento = objblTasaCrecimiento.ListarCrecimXTiempo(Id);
+
+            if (lobjBETasaCrecimiento == null)
+                throw new ArgumentException("Id " + Id + " no es correcto");
+
+            return Json(new { data = lobjBETasaCrecimiento }, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult CargarVariableVehiculo(int Id)
+        {
+            BLTasaCrecimiento objblTasaCrecimiento = new BLTasaCrecimiento();
+            List<BETasaCrecimiento> lobjBETasaCrecimiento = new List<BETasaCrecimiento>();
+            lobjBETasaCrecimiento = objblTasaCrecimiento.ListarCrecimXVehiculo(Id);
+
+            if (lobjBETasaCrecimiento == null)
+                throw new ArgumentException("Id " + Id + " no es correcto");
+
+            return Json(new { data = lobjBETasaCrecimiento }, JsonRequestBehavior.AllowGet);
+        }
+
+
+        public int GuardarCrecXTiempo(int NroAnio, string Valor)
+        {
+            try
+            {
+                int Id_Tasa_Crec_X_Tiempo=0;
+
+                BLTasaCrecimiento bLTasaCrecimiento = new BLTasaCrecimiento();
+                BETasaCrecimiento beTasaCrecimiento = new BETasaCrecimiento();
+                beTasaCrecimiento.NroAnio = NroAnio;
+                beTasaCrecimiento.Valor = Convert.ToDecimal(Valor);
+
+                Id_Tasa_Crec_X_Tiempo = bLTasaCrecimiento.GuardarCrecXTiempo(beTasaCrecimiento);
+
+                
+                return Id_Tasa_Crec_X_Tiempo;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        public int GuardarCrecXVehiculo(int Id_Tipo_Vehiculo, string Valor)
+        {
+            try
+            {
+                int Id_Tasa_Crec_X_Vehiculo = 0;
+
+                BLTasaCrecimiento bLTasaCrecimiento = new BLTasaCrecimiento();
+                BETasaCrecimiento beTasaCrecimiento = new BETasaCrecimiento();
+                beTasaCrecimiento.Id_Tipo_Vehiculo = Id_Tipo_Vehiculo;
+                beTasaCrecimiento.Valor = Convert.ToDecimal(Valor);
+
+                Id_Tasa_Crec_X_Vehiculo = bLTasaCrecimiento.GuardarCrecXVehiculo(beTasaCrecimiento);
+
+
+                return Id_Tasa_Crec_X_Vehiculo;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
 
 
     }

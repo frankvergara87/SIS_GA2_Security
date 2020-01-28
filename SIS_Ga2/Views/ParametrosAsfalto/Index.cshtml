@@ -1027,7 +1027,13 @@
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="TasaCrecimiento" class="col-form-label col-form-label-sm">Tasa de Crecimiento (%) :</label>
-                                    @Html.DropDownList("ddlTasaCrecimiento", null, new { @class = "mr-3 col-sm-10 form-control form-control-sm" })
+                                    <input id="TasaCrecimiento" type="text" readonly="readonly" placeholder="T.Crecimiento" class="mr-3 col-sm-8 form-control form-control-sm">
+                                    <button type="button" id="btnTasaCrecimiento" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#SubModal_4"><span class="fa fa-percent"></span></button>
+
+                                    <button type="button" id="btnIrVariableConstante" class="btn btn-primary" style="display:none;" data-toggle="modal" data-target="#SubModal_VariableConstante">Click</button>
+                                    <button type="button" id="btnIrVariableTiempo" class="btn btn-primary" style="display:none;" data-toggle="modal" data-target="#SubModal_VariableTiempo">Click</button>
+                                    <button type="button" id="btnIrVariableVehiculo" class="btn btn-primary" style="display:none;" data-toggle="modal" data-target="#SubModal_VariableVehiculo">Click</button>
+
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="PeriodoDiseno" class="col-form-label col-form-label-sm">Periodo de Diseño :</label>
@@ -1444,6 +1450,188 @@
                     <div class="modal-footer">
                         <button type="button" id="btnAceptarFp" class="btn btn-primary">Aceptar</button>
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal fade" id="SubModal_4" tabindex="-1" role="dialog" aria-labelledby="SubModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="width:650px;">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">TASA DE CRECIMIENTO (%) </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="table-responsive">
+                            <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
+                                <tr>
+                                    <td>
+                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">Selecciona el Tipo de Tasa de Crecimiento</label>
+                                    </td>
+                                    <td>
+                                        @Html.DropDownList("ddlTasaCrecimiento", null, new { @class = "mr-3 col-sm-12 form-control form-control-sm" })
+                                    </td>
+                                    <td>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnAceptarTasa" class="btn btn-primary small"><span class="fa fa-road"></span> Aceptar</button>
+                        <button type="button" class="btn btn-secondary small" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal fade" id="SubModal_VariableConstante" tabindex="-1" role="dialog" aria-labelledby="SubModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="width:400px;">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">T. CRECIMIENTO CONSTANTE (%) </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="table-responsive">
+                            <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
+                                <tr>
+                                    <td style="color:#FF0000">
+                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">Escribe el Valor (%): </label>
+                                    </td>
+                                    <td align="right">
+                                        <input id="TasaCrecimientoConstante" type="text" placeholder="T.Crecimiento" class="mr-3 col-sm-8 form-control form-control-sm">
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnAceptarTasa" class="btn btn-primary small"><span class="fa fa-road"></span> Aceptar</button>
+                        <button type="button" class="btn btn-secondary small" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="SubModal_VariableTiempo" tabindex="-1" role="dialog" aria-labelledby="SubModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="width:550px;">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Tasa de Crecimiento - Variable por Tiempo </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="table-responsive">
+                            <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
+                                <tr>
+                                    <td>
+                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">Periodo: </label>
+                                    </td>
+                                    <td>
+                                        <input id="PeriodoTasaCrec" type="text" placeholder="Periodo" class="mr-3 col-sm-6 form-control form-control-sm">
+                                    </td>
+                                    <td>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">Ingrese el Valor (%): </label>
+                                    </td>
+                                    <td>
+                                        <div class="form-inline">
+                                            <input id="ValorTasaCrec" type="text" class="mr-3 col-sm-6 form-control form-control-sm">
+                                            <button type="button" id="btnAgregarVariableTiempo" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#SubModal_2"><span class="fa fa-plus-circle"></span></button>
+                                        </div>
+                                    </td>
+                                    <td>
+                                    </td>
+                                </tr>
+                            </table>
+                        @*</div>
+                        <div class="table-responsive">*@
+                            <table id="dgvListadoVariableTiempo" class="display" cellspacing="0" align="left" width="500px">
+                                <thead>
+                                    <tr>
+                                        <th class="text-sm-center" id="Anio">Periodo - Año</th>
+                                        <th class="text-sm-center" id="Valor">Valor (R%)</th>
+                                        <th class="text-sm-center" id="Reporte">Opc</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnAceptarTasa" class="btn btn-primary small"><span class="fa fa-road"></span> Aceptar</button>
+                        <button type="button" class="btn btn-secondary small" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="SubModal_VariableVehiculo" tabindex="-1" role="dialog" aria-labelledby="SubModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content" style="width:600px;">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Tasa de Crecimiento - Variable por Vehículo </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="table-responsive">
+                            <div class="table-responsive">
+                                <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
+                                    <tr>
+                                        <td>
+                                            <label for="inlineFormInput" class="col-form-label col-form-label-sm">Seleccione Tipo de Vehículo: </label>
+                                        </td>
+                                        <td>
+                                            @Html.DropDownList("ddlTasaTipoVehiculo", null, new { @class = "mr-3 col-sm-10 form-control form-control-sm" })
+                                        </td>
+                                        <td>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label for="inlineFormInput" class="col-form-label col-form-label-sm">Ingrese Valor (%): </label>
+                                        </td>
+                                        <td>
+                                            <div class="form-inline">
+                                                <input id="ValorTasaCrec" type="text" class="mr-3 col-sm-6 form-control form-control-sm">
+                                                <button type="button" id="btnAgregarVariableVehiculo" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#SubModal_2"><span class="fa fa-plus-circle"></span></button>
+                                            </div>
+                                        </td>
+                                        <td>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="table-responsive">
+                            <table id="dgvListadoVariableVehiculo" class="display" cellspacing="0" align="left" width="550px">
+                                <thead>
+                                    <tr>
+                                        <th class="text-sm-center" id="Vehiculo">Tipo Vehículo</th>
+                                        <th class="text-sm-center" id="Valor">Valor (R%)</th>
+                                        <th class="text-sm-center" id="Valor">Opc</th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnAceptarTasa" class="btn btn-primary small"><span class="fa fa-road"></span> Aceptar</button>
+                        <button type="button" class="btn btn-secondary small" data-dismiss="modal">Cerrar</button>
                     </div>
                 </div>
             </div>
@@ -2281,6 +2469,30 @@
 
         });
 
+        $("#btnAceptarTasa").click(function () {
+
+            var TasaCrecimiento = document.getElementById("ddlTasaCrecimiento").value;
+
+            if (TasaCrecimiento == 1) {
+                //alert("Valor Constante");
+                redireccionar(1)
+                $("#SubModal_4 .close").click();
+
+            } else if (TasaCrecimiento==2) {
+                //alert("Variable por Tiempo");
+                redireccionar(2)
+                $("#SubModal_4 .close").click();
+            } else if (TasaCrecimiento==3) {
+                //alert("Variable por Vehiculo");
+                redireccionar(3)
+                $("#SubModal_4 .close").click();
+            }
+
+
+        });
+
+
+
 
 
         $("#ddlTipoVehiculo").change(function () {
@@ -2427,12 +2639,6 @@
         });
 
 
-        $("#ddlTasaCrecimiento").change(function () {
-
-            alert($("#ddlTasaCrecimiento").val());
-
-
-        });
 
         $("#btnGuardarVehiculoIMD").on("click", function (event) {
 
@@ -2667,6 +2873,10 @@
         });
 
         obtenerFpCalculado(document.getElementById("ddlEspesor").value, document.getElementById("ddlPresion").value)
+
+
+        CargarVariableTiempo();
+        CargarVariableVehiculo();
 
     });
 
@@ -3355,9 +3565,193 @@
     }
 
 
+    function CargarVariableTiempo() {
+
+        var objData = {};
+        objData["Id"] = 254;
+
+        table =
+            $('#dgvListadoVariableTiempo').dataTable({
+                "searching": false,
+                "scrollY": 300,
+                "scrollCollapse": true,
+                "scrollX": true,
+                "paging": false,
+                "info":     false,
+
+                "ajax": {
+                    "url": "/ParametrosAsfalto/CargarVariableTiempo",
+                    "type": "POST",
+                    "data": objData,
+                    "dataType": "json"
+                },
+                /*"columnDefs": [
+                    { "targets": [0], "visible": false, "searchable": false }
+
+                ],*/
+                "columns": [          
+                    { "data": "NroAnio", "class": "text-center" },
+                    {
+                        data: 'Valor',
+                        className: "text-center",
+                        render: $.fn.dataTable.render.number(',', '.', 2, '')
+                    },
+                    {
+                        data: null,
+                        className: "text-center",                   
+                        "render": function (data) {
+                            var strDiv;
+                            strDiv = '<div class="btn-group btn-group-sm"><button type="button" id="ButtonEliminar" onclick="EliminarProyectoDiseno(\'' + data.NroAnio  +  '\',\'' +  data.Valor +  '\' );"  class="btn btn-outline-danger" data-id="1" data-toggle="modal" data-target="#deleteModal"><span class="icon-close"></span></button></div>';
+                            return strDiv;
+                        }
+                    }
+
+                ],
+
+                //"lengthMenu": [[3, -1], [3, "Todo"]],
+                "language": {
+                    "sProcessing": "Procesando...",
+                    "sLengthMenu": "Mostrar _MENU_ registros",
+                    "sZeroRecords": "No se encontraron resultados",
+                    "sEmptyTable": "Ningún dato disponible en esta tabla",
+                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sSearch": "Buscar:",
+                    "sUrl": "",
+                    "sInfoThousands": ",",
+                    "sLoadingRecords": "Cargando...",
+                    "oPaginate": {
+                        "sFirst": "Primero",
+                        "sLast": "Último",
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                    }
+                }
+
+            });
+
+
+        //para seleccionar una opcion
+        $('#dgvListadoVariableTiempo tbody').on('click', 'tr', function () {
+
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+            }
+            else {
+                table.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
+        });
 
 
 
+    }
+
+    function CargarVariableVehiculo() {
+
+        var objData = {};
+        objData["Id"] = 254;
+
+        table =
+            $('#dgvListadoVariableVehiculo').dataTable({
+                "searching": false,
+                "scrollY": 300,
+                "scrollCollapse": true,
+                "scrollX": true,
+                "paging": false,
+                "info":     false,
+
+                "ajax": {
+                    "url": "/ParametrosAsfalto/CargarVariableVehiculo",
+                    "type": "POST",
+                    "data": objData,
+                    "dataType": "json"
+                },
+                /*"columnDefs": [
+                    { "targets": [0], "visible": false, "searchable": false }
+
+                ],*/
+                "columns": [          
+                    { "data": "Vehiculo", "class": "text-center" },
+                    {
+                       data: 'Valor',
+                       className: "text-center",
+                        render: $.fn.dataTable.render.number(',', '.', 2, '')
+                    },
+                    {
+                        data: null,
+                        className: "text-center",                   
+                        "render": function (data) {
+                            var strDiv;
+                            strDiv = '<div class="btn-group btn-group-sm"><button type="button" id="ButtonEliminar" onclick="EliminarProyectoDiseno(\'' + data.Id_Tipo_Vehiculo  +  '\',\'' +  data.Vehiculo +  '\' );"  class="btn btn-outline-danger" data-id="1" data-toggle="modal" data-target="#deleteModal"><span class="icon-close"></span></button></div>';
+                            return strDiv;
+                        }
+                    }
+                ],
+
+                //"lengthMenu": [[3, -1], [3, "Todo"]],
+                "language": {
+                    "sProcessing": "Procesando...",
+                    "sLengthMenu": "Mostrar _MENU_ registros",
+                    "sZeroRecords": "No se encontraron resultados",
+                    "sEmptyTable": "Ningún dato disponible en esta tabla",
+                    "sInfo": "Mostrando registros del _START_ al _END_ de un total de _TOTAL_ registros",
+                    "sInfoEmpty": "Mostrando registros del 0 al 0 de un total de 0 registros",
+                    "sInfoFiltered": "(filtrado de un total de _MAX_ registros)",
+                    "sInfoPostFix": "",
+                    "sSearch": "Buscar:",
+                    "sUrl": "",
+                    "sInfoThousands": ",",
+                    "sLoadingRecords": "Cargando...",
+                    "oPaginate": {
+                        "sFirst": "Primero",
+                        "sLast": "Último",
+                        "sNext": "Siguiente",
+                        "sPrevious": "Anterior"
+                    },
+                    "oAria": {
+                        "sSortAscending": ": Activar para ordenar la columna de manera ascendente",
+                        "sSortDescending": ": Activar para ordenar la columna de manera descendente"
+                    }
+                }
+
+            });
+
+
+        //para seleccionar una opcion
+        $('#dgvListadoVariableVehiculo tbody').on('click', 'tr', function () {
+
+            if ($(this).hasClass('selected')) {
+                $(this).removeClass('selected');
+            }
+            else {
+                table.$('tr.selected').removeClass('selected');
+                $(this).addClass('selected');
+            }
+        });
+
+
+
+    }
+
+
+
+    function redireccionar(Iden)
+    {
+        if (Iden==1) {
+            $("#btnIrVariableConstante").click();
+        } else if (Iden==2) {
+            $("#btnIrVariableTiempo").click();
+        } else if (Iden==3) {
+            $("#btnIrVariableVehiculo").click();
+        }        
+    }
 
     function delimitNumbers(str) {
         return (str + "").replace(/\b(\d+)((\.\d+)*)\b/g,

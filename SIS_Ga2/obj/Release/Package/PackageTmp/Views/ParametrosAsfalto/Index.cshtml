@@ -19,6 +19,7 @@
 
     <input type="hidden" id="hidTipoDiseno" value="@sistema.idTipoDiseno" />
     <input type="hidden" id="hidId_Prop_Factor_Distrib" />
+    <input type="hidden" id="hid_Id_Repet_Equi" value="0"/>
 
     <div class="col-lg-12">
         <div class="card">
@@ -2459,19 +2460,25 @@
             objVehiculosIMD["Peso_Tonelada_E5"] = document.getElementById("txtPesoEje_5").value;
             objVehiculosIMD["Valor_FVP"] = document.getElementById("txtFVP").value;
             
-
+            hid_Id_Repet_Equi = document.getElementById("hid_Id_Repet_Equi").value;
 
             $.ajax
                 ({
                     method: 'POST',
                     url: '/ParametrosAsfalto/GuardarVehiculosIMD',
-                    data: { 'objVehiculosIMD': objVehiculosIMD, 'objRepeticionesEqui' : objRepeticionesEqui },
+                    data: { 'objVehiculosIMD': objVehiculosIMD, 'objRepeticionesEqui' : objRepeticionesEqui, 'hid_Id_Repet_Equi' : hid_Id_Repet_Equi },
                     success: function (respuesta) {
-                        if (respuesta == 1) {
+                        if (respuesta.length > 0) {
                             toastr.success("Los datos se guardarón correctamente.", 'ASOCEM', { timeOut: 2500 });
 
                             $('#dgvListadoVehiculosIMD').dataTable().fnDestroy();
-                            CargarListadoVehiculosIMD(); //Cargamos el DataTable
+
+
+                            if (document.getElementById("hid_Id_Repet_Equi").value == 0) {
+                                document.getElementById("hid_Id_Repet_Equi").value = respuesta;
+                            }
+
+                            CargarListadoVehiculosIMD(respuesta); //Cargamos el DataTable
 
                             $("#SubModal .close").click();
 
@@ -2544,7 +2551,7 @@
 
 
 
-        CargarListadoVehiculosIMD();
+        //CargarListadoVehiculosIMD();
         CargarTiempoDrenaje();
         CargarPorcentajeDrenaje();
 
@@ -3005,10 +3012,10 @@
 
 
 
-    function CargarListadoVehiculosIMD() {
+    function CargarListadoVehiculosIMD(Id_Repet_Equivalentes) {
 
         var objData = {};
-        objData["Id_Repet_Equivalentes"] = 0;
+        objData["Id_Repet_Equivalentes"] = Id_Repet_Equivalentes;
 
         table =
             $('#dgvListadoVehiculosIMD').dataTable({
