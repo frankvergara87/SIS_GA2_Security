@@ -139,10 +139,10 @@ C:\Users\Frank\source\repos\Aashto\SIS_GA2_Security\SIS_Ga2.Business\bin\Debug\D
 C:\Users\Frank\source\repos\Aashto\SIS_GA2_Security\SIS_Ga2.Business\bin\Debug\CriptoSecurity.dll
 C:\Users\Frank\source\repos\Aashto\SIS_GA2_Security\SIS_Ga2.Business\bin\Debug\SIS_Ga2.DataAccess.pdb
 C:\Users\Frank\source\repos\Aashto\SIS_GA2_Security\SIS_Ga2.Business\bin\Debug\SIS_Ga2.Entity.pdb
+C:\Users\Frank\source\repos\Aashto\SIS_GA2_Security\SIS_Ga2.Business\bin\Debug\DbManager.pdb
+C:\Users\Frank\source\repos\Aashto\SIS_GA2_Security\SIS_Ga2.Business\bin\Debug\DbManager.xml
 C:\Users\Frank\source\repos\Aashto\SIS_GA2_Security\SIS_Ga2.Business\obj\Debug\SIS_Ga2.Business.csprojAssemblyReference.cache
 C:\Users\Frank\source\repos\Aashto\SIS_GA2_Security\SIS_Ga2.Business\obj\Debug\SIS_Ga2.Business.csproj.CoreCompileInputs.cache
 C:\Users\Frank\source\repos\Aashto\SIS_GA2_Security\SIS_Ga2.Business\obj\Debug\SIS_Ga2.Business.csproj.CopyComplete
 C:\Users\Frank\source\repos\Aashto\SIS_GA2_Security\SIS_Ga2.Business\obj\Debug\SIS_Ga2.Business.dll
 C:\Users\Frank\source\repos\Aashto\SIS_GA2_Security\SIS_Ga2.Business\obj\Debug\SIS_Ga2.Business.pdb
-C:\Users\Frank\Source\Repos\Aashto\SIS_GA2_Security\SIS_Ga2.Business\bin\Debug\DbManager.pdb
-C:\Users\Frank\Source\Repos\Aashto\SIS_GA2_Security\SIS_Ga2.Business\bin\Debug\DbManager.xml

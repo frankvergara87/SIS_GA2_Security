@@ -16,7 +16,13 @@
         <div>
             <input id="boll" class="money3" type="text"/>   
             <button type="button" id="btnTest">Click!</button>
+            <asp:Button ID="btnAceptar" runat="server" Text="Aceptar"
+ onclick="btnAceptar_Click"/>
+            <asp:Label ID="lblCantidad" runat="server" Text="Ingrese un numero"></asp:Label> 
+            <asp:TextBox ID="txtCantidad" runat="server"></asp:TextBox> 
+ />
         </div>
+
     </form>
 </body>
 <script type="text/javascript">

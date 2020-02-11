@@ -54,6 +54,8 @@
     <Compile Include="DACDiseno.cs" />
     <Compile Include="DACDistrito.cs" />
     <Compile Include="DACEjes.cs" />
+    <Compile Include="DACMatrizEE.cs" />
+    <Compile Include="DACMatriztasaCrecimiento.cs" />
     <Compile Include="DACPeriodo.cs" />
     <Compile Include="DACPorcEstrucPavimento.cs" />
     <Compile Include="DACPresContacNeum.cs" />

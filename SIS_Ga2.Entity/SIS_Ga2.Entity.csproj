@@ -57,6 +57,9 @@
     <Compile Include="BEDiseno.cs" />
     <Compile Include="BEDistrito.cs" />
     <Compile Include="BEEjes.cs" />
+    <Compile Include="BEMatrizEE.cs" />
+    <Compile Include="BEMatrizEERes.cs" />
+    <Compile Include="BEMatrizTasaCrecimiento.cs" />
     <Compile Include="BEParametroDiseno.cs" />
     <Compile Include="BEPeriodo.cs" />
     <Compile Include="BEPorcEstructPavimento.cs" />

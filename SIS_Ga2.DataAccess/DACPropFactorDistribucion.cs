@@ -54,7 +54,6 @@ namespace SIS_Ga2.DataAccess
         {
             SqlManager objSql = new SqlManager(ConfigurationManager.AppSettings["ASOCEM"].ToString());
             int resultado = 0;
-            string val;
 
             Parameter param = new Parameter();
             param.Add("@Id_Factor_Distribucion", objEntidad.Id_Factor_Distribucion);
@@ -66,15 +65,13 @@ namespace SIS_Ga2.DataAccess
             param.Add("@Fecha_Creacion", objEntidad.Fecha_Creacion);
             param.Add("@Hora_Creacion", objEntidad.Hora_Creacion);
             param.Add("@Usr_Creacion", objEntidad.Usr_Creacion);
-
-            //param.Add("@Id_Prop_Factor_Distrib", 0, System.Data.ParameterDirection.Output);
-
+            param.Add("@Id_Prop_Factor_Distrib", 0, System.Data.ParameterDirection.Output);
+            
             try
             {
-                //objSql.ExecuteNonQuery("USP_Ins_Prop_Factor_Distrib", param);
-                val = objSql.ExecuteScalar("USP_Ins_Prop_Factor_Distrib", param);
+                objSql.ExecuteNonQuery("USP_Ins_Prop_Factor_Distrib", param);
 
-                resultado = Convert.ToInt32(val);
+                resultado = Convert.ToInt32(param.get_Item(10).Value.ToString());
 
             }
             catch (Exception ex)

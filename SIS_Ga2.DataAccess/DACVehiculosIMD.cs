@@ -19,6 +19,7 @@ namespace SIS_Ga2.DataAccess
             int resultado = 0;
             Parameter param = new Parameter();
             param.Add("@Id_Vehiculos", objEntidad.Id_Vehiculos);
+            param.Add("@Id_Diseno", objEntidad.Id_Diseno);
             param.Add("@Id_Repet_Equivalentes", objEntidad.Id_Repet_Equivalentes);
             param.Add("@IMD_Base", objEntidad.IMD_Base);
             param.Add("@Estado", objEntidad.Estado);
@@ -75,6 +76,51 @@ namespace SIS_Ga2.DataAccess
             }
         }
 
+        public int ActualizaVehiculosIMD(BEVehiculosIMD objEntidad)
+        {
+            SqlManager objSql = new SqlManager(ConfigurationManager.AppSettings["ASOCEM"].ToString());
+            int resultado = 0;
+            Parameter param = new Parameter();
+            param.Add("@Id_Vehiculos", objEntidad.Id_Vehiculos);
+            param.Add("@Id_Diseno", objEntidad.Id_Diseno);
+            param.Add("@Id_Repet_Equivalentes", objEntidad.Id_Repet_Equivalentes);           
+            param.Add("@Valor_EE", objEntidad.Valor_EE);
+           
+            try
+            {
+                objSql.ExecuteNonQuery("USP_Upd_Vehiculos_IMD", param);
+                resultado = 1;
+            }
+            catch (Exception ex)
+            {
+                //Rutina de Guardado en Log 
+                //afilogDAO.Save(0, 0, "CatalogoDAO", "GetCatalogoToCombo", ex);
+                throw ex;
+            }
+            return resultado;
+        }
+
+        public int EliminarVehiculosIMD(BEVehiculosIMD objEntidad)
+        {
+            SqlManager objSql = new SqlManager(ConfigurationManager.AppSettings["ASOCEM"].ToString());
+            int resultado = 0;
+            Parameter param = new Parameter();
+            param.Add("@Id_Vehiculos_IMD", objEntidad.Id_Vehiculos_IMD);
+            param.Add("@Id_Diseno", objEntidad.Id_Diseno);
+            param.Add("@Id_Repet_Equivalentes", objEntidad.Id_Repet_Equivalentes);
+            try
+            {
+                objSql.ExecuteNonQuery("USP_Del_Vehiculos_IMD", param);
+                resultado = 1;
+            }
+            catch (Exception ex)
+            {
+                //Rutina de Guardado en Log 
+                //afilogDAO.Save(0, 0, "CatalogoDAO", "GetCatalogoToCombo", ex);
+                throw ex;
+            }
+            return resultado;
+        }
 
     }
 }

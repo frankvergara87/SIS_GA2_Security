@@ -41,6 +41,7 @@ namespace SIS_Ga2.Controllers
             BEProyecto Proyecto = new BEProyecto();
             BEDiseno Diseno = new BEDiseno();
             ProyectoBL BLProyecto = new ProyectoBL();
+            int IdDisenoReturn;
 
             Proyecto.Num_Proyecto = ObjProyecto.Num_Proyecto;
             Proyecto.Proyecto = ObjProyecto.Proyecto;
@@ -64,8 +65,9 @@ namespace SIS_Ga2.Controllers
 
             if (!String.IsNullOrEmpty(ObjProyecto.Num_Proyecto))
             {
-                int id;
-                id = BLProyecto.GuardarProyecto(Proyecto, Diseno);
+
+                IdDisenoReturn = BLProyecto.GuardarProyecto(Proyecto, Diseno);
+                Session.Add("DisenoId", IdDisenoReturn);
 
                 return 1;
             }

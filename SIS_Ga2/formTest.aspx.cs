@@ -13,5 +13,10 @@ namespace SIS_Ga2
         {
 
         }
+
+        protected void btnAceptar_Click(object sender, EventArgs e)
+        {
+            
+        }
     }
 }

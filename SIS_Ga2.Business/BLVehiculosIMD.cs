@@ -21,6 +21,16 @@ namespace SIS_Ga2.Business
             DACVehiculosIMD objDAO = new DACVehiculosIMD();
             return objDAO.ListarVehiculosIMDByID(Id_Repet_Equivalentes);
         }
+        public int ActualizaVehiculosIMD(BEVehiculosIMD objEntidad)
+        {
+            DACVehiculosIMD objDAO = new DACVehiculosIMD();
+            return objDAO.ActualizaVehiculosIMD(objEntidad);
+        }
 
+        public int EliminarVehiculosIMD(BEVehiculosIMD objEntidad)
+        {
+            DACVehiculosIMD objDAO = new DACVehiculosIMD();
+            return objDAO.EliminarVehiculosIMD(objEntidad);
+        }
     }
 }

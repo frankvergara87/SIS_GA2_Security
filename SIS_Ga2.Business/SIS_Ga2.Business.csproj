@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AplicacionBL.cs" />
+    <Compile Include="BLCalculoEE.cs" />
     <Compile Include="BLCalidadDre.cs" />
     <Compile Include="BLCargos.cs" />
     <Compile Include="BLCoefDreBaseReg.cs" />
@@ -52,6 +53,8 @@
     <Compile Include="BLDisenos.cs" />
     <Compile Include="BLDistrito.cs" />
     <Compile Include="BLEjes.cs" />
+    <Compile Include="BLMatrizEE.cs" />
+    <Compile Include="BLMatrizTasaCrecimiento.cs" />
     <Compile Include="BLPeriodos.cs" />
     <Compile Include="BLPorcEstrucPavimento.cs" />
     <Compile Include="BLPresContacNeum.cs" />

@@ -104,6 +104,53 @@ namespace SIS_Ga2.DataAccess
             }
             return resultado;
         }
+
+        public int ActualizarCrecXTiempo(BETasaCrecimiento objEntidad)
+        {
+            SqlManager objSql = new SqlManager(ConfigurationManager.AppSettings["ASOCEM"].ToString());
+            int resultado = 0;
+            Parameter param = new Parameter();
+            param.Add("@Id_Diseno", objEntidad.Id_Diseno);
+            param.Add("@Nro_Anio", objEntidad.NroAnio);
+            param.Add("@Id_Tasa_Crec_X_Tiempo", objEntidad.Id_Tasa_Crec_X_Tiempo);
+            param.Add("@Valor", objEntidad.Valor);
+
+            try
+            {
+                objSql.ExecuteNonQuery("USP_Upd_Tasa_Crec_X_Tiempo", param);
+                resultado = 1;
+            }
+            catch (Exception ex)
+            {
+                //Rutina de Guardado en Log 
+                //afilogDAO.Save(0, 0, "CatalogoDAO", "GetCatalogoToCombo", ex);
+                throw ex;
+            }
+            return resultado;
+        }
+
+        public int LimpiarVariableTiempo(BETasaCrecimiento objEntidad)
+        {
+            SqlManager objSql = new SqlManager(ConfigurationManager.AppSettings["ASOCEM"].ToString());
+            int resultado = 0;
+            Parameter param = new Parameter();
+            param.Add("@Id_Diseno", objEntidad.Id_Diseno);
+
+            try
+            {
+                objSql.ExecuteNonQuery("USP_Eli_Tasa_Crec_X_Tiempo", param);
+                resultado = 1;
+            }
+            catch (Exception ex)
+            {
+                //Rutina de Guardado en Log 
+                //afilogDAO.Save(0, 0, "CatalogoDAO", "GetCatalogoToCombo", ex);
+                throw ex;
+            }
+            return resultado;
+        }
+
+
         public int GuardarCrecXVehiculo(BETasaCrecimiento objEntidad)
         {
             SqlManager objSql = new SqlManager(ConfigurationManager.AppSettings["ASOCEM"].ToString());
@@ -116,6 +163,30 @@ namespace SIS_Ga2.DataAccess
             try
             {
                 objSql.ExecuteNonQuery("USP_Ins_Tasa_Crec_X_Vehiculo", param);
+                resultado = 1;
+            }
+            catch (Exception ex)
+            {
+                //Rutina de Guardado en Log 
+                //afilogDAO.Save(0, 0, "CatalogoDAO", "GetCatalogoToCombo", ex);
+                throw ex;
+            }
+            return resultado;
+        }
+
+        public int ActualizarCrecXVehiculo(BETasaCrecimiento objEntidad)
+        {
+            SqlManager objSql = new SqlManager(ConfigurationManager.AppSettings["ASOCEM"].ToString());
+            int resultado = 0;
+            Parameter param = new Parameter();
+            param.Add("@Id_Diseno", objEntidad.Id_Diseno);
+            param.Add("@Id_Tipo_Vehiculo", objEntidad.Id_Tipo_Vehiculo);
+            param.Add("@Id_Tasa_Crec_X_Vehiculo", objEntidad.Id_Tasa_Crec_X_Vehiculo);
+            param.Add("@Valor", objEntidad.Valor);
+
+            try
+            {
+                objSql.ExecuteNonQuery("USP_Upd_Tasa_Crec_X_Vehiculo", param);
                 resultado = 1;
             }
             catch (Exception ex)

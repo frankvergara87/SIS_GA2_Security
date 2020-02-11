@@ -10,6 +10,9 @@ namespace SIS_Ga2.Entity
     {
         public int Id_Vehiculos_IMD { get; set; }
         public int Id_Vehiculos { get; set; }
+
+        public int Id_Parametro { get; set; }
+        public int Id_Diseno { get; set; }
         public int Id_Repet_Equivalentes { get; set; }
         public int Estado { get; set; }
         public double IMD_Base { get; set; }

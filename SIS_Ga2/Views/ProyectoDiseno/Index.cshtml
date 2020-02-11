@@ -130,6 +130,8 @@
 
         $("#btnGuardarProyDiseno").on("click", function (event) {
 
+            $(this).html(`<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Guardando...`);
+        
             var strNumProyecto = document.getElementById("txtNumProyecto").value;
             var strProyecto = document.getElementById("txtProyecto").value;
             var strFechaProyecto = document.getElementById("txtFechaProyecto").value;
@@ -149,42 +151,50 @@
             //Validacion de variables
             if (strNumProyecto.length==0) {
                 toastr.error("Ingrese Num. Proyecto!", 'ERROR', { timeOut: 2000 });
+                $(this).html(`<span class="fa fa-floppy-o"></span> Guardar`);
                 return;
             }
 
             if (strProyecto.length==0) {
                 toastr.error("Ingrese Proyecto!", 'ERROR', { timeOut: 2000 });
+                $(this).html(`<span class="fa fa-floppy-o"></span> Guardar`);
                 return;
             }
 
             if (strIngeniero.length==0) {
                 toastr.error("Ingrese Ingeniero!", 'ERROR', { timeOut: 2000 });
+                $(this).html(`<span class="fa fa-floppy-o"></span> Guardar`);
                 return;
             }
 
             if (strNumDiseno.length==0) {
                 toastr.error("Ingrese Diseño!", 'ERROR', { timeOut: 2000 });
+                $(this).html(`<span class="fa fa-floppy-o"></span> Guardar`);
                 return;
             }
 
             if (strTramo.length==0) {
                 toastr.error("Ingrese Tramo!", 'ERROR', { timeOut: 2000 });
+                $(this).html(`<span class="fa fa-floppy-o"></span> Guardar`);
                 return;
             }
 
 
             if (strIdDepartamento==0) {
                 toastr.error("Seleccione Departamento!", 'ERROR', { timeOut: 2000 });
+                $(this).html(`<span class="fa fa-floppy-o"></span> Guardar`);
                 return;
             }
 
             if (strIdProvincia==0) {
                 toastr.error("Seleccione Provincia!", 'ERROR', { timeOut: 2000 });
+                $(this).html(`<span class="fa fa-floppy-o"></span> Guardar`);
                 return;
             }
 
             if (strIdDistrito==0) {
                 toastr.error("Seleccione Distrito!", 'ERROR', { timeOut: 2000 });
+                $(this).html(`<span class="fa fa-floppy-o"></span> Guardar`);
                 return;
             }
 
@@ -216,6 +226,7 @@
                     success: function (respuesta) {
                         if (respuesta == 1) {
                             toastr.success("Los datos se guardarón correctamente.", 'ASOCEM', { timeOut: 2500 });
+
                             $('#btnGuardarProyDiseno').attr("disabled", true);
 
                             if (strTipoDiseno==1) {

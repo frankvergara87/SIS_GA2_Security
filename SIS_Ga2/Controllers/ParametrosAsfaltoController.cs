@@ -15,6 +15,10 @@ namespace SIS_Ga2.Controllers
         // GET: ParametrosAsfalto
         public ActionResult Index()
         {
+
+            string IdDis = Session["DisenoId"].ToString();
+
+
             List<SelectListItem> lstPeriodoDiseno = new List<SelectListItem>();
             lstPeriodoDiseno.Add(new SelectListItem() { Text = "5.00", Value = "1" });
             lstPeriodoDiseno.Add(new SelectListItem() { Text = "10.00", Value = "2" });
@@ -105,6 +109,8 @@ namespace SIS_Ga2.Controllers
             List<SelectListItem> lstPresion = new List<SelectListItem>();
             lstPresion.AddRange(objblCoefPresion.ListaCoefPresion().Select(a => new SelectListItem() { Text = a.Presion.ToString(), Value = Convert.ToString(a.Id_Presion) }));
             ViewData["ddlPresion"] = lstPresion;
+
+
 
 
             return View();
@@ -286,7 +292,7 @@ namespace SIS_Ga2.Controllers
             foreach (BEEjes ce in lobjCantEjes)
             {
                 CantEjes = ce.Total_Ejes;
-            }            
+            }
 
             return CantEjes;
         }
@@ -337,7 +343,7 @@ namespace SIS_Ga2.Controllers
             else
             {
                 objbePropFactorDistribucion.Valor_Distrib_Calculado = 0;
-            }                
+            }
 
             if (objPropFactorDistribucion.Valor_Distrib_Ingresado.ToString().Length > 0)
             {
@@ -347,10 +353,10 @@ namespace SIS_Ga2.Controllers
             {
                 objbePropFactorDistribucion.Valor_Distrib_Ingresado = 0;
             }
-                
 
 
-            objPropFactorDistribucion.Fecha_Creacion = Convert.ToDouble(DateTime.Now.ToString("yyyyMMdd")); 
+
+            objPropFactorDistribucion.Fecha_Creacion = Convert.ToDouble(DateTime.Now.ToString("yyyyMMdd"));
             objPropFactorDistribucion.Usr_Creacion = "fvergara";
 
 
@@ -363,9 +369,9 @@ namespace SIS_Ga2.Controllers
 
 
 
-        public double CalcularFVP(string idTipoVehiculo, string idVehiculo, string TipoDiseno, string PesoE1, string PesoE2)
+        public decimal CalcularFVP(string idTipoVehiculo, string idVehiculo, string TipoDiseno, string PesoE1, string PesoE2, string PesoE3, string PesoE4, string PesoE5)
         {
-            double FVP = 0;
+            decimal FVP;
             BLReglas objblReglas = new BLReglas();
             BECalculos lobjCalculos = new BECalculos();
             lobjCalculos.Id_TipoVehiculo = Convert.ToInt32(idTipoVehiculo);
@@ -390,9 +396,36 @@ namespace SIS_Ga2.Controllers
             else
             {
                 lobjCalculos.PesoE2 = Convert.ToDouble(PesoE2);
-            }    
+            }
 
-            FVP = objblReglas.calcularFVP(lobjCalculos);
+            if (PesoE3 == null || PesoE3.Length == 0)
+            {
+                lobjCalculos.PesoE3 = 0;
+            }
+            else
+            {
+                lobjCalculos.PesoE3 = Convert.ToDouble(PesoE3);
+            }
+
+            if (PesoE4 == null || PesoE4.Length == 0)
+            {
+                lobjCalculos.PesoE4 = 0;
+            }
+            else
+            {
+                lobjCalculos.PesoE4 = Convert.ToDouble(PesoE4);
+            }
+
+            if (PesoE5 == null || PesoE5.Length == 0)
+            {
+                lobjCalculos.PesoE5 = 0;
+            }
+            else
+            {
+                lobjCalculos.PesoE5 = Convert.ToDouble(PesoE5);
+            }
+
+            FVP = Convert.ToDecimal(objblReglas.calcularFVP(lobjCalculos));
 
             return FVP;
         }
@@ -425,7 +458,7 @@ namespace SIS_Ga2.Controllers
             {
                 Id_Repet_Equivalentes = hid_Id_Repet_Equi;
             }
-            
+
 
             int Id_Vehiculos_IMD;
             BLVehiculosIMD objblVehiculosIMD = new BLVehiculosIMD();
@@ -447,7 +480,7 @@ namespace SIS_Ga2.Controllers
             lobjVehiculosIMD.Peso_Tonelada_E5 = objVehiculosIMD.Peso_Tonelada_E5;
 
             lobjVehiculosIMD.Valor_FVP = objVehiculosIMD.Valor_FVP;
-            lobjVehiculosIMD.Valor_EE = 2305;
+            lobjVehiculosIMD.Valor_EE = objVehiculosIMD.Valor_EE;
             lobjVehiculosIMD.Fecha_Creacion = Convert.ToDouble(DateTime.Now.ToString("yyyyMMdd"));
             lobjVehiculosIMD.Hora_Creacion = Convert.ToDouble(DateTime.Now.ToString("hhmmss").ToString());
             lobjVehiculosIMD.Usr_Creacion = "fvergara";
@@ -455,6 +488,8 @@ namespace SIS_Ga2.Controllers
             lobjVehiculosIMD.Fecha_Actualizacion = 0;
             lobjVehiculosIMD.Hora_Actualizacion = 0;
             lobjVehiculosIMD.Usr_Actualizacion = "";
+
+            lobjVehiculosIMD.Id_Diseno = objVehiculosIMD.Id_Diseno;
 
             Id_Vehiculos_IMD = objblVehiculosIMD.GuardarVehiculosIMD(lobjVehiculosIMD);
 
@@ -473,6 +508,32 @@ namespace SIS_Ga2.Controllers
                 throw new ArgumentException("Rep.Equivalentes " + Id_Repet_Equivalentes + " no es correcto");
 
             return Json(new { data = lobjVehiculosIMD }, JsonRequestBehavior.AllowGet);
+        }
+
+
+        public int EliminarVehiculosIMD(int Id_Vehiculos_IMD, int Id_Diseno, int Id_Repet_Equivalentes)
+        {
+            try
+            {
+                int del = 0;
+
+                BLVehiculosIMD objblVehiculosIMD = new BLVehiculosIMD();
+                BEVehiculosIMD lobjVehiculosIMD = new BEVehiculosIMD();
+                lobjVehiculosIMD.Id_Vehiculos_IMD = Id_Vehiculos_IMD;
+                lobjVehiculosIMD.Id_Diseno = Id_Diseno;
+                lobjVehiculosIMD.Id_Repet_Equivalentes = Id_Repet_Equivalentes;
+
+                del = objblVehiculosIMD.EliminarVehiculosIMD(lobjVehiculosIMD);
+
+
+                return Id_Repet_Equivalentes;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
         }
 
 
@@ -563,7 +624,7 @@ namespace SIS_Ga2.Controllers
             {
                 coefdrenaje = Convert.ToDecimal(ce.VALOR_CALIDAD_DRENA);
             }
-            
+
             return coefdrenaje;
         }
 
@@ -606,16 +667,44 @@ namespace SIS_Ga2.Controllers
 
 
 
-
-
-        public JsonResult CargarVariableTiempo(int Id)
+        public int LimpiarVariableTiempo(int IdDiseno, decimal NroAnio)
         {
+
+            BLTasaCrecimiento bLTasaCrecimiento = new BLTasaCrecimiento();
+            BETasaCrecimiento beTasaCrecimiento = new BETasaCrecimiento();
+            beTasaCrecimiento.Id_Diseno = IdDiseno;
+
+            bLTasaCrecimiento.LimpiarVariableTiempo(beTasaCrecimiento);
+
+
+            for (int i = 1; i <= Convert.ToInt32(NroAnio); i++)
+            {
+                try
+                {
+                    GuardarCrecXTiempo(i, "0", IdDiseno);
+
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+
+            }
+
+            return 1;
+        }
+
+        public JsonResult CargarVariableTiempo(int IdDiseno)
+        {            
+
             BLTasaCrecimiento objblTasaCrecimiento = new BLTasaCrecimiento();
             List<BETasaCrecimiento> lobjBETasaCrecimiento = new List<BETasaCrecimiento>();
-            lobjBETasaCrecimiento = objblTasaCrecimiento.ListarCrecimXTiempo(Id);
+            lobjBETasaCrecimiento = objblTasaCrecimiento.ListarCrecimXTiempo(IdDiseno);
+
 
             if (lobjBETasaCrecimiento == null)
-                throw new ArgumentException("Id " + Id + " no es correcto");
+                throw new ArgumentException("IdDiseno " + IdDiseno + " no es correcto");
 
             return Json(new { data = lobjBETasaCrecimiento }, JsonRequestBehavior.AllowGet);
         }
@@ -633,11 +722,12 @@ namespace SIS_Ga2.Controllers
         }
 
 
+
         public int GuardarCrecXTiempo(int NroAnio, string Valor, int IdDiseno)
         {
             try
             {
-                int Id_Tasa_Crec_X_Tiempo=0;
+                int Id_Tasa_Crec_X_Tiempo = 0;
 
                 BLTasaCrecimiento bLTasaCrecimiento = new BLTasaCrecimiento();
                 BETasaCrecimiento beTasaCrecimiento = new BETasaCrecimiento();
@@ -647,7 +737,7 @@ namespace SIS_Ga2.Controllers
 
                 Id_Tasa_Crec_X_Tiempo = bLTasaCrecimiento.GuardarCrecXTiempo(beTasaCrecimiento);
 
-                
+
                 return Id_Tasa_Crec_X_Tiempo;
             }
             catch (Exception)
@@ -682,7 +772,133 @@ namespace SIS_Ga2.Controllers
             }
 
         }
+        
+        public int ActualizarCrecXTiempo(int NroAnio, string Valor, int IdDiseno, int Id_Tasa_Crec_X_Tiempo)
+        {
+            try
+            {
+                int upd = 0;
+
+                BLTasaCrecimiento bLTasaCrecimiento = new BLTasaCrecimiento();
+                BETasaCrecimiento beTasaCrecimiento = new BETasaCrecimiento();
+                beTasaCrecimiento.NroAnio = NroAnio;
+                beTasaCrecimiento.Valor = Convert.ToDecimal(Valor);
+                beTasaCrecimiento.Id_Diseno = IdDiseno;
+                beTasaCrecimiento.Id_Tasa_Crec_X_Tiempo = Id_Tasa_Crec_X_Tiempo;
+
+                upd = bLTasaCrecimiento.ActualizarCrecXTiempo(beTasaCrecimiento);
 
 
+                return upd;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        public int ActualizarCrecXVehiculo(int Id_Tipo_Vehiculo, string Valor, int IdDiseno, int Id_Tasa_Crec_X_Vehiculo)
+        {
+            try
+            {
+                int upd = 0;
+
+                BLTasaCrecimiento bLTasaCrecimiento = new BLTasaCrecimiento();
+                BETasaCrecimiento beTasaCrecimiento = new BETasaCrecimiento();
+                beTasaCrecimiento.Id_Tipo_Vehiculo = Id_Tipo_Vehiculo;
+                beTasaCrecimiento.Valor = Convert.ToDecimal(Valor);
+                beTasaCrecimiento.Id_Diseno = IdDiseno;
+                beTasaCrecimiento.Id_Tasa_Crec_X_Vehiculo = Id_Tasa_Crec_X_Vehiculo;
+
+                upd = bLTasaCrecimiento.ActualizarCrecXVehiculo(beTasaCrecimiento);
+
+
+                return upd;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+
+        public decimal CalculoEE(BEMatrizTasaCrecimiento objMatrizTasaCrecimiento, int idTipoTasaCrec, decimal FDxFC, decimal Fp, int Id_Repet_Eq)
+        {
+            try
+            {
+                decimal calculoEE = 0;
+                //decimal calculoEEXVehi = 0;
+
+                BLCalculoEE blCalculoEE = new BLCalculoEE();
+                List<BETasaCrecimiento> lobjBETasaCrecimiento = new List<BETasaCrecimiento>();
+                List<BEMatrizEE> LstMatrizEEResultado = new List<BEMatrizEE>();
+
+                LstMatrizEEResultado = blCalculoEE.ListaResultadoEE(objMatrizTasaCrecimiento, idTipoTasaCrec, FDxFC, Fp);
+
+                foreach (BEMatrizEE item in LstMatrizEEResultado)
+                {
+                    calculoEE = calculoEE + Math.Round((item.valorEEMatriz / 10000),2);
+
+                    //Version DEMO
+                    BLVehiculosIMD blVehiculosIMD = new BLVehiculosIMD();
+                    BEVehiculosIMD lobjBEBEVehiculosIMD = new BEVehiculosIMD();
+                    lobjBEBEVehiculosIMD.Id_Vehiculos = item.Id_Vehiculos;
+                    lobjBEBEVehiculosIMD.Id_Diseno = objMatrizTasaCrecimiento.Id_Diseno;
+                    lobjBEBEVehiculosIMD.Id_Repet_Equivalentes = Id_Repet_Eq;
+                    lobjBEBEVehiculosIMD.Valor_EE = Math.Round((item.valorEEMatriz / 10000), 2);
+
+                    blVehiculosIMD.ActualizaVehiculosIMD(lobjBEBEVehiculosIMD);
+                    //Version DEMO
+
+                }
+
+                return calculoEE;
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+
+        }
+
+        public decimal CalculoEExVehiculo(BEMatrizTasaCrecimiento objMatrizTasaCrecimiento, int idTipoTasaCrec, decimal FDxFC, decimal Fp, int IdVehiculo, int TipoVehiculo, int strId_Repet_Equivalentes)
+        {
+            try
+            {
+                decimal calculoEEXVehi = 0;
+
+                BLCalculoEE blCalculoEE = new BLCalculoEE();
+                List<BETasaCrecimiento> lobjBETasaCrecimiento = new List<BETasaCrecimiento>();
+                List<BEMatrizEE> LstMatrizEEResultado = new List<BEMatrizEE>();
+
+                LstMatrizEEResultado = blCalculoEE.ListaResultadoEE(objMatrizTasaCrecimiento, idTipoTasaCrec, FDxFC, Fp);
+
+                calculoEEXVehi = blCalculoEE.CalculoEExVehi(LstMatrizEEResultado, TipoVehiculo, IdVehiculo);
+
+                //Version DEMO
+                BLVehiculosIMD blVehiculosIMD = new BLVehiculosIMD();
+                BEVehiculosIMD lobjBEBEVehiculosIMD = new BEVehiculosIMD();
+                lobjBEBEVehiculosIMD.Id_Vehiculos = IdVehiculo;
+                lobjBEBEVehiculosIMD.Id_Diseno = objMatrizTasaCrecimiento.Id_Diseno;
+                lobjBEBEVehiculosIMD.Id_Repet_Equivalentes = strId_Repet_Equivalentes;
+                lobjBEBEVehiculosIMD.Valor_EE = calculoEEXVehi;
+
+                blVehiculosIMD.ActualizaVehiculosIMD(lobjBEBEVehiculosIMD);
+                //Version DEMO
+
+                return calculoEEXVehi;
+            }
+            catch (Exception e)
+            {
+
+                throw;
+            }
+
+        }
     }
 }

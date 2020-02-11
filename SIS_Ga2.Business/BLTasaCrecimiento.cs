@@ -41,11 +41,28 @@ namespace SIS_Ga2.Business
             return objDAO.GuardarCrecXTiempo(objEntidad);
         }
 
+        public int ActualizarCrecXTiempo(BETasaCrecimiento objEntidad)
+        {
+            DACTasaCrecimiento objDAO = new DACTasaCrecimiento();
+            return objDAO.ActualizarCrecXTiempo(objEntidad);
+        }
+
+        public int LimpiarVariableTiempo(BETasaCrecimiento objEntidad)
+        {
+            DACTasaCrecimiento objDAO = new DACTasaCrecimiento();
+            return objDAO.LimpiarVariableTiempo(objEntidad);
+        }
+
         public int GuardarCrecXVehiculo(BETasaCrecimiento objEntidad)
         {
             DACTasaCrecimiento objDAO = new DACTasaCrecimiento();
             return objDAO.GuardarCrecXVehiculo(objEntidad);
         }
 
+        public int ActualizarCrecXVehiculo(BETasaCrecimiento objEntidad)
+        {
+            DACTasaCrecimiento objDAO = new DACTasaCrecimiento();
+            return objDAO.ActualizarCrecXVehiculo(objEntidad);
+        }
     }
 }

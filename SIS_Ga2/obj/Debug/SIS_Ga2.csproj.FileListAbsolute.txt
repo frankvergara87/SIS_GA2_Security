@@ -286,6 +286,8 @@ C:\Users\Frank\source\repos\Aashto\SIS_GA2_Security\SIS_Ga2\bin\Newtonsoft.Json.
 C:\Users\Frank\source\repos\Aashto\SIS_GA2_Security\SIS_Ga2\bin\Antlr3.Runtime.pdb
 C:\Users\Frank\source\repos\Aashto\SIS_GA2_Security\SIS_Ga2\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\Frank\source\repos\Aashto\SIS_GA2_Security\SIS_Ga2\bin\SIS_Ga2.DataAccess.pdb
+C:\Users\Frank\source\repos\Aashto\SIS_GA2_Security\SIS_Ga2\bin\DbManager.pdb
+C:\Users\Frank\source\repos\Aashto\SIS_GA2_Security\SIS_Ga2\bin\DbManager.xml
 C:\Users\Frank\source\repos\Aashto\SIS_GA2_Security\SIS_Ga2\bin\es\System.Web.Helpers.resources.dll
 C:\Users\Frank\source\repos\Aashto\SIS_GA2_Security\SIS_Ga2\bin\es\System.Web.Mvc.resources.dll
 C:\Users\Frank\source\repos\Aashto\SIS_GA2_Security\SIS_Ga2\bin\es\System.Web.Optimization.resources.dll
@@ -298,5 +300,3 @@ C:\Users\Frank\source\repos\Aashto\SIS_GA2_Security\SIS_Ga2\obj\Debug\SIS_Ga2.cs
 C:\Users\Frank\source\repos\Aashto\SIS_GA2_Security\SIS_Ga2\obj\Debug\SIS_Ga2.csproj.CopyComplete
 C:\Users\Frank\source\repos\Aashto\SIS_GA2_Security\SIS_Ga2\obj\Debug\SIS_Ga2.dll
 C:\Users\Frank\source\repos\Aashto\SIS_GA2_Security\SIS_Ga2\obj\Debug\SIS_Ga2.pdb
-C:\Users\Frank\Source\Repos\Aashto\SIS_GA2_Security\SIS_Ga2\bin\DbManager.pdb
-C:\Users\Frank\Source\Repos\Aashto\SIS_GA2_Security\SIS_Ga2\bin\DbManager.xml

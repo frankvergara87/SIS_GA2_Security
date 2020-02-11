@@ -67,6 +67,7 @@ namespace SIS_Ga2.DataAccess
         {
             SqlManager objSql = new SqlManager(ConfigurationManager.AppSettings["ASOCEM"].ToString());
             int resultado = 0;
+
             Parameter param = new Parameter();
             param.Add("@Num_Proyecto", DataProyecto.Num_Proyecto);
             param.Add("@Proyecto", DataProyecto.Proyecto);
@@ -85,11 +86,13 @@ namespace SIS_Ga2.DataAccess
             param.Add("@Id_Reglamento", DataDiseno.idReglamento);
             param.Add("@Id_TipoDiseno", DataDiseno.IdTipoDiseno);
             param.Add("@Id_Distrito", DataDiseno.idDistrito);
+            param.Add("@IdProyecto", 0, System.Data.ParameterDirection.Output);
+            param.Add("@IdDiseno", 0, System.Data.ParameterDirection.Output);
 
             try
             {
-               objSql.ExecuteNonQuery("USP_Ins_Proyecto", param);
-               resultado = 1;
+                objSql.ExecuteNonQuery("USP_Ins_Proyecto", param);
+                resultado = Convert.ToInt32(param.get_Item(19).Value.ToString());
             }
             catch (Exception ex)
             {
