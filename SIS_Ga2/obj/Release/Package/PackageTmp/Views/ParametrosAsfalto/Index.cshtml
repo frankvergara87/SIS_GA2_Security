@@ -64,18 +64,18 @@
                             <div class="form-group col-md-5">
                                 <label for="inlineFormInput" class="col-form-label col-form-label-sm">Cantidad de ESAL&nbsp;&nbsp;&nbsp;</label>
                                 <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#EsalModal"><i class="fa fa-question-circle"></i></button>
-                                <input id="txtCantidadESAL" type="text" placeholder="Cantidad de ESAL" class="mr-3 col-sm-10 form-control form-control-sm input-number input-number mascara">
+                                <input id="txtCantidadESAL" type="text" placeholder="Cantidad de ESAL" class="mr-3 col-sm-10 form-control form-control-sm" onkeypress="return filterFloat(event,this);">
                                 @*<button type="button" id="btnCalcularEsal" class="btn btn-primary btn-sm" onclick="location.href='@Url.Action("Index", "ParamEsal")'"><span class="fa fa-etsy"></span></button>*@
                                 <button type="button" id="btnCalcularEsal" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#Esal_Modal"><span class="fa fa-etsy"></span></button>
                             </div>
                             <div class="form-group col-md-5">
                                 <label for="inlineFormInput" class="col-form-label col-form-label-sm">Confiabilidad (R%)&nbsp;&nbsp;&nbsp;</label>
                                 <button type="button" id="btninfoconfiab" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#ConfiabilidadModal"><i class="fa fa-question-circle"></i></button>
-                                <input id="txtConfiab" type="text" placeholder="Confiabilidad (R%)" class="mr-3 col-sm-10 form-control form-control-sm input-number mascara">
+                                <input id="txtConfiab" type="text" placeholder="Confiabilidad (R%)" class="mr-3 col-sm-10 form-control form-control-sm" onkeypress="return filterFloat(event,this);">
                             </div>
                             <div class="form-group col-md-5">
                                 <label for="inlineFormInput" class="col-form-label col-form-label-sm">Error de Comb.Estándar (SO)</label>
-                                <input id="txtErrorComb" data-id="4" type="text" placeholder="Error de Comb.Estándar (SO)" class="column_filter mr-3 col-sm-12 form-control form-control-sm input-number mascara">
+                                <input id="txtErrorComb" data-id="4" type="text" placeholder="Error de Comb.Estándar (SO)" class="column_filter mr-3 col-sm-12 form-control form-control-sm" onkeypress="return filterFloat(event,this);">
                             </div>
                             <div class="form-group col-md-5">
                                 <label for="inlineFormInput" class="col-form-label col-form-label-sm">Módulo de Resilencia (Subrasante)&nbsp;&nbsp;&nbsp;</label>
@@ -86,12 +86,12 @@
                             <div class="form-group col-md-5">
                                 <label for="inlineFormInput" class="col-form-label col-form-label-sm">Servicialidad Inicial&nbsp;&nbsp;&nbsp;</label>
                                 <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#ServInicialModal"><i class="fa fa-question-circle"></i></button>
-                                <input id="txtServInicial" type="text" placeholder="Servicialidad Inicial" class="mr-3 col-sm-12 form-control form-control-sm input-number mascara">
+                                <input id="txtServInicial" type="text" placeholder="Servicialidad Inicial" class="mr-3 col-sm-12 form-control form-control-sm" onkeypress="return filterFloat(event,this);">
                             </div>
                             <div class="form-group col-md-5">
                                 <label for="inlineFormInput" class="col-form-label col-form-label-sm">Servicialidad Final&nbsp;&nbsp;&nbsp;</label>
                                 <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#ServFinalModal"><i class="fa fa-question-circle"></i></button>
-                                <input id="txtServFinal" type="text" placeholder="Servicialidad Final" class="mr-3 col-sm-12 form-control form-control-sm input-number mascara">
+                                <input id="txtServFinal" type="text" placeholder="Servicialidad Final" class="mr-3 col-sm-12 form-control form-control-sm" onkeypress="return filterFloat(event,this);">
                             </div>
                             <div class="form-group col-md-5">
                                 <label for="inlineFormInput" class="col-form-label col-form-label-sm">Diferencia de Servicialidad (∆PSI)&nbsp;&nbsp;&nbsp;</label>
@@ -1095,6 +1095,10 @@
                             <table id="dgvListadoVehiculosIMD" class="display" cellspacing="0">
                                 <thead>
                                     <tr>
+                                        <th class="text-sm-center" id="Id_Vehiculos_IMD">Cod</th>
+                                        <th class="text-sm-center" id="Id_Diseno">Id_Dis</th>
+                                        <th class="text-sm-center" id="Id_Repet_Equivalentes">Equiv.</th>
+
                                         <th class="text-sm-center" id="Id_Vehiculos">Id</th>
                                         <th class="text-sm-center" id="ruta_imagen">VistaPreviaVehiculo</th>
                                         <th class="text-sm-center" id="Vehiculos">Tipo_Vehículo</th>
@@ -1110,6 +1114,7 @@
                                         <th class="text-sm-center" id="Peso_Tonelada_E5">Peso_E5</th>
                                         <th class="text-sm-center" id="Valor_FVP">Valor_FVP</th>
                                         <th class="text-sm-center" id="Valor_EE">Valor_EE</th>
+                                        <th class="text-sm-center" id="Opc">Opc.</th>
                                     </tr>
                                 </thead>
 
@@ -1161,7 +1166,7 @@
                                     <label for="inlineFormInput" class="col-form-label col-form-label-sm">IMD Base</label>
                                 </td>
                                 <td>
-                                    <input id="txtIMDBase" data-id="4" type="text" placeholder="IMD Base" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                    <input id="txtIMDBase" data-id="4" type="text" placeholder="IMD Base" class="column_filter mr-1 col-sm-8 form-control form-control-sm mascara">
                                 </td>
                             </tr>
                             <tr>
@@ -2143,6 +2148,8 @@
     $(document).ready(function () {
 
 
+
+
         $('.mascara').mask("#,##0.00", { reverse: true }); //Aplica la mascara
         $('.SoloNumeros').mask("99", { reverse: true }); //Aplica la mascara
 
@@ -2589,6 +2596,8 @@
             $('#txtPesoEje_5').val("");
 
             $('#txtFVP').val("");
+            $('#txtIMDBase').val("");
+            $('#txtIMDBase').focus();
 
             cambiaVehiculo($("#ddlTipoVehiculo").val());
 
@@ -2620,10 +2629,8 @@
             $('#txtPesoEje_5').val("");
 
             $('#txtFVP').val("");
-
-
-
-
+            $('#txtIMDBase').val("");
+            $('#txtIMDBase').focus();
 
             ObtenerCantidadEjes($("#ddlVehiculo").val());
         });
@@ -2677,86 +2684,87 @@
         $("#btnGuardarVehiculoIMD").on("click", function (event) {
 
             var ipt = document.getElementById("FdxFc").value;
+            var imdBase = document.getElementById("txtIMDBase").value;
+
+            if (imdBase.length == 0) {
+                toastr.error("Ingrese IMD BASE.", 'ASOCEM', { timeOut: 4500 });
+                document.getElementById("txtIMDBase").focus();
+                return;
+            }
 
             if (ipt.length == 0) {
                 $("#SubModal .close").click();
                 toastr.error("Ingrese un valor Fd x Fc.", 'ASOCEM', { timeOut: 4500 });
                 return;
-            } else {
+            } 
+            
+            var objRepeticionesEqui = {};
+            objRepeticionesEqui["Id_Tasa_Crecimiento"] = document.getElementById("ddlTasaCrecimiento").value;
+            objRepeticionesEqui["Dias_Diseno"] = document.getElementById("DiasAno").value;
+            objRepeticionesEqui["FP"] = document.getElementById("Fp").value;
+            objRepeticionesEqui["Tipo_Diseno"] = document.getElementById("hidTipoDiseno").value;
+            objRepeticionesEqui["Periodo"] = document.getElementById("PeriodoDiseno").value;
+            objRepeticionesEqui["Id_Prop_Factor_Distrib"] = document.getElementById("hidId_Prop_Factor_Distrib").value;
 
-                var objRepeticionesEqui = {};
-                objRepeticionesEqui["Id_Tasa_Crecimiento"] = document.getElementById("ddlTasaCrecimiento").value;
-                objRepeticionesEqui["Dias_Diseno"] = document.getElementById("DiasAno").value;
-                objRepeticionesEqui["FP"] = document.getElementById("Fp").value;
-                objRepeticionesEqui["Tipo_Diseno"] = document.getElementById("hidTipoDiseno").value;
-                objRepeticionesEqui["Periodo"] = document.getElementById("PeriodoDiseno").value;
-                objRepeticionesEqui["Id_Prop_Factor_Distrib"] = document.getElementById("hidId_Prop_Factor_Distrib").value;
 
+            var objVehiculosIMD = {};
+            objVehiculosIMD["Id_Vehiculos"] = document.getElementById("ddlVehiculo").value;
+            objVehiculosIMD["IMD_Base"] = document.getElementById("txtIMDBase").value;
+            objVehiculosIMD["Tipo_Eje_E1"] = $("#ddlTipoEje_1 :selected").text();
+            objVehiculosIMD["Peso_Tonelada_E1"] = document.getElementById("txtPesoEje_1").value;
+            objVehiculosIMD["Tipo_Eje_E2"] = $("#ddlTipoEje_2 :selected").text();
+            objVehiculosIMD["Peso_Tonelada_E2"] = document.getElementById("txtPesoEje_2").value;
+            objVehiculosIMD["Tipo_Eje_E3"] = $("#ddlTipoEje_3 :selected").text();
+            objVehiculosIMD["Peso_Tonelada_E3"] = document.getElementById("txtPesoEje_3").value;
+            objVehiculosIMD["Tipo_Eje_E4"] = $("#ddlTipoEje_4 :selected").text();
+            objVehiculosIMD["Peso_Tonelada_E4"] = document.getElementById("txtPesoEje_4").value;
+            objVehiculosIMD["Tipo_Eje_E5"] = $("#ddlTipoEje_5 :selected").text();
+            objVehiculosIMD["Peso_Tonelada_E5"] = document.getElementById("txtPesoEje_5").value;
+            objVehiculosIMD["Valor_FVP"] = document.getElementById("txtFVP").value;
+            objVehiculosIMD["Id_Diseno"] = document.getElementById("hidDisenoId").value; //Agregado
+            //objVehiculosIMD["Valor_EE"] = ValorEEGenerado; //Agregado
 
-                var objVehiculosIMD = {};
-                objVehiculosIMD["Id_Vehiculos"] = document.getElementById("ddlVehiculo").value;
-                objVehiculosIMD["IMD_Base"] = document.getElementById("txtIMDBase").value;
-                objVehiculosIMD["Tipo_Eje_E1"] = $("#ddlTipoEje_1 :selected").text();
-                objVehiculosIMD["Peso_Tonelada_E1"] = document.getElementById("txtPesoEje_1").value;
-                objVehiculosIMD["Tipo_Eje_E2"] = $("#ddlTipoEje_2 :selected").text();
-                objVehiculosIMD["Peso_Tonelada_E2"] = document.getElementById("txtPesoEje_2").value;
-                objVehiculosIMD["Tipo_Eje_E3"] = $("#ddlTipoEje_3 :selected").text();
-                objVehiculosIMD["Peso_Tonelada_E3"] = document.getElementById("txtPesoEje_3").value;
-                objVehiculosIMD["Tipo_Eje_E4"] = $("#ddlTipoEje_4 :selected").text();
-                objVehiculosIMD["Peso_Tonelada_E4"] = document.getElementById("txtPesoEje_4").value;
-                objVehiculosIMD["Tipo_Eje_E5"] = $("#ddlTipoEje_5 :selected").text();
-                objVehiculosIMD["Peso_Tonelada_E5"] = document.getElementById("txtPesoEje_5").value;
-                objVehiculosIMD["Valor_FVP"] = document.getElementById("txtFVP").value;
-                objVehiculosIMD["Id_Diseno"] = document.getElementById("hidDisenoId").value; //Agregado
-                //objVehiculosIMD["Valor_EE"] = ValorEEGenerado; //Agregado
-
-                hid_Id_Repet_Equi = document.getElementById("hid_Id_Repet_Equi").value;
+            hid_Id_Repet_Equi = document.getElementById("hid_Id_Repet_Equi").value;
                 
 
-                $.ajax
-                    ({
-                        method: 'POST',
-                        url: '/ParametrosAsfalto/GuardarVehiculosIMD',
-                        data: { 'objVehiculosIMD': objVehiculosIMD, 'objRepeticionesEqui': objRepeticionesEqui, 'hid_Id_Repet_Equi': hid_Id_Repet_Equi },
-                        success: function (respuesta) {
-                            if (respuesta.length > 0) {
-                                toastr.success("Los datos se guardarón correctamente.", 'ASOCEM', { timeOut: 2500 });
+            $.ajax
+                ({
+                    method: 'POST',
+                    url: '/ParametrosAsfalto/GuardarVehiculosIMD',
+                    data: { 'objVehiculosIMD': objVehiculosIMD, 'objRepeticionesEqui': objRepeticionesEqui, 'hid_Id_Repet_Equi': hid_Id_Repet_Equi },
+                    success: function (respuesta) {
+                        if (respuesta.length > 0) {
+                            toastr.success("Los datos se guardarón correctamente.", 'ASOCEM', { timeOut: 2500 });
 
-                                $('#dgvListadoVehiculosIMD').dataTable().fnDestroy();
+                            $('#dgvListadoVehiculosIMD').dataTable().fnDestroy();
 
 
-                                if (document.getElementById("hid_Id_Repet_Equi").value == 0) {
-                                    document.getElementById("hid_Id_Repet_Equi").value = respuesta;
-                                }
+                            if (document.getElementById("hid_Id_Repet_Equi").value == 0) {
+                                document.getElementById("hid_Id_Repet_Equi").value = respuesta;
+                            }
 
-                                CargarListadoVehiculosIMD(respuesta); //Cargamos el DataTable
+                            CargarListadoVehiculosIMD(respuesta); //Cargamos el DataTable
 
-                                //Truco
+                            //Truco
                                 
-                                strId_Repet_Equivalentes = respuesta;
-                                //alert("Guardo vehiculo :" + strId_Repet_Equivalentes);
+                            strId_Repet_Equivalentes = respuesta;
+                            //alert("Guardo vehiculo :" + strId_Repet_Equivalentes);
 
 
-                                $("#SubModal .close").click();
+                            $("#SubModal .close").click();
 
-                            }
-                            else {
-                                toastr.error("Ingrese los datos!", 'ERROR', { timeOut: 2000 });
-                            }
-                        },
-                        error: function (xhr, status) {
-                            toastr.error(status, 'ERROR', { timeOut: 2000 });
                         }
+                        else {
+                            toastr.error("Ingrese los datos!", 'ERROR', { timeOut: 2000 });
+                        }
+                    },
+                    error: function (xhr, status) {
+                        toastr.error(status, 'ERROR', { timeOut: 2000 });
+                    }
 
-                    });
+                });
 
 
-
-
-
-
-
-            }
 
         });
 
@@ -2964,6 +2972,8 @@
                 document.getElementById("TasaCrecimiento").value = $("#ddlTasaCrecimiento :selected").text().trim();
                 $('#lblTasaCrecimiento').html('Tasa de Crecimiento (' +  document.getElementById("ValorTasaCrecConstante").value + ' %) :');
                 $("#SubModal_VariableConstante .close").click();
+
+                //document.getElementById("ValorTasaCrecConstante").value = ""; //Limpieza 
             } else {
                 toastr.error("Ingrese un valor.", 'ASOCEM', { timeOut: 2500 });
                 return;
@@ -3052,6 +3062,44 @@
         //GenerarTasaCrecxTiempo(1);
 
     });
+
+
+    function filterFloat(evt,input){
+        // Backspace = 8, Enter = 13, ‘0′ = 48, ‘9′ = 57, ‘.’ = 46, ‘-’ = 43
+        var key = window.Event ? evt.which : evt.keyCode;    
+        var chark = String.fromCharCode(key);
+        var tempValue = input.value+chark;
+        if(key >= 48 && key <= 57){
+            if(filter(tempValue)=== false){
+                return false;
+            }else{       
+                return true;
+            }
+        }else{
+              if(key == 8 || key == 13 || key == 0) {     
+                  return true;              
+              }else if(key == 46){
+                    if(filter(tempValue)=== false){
+                        return false;
+                    }else{       
+                        return true;
+                    }
+              }else{
+                  return false;
+              }
+        }
+    }
+
+    function filter(__val__){
+        var preg = /^([0-9]+\.?[0-9]{0,2})$/; 
+        if(preg.test(__val__) === true){
+            return true;
+        }else{
+           return false;
+        }
+    
+    }
+
 
     function DiferenciaServicialidad() {
         strServInicial = document.getElementById("txtServInicial").value;
@@ -3150,19 +3198,17 @@
                 method: 'POST',
                 url: '/ParametrosAsfalto/ListarValorFactorDistrib',
                 data: { 'Numero_Calzada': Calzada, 'Numero_Sentido': NumSentido, 'Numero_Carril_x_Sentido': CarrilxSentido },
-                success: function (respuesta) {
+                success: function (respuesta) {                    
 
                     if (respuesta != '') {
-
                         var obj = (typeof respuesta) == 'string' ? eval('(' + respuesta + ')') : respuesta;
 
                         $.each(obj, function (i, item) {
 
-
                             if (item.Valor_Distrib_Calculado != '') {
-                                document.getElementById("FdxFc_Calculado").value = item.Valor_Distrib_Calculado;
+                                document.getElementById("FdxFc_Calculado").value = item.Valor_Distrib_Calculado.toFixed(2);
                             } else {
-                                document.getElementById("FdxFc_Calculado").value = '';
+                                document.getElementById("FdxFc_Calculado").value = '';                                
                             }
 
                             if (item.url_img != '' || item.url_img.length > 0) {
@@ -3175,6 +3221,10 @@
                     } else {
                         document.getElementById("FdxFc_Calculado").value = '';
                         $("#img_calzadacarril").attr("src", "/Content/images/calzadas/NoImage.png");
+
+                        document.getElementById("FdxFc_Ingresado").focus();
+                        toastr.warning("Combinacion NO PERMITIDA!", 'ALERTA', { timeOut: 2000 });
+
                     }
 
                 },
@@ -3231,6 +3281,34 @@
                 //alert(url_a + veh + url_b);
 
                 $("#img_vehiculo").attr("src", url_a + veh + url_b);
+
+
+                //Pruebita
+
+                document.getElementById("txtPesoEje_1").disabled = true;
+                document.getElementById("txtPesoEje_2").disabled = true;
+                document.getElementById("txtPesoEje_3").disabled = true;
+                document.getElementById("txtPesoEje_4").disabled = true;
+                document.getElementById("txtPesoEje_5").disabled = true;
+
+                document.getElementById("txtFVP").disabled = true;
+
+                $('#txtPesoEje_1').val("");
+                $('#txtPesoEje_2').val("");
+                $('#txtPesoEje_3').val("");
+                $('#txtPesoEje_4').val("");
+                $('#txtPesoEje_5').val("");
+
+                $('#txtFVP').val("");
+                $('#txtIMDBase').val("");
+                $('#txtIMDBase').focus();
+
+                ObtenerCantidadEjes($("#ddlVehiculo").val());
+
+                //Pruebita
+
+
+
             }
 
         });
@@ -3426,11 +3504,16 @@
                     "data": objData,
                     "dataType": "json"
                 },
-                /*"columnDefs": [
-                    { "targets": [0], "visible": false, "searchable": false }
-
-                ],*/
+                "columnDefs": [
+                    { "targets": [0], "visible": false },
+                    { "targets": [1], "visible": false },
+                    { "targets": [2], "visible": false }
+                ],
                 "columns": [
+                    { "data": "Id_Vehiculos_IMD", "class": "text-bold text-center" },       //Oculto
+                    { "data": "Id_Diseno", "class": "text-bold text-center" },              //Oculto
+                    { "data": "Id_Repet_Equivalentes", "class": "text-bold text-center" },  //Oculto
+
                     { "data": "Id_Vehiculos", "class": "text-bold text-center" },
                     {
                         data: null,
@@ -3459,7 +3542,21 @@
                     { "data": "Tipo_Eje_E5", "class": "text-center" },
                     { "data": "Peso_Tonelada_E5", "class": "text-center" },
                     { "data": "Valor_FVP", "class": "text-center" },
-                    { "data": "Valor_EE", "class": "text-center" }
+                    { "data": "Valor_EE", "class": "text-center" },
+                    {
+                        data: null,
+                        className: "text-center",                   
+                        "render": function (data) {
+                            var strDiv;
+                            if (data.Id_Vehiculos_IMD != 0) {
+                                strDiv = '<button type="button" id="btnEliminarVehiculoIMD" onclick="EliminarVehiculoIMD(\'' + data.Id_Vehiculos_IMD + '\',\'' + data.Id_Diseno + '\',\'' + data.Id_Repet_Equivalentes + '\' );" class="btn btn-outline-danger" data-toggle="modal" data-target="#deleteModal"><span class="icon-close"></span></button>';
+                            }
+                            else {
+                                strDiv = '';
+                            }
+                            return strDiv;
+                        }
+                    }
 
                 ],
 
@@ -3507,6 +3604,38 @@
 
 
     }
+
+    function EliminarVehiculoIMD(Id_Vehiculos_IMD, Id_Diseno, Id_Repet_Equivalentes) {
+
+        $.ajax
+            ({
+                method: 'POST',
+                url: '/ParametrosAsfalto/EliminarVehiculosIMD',
+                data: { 'Id_Vehiculos_IMD': Id_Vehiculos_IMD, 'Id_Diseno': Id_Diseno, 'Id_Repet_Equivalentes': Id_Repet_Equivalentes },
+                success: function (respuesta) {
+                    if (respuesta.length > 0) {
+                        //toastr.success("Los datos se guardarón correctamente.", 'ASOCEM', { timeOut: 2500 });
+
+                        //alert("Aqui" + respuesta);
+
+                        $('#dgvListadoVehiculosIMD').dataTable().fnDestroy();
+
+                        CargarListadoVehiculosIMD(respuesta); //Cargamos el DataTable
+
+                    }
+                    else {
+                        toastr.error("Datos NO BORRADOS!", 'ERROR', { timeOut: 2000 });
+                    }
+                },
+                error: function (xhr, status) {
+                    toastr.error(status, 'ERROR', { timeOut: 2000 });
+                }
+
+            });	
+
+    }
+
+
 
     function CargarTiempoDrenaje() {
 
@@ -3733,7 +3862,7 @@
                         var obj = (typeof respuesta) == 'string' ? eval('(' + respuesta + ')') : respuesta;
 
                         $.each(obj, function (i, item) {
-                            document.getElementById("txtFpCalculado").value = item.valorFP;
+                            document.getElementById("txtFpCalculado").value = item.valorFP.toFixed(2);
                         });
                     } else {
                         document.getElementById("txtFpCalculado").value = '';
@@ -4153,6 +4282,8 @@
     function redireccionar(Iden) {
         if (Iden == 1) {
             $("#btnIrVariableConstante").click();
+            $('#ValorTasaCrecConstante').val("");
+            $('#ValorTasaCrecConstante').focus();
         } else if (Iden == 2) {
             $("#btnIrVariableTiempo").click();
         } else if (Iden == 3) {

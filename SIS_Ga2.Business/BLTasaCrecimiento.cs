@@ -40,6 +40,12 @@ namespace SIS_Ga2.Business
             DACTasaCrecimiento objDAO = new DACTasaCrecimiento();
             return objDAO.GuardarCrecXTiempo(objEntidad);
         }
+        
+        public int GuardarCrecConstante(BETasaCrecimiento objEntidad)
+        {
+            DACTasaCrecimiento objDAO = new DACTasaCrecimiento();
+            return objDAO.GuardarCrecConstante(objEntidad);
+        }
 
         public int ActualizarCrecXTiempo(BETasaCrecimiento objEntidad)
         {
@@ -51,6 +57,12 @@ namespace SIS_Ga2.Business
         {
             DACTasaCrecimiento objDAO = new DACTasaCrecimiento();
             return objDAO.LimpiarVariableTiempo(objEntidad);
+        }
+
+        public int LimpiarVariableVehiculo(BETasaCrecimiento objEntidad)
+        {
+            DACTasaCrecimiento objDAO = new DACTasaCrecimiento();
+            return objDAO.LimpiarVariableVehiculo(objEntidad);
         }
 
         public int GuardarCrecXVehiculo(BETasaCrecimiento objEntidad)

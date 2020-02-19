@@ -1166,7 +1166,7 @@
                                     <label for="inlineFormInput" class="col-form-label col-form-label-sm">IMD Base</label>
                                 </td>
                                 <td>
-                                    <input id="txtIMDBase" data-id="4" type="text" placeholder="IMD Base" class="column_filter mr-1 col-sm-8 form-control form-control-sm mascara">
+                                    <input id="txtIMDBase" data-id="4" type="text" placeholder="IMD Base" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
                                 </td>
                             </tr>
                             <tr>
@@ -2148,6 +2148,8 @@
     $(document).ready(function () {
 
 
+
+
         $('.mascara').mask("#,##0.00", { reverse: true }); //Aplica la mascara
         $('.SoloNumeros').mask("99", { reverse: true }); //Aplica la mascara
 
@@ -2594,6 +2596,8 @@
             $('#txtPesoEje_5').val("");
 
             $('#txtFVP').val("");
+            $('#txtIMDBase').val("");
+            $('#txtIMDBase').focus();
 
             cambiaVehiculo($("#ddlTipoVehiculo").val());
 
@@ -2625,7 +2629,8 @@
             $('#txtPesoEje_5').val("");
 
             $('#txtFVP').val("");
-
+            $('#txtIMDBase').val("");
+            $('#txtIMDBase').focus();
 
             ObtenerCantidadEjes($("#ddlVehiculo").val());
         });
@@ -2679,86 +2684,87 @@
         $("#btnGuardarVehiculoIMD").on("click", function (event) {
 
             var ipt = document.getElementById("FdxFc").value;
+            var imdBase = document.getElementById("txtIMDBase").value;
+
+            if (imdBase.length == 0) {
+                toastr.error("Ingrese IMD BASE.", 'ASOCEM', { timeOut: 4500 });
+                document.getElementById("txtIMDBase").focus();
+                return;
+            }
 
             if (ipt.length == 0) {
                 $("#SubModal .close").click();
                 toastr.error("Ingrese un valor Fd x Fc.", 'ASOCEM', { timeOut: 4500 });
                 return;
-            } else {
+            } 
+            
+            var objRepeticionesEqui = {};
+            objRepeticionesEqui["Id_Tasa_Crecimiento"] = document.getElementById("ddlTasaCrecimiento").value;
+            objRepeticionesEqui["Dias_Diseno"] = document.getElementById("DiasAno").value;
+            objRepeticionesEqui["FP"] = document.getElementById("Fp").value;
+            objRepeticionesEqui["Tipo_Diseno"] = document.getElementById("hidTipoDiseno").value;
+            objRepeticionesEqui["Periodo"] = document.getElementById("PeriodoDiseno").value;
+            objRepeticionesEqui["Id_Prop_Factor_Distrib"] = document.getElementById("hidId_Prop_Factor_Distrib").value;
 
-                var objRepeticionesEqui = {};
-                objRepeticionesEqui["Id_Tasa_Crecimiento"] = document.getElementById("ddlTasaCrecimiento").value;
-                objRepeticionesEqui["Dias_Diseno"] = document.getElementById("DiasAno").value;
-                objRepeticionesEqui["FP"] = document.getElementById("Fp").value;
-                objRepeticionesEqui["Tipo_Diseno"] = document.getElementById("hidTipoDiseno").value;
-                objRepeticionesEqui["Periodo"] = document.getElementById("PeriodoDiseno").value;
-                objRepeticionesEqui["Id_Prop_Factor_Distrib"] = document.getElementById("hidId_Prop_Factor_Distrib").value;
 
+            var objVehiculosIMD = {};
+            objVehiculosIMD["Id_Vehiculos"] = document.getElementById("ddlVehiculo").value;
+            objVehiculosIMD["IMD_Base"] = document.getElementById("txtIMDBase").value;
+            objVehiculosIMD["Tipo_Eje_E1"] = $("#ddlTipoEje_1 :selected").text();
+            objVehiculosIMD["Peso_Tonelada_E1"] = document.getElementById("txtPesoEje_1").value;
+            objVehiculosIMD["Tipo_Eje_E2"] = $("#ddlTipoEje_2 :selected").text();
+            objVehiculosIMD["Peso_Tonelada_E2"] = document.getElementById("txtPesoEje_2").value;
+            objVehiculosIMD["Tipo_Eje_E3"] = $("#ddlTipoEje_3 :selected").text();
+            objVehiculosIMD["Peso_Tonelada_E3"] = document.getElementById("txtPesoEje_3").value;
+            objVehiculosIMD["Tipo_Eje_E4"] = $("#ddlTipoEje_4 :selected").text();
+            objVehiculosIMD["Peso_Tonelada_E4"] = document.getElementById("txtPesoEje_4").value;
+            objVehiculosIMD["Tipo_Eje_E5"] = $("#ddlTipoEje_5 :selected").text();
+            objVehiculosIMD["Peso_Tonelada_E5"] = document.getElementById("txtPesoEje_5").value;
+            objVehiculosIMD["Valor_FVP"] = document.getElementById("txtFVP").value;
+            objVehiculosIMD["Id_Diseno"] = document.getElementById("hidDisenoId").value; //Agregado
+            //objVehiculosIMD["Valor_EE"] = ValorEEGenerado; //Agregado
 
-                var objVehiculosIMD = {};
-                objVehiculosIMD["Id_Vehiculos"] = document.getElementById("ddlVehiculo").value;
-                objVehiculosIMD["IMD_Base"] = document.getElementById("txtIMDBase").value;
-                objVehiculosIMD["Tipo_Eje_E1"] = $("#ddlTipoEje_1 :selected").text();
-                objVehiculosIMD["Peso_Tonelada_E1"] = document.getElementById("txtPesoEje_1").value;
-                objVehiculosIMD["Tipo_Eje_E2"] = $("#ddlTipoEje_2 :selected").text();
-                objVehiculosIMD["Peso_Tonelada_E2"] = document.getElementById("txtPesoEje_2").value;
-                objVehiculosIMD["Tipo_Eje_E3"] = $("#ddlTipoEje_3 :selected").text();
-                objVehiculosIMD["Peso_Tonelada_E3"] = document.getElementById("txtPesoEje_3").value;
-                objVehiculosIMD["Tipo_Eje_E4"] = $("#ddlTipoEje_4 :selected").text();
-                objVehiculosIMD["Peso_Tonelada_E4"] = document.getElementById("txtPesoEje_4").value;
-                objVehiculosIMD["Tipo_Eje_E5"] = $("#ddlTipoEje_5 :selected").text();
-                objVehiculosIMD["Peso_Tonelada_E5"] = document.getElementById("txtPesoEje_5").value;
-                objVehiculosIMD["Valor_FVP"] = document.getElementById("txtFVP").value;
-                objVehiculosIMD["Id_Diseno"] = document.getElementById("hidDisenoId").value; //Agregado
-                //objVehiculosIMD["Valor_EE"] = ValorEEGenerado; //Agregado
-
-                hid_Id_Repet_Equi = document.getElementById("hid_Id_Repet_Equi").value;
+            hid_Id_Repet_Equi = document.getElementById("hid_Id_Repet_Equi").value;
                 
 
-                $.ajax
-                    ({
-                        method: 'POST',
-                        url: '/ParametrosAsfalto/GuardarVehiculosIMD',
-                        data: { 'objVehiculosIMD': objVehiculosIMD, 'objRepeticionesEqui': objRepeticionesEqui, 'hid_Id_Repet_Equi': hid_Id_Repet_Equi },
-                        success: function (respuesta) {
-                            if (respuesta.length > 0) {
-                                toastr.success("Los datos se guardarón correctamente.", 'ASOCEM', { timeOut: 2500 });
+            $.ajax
+                ({
+                    method: 'POST',
+                    url: '/ParametrosAsfalto/GuardarVehiculosIMD',
+                    data: { 'objVehiculosIMD': objVehiculosIMD, 'objRepeticionesEqui': objRepeticionesEqui, 'hid_Id_Repet_Equi': hid_Id_Repet_Equi },
+                    success: function (respuesta) {
+                        if (respuesta.length > 0) {
+                            toastr.success("Los datos se guardarón correctamente.", 'ASOCEM', { timeOut: 2500 });
 
-                                $('#dgvListadoVehiculosIMD').dataTable().fnDestroy();
+                            $('#dgvListadoVehiculosIMD').dataTable().fnDestroy();
 
 
-                                if (document.getElementById("hid_Id_Repet_Equi").value == 0) {
-                                    document.getElementById("hid_Id_Repet_Equi").value = respuesta;
-                                }
+                            if (document.getElementById("hid_Id_Repet_Equi").value == 0) {
+                                document.getElementById("hid_Id_Repet_Equi").value = respuesta;
+                            }
 
-                                CargarListadoVehiculosIMD(respuesta); //Cargamos el DataTable
+                            CargarListadoVehiculosIMD(respuesta); //Cargamos el DataTable
 
-                                //Truco
+                            //Truco
                                 
-                                strId_Repet_Equivalentes = respuesta;
-                                //alert("Guardo vehiculo :" + strId_Repet_Equivalentes);
+                            strId_Repet_Equivalentes = respuesta;
+                            //alert("Guardo vehiculo :" + strId_Repet_Equivalentes);
 
 
-                                $("#SubModal .close").click();
+                            $("#SubModal .close").click();
 
-                            }
-                            else {
-                                toastr.error("Ingrese los datos!", 'ERROR', { timeOut: 2000 });
-                            }
-                        },
-                        error: function (xhr, status) {
-                            toastr.error(status, 'ERROR', { timeOut: 2000 });
                         }
+                        else {
+                            toastr.error("Ingrese los datos!", 'ERROR', { timeOut: 2000 });
+                        }
+                    },
+                    error: function (xhr, status) {
+                        toastr.error(status, 'ERROR', { timeOut: 2000 });
+                    }
 
-                    });
+                });
 
 
-
-
-
-
-
-            }
 
         });
 
@@ -2830,6 +2836,9 @@
         //en prueba
         ObtenerCoefDrenajeBase();
         ObtenerCoefDrenajeSubBase();
+
+
+        GenerarTasaCrecxVehiculo();
 
 
         $("#ddlCalidadDrenaje").change(function () {
@@ -2963,9 +2972,14 @@
             var input = document.getElementById("ValorTasaCrecConstante").value;
 
             if (input.length > 0) {
+
+                GenerarTasaCrecConstante();
+
                 document.getElementById("TasaCrecimiento").value = $("#ddlTasaCrecimiento :selected").text().trim();
                 $('#lblTasaCrecimiento').html('Tasa de Crecimiento (' +  document.getElementById("ValorTasaCrecConstante").value + ' %) :');
                 $("#SubModal_VariableConstante .close").click();
+
+                //document.getElementById("ValorTasaCrecConstante").value = ""; //Limpieza 
             } else {
                 toastr.error("Ingrese un valor.", 'ASOCEM', { timeOut: 2500 });
                 return;
@@ -3016,10 +3030,10 @@
                         if (respuesta.length > 0) {                            
 
                             //alert(respuesta);
-                            document.getElementById("ValorGeneradoEE").innerHTML = 'VALOR EE: ' + roundNumber(respuesta);
+                            document.getElementById("ValorGeneradoEE").innerHTML = 'VALOR EE: ' + Number(respuesta).toFixed(2);//roundNumber(respuesta);
 
                             //alert(roundNumber(respuesta));
-                            document.getElementById("txtCantidadESAL").value = roundNumber(respuesta);
+                            document.getElementById("txtCantidadESAL").value = Number(respuesta).toFixed(2);//roundNumber(respuesta);
                             //$("#Esal_Modal .close").click();   
 
 
@@ -3292,7 +3306,8 @@
                 $('#txtPesoEje_5').val("");
 
                 $('#txtFVP').val("");
-
+                $('#txtIMDBase').val("");
+                $('#txtIMDBase').focus();
 
                 ObtenerCantidadEjes($("#ddlVehiculo").val());
 
@@ -3420,7 +3435,7 @@
                 data: { 'idTipoVehiculo': idTipoVehiculo, 'idVehiculo': idVehiculo, 'TipoDiseno': TipoDiseno, 'PesoE1': PesoE1, 'PesoE2': PesoE2, 'PesoE3': PesoE3, 'PesoE4': PesoE4, 'PesoE5': PesoE5 },
                 success: function (respuesta) {
 
-                    document.getElementById("txtFVP").value = redondeo(respuesta, 3);
+                    document.getElementById("txtFVP").value = respuesta;//Number(respuesta).toFixed(10);
 
                 },
                 error: function (xhr, status) {
@@ -3532,8 +3547,19 @@
                     { "data": "Peso_Tonelada_E4", "class": "text-center" },
                     { "data": "Tipo_Eje_E5", "class": "text-center" },
                     { "data": "Peso_Tonelada_E5", "class": "text-center" },
-                    { "data": "Valor_FVP", "class": "text-center" },
-                    { "data": "Valor_EE", "class": "text-center" },
+
+                    {
+                        data: 'Valor_FVP',
+                        className: "text-center",
+                        render: $.fn.dataTable.render.number(',', '.', 3, '')
+                    },
+
+                    {
+                        data: 'Valor_EE',
+                        className: "text-center",
+                        render: $.fn.dataTable.render.number(',', '.', 2, '')
+                    },
+
                     {
                         data: null,
                         className: "text-center",                   
@@ -3903,24 +3929,19 @@
 
     }
 
-    function GenerarTasaCrecxVehiculo() {
+    function GenerarTasaCrecConstante() {
 
-        var Id_Tipo_Vehiculo = document.getElementById("ddlTasaTipoVehiculo").value;
-        var Valor = document.getElementById("ValorTasaCrecxVehiculo").value;
+        var Valor = document.getElementById("ValorTasaCrecConstante").value;
         var IdDiseno = document.getElementById("hidDisenoId").value;
 
         $.ajax
             ({
                 method: 'POST',
-                url: '/ParametrosAsfalto/GuardarCrecXVehiculo',
-                data: { 'Id_Tipo_Vehiculo': Id_Tipo_Vehiculo, 'Valor': Valor, 'IdDiseno': IdDiseno },
+                url: '/ParametrosAsfalto/GuardarCrecConstante',
+                data: { 'Valor': Valor, 'IdDiseno': IdDiseno },
                 success: function (respuesta) {
                     if (respuesta.length > 0) {
                         toastr.success("Los datos se guardarón correctamente.", 'ASOCEM', { timeOut: 2500 });
-
-                        $('#dgvListadoVariableVehiculo').dataTable().fnDestroy();
-
-                        CargarVariableVehiculo(); //Cargamos el DataTable
 
                         //$("#SubModal_VariableVehiculo .close").click();
 
@@ -3936,6 +3957,37 @@
             });	
 
     }
+
+    function GenerarTasaCrecxVehiculo() {
+
+    var IdDiseno = document.getElementById("hidDisenoId").value;
+
+    $.ajax
+        ({
+            method: 'POST',
+            url: '/ParametrosAsfalto/GenerarVariableVehiculo',
+            data: { 'IdDiseno': IdDiseno },
+            success: function (respuesta) {
+                if (respuesta.length > 0) {
+
+                    respuesta = respuesta;
+                    //$('#dgvListadoVariableTiempo').dataTable().fnDestroy();
+                    //CargarVariableVehiculo(); //Cargamos el DataTable
+
+                }
+                else {
+                    toastr.error("Error al generar Periodos!", 'ERROR', { timeOut: 2000 });
+                }
+            },
+            error: function (xhr, status) {
+                toastr.error(status, 'ERROR', { timeOut: 2000 });
+            }
+
+        });
+
+    }
+
+
 
     function ActualizarTasaCrecxTiempo() {
 
@@ -4039,6 +4091,7 @@
             });
 
     }
+
 
     function CargarVariableTiempo() {
 
@@ -4150,7 +4203,7 @@
     function CargarVariableVehiculo() {
 
         var objData = {};
-        objData["Id"] = 254;
+        objData["Id"] = document.getElementById("hidDisenoId").value; //Id_Diseno
 
         table =
             $('#dgvListadoVariableVehiculo').dataTable({
@@ -4273,6 +4326,8 @@
     function redireccionar(Iden) {
         if (Iden == 1) {
             $("#btnIrVariableConstante").click();
+            $('#ValorTasaCrecConstante').val("");
+            $('#ValorTasaCrecConstante').focus();
         } else if (Iden == 2) {
             $("#btnIrVariableTiempo").click();
         } else if (Iden == 3) {

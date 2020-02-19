@@ -468,16 +468,28 @@ namespace SIS_Ga2.Controllers
             lobjVehiculosIMD.IMD_Base = objVehiculosIMD.IMD_Base;
             lobjVehiculosIMD.Estado = 1;
 
-            lobjVehiculosIMD.Tipo_Eje_E1 = objVehiculosIMD.Tipo_Eje_E1;
+            if (objVehiculosIMD.Tipo_Eje_E1 == null)
+            { lobjVehiculosIMD.Tipo_Eje_E1 = " "; } else { lobjVehiculosIMD.Tipo_Eje_E1 = objVehiculosIMD.Tipo_Eje_E1; }
+
+            if (objVehiculosIMD.Tipo_Eje_E2 == null)
+            { lobjVehiculosIMD.Tipo_Eje_E2 = " "; } else { lobjVehiculosIMD.Tipo_Eje_E2 = objVehiculosIMD.Tipo_Eje_E2; }
+
+            if (objVehiculosIMD.Tipo_Eje_E3 == null)
+            { lobjVehiculosIMD.Tipo_Eje_E3 = " "; } else { lobjVehiculosIMD.Tipo_Eje_E3 = objVehiculosIMD.Tipo_Eje_E3; }
+
+            if (objVehiculosIMD.Tipo_Eje_E4 == null)
+            { lobjVehiculosIMD.Tipo_Eje_E4 = " "; } else { lobjVehiculosIMD.Tipo_Eje_E4 = objVehiculosIMD.Tipo_Eje_E4; }
+
+            if (objVehiculosIMD.Tipo_Eje_E5 == null)
+            { lobjVehiculosIMD.Tipo_Eje_E5 = " "; } else { lobjVehiculosIMD.Tipo_Eje_E5 = objVehiculosIMD.Tipo_Eje_E5; }
+
+
             lobjVehiculosIMD.Peso_Tonelada_E1 = objVehiculosIMD.Peso_Tonelada_E1;
-            lobjVehiculosIMD.Tipo_Eje_E2 = objVehiculosIMD.Tipo_Eje_E2;
             lobjVehiculosIMD.Peso_Tonelada_E2 = objVehiculosIMD.Peso_Tonelada_E2;
-            lobjVehiculosIMD.Tipo_Eje_E3 = objVehiculosIMD.Tipo_Eje_E3;
             lobjVehiculosIMD.Peso_Tonelada_E3 = objVehiculosIMD.Peso_Tonelada_E3;
-            lobjVehiculosIMD.Tipo_Eje_E4 = objVehiculosIMD.Tipo_Eje_E4;
             lobjVehiculosIMD.Peso_Tonelada_E4 = objVehiculosIMD.Peso_Tonelada_E4;
-            lobjVehiculosIMD.Tipo_Eje_E5 = objVehiculosIMD.Tipo_Eje_E5;
             lobjVehiculosIMD.Peso_Tonelada_E5 = objVehiculosIMD.Peso_Tonelada_E5;
+
 
             lobjVehiculosIMD.Valor_FVP = objVehiculosIMD.Valor_FVP;
             lobjVehiculosIMD.Valor_EE = objVehiculosIMD.Valor_EE;
@@ -695,8 +707,35 @@ namespace SIS_Ga2.Controllers
             return 1;
         }
 
+        public int GenerarVariableVehiculo(int IdDiseno)
+        {
+            BLTasaCrecimiento bLTasaCrecimiento = new BLTasaCrecimiento();
+            BETasaCrecimiento beTasaCrecimiento = new BETasaCrecimiento();
+            beTasaCrecimiento.Id_Diseno = IdDiseno;
+
+            bLTasaCrecimiento.LimpiarVariableVehiculo(beTasaCrecimiento);
+
+            for (int i = 1; i <= 6; i++)
+            {
+                try
+                {
+                    GuardarCrecXVehiculo(i, "0", IdDiseno);
+
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+
+            }
+
+            return 1;
+        }
+
+
         public JsonResult CargarVariableTiempo(int IdDiseno)
-        {            
+        {
 
             BLTasaCrecimiento objblTasaCrecimiento = new BLTasaCrecimiento();
             List<BETasaCrecimiento> lobjBETasaCrecimiento = new List<BETasaCrecimiento>();
@@ -772,7 +811,33 @@ namespace SIS_Ga2.Controllers
             }
 
         }
-        
+
+        public int GuardarCrecConstante(string Valor, int IdDiseno)
+        {
+            try
+            {
+                int Id_Tasa_Crec_Constante = 0;
+
+                BLTasaCrecimiento bLTasaCrecimiento = new BLTasaCrecimiento();
+                BETasaCrecimiento beTasaCrecimiento = new BETasaCrecimiento();
+                beTasaCrecimiento.Valor = Convert.ToDecimal(Valor);
+                beTasaCrecimiento.Id_Diseno = IdDiseno;
+
+                Id_Tasa_Crec_Constante = bLTasaCrecimiento.GuardarCrecConstante(beTasaCrecimiento);
+
+
+                return Id_Tasa_Crec_Constante;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+
+
         public int ActualizarCrecXTiempo(int NroAnio, string Valor, int IdDiseno, int Id_Tasa_Crec_X_Tiempo)
         {
             try
@@ -826,6 +891,10 @@ namespace SIS_Ga2.Controllers
         }
 
 
+
+
+
+
         public decimal CalculoEE(BEMatrizTasaCrecimiento objMatrizTasaCrecimiento, int idTipoTasaCrec, decimal FDxFC, decimal Fp, int Id_Repet_Eq)
         {
             try
@@ -841,7 +910,7 @@ namespace SIS_Ga2.Controllers
 
                 foreach (BEMatrizEE item in LstMatrizEEResultado)
                 {
-                    calculoEE = calculoEE + Math.Round((item.valorEEMatriz / 10000),2);
+                    calculoEE = calculoEE + item.valorEEMatriz;//Math.Round((item.valorEEMatriz / 1000),2);
 
                     //Version DEMO
                     BLVehiculosIMD blVehiculosIMD = new BLVehiculosIMD();
@@ -849,10 +918,9 @@ namespace SIS_Ga2.Controllers
                     lobjBEBEVehiculosIMD.Id_Vehiculos = item.Id_Vehiculos;
                     lobjBEBEVehiculosIMD.Id_Diseno = objMatrizTasaCrecimiento.Id_Diseno;
                     lobjBEBEVehiculosIMD.Id_Repet_Equivalentes = Id_Repet_Eq;
-                    lobjBEBEVehiculosIMD.Valor_EE = Math.Round((item.valorEEMatriz / 10000), 2);
+                    lobjBEBEVehiculosIMD.Valor_EE = item.valorEEMatriz; //Math.Round((item.valorEEMatriz / 1000), 2);
 
                     blVehiculosIMD.ActualizaVehiculosIMD(lobjBEBEVehiculosIMD);
-                    //Version DEMO
 
                 }
 
