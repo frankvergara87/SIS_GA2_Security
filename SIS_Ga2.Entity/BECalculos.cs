@@ -46,5 +46,6 @@ namespace SIS_Ga2.Entity
         public double valorCBRBase { get; set; }
         public double valorCBRSubBase { get; set; }
 
+        public double N18Calc { get; set; }
     }
 }

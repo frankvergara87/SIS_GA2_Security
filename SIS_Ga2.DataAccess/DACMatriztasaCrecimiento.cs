@@ -59,6 +59,28 @@ namespace SIS_Ga2.DataAccess
             return resultado;
         }
 
+        public int DeletetasaCrecimiento1(int IdDiseno)
+        {
+            SqlManager objSql = new SqlManager(ConfigurationManager.AppSettings["ASOCEM"].ToString());
+            int resultado = 0;
+            Parameter param = new Parameter();
+            param.Add("@Id_Diseno", IdDiseno);
+  
+
+            try
+            {
+                objSql.ExecuteNonQuery("USP_del_TasasCrecimiento1", param);
+                resultado = 1;
+            }
+            catch (Exception ex)
+            {
+                //Rutina de Guardado en Log 
+                //afilogDAO.Save(0, 0, "CatalogoDAO", "GetCatalogoToCombo", ex);
+                throw ex;
+            }
+            return resultado;
+        }
+
         public List<BEMatrizTasaCrecimiento> ListarTasaCrec1(int Id_Diseno)
         {
             try

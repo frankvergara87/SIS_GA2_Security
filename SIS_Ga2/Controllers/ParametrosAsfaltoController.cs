@@ -219,7 +219,7 @@ namespace SIS_Ga2.Controllers
         }
 
 
-        public double calcularSNReq(string ErrorCombiEstandar, string DesviEstandar, string valorMR, string N18Calc2, string N18Nominal)
+        public double calcularSNReq(string ErrorCombiEstandar, string DesviEstandar, string valorMR, string N18Calc, string N18Calc2, string N18Nominal)
         {
 
             try
@@ -229,6 +229,7 @@ namespace SIS_Ga2.Controllers
                 objeBECalculos.ErrorCombiEstandar = Convert.ToDouble(ErrorCombiEstandar);
                 objeBECalculos.DesviEstandar = Convert.ToDouble(DesviEstandar);
                 objeBECalculos.valorMR = Convert.ToDouble(valorMR);
+                objeBECalculos.N18Calc = Convert.ToDouble(N18Calc);
                 objeBECalculos.N18Calc2 = Convert.ToDouble(N18Calc2);
                 objeBECalculos.N18Nom = Convert.ToDouble(N18Nominal);
 

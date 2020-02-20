@@ -36,5 +36,11 @@ namespace SIS_Ga2.Business
                   
             
         }
+
+        public int DelTasaCrecimiento(int Id_Diseno)
+        {
+            DACMatrizTasaCrecimiento objDAO = new DACMatrizTasaCrecimiento();
+            return objDAO.DeletetasaCrecimiento1(Id_Diseno);
+        }
     }
 }

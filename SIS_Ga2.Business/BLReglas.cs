@@ -7,6 +7,7 @@ using SIS_Ga2.Entity;
 
 using System.Configuration;
 using System.Web.UI.DataVisualization.Charting;
+using Microsoft.SolverFoundation.Services;
 
 namespace SIS_Ga2.Business
 {
@@ -166,67 +167,101 @@ namespace SIS_Ga2.Business
 
         //Capas de Pavimento
         //SN req
+        //public double calcularSNReq(BECalculos objEntidad)
+        //{
+        //    double resultadoN18Calc = 0;
+
+        //    //double n18nom = 0;           
+        //    int encontrado = 0;
+        //    int calculo = 0;
+        //    double ResultadoSNReq = 0;
+        //    string valor = "";
+        //    //  calcular el sn req
+        //    for (double i = 0; i <= 100; i++)
+        //    {
+        //        if (encontrado == 0)
+        //        {
+        //            for (double j = 0; j <= 9; j++)
+        //            {
+        //                if (encontrado == 0)
+        //                {
+        //                    for (double k = 0; k <= 9; k++)
+        //                    {
+        //                        for (double l = 0; l <= 9; l++)
+        //                        {
+        //                            for (double m = 0; m <= 9; m++)
+        //                            {
+        //                                if (encontrado == 0)
+        //                                {
+
+        //                                    valor = i.ToString() + "." + j.ToString() + k.ToString() + l.ToString() + m.ToString();
+        //                                    objEntidad.SNReq = Convert.ToDouble(valor);
+
+        //                                    resultadoN18Calc = Math.Round(calcularN18Calc1(objEntidad), 5);
+
+        //                                    //calculo = Math.Round(objEntidad.N18Nom - resultadoN18Calc, 3);
+        //                                    //listBox1.ClearSelected(); 
+
+        //                                    //if ((calculo<=0.01) && (calculo>0) )
+        //                                if ((Math.Round(objEntidad.N18Nom, 3) == Math.Round(resultadoN18Calc,3)))
+        //                                    {
+        //                                        // textn18calc.Text = resultadoN18Calc.ToString();
+        //                                        ResultadoSNReq = Math.Round(objEntidad.SNReq, 2);
+        //                                        calculo = 1;
+        //                                        encontrado = 1;
+        //                                        break;
+        //                                    }
+        //                                }
+        //                            }
+        //                        }
+        //                    }
+        //                }
+        //            }
+        //        }
+        //    }
+        //    if  (calculo==0)
+        //    {
+        //        return 0;
+        //    }
+        //    else
+        //    {
+        //        return ResultadoSNReq;
+
+        //    }
+        //}
+
+        //Calculo del SN REq
         public double calcularSNReq(BECalculos objEntidad)
         {
             double resultadoN18Calc = 0;
 
-            //double n18nom = 0;           
-            int encontrado = 0;
-            int calculo = 0;
-            double ResultadoSNReq = 0;
-            string valor = "";
-            //  calcular el sn req
-            for (double i = 0; i <= 100; i++)
-            {
-                if (encontrado == 0)
-                {
-                    for (double j = 0; j <= 9; j++)
-                    {
-                        if (encontrado == 0)
-                        {
-                            for (double k = 0; k <= 9; k++)
-                            {
-                                for (double l = 0; l <= 9; l++)
-                                {
-                                    for (double m = 0; m <= 9; m++)
-                                    {
-                                        if (encontrado == 0)
-                                        {
+            double constanteN18_3 = Convert.ToDouble(ConfigurationManager.AppSettings["constanteN18_3"].ToString());//9.36
+            double constanteN18_4 = Convert.ToDouble(ConfigurationManager.AppSettings["constanteN18_4"].ToString());//0.2
+            double constanteN18_5 = Convert.ToDouble(ConfigurationManager.AppSettings["constanteN18_5"].ToString());//0.4
+            double constanteN18_6 = Convert.ToDouble(ConfigurationManager.AppSettings["constanteN18_6"].ToString());//1094
+            double constanteN18_7 = Convert.ToDouble(ConfigurationManager.AppSettings["constanteN18_7"].ToString());//5.19
+            double constanteN18_8 = Convert.ToDouble(ConfigurationManager.AppSettings["constanteN18_8"].ToString());//2.32
+            double constanteN18_9 = Convert.ToDouble(ConfigurationManager.AppSettings["constanteN18_9"].ToString());//8.07
 
-                                            valor = i.ToString() + "." + j.ToString() + k.ToString() + l.ToString() + m.ToString();
-                                            objEntidad.SNReq = Convert.ToDouble(valor);
+            // Define el modelo
+            SolverContext context = SolverContext.GetContext();
+            context.ClearModel();
+            Model model = context.CreateModel();
+            //Crea las variables
+            Decision x = new Decision(Domain.RealNonnegative, "SNREQ");
+            model.AddDecisions(x);
+            model.AddConstraints("N18Calc",
+            objEntidad.N18Calc == objEntidad.DesviEstandar * objEntidad.ErrorCombiEstandar + constanteN18_3 * Model.Log10(x + 1) - constanteN18_4 + objEntidad.N18Calc2 / (constanteN18_5 + constanteN18_6 / Model.Power((x + 1), constanteN18_7)) + constanteN18_8 * Math.Log10(objEntidad.valorMR) - constanteN18_9);
 
-                                            resultadoN18Calc = Math.Round(calcularN18Calc1(objEntidad), 5);
+            // Add non-negative variables
+            model.AddConstraints("nonnegative", x >= 0);
 
-                                            //calculo = Math.Round(objEntidad.N18Nom - resultadoN18Calc, 3);
-                                            //listBox1.ClearSelected(); 
+            // Add goal - what we want to maximize
+            model.AddGoal("cost", GoalKind.Maximize, objEntidad.N18Calc);
 
-                                            //if ((calculo<=0.01) && (calculo>0) )
-                                        if ((Math.Round(objEntidad.N18Nom, 3) == Math.Round(resultadoN18Calc,3)))
-                                            {
-                                                // textn18calc.Text = resultadoN18Calc.ToString();
-                                                ResultadoSNReq = Math.Round(objEntidad.SNReq, 2);
-                                                calculo = 1;
-                                                encontrado = 1;
-                                                break;
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            if  (calculo==0)
-            {
-                return 0;
-            }
-            else
-            {
-                return ResultadoSNReq;
-
-            }
+            Solution solution = context.Solve();
+            resultadoN18Calc = x.ToDouble();
+            return resultadoN18Calc;
         }
 
 

@@ -21,7 +21,8 @@ namespace SIS_Ga2.Business
             BLMatrizTasaCrecimiento objMatriz = new BLMatrizTasaCrecimiento();
             BEMatrizTasaCrecimiento objBEMatriz = new BEMatrizTasaCrecimiento();
             int Resultado1 = 0;
-           
+            int del = 0;
+                del = objMatriz.DelTasaCrecimiento(objEntidad.Id_Diseno);
             List<BEMatrizTasaCrecimiento> LstBLMatriz1 = new List<BEMatrizTasaCrecimiento>();
             List<BETipoVehiculos> LstBETipoVehiculos = new List<BETipoVehiculos>();
             List<BETasaCrecimiento> LstCrecimXTiempo = new List<BETasaCrecimiento>();
@@ -318,7 +319,9 @@ namespace SIS_Ga2.Business
                             CalculoEE2 = item.Valor_FVP * itemR.valorEEMatriz  * FDxFC * Fp * 365;
                             itemEE.Id_Vehiculos = item.Id_Vehiculos;
                             itemEE.Id_Tipo_Vehiculo = item.Id_Tipo_Vehiculo;
-                            //itemEE.valorEEMatriz =Math.Round( CalculoEE2,0);
+                            // itemEE.valorEEMatriz =Math.Round( CalculoEE2,0);
+                            
+
                             itemEE.valorEEMatriz = CalculoEE2;
                             itemEE.NroAnio = j;
                             LstMatrizEEResultado3.Add(itemEE);
@@ -358,7 +361,7 @@ namespace SIS_Ga2.Business
 
 
 
-        public decimal CalculoEExVehi(List<BEMatrizEE> LstMatrizEEResultado, int TipoVehiculo, int idVehiculo)
+    public decimal CalculoEExVehi(List<BEMatrizEE> LstMatrizEEResultado, int TipoVehiculo,int idVehiculo )
         {
             decimal ValorEExVeh = 0;
             var resultado = from Matriz in LstMatrizEEResultado

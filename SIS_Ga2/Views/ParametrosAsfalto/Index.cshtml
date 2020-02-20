@@ -2322,6 +2322,7 @@
             DesviEstandar = document.getElementById("txtDesvEstandar").value;
 
             valorMR = document.getElementById("txtModRoturaPSI").value;
+            N18Calc = document.getElementById("txtN18Calculado").value;
             N18Calc2 = document.getElementById("txtN18Calculado2").value;
             N18Nominal = document.getElementById("txtN18Nominal").value;
 
@@ -2341,6 +2342,11 @@
                 $(this).html(`<span class="fa fa-exchange"></span> Igualar`);
                 return;
             }
+            if (N18Calc == '') {
+                toastr.error("Ingrese N18Calc!", 'ERROR', { timeOut: 2000 });
+                $(this).html(`<span class="fa fa-exchange"></span> Igualar`);
+                return;
+            }
             if (N18Calc2 == '') {
                 toastr.error("Ingrese N18Calc2!", 'ERROR', { timeOut: 2000 });
                 $(this).html(`<span class="fa fa-exchange"></span> Igualar`);
@@ -2357,7 +2363,7 @@
                 ({
                     method: 'POST',
                     url: '/ParametrosAsfalto/calcularSNReq',
-                    data: { 'ErrorCombiEstandar': ErrorCombiEstandar, 'DesviEstandar': DesviEstandar, 'valorMR': valorMR, 'N18Calc2': N18Calc2, 'N18Nominal': N18Nominal },
+                    data: { 'ErrorCombiEstandar': ErrorCombiEstandar, 'DesviEstandar': DesviEstandar, 'valorMR': valorMR, 'N18Calc': N18Calc, 'N18Calc2': N18Calc2, 'N18Nominal': N18Nominal },
                     success: function (respuesta) {
 
                         document.getElementById("txtSNRequerido").value = respuesta;
