@@ -1186,7 +1186,7 @@
                                     <label for="inlineFormInput" class="col-form-label col-form-label-sm">Peso Eje 1</label>
                                 </td>
                                 <td>
-                                    <input id="txtPesoEje_1" data-id="4" type="text" disabled="disabled" placeholder="Peso Eje 1" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                    <input id="txtPesoEje_1" data-id="4" type="text" disabled="disabled" placeholder="Peso Eje 1" class="column_filter mr-1 col-sm-8 form-control form-control-sm" onkeypress="return filterFloat(event,this);">
                                 </td>
                             </tr>
                             <tr>
@@ -1206,7 +1206,7 @@
                                     <label for="inlineFormInput" class="col-form-label col-form-label-sm">Peso Eje 2</label>
                                 </td>
                                 <td>
-                                    <input id="txtPesoEje_2" data-id="4" type="text" disabled="disabled" placeholder="Peso Eje 2" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                    <input id="txtPesoEje_2" data-id="4" type="text" disabled="disabled" placeholder="Peso Eje 2" class="column_filter mr-1 col-sm-8 form-control form-control-sm" onkeypress="return filterFloat(event,this);">
                                 </td>
                             </tr>
                             <tr>
@@ -1226,7 +1226,7 @@
                                     <label for="inlineFormInput" class="col-form-label col-form-label-sm">Peso Eje 3</label>
                                 </td>
                                 <td>
-                                    <input id="txtPesoEje_3" data-id="4" type="text" disabled="disabled" placeholder="Peso Eje 3" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                    <input id="txtPesoEje_3" data-id="4" type="text" disabled="disabled" placeholder="Peso Eje 3" class="column_filter mr-1 col-sm-8 form-control form-control-sm" onkeypress="return filterFloat(event,this);">
                                 </td>
                             </tr>
                             <tr>
@@ -1246,7 +1246,7 @@
                                     <label for="inlineFormInput" class="col-form-label col-form-label-sm">Peso Eje 4</label>
                                 </td>
                                 <td>
-                                    <input id="txtPesoEje_4" data-id="4" type="text" disabled="disabled" placeholder="Peso Eje 4" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                    <input id="txtPesoEje_4" data-id="4" type="text" disabled="disabled" placeholder="Peso Eje 4" class="column_filter mr-1 col-sm-8 form-control form-control-sm" onkeypress="return filterFloat(event,this);">
                                 </td>
                             </tr>
                             <tr>
@@ -1266,7 +1266,7 @@
                                     <label for="inlineFormInput" class="col-form-label col-form-label-sm">Peso Eje 5</label>
                                 </td>
                                 <td>
-                                    <input id="txtPesoEje_5" data-id="4" type="text" disabled="disabled" placeholder="Peso Eje 5" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                    <input id="txtPesoEje_5" data-id="4" type="text" disabled="disabled" placeholder="Peso Eje 5" class="column_filter mr-1 col-sm-8 form-control form-control-sm" onkeypress="return filterFloat(event,this);">
                                 </td>
                             </tr>
                             <tr>
@@ -2362,6 +2362,10 @@
 
                         document.getElementById("txtSNRequerido").value = respuesta;
                         $('#btnIgualarSNRequerido').html(`<span class="fa fa-exchange"></span> Igualar`);
+
+                        document.getElementById("txtN18Calculado").value = document.getElementById("txtN18Nominal").value;//N18Calculado se iguala a N18Nominal
+
+
                     },
                     error: function (xhr, status) {
                         alert("PLOP");
@@ -2564,9 +2568,47 @@
 
 
 
+        $("#btnNuevo").click(function () {
+
+            $('#ddlTipoVehiculo').val(3);
+            $('#ddlVehiculo').val(7);
+
+            document.getElementById("ddlTipoEje_1").disabled = true;
+            document.getElementById("ddlTipoEje_2").disabled = true;
+            document.getElementById("ddlTipoEje_3").disabled = true;
+            document.getElementById("ddlTipoEje_4").disabled = true;
+            document.getElementById("ddlTipoEje_5").disabled = true;
+
+            document.getElementById("txtPesoEje_1").disabled = true;
+            document.getElementById("txtPesoEje_2").disabled = true;
+            document.getElementById("txtPesoEje_3").disabled = true;
+            document.getElementById("txtPesoEje_4").disabled = true;
+            document.getElementById("txtPesoEje_5").disabled = true;
+
+            document.getElementById("txtFVP").disabled = true;
+
+            $('#ddlTipoEje_1').val(0);
+            $('#ddlTipoEje_2').val(0);
+            $('#ddlTipoEje_3').val(0);
+            $('#ddlTipoEje_4').val(0);
+            $('#ddlTipoEje_5').val(0);
+
+            $('#txtPesoEje_1').val("");
+            $('#txtPesoEje_2').val("");
+            $('#txtPesoEje_3').val("");
+            $('#txtPesoEje_4').val("");
+            $('#txtPesoEje_5').val("");
+
+            $('#txtFVP').val("");
+            $('#txtIMDBase').val("");
+            $('#txtIMDBase').focus();
+
+            cambiaVehiculo($("#ddlTipoVehiculo").val());
+        });
 
 
-        $("#ddlTipoVehiculo").change(function () {
+
+        $("#ddlTipoVehiculo").change(function () {            
 
             document.getElementById("ddlTipoEje_1").disabled = true;
             document.getElementById("ddlTipoEje_2").disabled = true;
@@ -2605,13 +2647,16 @@
 
         $("#ddlVehiculo").change(function () {
 
+            
             var url_a = "/Content/images/vehiculos/";
-            var veh = $("#ddlVehiculo").val();
+            var veh = $("#ddlVehiculo :selected").text(); 
             var url_b = ".jpg";
 
-            alert(url_a + veh + url_b);
+            veh = veh.replace(/[">]/g, "");
+            //alert(url_a + veh.replace(/ /g, "") + url_b);
 
-            $("#img_vehiculo").attr("src", url_a + veh + url_b);
+            $("#img_vehiculo").attr("src", url_a + veh.replace(/ /g, "") + url_b);
+
 
             document.getElementById("txtPesoEje_1").disabled = true;
             document.getElementById("txtPesoEje_2").disabled = true;
@@ -2675,6 +2720,71 @@
             document.getElementById("txtPesoEje_5").disabled = false;
             ObtenerPesoEje($("#ddlVehiculo").val(), $("#ddlTipoEje_5").val(), 5);
             //CalcularFVP($("#ddlTipoVehiculo").val(), $("#ddlVehiculo").val(), "ASFALTO");
+
+        });
+
+
+        $("#txtPesoEje_1").keyup(function (e) {
+
+            CalcularFVP($("#ddlTipoVehiculo").val(), $("#ddlVehiculo").val(), "ASFALTO");
+
+        });
+
+        $("#txtPesoEje_2").keyup(function (e) {
+
+            CalcularFVP($("#ddlTipoVehiculo").val(), $("#ddlVehiculo").val(), "ASFALTO");
+
+        });
+
+        $("#txtPesoEje_3").keyup(function (e) {
+
+            CalcularFVP($("#ddlTipoVehiculo").val(), $("#ddlVehiculo").val(), "ASFALTO");
+
+        });
+
+        $("#txtPesoEje_4").keyup(function (e) {
+
+            CalcularFVP($("#ddlTipoVehiculo").val(), $("#ddlVehiculo").val(), "ASFALTO");
+
+        });
+
+
+        $("#txtPesoEje_5").keyup(function (e) {
+
+            CalcularFVP($("#ddlTipoVehiculo").val(), $("#ddlVehiculo").val(), "ASFALTO");
+
+        });
+
+
+
+        $("#txtPesoEje_1").focusout(function (e) {
+
+            document.getElementById("txtPesoEje_1").value = 0;
+
+        });
+
+        $("#txtPesoEje_2").focusout(function (e) {
+
+            document.getElementById("txtPesoEje_2").value = 0;
+
+        });
+
+        $("#txtPesoEje_3").focusout(function (e) {
+
+            document.getElementById("txtPesoEje_3").value = 0;
+
+        });
+
+        $("#txtPesoEje_4").focusout(function (e) {
+
+            document.getElementById("txtPesoEje_4").value = 0;
+
+        });
+
+
+        $("#txtPesoEje_5").focusout(function (e) {
+
+            document.getElementById("txtPesoEje_5").value = 0;
 
         });
 
@@ -3096,7 +3206,7 @@
     }
 
     function filter(__val__){
-        var preg = /^([0-9]+\.?[0-9]{0,2})$/; 
+        var preg = /^([0-9]+\.?[0-9]{0,3})$/; 
         if(preg.test(__val__) === true){
             return true;
         }else{
@@ -3280,12 +3390,13 @@
                 dd.disabled = false;
 
                 var url_a = "/Content/images/vehiculos/";
-                var veh = $("#ddlVehiculo").val();
+                var veh = $("#ddlVehiculo :selected").text(); 
                 var url_b = ".jpg";
 
-                //alert(url_a + veh + url_b);
+                veh = veh.replace(/[">]/g, "");
+                //alert(url_a + veh.replace(/ /g, "") + url_b);
 
-                $("#img_vehiculo").attr("src", url_a + veh + url_b);
+                $("#img_vehiculo").attr("src", url_a + veh.replace(/ /g, "") + url_b);
 
 
                 //Pruebita
@@ -3418,8 +3529,7 @@
     }
 
     function CalcularFVP(idTipoVehiculo, idVehiculo, TipoDiseno) {
-
-        
+  
 
         PesoE1 = document.getElementById("txtPesoEje_1").value;
         PesoE2 = document.getElementById("txtPesoEje_2").value;
