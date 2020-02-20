@@ -1606,9 +1606,8 @@
                             </thead>
                         </table>
                     </div>
-                    <div class="modal-footer">
-                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">Total (%): </label>
-                        <input id="ValorTotalCrecxVehiculo" readonly="readonly" type="text" class="mr-3 col-sm-2 form-control form-control-sm mascara">
+                    <div class="modal-footer">                        
+                        <input id="ValorTotalCrecxVehiculo" style="display:none;" readonly="readonly" type="text" class="mr-3 col-sm-2 form-control form-control-sm mascara">
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -4147,7 +4146,7 @@
                         //.column(1, {page: 'current'})//para sumar solo la pagina actual
                         .data()
                         .reduce(function (a, b) {
-                            document.getElementById("ValorTotalCrecxTiempo").value = (parseFloat(a) + parseFloat(b)).toFixed(2);
+                            document.getElementById("ValorTotalCrecxTiempo").value = ((1 + parseFloat(a)) * (1 + parseFloat(b))).toFixed(2);
                             return parseFloat(a) + parseFloat(b);
                         }, 0 );
 
@@ -4254,7 +4253,7 @@
                         //.column(1, {page: 'current'})//para sumar solo la pagina actual
                         .data()
                         .reduce(function (a, b) {
-                            document.getElementById("ValorTotalCrecxVehiculo").value = (parseFloat(a) + parseFloat(b)).toFixed(2);
+                            document.getElementById("ValorTotalCrecxVehiculo").value = ((parseFloat(a)) + (parseFloat(b))).toFixed(2);
                             return parseFloat(a) + parseFloat(b);
                         }, 0 );
 
