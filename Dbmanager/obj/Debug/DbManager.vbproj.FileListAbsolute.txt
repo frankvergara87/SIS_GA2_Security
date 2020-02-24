@@ -1,0 +1,12 @@
+C:\Users\Frank\Source\Repos\Aashto\SIS_GA2_Security\Dbmanager\bin\Debug\DbManager.dll
+C:\Users\Frank\Source\Repos\Aashto\SIS_GA2_Security\Dbmanager\bin\Debug\DbManager.pdb
+C:\Users\Frank\Source\Repos\Aashto\SIS_GA2_Security\Dbmanager\bin\Debug\DbManager.xml
+C:\Users\Frank\Source\Repos\Aashto\SIS_GA2_Security\Dbmanager\bin\Debug\CriptoSecurity.dll
+C:\Users\Frank\Source\Repos\Aashto\SIS_GA2_Security\Dbmanager\obj\Debug\DbManager.vbprojAssemblyReference.cache
+C:\Users\Frank\Source\Repos\Aashto\SIS_GA2_Security\Dbmanager\obj\Debug\DbManager.Resources.resources
+C:\Users\Frank\Source\Repos\Aashto\SIS_GA2_Security\Dbmanager\obj\Debug\DbManager.vbproj.GenerateResource.cache
+C:\Users\Frank\Source\Repos\Aashto\SIS_GA2_Security\Dbmanager\obj\Debug\DbManager.vbproj.CoreCompileInputs.cache
+C:\Users\Frank\Source\Repos\Aashto\SIS_GA2_Security\Dbmanager\obj\Debug\DbManager.vbproj.CopyComplete
+C:\Users\Frank\Source\Repos\Aashto\SIS_GA2_Security\Dbmanager\obj\Debug\DbManager.dll
+C:\Users\Frank\Source\Repos\Aashto\SIS_GA2_Security\Dbmanager\obj\Debug\DbManager.xml
+C:\Users\Frank\Source\Repos\Aashto\SIS_GA2_Security\Dbmanager\obj\Debug\DbManager.pdb

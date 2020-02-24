@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 using SIS_Ga2.Entity;
 using SIS_Ga2.DataAccess;
 using System.Configuration;
-
+using System.Reflection;
+using System.Data;
 namespace SIS_Ga2.Business
 {
     public class BLCalculoEE
@@ -194,7 +195,7 @@ namespace SIS_Ga2.Business
             //seleccionamos la matriz de tasa de crecimiento registrada por año y vehiculo//[USP_Sel_TasasCrecimiento1]
             LstBLMatriz1 = ObjBLMatrizTasaCrec.ListarTasaCrec1(objEntidad.Id_Diseno);
 
-
+            
             // Logica Matriz
 
             for (int i = 0; i <= objEntidad.Nro_Anio; i++)
@@ -264,7 +265,8 @@ namespace SIS_Ga2.Business
 
                                             BEMatrizEERes itemEE = new BEMatrizEERes();
                                             itemEE.Id_Vehiculos = item.Id_Vehiculos;
-                                            itemEE.valorEEMatriz = Math.Round(CalculoEE1,2);
+                                            //itemEE.valorEEMatriz = Math.Round(CalculoEE1,2);
+                                            itemEE.valorEEMatriz = CalculoEE1;
                                             itemEE.NroAnio = i;
                                             itemEE.Id_Tipo_Vehiculo = item.Id_Tipo_Vehiculo;
                                             LstMatrizEEResultado2.Add(itemEE);
@@ -292,8 +294,29 @@ namespace SIS_Ga2.Business
                     }
 
                 }
-            
 
+       /*     DataTable tabla1 = new DataTable();
+
+
+            PropertyInfo[] propiedades1 = LstMatrizEEResultado1[0].GetType().GetProperties();
+            for (int i = 0; i < propiedades1.Length; i++)
+            {
+                tabla1.Columns.Add(propiedades1[i].Name, propiedades1[i].PropertyType);
+            }
+            //Llenar la Tabla desde la Lista de Objetos
+            DataRow fila1 = null;
+            for (int i = 0; i < LstMatrizEEResultado1.Count; i++)
+            {
+                propiedades1 = LstMatrizEEResultado1[i].GetType().GetProperties();
+                fila1 = tabla1.NewRow();
+                for (int j = 0; j < propiedades1.Length; j++)
+                {
+                    fila1[j] = propiedades1[j].GetValue(LstMatrizEEResultado1[i], null);
+                }
+                tabla1.Rows.Add(fila1);
+            }
+
+            */
             //en base a la informacion calculamos el EE 
 
             for (int j = 0; j <= objEntidad.Nro_Anio; j++)
@@ -316,6 +339,7 @@ namespace SIS_Ga2.Business
                         foreach (BEMatrizEE itemR in resultado)//recorremos para obrener el FVP - debe ser un solo resultado
                         {
                             BEMatrizEE itemEE = new BEMatrizEE();
+                          
                             CalculoEE2 = item.Valor_FVP * itemR.valorEEMatriz  * FDxFC * Fp * 365;
                             itemEE.Id_Vehiculos = item.Id_Vehiculos;
                             itemEE.Id_Tipo_Vehiculo = item.Id_Tipo_Vehiculo;
@@ -341,7 +365,28 @@ namespace SIS_Ga2.Business
             LstVehiculos.Clear();
             LstMatrizEEResultado1.Clear();
             LstMatrizEEResultado2.Clear();
+
+           /* DataTable tabla = new DataTable();
+
             
+            PropertyInfo[] propiedades = LstMatrizEEResultado3[0].GetType().GetProperties();
+            for (int i = 0; i < propiedades.Length; i++)
+            {
+                tabla.Columns.Add(propiedades[i].Name, propiedades[i].PropertyType);
+            }
+            //Llenar la Tabla desde la Lista de Objetos
+            DataRow fila = null;
+            for (int i = 0; i < LstMatrizEEResultado3.Count; i++)
+            {
+                propiedades = LstMatrizEEResultado3[i].GetType().GetProperties();
+                fila = tabla.NewRow();
+                for (int j = 0; j < propiedades.Length; j++)
+                {
+                    fila[j] = propiedades[j].GetValue(LstMatrizEEResultado3[i], null);
+                }
+                tabla.Rows.Add(fila);
+            }*/
+
 
             return LstMatrizEEResultado3;
 

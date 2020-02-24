@@ -8,3 +8,9 @@ C:\Logistica\Solver\SIS_Ga2.Entity\obj\Release\SIS_Ga2.Entity.csprojAssemblyRefe
 C:\Logistica\Solver\SIS_Ga2.Entity\obj\Release\SIS_Ga2.Entity.csproj.CoreCompileInputs.cache
 C:\Logistica\Solver\SIS_Ga2.Entity\obj\Release\SIS_Ga2.Entity.dll
 C:\Logistica\Solver\SIS_Ga2.Entity\obj\Release\SIS_Ga2.Entity.pdb
+C:\Users\Frank\Source\Repos\Aashto\SIS_GA2_Security\SIS_Ga2.Entity\bin\Release\SIS_Ga2.Entity.dll
+C:\Users\Frank\Source\Repos\Aashto\SIS_GA2_Security\SIS_Ga2.Entity\bin\Release\SIS_Ga2.Entity.pdb
+C:\Users\Frank\Source\Repos\Aashto\SIS_GA2_Security\SIS_Ga2.Entity\obj\Release\SIS_Ga2.Entity.csprojAssemblyReference.cache
+C:\Users\Frank\Source\Repos\Aashto\SIS_GA2_Security\SIS_Ga2.Entity\obj\Release\SIS_Ga2.Entity.csproj.CoreCompileInputs.cache
+C:\Users\Frank\Source\Repos\Aashto\SIS_GA2_Security\SIS_Ga2.Entity\obj\Release\SIS_Ga2.Entity.dll
+C:\Users\Frank\Source\Repos\Aashto\SIS_GA2_Security\SIS_Ga2.Entity\obj\Release\SIS_Ga2.Entity.pdb
