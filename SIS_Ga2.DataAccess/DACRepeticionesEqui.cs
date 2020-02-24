@@ -28,7 +28,7 @@ namespace SIS_Ga2.DataAccess
             param.Add("@Tipo_Diseno", objEntidad.Tipo_Diseno);
             param.Add("@Periodo", objEntidad.Periodo);
             param.Add("@Valor_EE_Total", objEntidad.Valor_EE_Total);
-            param.Add("@Id_Parametro", objEntidad.Id_Parametro);
+            param.Add("@Id_Diseno", objEntidad.Id_Diseno);
             param.Add("@Fecha_Creacion", objEntidad.Fecha_Creacion);
             param.Add("@Hora_Creacion", objEntidad.Hora_Creacion);
             param.Add("@Usr_Creacion", objEntidad.Usr_Creacion);
@@ -52,5 +52,38 @@ namespace SIS_Ga2.DataAccess
             }
             return resultado;
         }
+
+
+        public int ActualizarRepeticionesEqui(BERepeticionesEqui objEntidad)
+        {
+            SqlManager objSql = new SqlManager(ConfigurationManager.AppSettings["ASOCEM"].ToString());
+            int resultado = 0;
+
+            string val;
+
+            Parameter param = new Parameter();
+
+            param.Add("@Valor_EE_Total", objEntidad.Valor_EE_Total);
+            param.Add("@Id_Diseno", objEntidad.Id_Diseno);
+
+
+
+            try
+            {
+                //objSql.ExecuteNoQuery("USP_Ins_Repetic_Equivalentes", param);
+                val = objSql.ExecuteScalar("USP_UPD_Repetic_Equivalentes", param);
+
+
+                resultado = Convert.ToInt32(val);
+            }
+            catch (Exception ex)
+            {
+                //Rutina de Guardado en Log 
+                //afilogDAO.Save(0, 0, "CatalogoDAO", "GetCatalogoToCombo", ex);
+                throw ex;
+            }
+            return resultado;
+        }
+
     }
 }

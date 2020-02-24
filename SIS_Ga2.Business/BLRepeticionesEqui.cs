@@ -16,5 +16,12 @@ namespace SIS_Ga2.Business
             DACRepeticionesEqui objDAO = new DACRepeticionesEqui();
             return objDAO.GuardarRepeticionesEqui(objEntidad);
         }
+
+        public int ActualizarRepeticionesEqui(BERepeticionesEqui objEntidad)
+
+        {
+            DACRepeticionesEqui objDAO = new DACRepeticionesEqui();
+            return objDAO.ActualizarRepeticionesEqui(objEntidad);
+        }
     }
 }

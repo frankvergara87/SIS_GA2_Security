@@ -447,8 +447,8 @@ namespace SIS_Ga2.Controllers
                 lobjRepeticionesEqu.FP = objRepeticionesEqui.FP;
                 lobjRepeticionesEqu.Tipo_Diseno = objRepeticionesEqui.Tipo_Diseno;
                 lobjRepeticionesEqu.Periodo = objRepeticionesEqui.Periodo;
-                lobjRepeticionesEqu.Valor_EE_Total = 123;
-                lobjRepeticionesEqu.Id_Parametro = 6;
+                lobjRepeticionesEqu.Valor_EE_Total = 0;
+                lobjRepeticionesEqu.Id_Diseno = objVehiculosIMD.Id_Diseno;
                 lobjRepeticionesEqu.Fecha_Creacion = Convert.ToDouble(DateTime.Now.ToString("yyyyMMdd"));
                 lobjRepeticionesEqu.Hora_Creacion = Convert.ToDouble(DateTime.Now.ToString("hhmmss").ToString());
                 lobjRepeticionesEqu.Usr_Creacion = "fvergara";

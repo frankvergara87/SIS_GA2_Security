@@ -24,5 +24,7 @@ namespace SIS_Ga2.Entity
         public double Fecha_Actualizacion { get; set; }
         public double Hora_Actualizacion { get; set; }
         public string Usr_Actualizacion { get; set; }
+
+        public int Id_Diseno { get; set; }
     }
 }
