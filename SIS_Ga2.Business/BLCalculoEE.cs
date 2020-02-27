@@ -295,7 +295,7 @@ namespace SIS_Ga2.Business
 
                 }
 
-       /*     DataTable tabla1 = new DataTable();
+           DataTable tabla1 = new DataTable();
 
 
             PropertyInfo[] propiedades1 = LstMatrizEEResultado1[0].GetType().GetProperties();
@@ -316,7 +316,7 @@ namespace SIS_Ga2.Business
                 tabla1.Rows.Add(fila1);
             }
 
-            */
+            
             //en base a la informacion calculamos el EE 
 
             for (int j = 0; j <= objEntidad.Nro_Anio; j++)
@@ -366,7 +366,7 @@ namespace SIS_Ga2.Business
             LstMatrizEEResultado1.Clear();
             LstMatrizEEResultado2.Clear();
 
-           /* DataTable tabla = new DataTable();
+            DataTable tabla = new DataTable();
 
             
             PropertyInfo[] propiedades = LstMatrizEEResultado3[0].GetType().GetProperties();
@@ -385,7 +385,7 @@ namespace SIS_Ga2.Business
                     fila[j] = propiedades[j].GetValue(LstMatrizEEResultado3[i], null);
                 }
                 tabla.Rows.Add(fila);
-            }*/
+            }
 
 
             return LstMatrizEEResultado3;

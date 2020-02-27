@@ -902,28 +902,57 @@ namespace SIS_Ga2.Controllers
             {
                 decimal calculoEE = 0;
                 //decimal calculoEEXVehi = 0;
-
+                int idDiseno = 0;
+                idDiseno = objMatrizTasaCrecimiento.Id_Diseno;
                 BLCalculoEE blCalculoEE = new BLCalculoEE();
+                BLRepeticionesEqui blRepetEquivalentes = new BLRepeticionesEqui();
+                BLVehiculosIMD objBLVehiculosIMD = new BLVehiculosIMD();
                 List<BETasaCrecimiento> lobjBETasaCrecimiento = new List<BETasaCrecimiento>();
                 List<BEMatrizEE> LstMatrizEEResultado = new List<BEMatrizEE>();
 
                 LstMatrizEEResultado = blCalculoEE.ListaResultadoEE(objMatrizTasaCrecimiento, idTipoTasaCrec, FDxFC, Fp);
 
-                foreach (BEMatrizEE item in LstMatrizEEResultado)
+                List<BEVehiculosIMD> lobVehiculosIMD = new List<BEVehiculosIMD>();
+                lobVehiculosIMD = objBLVehiculosIMD.VehiculosXDiseno(idDiseno);
+                decimal deccalculoEE = 0;
+
+
+                foreach (BEVehiculosIMD item in lobVehiculosIMD)
                 {
-                    calculoEE = calculoEE + item.valorEEMatriz;//Math.Round((item.valorEEMatriz / 1000),2);
+                    deccalculoEE = 0;
+                    var resultadoIMD = from vehiculo in LstMatrizEEResultado
+                                       where vehiculo.Id_Vehiculos == item.Id_Vehiculos
+                                       select vehiculo;
 
-                    //Version DEMO
+                    foreach (BEMatrizEE itemv in resultadoIMD)// Recorremos la  lista para obtener los valores IMD y FVP USP_Sel_Info_Matriz_EE
+                {
+
+                        deccalculoEE = deccalculoEE + itemv.valorEEMatriz;
+
+                    }
+
                     BLVehiculosIMD blVehiculosIMD = new BLVehiculosIMD();
-                    BEVehiculosIMD lobjBEBEVehiculosIMD = new BEVehiculosIMD();
-                    lobjBEBEVehiculosIMD.Id_Vehiculos = item.Id_Vehiculos;
-                    lobjBEBEVehiculosIMD.Id_Diseno = objMatrizTasaCrecimiento.Id_Diseno;
-                    lobjBEBEVehiculosIMD.Id_Repet_Equivalentes = Id_Repet_Eq;
-                    lobjBEBEVehiculosIMD.Valor_EE = item.valorEEMatriz; //Math.Round((item.valorEEMatriz / 1000), 2);
+                    blVehiculosIMD.ActualizaVehiculosIMD(idDiseno, deccalculoEE, item.Id_Vehiculos);
 
-                    blVehiculosIMD.ActualizaVehiculosIMD(lobjBEBEVehiculosIMD);
 
                 }
+
+
+                foreach (BEMatrizEE item in LstMatrizEEResultado)
+                {
+                    calculoEE = calculoEE + item.valorEEMatriz;
+
+                }
+
+                BERepeticionesEqui objBERepeticionesEqui = new BERepeticionesEqui();
+                objBERepeticionesEqui.Id_Diseno = idDiseno;
+                objBERepeticionesEqui.Valor_EE_Total = calculoEE;
+
+                int i = 0;
+               i=blRepetEquivalentes.ActualizarRepeticionesEqui(objBERepeticionesEqui);
+
+
+      
 
                 return calculoEE;
             }
@@ -935,39 +964,39 @@ namespace SIS_Ga2.Controllers
 
         }
 
-        public decimal CalculoEExVehiculo(BEMatrizTasaCrecimiento objMatrizTasaCrecimiento, int idTipoTasaCrec, decimal FDxFC, decimal Fp, int IdVehiculo, int TipoVehiculo, int strId_Repet_Equivalentes)
-        {
-            try
-            {
-                decimal calculoEEXVehi = 0;
+        //public decimal CalculoEExVehiculo(BEMatrizTasaCrecimiento objMatrizTasaCrecimiento, int idTipoTasaCrec, decimal FDxFC, decimal Fp, int IdVehiculo, int TipoVehiculo, int strId_Repet_Equivalentes)
+        //{
+        //    try
+        //    {
+        //        decimal calculoEEXVehi = 0;
 
-                BLCalculoEE blCalculoEE = new BLCalculoEE();
-                List<BETasaCrecimiento> lobjBETasaCrecimiento = new List<BETasaCrecimiento>();
-                List<BEMatrizEE> LstMatrizEEResultado = new List<BEMatrizEE>();
+        //        BLCalculoEE blCalculoEE = new BLCalculoEE();
+        //        List<BETasaCrecimiento> lobjBETasaCrecimiento = new List<BETasaCrecimiento>();
+        //        List<BEMatrizEE> LstMatrizEEResultado = new List<BEMatrizEE>();
 
-                LstMatrizEEResultado = blCalculoEE.ListaResultadoEE(objMatrizTasaCrecimiento, idTipoTasaCrec, FDxFC, Fp);
+        //        LstMatrizEEResultado = blCalculoEE.ListaResultadoEE(objMatrizTasaCrecimiento, idTipoTasaCrec, FDxFC, Fp);
 
-                calculoEEXVehi = blCalculoEE.CalculoEExVehi(LstMatrizEEResultado, TipoVehiculo, IdVehiculo);
+        //        calculoEEXVehi = blCalculoEE.CalculoEExVehi(LstMatrizEEResultado, TipoVehiculo, IdVehiculo);
 
-                //Version DEMO
-                BLVehiculosIMD blVehiculosIMD = new BLVehiculosIMD();
-                BEVehiculosIMD lobjBEBEVehiculosIMD = new BEVehiculosIMD();
-                lobjBEBEVehiculosIMD.Id_Vehiculos = IdVehiculo;
-                lobjBEBEVehiculosIMD.Id_Diseno = objMatrizTasaCrecimiento.Id_Diseno;
-                lobjBEBEVehiculosIMD.Id_Repet_Equivalentes = strId_Repet_Equivalentes;
-                lobjBEBEVehiculosIMD.Valor_EE = calculoEEXVehi;
+        //        Version DEMO
+        //        BLVehiculosIMD blVehiculosIMD = new BLVehiculosIMD();
+        //        BEVehiculosIMD lobjBEBEVehiculosIMD = new BEVehiculosIMD();
+        //        lobjBEBEVehiculosIMD.Id_Vehiculos = IdVehiculo;
+        //        lobjBEBEVehiculosIMD.Id_Diseno = objMatrizTasaCrecimiento.Id_Diseno;
+        //        lobjBEBEVehiculosIMD.Id_Repet_Equivalentes = strId_Repet_Equivalentes;
+        //        lobjBEBEVehiculosIMD.Valor_EE = calculoEEXVehi;
 
-                blVehiculosIMD.ActualizaVehiculosIMD(lobjBEBEVehiculosIMD);
-                //Version DEMO
+        //        blVehiculosIMD.ActualizaVehiculosIMD(lobjBEBEVehiculosIMD);
+        //        Version DEMO
 
-                return calculoEEXVehi;
-            }
-            catch (Exception e)
-            {
+        //        return calculoEEXVehi;
+        //    }
+        //    catch (Exception e)
+        //    {
 
-                throw;
-            }
+        //        throw;
+        //    }
 
-        }
+        //}
     }
 }

@@ -15,7 +15,7 @@ namespace SIS_Ga2.Entity
         public int Id_Diseno { get; set; }
         public int Id_Repet_Equivalentes { get; set; }
         public int Estado { get; set; }
-        public double IMD_Base { get; set; }
+        public decimal IMD_Base { get; set; }
         public string Tipo_Eje_E1 { get; set; }
         public decimal Peso_Tonelada_E1 { get; set; }
 

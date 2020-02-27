@@ -61,17 +61,14 @@ namespace SIS_Ga2.DataAccess
 
             string val;
 
-            Parameter param = new Parameter();
-
-            param.Add("@Valor_EE_Total", objEntidad.Valor_EE_Total);
+            Parameter param = new Parameter();            
             param.Add("@Id_Diseno", objEntidad.Id_Diseno);
-
-
+            param.Add("@Valor_EE_Total", objEntidad.Valor_EE_Total);
 
             try
             {
                 //objSql.ExecuteNoQuery("USP_Ins_Repetic_Equivalentes", param);
-                val = objSql.ExecuteScalar("USP_UPD_Repetic_Equivalentes", param);
+                val = objSql.ExecuteNoQuery("USP_UPD_Repetic_Equivalentes", param);
 
 
                 resultado = Convert.ToInt32(val);

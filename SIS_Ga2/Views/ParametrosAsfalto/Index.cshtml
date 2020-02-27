@@ -1102,6 +1102,7 @@
                                         <th class="text-sm-center" id="Id_Vehiculos">Id</th>
                                         <th class="text-sm-center" id="ruta_imagen">VistaPreviaVehiculo</th>
                                         <th class="text-sm-center" id="Vehiculos">Tipo_Vehículo</th>
+                                        <th class="text-sm-center" id="IMD_Base">IMD_Base</th>
                                         <th class="text-sm-center" id="Tipo_Eje_E1">E1</th>
                                         <th class="text-sm-center" id="Peso_Tonelada_E1">Peso_E1</th>
                                         <th class="text-sm-center" id="Tipo_Eje_E2">E2</th>
@@ -3650,7 +3651,8 @@
                 "columnDefs": [
                     { "targets": [0], "visible": false },
                     { "targets": [1], "visible": false },
-                    { "targets": [2], "visible": false }
+                    { "targets": [2], "visible": false },
+                    { "targets": [3], "visible": false }
                 ],
                 "columns": [
                     { "data": "Id_Vehiculos_IMD", "class": "text-bold text-center" },       //Oculto
@@ -3672,8 +3674,9 @@
                             }
                             return strDiv;
                         }
-                    },
-                    { "data": "Vehiculos", "class": "text-left" },
+                    },                    
+                    { "data": "Vehiculos", "class": "text-center" },
+                    { "data": "IMD_Base", "class": "text-center" },
                     { "data": "Tipo_Eje_E1", "class": "text-center" },
                     { "data": "Peso_Tonelada_E1", "class": "text-center" },
                     { "data": "Tipo_Eje_E2", "class": "text-center" },

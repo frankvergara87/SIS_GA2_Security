@@ -76,15 +76,14 @@ namespace SIS_Ga2.DataAccess
             }
         }
 
-        public int ActualizaVehiculosIMD(BEVehiculosIMD objEntidad)
+        public int ActualizaVehiculosIMD(int IdDiseno,  decimal Valor_EE, int idVehiculo)
         {
             SqlManager objSql = new SqlManager(ConfigurationManager.AppSettings["ASOCEM"].ToString());
             int resultado = 0;
             Parameter param = new Parameter();
-            param.Add("@Id_Vehiculos", objEntidad.Id_Vehiculos);
-            param.Add("@Id_Diseno", objEntidad.Id_Diseno);
-            param.Add("@Id_Repet_Equivalentes", objEntidad.Id_Repet_Equivalentes);           
-            param.Add("@Valor_EE", objEntidad.Valor_EE);
+            param.Add("@Id_Vehiculos", idVehiculo);
+            param.Add("@Id_Diseno", IdDiseno);          
+            param.Add("@Valor_EE", Valor_EE);
            
             try
             {
@@ -99,6 +98,30 @@ namespace SIS_Ga2.DataAccess
             }
             return resultado;
         }
+
+
+        public List<BEVehiculosIMD> VehiculosXDiseno(int idDiseno)
+        {
+
+            try
+            {
+                Parameter param = new Parameter();
+                param.Add("@Id_Diseno", idDiseno);
+                SqlManager objSql = new SqlManager(ConfigurationManager.AppSettings["ASOCEM"].ToString());
+                List<BEVehiculosIMD> lista = objSql.getStatement<BEVehiculosIMD>("USP_Sel_Vehiculos_IMD_x_Diseno", param);
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                //Rutina de Guardado en Log 
+                //afilogDAO.Save(0, 0, "CatalogoDAO", "GetCatalogoToCombo", ex);
+                throw ex;
+            }
+
+            
+           
+        }
+
 
         public int EliminarVehiculosIMD(BEVehiculosIMD objEntidad)
         {

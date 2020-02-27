@@ -21,10 +21,10 @@ namespace SIS_Ga2.Business
             DACVehiculosIMD objDAO = new DACVehiculosIMD();
             return objDAO.ListarVehiculosIMDByID(Id_Repet_Equivalentes);
         }
-        public int ActualizaVehiculosIMD(BEVehiculosIMD objEntidad)
+        public int ActualizaVehiculosIMD(int IdDiseno, decimal Valor_EE, int idVehiculo)
         {
             DACVehiculosIMD objDAO = new DACVehiculosIMD();
-            return objDAO.ActualizaVehiculosIMD(objEntidad);
+            return objDAO.ActualizaVehiculosIMD(IdDiseno, Valor_EE, idVehiculo);
         }
 
         public int EliminarVehiculosIMD(BEVehiculosIMD objEntidad)
@@ -32,5 +32,12 @@ namespace SIS_Ga2.Business
             DACVehiculosIMD objDAO = new DACVehiculosIMD();
             return objDAO.EliminarVehiculosIMD(objEntidad);
         }
+        public List<BEVehiculosIMD> VehiculosXDiseno(int idDiseno)
+        {
+            DACVehiculosIMD objDAO = new DACVehiculosIMD();
+            return objDAO.VehiculosXDiseno(idDiseno);
+        }
+
+
     }
 }
