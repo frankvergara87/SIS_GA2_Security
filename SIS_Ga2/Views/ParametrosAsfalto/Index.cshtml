@@ -4152,6 +4152,9 @@
 
                         $("#SubModal_EditorVariableTiempo .close").click();
 
+                        document.getElementById("ValorTotalCrecxTiempo").value = respuesta;
+
+
                     }
                     else {
                         toastr.error("Ingrese los datos!", 'ERROR', { timeOut: 2000 });
@@ -4215,9 +4218,10 @@
                 success: function (respuesta) {
                     if (respuesta.length > 0) {
 
-                        respuesta = respuesta;
                         $('#dgvListadoVariableTiempo').dataTable().fnDestroy();
                         CargarVariableTiempo(); //Cargamos el DataTable
+
+                        document.getElementById("ValorTotalCrecxTiempo").value = respuesta;
 
                     }
                     else {
@@ -4280,20 +4284,20 @@
 
                 ],
 
-                "footerCallback": function ( row, data, start, end, display ) {
+                //"footerCallback": function ( row, data, start, end, display ) {
         
-                    total = this.api()
-                        .column(2)//numero de columna a sumar
-                        //.column(1, {page: 'current'})//para sumar solo la pagina actual
-                        .data()
-                        .reduce(function (a, b) {
-                            document.getElementById("ValorTotalCrecxTiempo").value = ((1 + parseFloat(a)) * (1 + parseFloat(b))).toFixed(2);
-                            return parseFloat(a) + parseFloat(b);
-                        }, 0 );
+                //    total = this.api()
+                //        .column(2)//numero de columna a sumar
+                //        //.column(1, {page: 'current'})//para sumar solo la pagina actual
+                //        .data()
+                //        .reduce(function (a, b) {
+                //            document.getElementById("ValorTotalCrecxTiempo").value = ((1 + parseFloat(a)) * (1 + parseFloat(b))).toFixed(2);
+                //            return parseFloat(a) + parseFloat(b);
+                //        }, 0 );
 
-                    $(this.api().column(2).footer()).html(total);
+                //    $(this.api().column(2).footer()).html(total);
             
-                },
+                //},
 
                 //"lengthMenu": [[3, -1], [3, "Todo"]],
                 "language": {

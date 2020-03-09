@@ -142,28 +142,28 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>10/10/2019 01:54:02</publishTime>
     </File>
     <File Include="bin/SIS_Ga2.Business.dll">
-      <publishTime>02/24/2020 00:01:07</publishTime>
+      <publishTime>02/26/2020 23:45:01</publishTime>
     </File>
     <File Include="bin/SIS_Ga2.Business.pdb">
-      <publishTime>02/24/2020 00:01:07</publishTime>
+      <publishTime>02/26/2020 23:45:01</publishTime>
     </File>
     <File Include="bin/SIS_Ga2.DataAccess.dll">
-      <publishTime>02/24/2020 00:01:07</publishTime>
+      <publishTime>02/26/2020 23:45:01</publishTime>
     </File>
     <File Include="bin/SIS_Ga2.DataAccess.pdb">
-      <publishTime>02/24/2020 00:01:07</publishTime>
+      <publishTime>02/26/2020 23:45:01</publishTime>
     </File>
     <File Include="bin/SIS_Ga2.dll">
-      <publishTime>02/24/2020 01:44:23</publishTime>
+      <publishTime>02/26/2020 23:45:46</publishTime>
     </File>
     <File Include="bin/SIS_Ga2.Entity.dll">
-      <publishTime>02/23/2020 23:58:35</publishTime>
+      <publishTime>02/26/2020 23:45:00</publishTime>
     </File>
     <File Include="bin/SIS_Ga2.Entity.pdb">
-      <publishTime>02/23/2020 23:58:35</publishTime>
+      <publishTime>02/26/2020 23:45:00</publishTime>
     </File>
     <File Include="bin/SIS_Ga2.pdb">
-      <publishTime>02/24/2020 01:44:23</publishTime>
+      <publishTime>02/26/2020 23:45:46</publishTime>
     </File>
     <File Include="bin/System.Web.Helpers.dll">
       <publishTime>10/10/2019 01:54:02</publishTime>
@@ -1588,10 +1588,10 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>11/22/2019 21:40:45</publishTime>
     </File>
     <File Include="Views/ParametrosAdoquin/Index.cshtml">
-      <publishTime>12/06/2019 22:54:08</publishTime>
+      <publishTime>02/26/2020 00:13:02</publishTime>
     </File>
     <File Include="Views/ParametrosAsfalto/Index.cshtml">
-      <publishTime>02/24/2020 01:37:37</publishTime>
+      <publishTime>02/25/2020 23:26:03</publishTime>
     </File>
     <File Include="Views/ParametrosConcreto/Index.cshtml">
       <publishTime>11/23/2019 22:32:37</publishTime>
@@ -1618,7 +1618,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>10/10/2019 01:54:00</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>02/20/2020 15:46:16</publishTime>
+      <publishTime>02/26/2020 23:45:05</publishTime>
     </File>
   </ItemGroup>
 </Project>

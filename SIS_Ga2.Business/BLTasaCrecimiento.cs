@@ -76,5 +76,15 @@ namespace SIS_Ga2.Business
             DACTasaCrecimiento objDAO = new DACTasaCrecimiento();
             return objDAO.ActualizarCrecXVehiculo(objEntidad);
         }
+
+
+        //MEJORA 06/05.2020
+
+        public List<BETasaCrecimiento> ListarVarTiempoXDiseno(int Id_Diseno)
+        {
+            DACTasaCrecimiento objDAO = new DACTasaCrecimiento();
+            return objDAO.ListarVarTiempoXDiseno(Id_Diseno);
+        }
+
     }
 }

@@ -680,7 +680,7 @@ namespace SIS_Ga2.Controllers
 
 
 
-        public int LimpiarVariableTiempo(int IdDiseno, decimal NroAnio)
+        public decimal LimpiarVariableTiempo(int IdDiseno, decimal NroAnio)
         {
 
             BLTasaCrecimiento bLTasaCrecimiento = new BLTasaCrecimiento();
@@ -705,7 +705,15 @@ namespace SIS_Ga2.Controllers
 
             }
 
-            return 1;
+
+            //Invocamos el total de Variable x Tiempo
+            decimal TotalTasaCrecimiento = 0;
+            BLReglas bLReglas = new BLReglas();
+            TotalTasaCrecimiento = bLReglas.TotalTasaCrecimiento(IdDiseno);
+
+            //Fin
+
+            return TotalTasaCrecimiento;
         }
 
         public int GenerarVariableVehiculo(int IdDiseno)
@@ -839,7 +847,7 @@ namespace SIS_Ga2.Controllers
 
 
 
-        public int ActualizarCrecXTiempo(int NroAnio, string Valor, int IdDiseno, int Id_Tasa_Crec_X_Tiempo)
+        public decimal ActualizarCrecXTiempo(int NroAnio, string Valor, int IdDiseno, int Id_Tasa_Crec_X_Tiempo)
         {
             try
             {
@@ -854,8 +862,14 @@ namespace SIS_Ga2.Controllers
 
                 upd = bLTasaCrecimiento.ActualizarCrecXTiempo(beTasaCrecimiento);
 
+                //Invocamos el total de Variable x Tiempo
+                decimal TotalTasaCrecimiento = 0;
+                BLReglas bLReglas = new BLReglas();
+                TotalTasaCrecimiento = bLReglas.TotalTasaCrecimiento(IdDiseno);
 
-                return upd;
+                //Fin
+
+                return TotalTasaCrecimiento;
             }
             catch (Exception)
             {

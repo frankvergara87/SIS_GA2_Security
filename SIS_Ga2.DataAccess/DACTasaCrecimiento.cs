@@ -242,5 +242,25 @@ namespace SIS_Ga2.DataAccess
             }
             return resultado;
         }
+
+        //MEJORA 06/05.2020
+
+        public List<BETasaCrecimiento> ListarVarTiempoXDiseno(int Id_Diseno)
+        {
+            try
+            {
+                Parameter param = new Parameter();
+                param.Add("@Id_Diseno", Id_Diseno);
+                SqlManager objSql = new SqlManager(ConfigurationManager.AppSettings["ASOCEM"].ToString());
+                List<BETasaCrecimiento> lista = objSql.getStatement<BETasaCrecimiento>("USP_Sel_Var_X_Tiempo", param);
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                //Rutina de Guardado en Log 
+                //afilogDAO.Save(0, 0, "CatalogoDAO", "GetCatalogoToCombo", ex);
+                throw ex;
+            }
+        }
     }
 }

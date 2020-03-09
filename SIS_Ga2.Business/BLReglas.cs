@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SIS_Ga2.Entity;
-
+using SIS_Ga2.Entity;
+using SIS_Ga2.DataAccess;
 using System.Configuration;
 using System.Web.UI.DataVisualization.Charting;
 using Microsoft.SolverFoundation.Services;
@@ -1653,6 +1654,29 @@ namespace SIS_Ga2.Business
             }
 
             return CoeficienteA2;
+
+        }
+
+        //MEJORA 06/05.2020
+        public decimal TotalTasaCrecimiento(int IdDiseno)
+        {
+            decimal total = 1;
+            decimal TotalTasa = 0;
+
+
+            List<BETasaCrecimiento> LstTasaCrecim = new List<BETasaCrecimiento>();
+            BLTasaCrecimiento objjTasaCrecimiento = new BLTasaCrecimiento();
+            LstTasaCrecim = objjTasaCrecimiento.ListarVarTiempoXDiseno(IdDiseno);
+
+            foreach (BETasaCrecimiento item in LstTasaCrecim)
+            {
+
+                total = total * (1+ (item.Valor / 100));
+
+            }
+
+            TotalTasa = (total - 1) * 100;
+            return Math.Round(TotalTasa,2);
 
         }
 
