@@ -1616,9 +1616,9 @@ namespace SIS_Ga2.Business
             //constante5_A2=0.15
             double CoeficienteA2 = 0;
             double CalculoMR = (Convert.ToDouble(ConfigurationManager.AppSettings["constante1_A2"].ToString())) * Math.Pow(objEntidad.valorCBRBase, Convert.ToDouble(ConfigurationManager.AppSettings["constante2_A2"].ToString()));
-            double Valor = Math.Round((Convert.ToDouble(ConfigurationManager.AppSettings["constante3_A2"].ToString()) * Math.Log10(CalculoMR)) - Convert.ToDouble(ConfigurationManager.AppSettings["constante4_A2"].ToString()),2);
+            double Valor = Math.Round((Convert.ToDouble(ConfigurationManager.AppSettings["constante3_A2"].ToString()) * Math.Log10(CalculoMR)) - Convert.ToDouble(ConfigurationManager.AppSettings["constante4_A2"].ToString()), 2);
 
-         if (Valor>= Convert.ToDouble(ConfigurationManager.AppSettings["constante5_A2"].ToString()))
+            if (Valor >= Convert.ToDouble(ConfigurationManager.AppSettings["constante5_A2"].ToString()))
             {
                 CoeficienteA2 = Convert.ToDouble(ConfigurationManager.AppSettings["constante5_A2"].ToString());
             }
@@ -1671,14 +1671,115 @@ namespace SIS_Ga2.Business
             foreach (BETasaCrecimiento item in LstTasaCrecim)
             {
 
-                total = total * (1+ (item.Valor / 100));
+                total = total * (1 + (item.Valor / 100));
 
             }
 
             TotalTasa = (total - 1) * 100;
-            return Math.Round(TotalTasa,2);
+            return Math.Round(TotalTasa, 2);
 
         }
+
+        public double ModuloRotura(double valor,double ResisCompre)
+        {
+            double consModRotura1 = Convert.ToDouble(ConfigurationManager.AppSettings["consModRotura1"].ToString());// 0.0981
+            double consModRotura2 = Convert.ToDouble(ConfigurationManager.AppSettings["consModRotura2"].ToString());// 0.5
+
+            double MR = 0;
+            double ModRotura = 0;
+            MR = valor * Math.Pow(ResisCompre, consModRotura2);
+            ModRotura = MR * consModRotura1;
+            return ModRotura;
+
+        }
+
+        public double ModuloElasticidad(double ResisCompre)
+        {
+            double consModElastic1 = Convert.ToDouble(ConfigurationManager.AppSettings["consModElastic1"].ToString());// 57000
+            double consModElastic2 = Convert.ToDouble(ConfigurationManager.AppSettings["consModElastic2"].ToString());// 14.194
+            double consModElastic3 = Convert.ToDouble(ConfigurationManager.AppSettings["consModElastic3"].ToString());// 0.5
+            double consModElastic4 = Convert.ToDouble(ConfigurationManager.AppSettings["consModElastic4"].ToString());// 0.00689476
+            double ModElastic = 0;
+            // = +(57000 * (G11 * 14.194) ^ 0.5) *             
+            ModElastic = consModElastic1 * Math.Pow((ResisCompre* consModElastic2), consModElastic3)* consModElastic4;
+
+            return ModElastic;
+
+        }
+
+        public double CalculoKEquivMpaM(double variable)
+        {
+            double consCalcK1Equi1 = Convert.ToDouble(ConfigurationManager.AppSettings["consCalcK1Equi1"].ToString());// 10
+            double consCalcK1Equi2 = Convert.ToDouble(ConfigurationManager.AppSettings["consCalcK1Equi2"].ToString());// 46
+            double consCalcK1Equi3 = Convert.ToDouble(ConfigurationManager.AppSettings["consCalcK1Equi3"].ToString());// 9.08
+            double consCalcK1Equi4 = Convert.ToDouble(ConfigurationManager.AppSettings["consCalcK1Equi4"].ToString());// 4.34
+            double consCalcK1Equi5 = Convert.ToDouble(ConfigurationManager.AppSettings["consCalcK1Equi5"].ToString());// 2.55
+            double consCalcK1Equi6 = Convert.ToDouble(ConfigurationManager.AppSettings["consCalcK1Equi6"].ToString());// 52.5
+
+            double K1Equiv = 0;
+            double potencia = 0;
+
+            if (variable > consCalcK1Equi1)
+            {
+                potencia = Math.Pow(Math.Log10(variable), consCalcK1Equi4);
+
+                K1Equiv = consCalcK1Equi2 + (consCalcK1Equi3 * potencia);
+             }
+
+            else
+            {
+                K1Equiv = (Math.Log10(variable) * consCalcK1Equi6) + consCalcK1Equi5;
+
+
+            }
+           
+
+            return K1Equiv;
+
+        }
+
+        //despues de calcular el Mpa/m
+        public double CalculoKgCm3(double variable)
+
+        {
+            double consKgCm3 = Convert.ToDouble(ConfigurationManager.AppSettings["consKgCm3"].ToString());// 0.101972
+
+            double KgCm3 = 0;
+
+            KgCm3 = variable * consKgCm3;
+            return KgCm3;
+        }
+
+        public double CalcuKeqMpa(double variable)
+
+        {
+            double ConsKeqMpa = Convert.ToDouble(ConfigurationManager.AppSettings["ConsKeqMpa"].ToString());// 0.101972
+
+            double KgCm3 = 0;
+            KgCm3 = variable / ConsKeqMpa;
+            return KgCm3;
+        }
+
+        public double CalcuKeqkgcm3(double k1,double k0,double hCm)
+
+        {
+            double contantekG1 = Convert.ToDouble(ConfigurationManager.AppSettings["contantekG1"].ToString()); //38
+            double contantekG2 = Convert.ToDouble(ConfigurationManager.AppSettings["contantekG2"].ToString()); //0.666666666666667
+            double contantekG3 = Convert.ToDouble(ConfigurationManager.AppSettings["contantekG3"].ToString()); //2
+            double contantekG4 = Convert.ToDouble(ConfigurationManager.AppSettings["contantekG4"].ToString()); //0.5
+            double calculo1 = 0;
+            double calculo2 = 0;
+            double calculo3 = 0;
+            double calculo4 = 0;
+            double calculo5 = 0;
+            calculo1 = Math.Pow(hCm / contantekG1, contantekG3);
+            calculo2 = Math.Pow( k1 / k0, contantekG2);
+            calculo3 = calculo1 * calculo2 + 1;
+            calculo4 = Math.Pow(calculo3, contantekG4);
+            calculo5 = calculo4 * hCm;
+            return calculo5;
+        }
+
 
     }
 }
