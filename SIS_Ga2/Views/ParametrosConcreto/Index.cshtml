@@ -2495,7 +2495,7 @@
 
                     },
                     error: function (xhr, status) {
-                        alert("PLOP");
+                        alert("ERROR DE CÓDIGO");
                     }
 
                 });
@@ -2512,7 +2512,7 @@
 
                     },
                     error: function (xhr, status) {
-                        alert("PLOP");
+                        alert("ERROR DE CÓDIGO");
                     }
 
                 });
@@ -2530,7 +2530,7 @@
 
                     },
                     error: function (xhr, status) {
-                        alert("PLOP");
+                        alert("ERROR DE CÓDIGO");
                     }
 
                 });
@@ -2609,7 +2609,7 @@
 
                     },
                     error: function (xhr, status) {
-                        alert("PLOP");
+                        alert("ERROR DE CÓDIGO");
                     }
 
                 });
@@ -2644,7 +2644,7 @@
 
                     },
                     error: function (xhr, status) {
-                        alert("PLOP");
+                        alert("ERROR DE CÓDIGO");
                     }
 
                 });
@@ -2696,7 +2696,7 @@
                         document.getElementById("txtMR").value = delimitNumbers(respuesta);
                     },
                     error: function (xhr, status) {
-                        alert("PLOP");
+                        alert("ERROR DE CÓDIGO");
                     }
 
                 });
@@ -3505,7 +3505,7 @@
                     document.getElementById("txtDifServ").value = respuesta;
                 },
                 error: function (xhr, status) {
-                    alert("PLOP");
+                    alert("ERROR");
                 }
 
             });
@@ -3607,7 +3607,7 @@
 
                 },
                 error: function (xhr, status) {
-                    alert("PLOP");
+                    alert("ERROR DE CÓDIGO");
                 }
 
             });
@@ -4261,7 +4261,7 @@
 
                 },
                 error: function (xhr, status) {
-                    alert("PLOP");
+                    alert("ERROR DE CÓDIGO");
                 }
 
             });
@@ -4510,8 +4510,9 @@
                             var strDiv;
                             var ValorA = data.Id_Tasa_Crec_X_Tiempo;
                             var ValorB = data.NroAnio;
+                            var ValorC = data.Valor.toFixed(2); 
 
-                            strDiv = '<div class="btn-group btn-group-sm"><button type="button" id="ButtonEliminar" onclick="EditorVariableTiempo(\'' + ValorA + '\',\'' + ValorB + '\' );" data-toggle="modal" data-target="#SubModal_EditorVariableTiempo" class="btn btn-outline-primary"><span class="fa fa-pencil-square-o"></span></button></div>';
+                            strDiv = '<div class="btn-group btn-group-sm"><button type="button" id="ButtonEliminar" onclick="EditorVariableTiempo(\'' + ValorA + '\',\'' + ValorB + '\',\'' + ValorC + '\' );" data-toggle="modal" data-target="#SubModal_EditorVariableTiempo" class="btn btn-outline-primary"><span class="fa fa-pencil-square-o"></span></button></div>';
                             return strDiv;
                         }
                     }
@@ -4617,8 +4618,9 @@
                             var strDiv;
                             var ValorA = data.Id_Tasa_Crec_X_Vehiculo;
                             var ValorB = data.Id_Tipo_Vehiculo;
+                            var ValorC = data.Valor.toFixed(2); 
 
-                            strDiv = '<div class="btn-group btn-group-sm"><button type="button" id="ButtonEliminar" onclick="EditorVariableVehiculo(\'' + ValorA + '\',\'' + ValorB + '\' );" data-toggle="modal" data-target="#SubModal_EditorVariableVehiculo" class="btn btn-outline-primary"><span class="fa fa-pencil-square-o"></span></button></div>';
+                            strDiv = '<div class="btn-group btn-group-sm"><button type="button" id="ButtonEliminar" onclick="EditorVariableVehiculo(\'' + ValorA + '\',\'' + ValorB + '\',\'' + ValorC + '\' );" data-toggle="modal" data-target="#SubModal_EditorVariableVehiculo" class="btn btn-outline-primary"><span class="fa fa-pencil-square-o"></span></button></div>';
                             return strDiv;
 
                         }
@@ -4685,19 +4687,22 @@
 
     }
 
-    function EditorVariableTiempo(ValorA, ValorB) {
-        //alert("Las variables a eliminar son :" + ValorA + " y " + ValorB);
+    function EditorVariableTiempo(ValorA, ValorB, ValorC) {
+        //alert("Las variables a eliminar son :" + ValorA + ", " + ValorB + " y " + ValorC);
 
         VariableTiempoId_Tasa_Crec_X_Tiempo = ValorA;
         VariableTiempoNroAnio = ValorB;
+        document.getElementById("ValorTasaCrecxTiempo").value = ValorC;
     }
 
 
-    function EditorVariableVehiculo(ValorA, ValorB) {
+    function EditorVariableVehiculo(ValorA, ValorB, ValorC) {
         //alert("Las variables a eliminar son :" + ValorA + " y " + ValorB);
 
         VariableVehiculoId_Tasa_Crec_X_Vehiculo = ValorA;
         VariableVehiculoId_Tipo_Vehiculo = ValorB;
+
+        document.getElementById("ValorTasaCrecxVehiculo").value = ValorC;
     }
 
 
