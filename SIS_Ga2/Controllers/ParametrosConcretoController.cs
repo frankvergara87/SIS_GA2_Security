@@ -1016,5 +1016,49 @@ namespace SIS_Ga2.Controllers
         //    }
 
         //}
+
+
+
+        public double ModuloRotura(decimal valor, decimal ResisCompre)
+        {
+            try
+            {
+                double ModRotura = 0;
+
+                BLReglas bLReglas = new BLReglas();
+
+                ModRotura = bLReglas.ModuloRotura(Convert.ToDouble(valor), Convert.ToDouble(ResisCompre));
+
+                return ModRotura;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+
+        public double ModuloElasticidad(decimal ResisCompre)
+        {
+            try
+            {
+                double ModElastic = 0;
+
+                BLReglas bLReglas = new BLReglas();
+
+                ModElastic = bLReglas.ModuloElasticidad(Convert.ToDouble(ResisCompre));
+
+                return ModElastic;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
     }
 }

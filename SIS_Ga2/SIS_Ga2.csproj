@@ -194,6 +194,10 @@
     <Content Include="Content\images\coeficiente_2.jpg" />
     <Content Include="Content\images\Coeficiente_Drenaje_Porcentaje.jpg" />
     <Content Include="Content\images\Coeficiente_Drenaje_Tiempo.jpg" />
+    <Content Include="Content\images\concreto\Modulo de Elasticidad.jpg" />
+    <Content Include="Content\images\concreto\Modulo de Rotura.jpg" />
+    <Content Include="Content\images\concreto\Resistencia a la Comprension.jpg" />
+    <Content Include="Content\images\concreto\Transferencia de Carga.jpg" />
     <Content Include="Content\images\Diseno_Adoquin.jpg" />
     <Content Include="Content\images\Diseno_Asfalto.jpg" />
     <Content Include="Content\images\Diseno_Concreto.jpg" />

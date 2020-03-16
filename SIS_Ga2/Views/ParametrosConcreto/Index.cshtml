@@ -93,7 +93,7 @@
                                 <label for="inlineFormInput" class="col-form-label col-form-label-sm">Módulo de Rotura (MR)&nbsp;&nbsp;&nbsp;</label>
                                 <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#ModRoturaModal"><i class="fa fa-question-circle"></i></button>
                                 <input id="txtModRotura" data-id="1" type="text" placeholder="Módulo de Rotura (MR)" readonly="readonly" class="column_filter mr-3 col-sm-10 form-control form-control-sm">
-                                <button type="button" id="btnEvaluaModRotura" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#EvaluaResilenciaModal"><span class="fa fa-cog"></span></button>
+                                <button type="button" id="btnEvaluaModRotura" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#EvaluaModuloRoturaModal"><span class="fa fa-cog"></span></button>
                             </div>
                             <div class="form-group col-md-5">
                                 <label for="inlineFormInput" class="col-form-label col-form-label-sm">Módulo de Elasticidad (Ec)</label>
@@ -619,6 +619,11 @@
                                     </p>
                                 </td>
                             </tr>
+                            <tr>
+                                <td>
+                                    <img src="~/Content/images/concreto/Resistencia a la Comprension.jpg" style="width:100%; height:95%;" />
+                                </td>
+                            </tr>
                         </table>
                     </div>
                 </div>
@@ -661,10 +666,68 @@
         </div>
     </div>
 
+    <!-- SUBMODAL --- MODULO DE ROTURA-->
+    <div class="modal fade" id="EvaluaModuloRoturaModal" tabindex="-1" role="dialog" aria-labelledby="EvaluaModuloRoturaModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document" style="margin-right: 80px; margin-left: 480px;">
+            <div class="modal-content" style="width:430px;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">MR - Cálculo </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
+                            <tr>
+                                <td align="left" colspan="4">
+                                    <img src="~/Content/images/concreto/Modulo de Rotura.jpg" style="width:100%; height:100%;" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td align="left">
+                                    <label>a =</label>
+                                </td>
+                                <td>
+                                    <input id="txtValorModRotura" type="text" placeholder="Valor" class="mr-3 col-sm-6 form-control form-control-sm input-number">
+                                </td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="4">
+                                    <p align="justify">
+                                        Valor recomendado: 2.4 a 2.6
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btnAceptarModRotura" class="btn btn-primary">Aceptar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
     <!-- MODULO DE ELASTICIDAD-->
     <div class="modal fade" id="ModElasticidadModal" tabindex="-1" role="dialog" aria-labelledby="ModElasticidadModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content" style="width:650px;">
+        <div class="modal-dialog" role="document" style="margin-right: 80px; margin-left: 500px;">
+            <div class="modal-content" style="width:260px;">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">EC</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -675,10 +738,8 @@
                     <div class="table-responsive">
                         <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
                             <tr>
-                                <td colspan="4">
-                                    <p align="justify">
-                                        Pendiente Fórmula.
-                                    </p>
+                                <td>
+                                    <img src="~/Content/images/concreto/Modulo de Elasticidad.jpg" style="width:100%; height:100%;" />
                                 </td>
                             </tr>
                         </table>
@@ -712,6 +773,11 @@
                                     </p>
                                 </td>
                             </tr>
+                            <tr>
+                                <td>
+                                    <img src="~/Content/images/concreto/Transferencia de Carga.jpg" style="width:100%; height:95%;" />
+                                </td>
+                            </tr>
                         </table>
                     </div>
                 </div>
@@ -738,7 +804,7 @@
                             <tr>
                                 <td colspan="4">
                                     <p align="justify">
-                                        Parámetro que determina la presión que se debe ejercer para lograr cierta 
+                                        Parámetro que determina la presión que se debe ejercer para lograr cierta
                                         deformacion. Puede contemplarse en capas intermedias granulares o tratadas
                                         como solo la capa de la subrasante.
                                     </p>
@@ -3435,6 +3501,52 @@
 
 
 
+        $("#btnAceptarModRotura").click(function () {
+
+            var valor = document.getElementById("txtValorModRotura").value;
+            var ResisCompre = document.getElementById("txtResistComp").value;
+
+            if (ResisCompre.length == 0) {
+                toastr.error("Ingrese Resistencia a la Comprensión!", 'ERROR', { timeOut: 2000 });
+                $("#EvaluaModuloRoturaModal .close").click();
+                return;
+            }
+
+            if (valor.length == 0) {
+                toastr.error("Ingrese un Valor!", 'ERROR', { timeOut: 2000 });
+                valor.focus();
+                return;
+            }
+
+
+            $.ajax
+                ({
+                    method: 'POST',
+                    url: '/ParametrosConcreto/ModuloRotura',
+                    data: { 'valor': valor, 'ResisCompre': ResisCompre },
+                    success: function (respuesta) {
+                        if (respuesta.length > 0) {
+                            document.getElementById("txtModRotura").value = respuesta;
+                            $("#EvaluaModuloRoturaModal .close").click();
+                        }
+                        else {
+                            toastr.error("Ingrese los datos!", 'ERROR', { timeOut: 2000 });
+                        }
+                    },
+                    error: function (xhr, status) {
+                        toastr.error(status, 'ERROR', { timeOut: 2000 });
+                    }
+
+                });
+
+
+
+        });
+
+        $("#txtResistComp").keyup(function (e) {
+            obtenerModuloElasticidad();
+        });
+
 
         LimpiarVariableTiempo();
         //GenerarTasaCrecxTiempo(1);
@@ -3477,6 +3589,38 @@
         }
 
     }
+
+
+    function obtenerModuloElasticidad() {
+
+        var ResisCompre = document.getElementById("txtResistComp").value;
+
+        if (ResisCompre.length == 0) {
+            return;
+        }
+
+
+        $.ajax
+            ({
+                method: 'POST',
+                url: '/ParametrosConcreto/ModuloElasticidad',
+                data: { 'ResisCompre': ResisCompre },
+                success: function (respuesta) {
+                    if (respuesta.length > 0) {
+                        document.getElementById("txtModElasticidad").value = respuesta;
+                    }
+                    else {
+                        toastr.error("Ingrese los datos!", 'ERROR', { timeOut: 2000 });
+                    }
+                },
+                error: function (xhr, status) {
+                    toastr.error(status, 'ERROR', { timeOut: 2000 });
+                }
+
+            });
+
+    }
+
 
 
     function DiferenciaServicialidad() {
