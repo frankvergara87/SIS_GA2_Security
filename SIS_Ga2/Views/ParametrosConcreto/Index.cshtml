@@ -92,13 +92,13 @@
                             <div class="form-group col-md-5">
                                 <label for="inlineFormInput" class="col-form-label col-form-label-sm">Módulo de Rotura (MR)&nbsp;&nbsp;&nbsp;</label>
                                 <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#ModRoturaModal"><i class="fa fa-question-circle"></i></button>
-                                <input id="txtModRotura" data-id="1" type="text" placeholder="Módulo de Rotura (MR)" readonly="readonly" class="column_filter mr-3 col-sm-10 form-control form-control-sm">
+                                <input id="txtModRotura" data-id="1" type="text" placeholder="Módulo de Rotura (MR)" readonly="readonly" class="column_filter mr-3 col-sm-10 form-control form-control-sm" onkeypress="return filterFloat(event,this);">
                                 <button type="button" id="btnEvaluaModRotura" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#EvaluaModuloRoturaModal"><span class="fa fa-cog"></span></button>
                             </div>
                             <div class="form-group col-md-5">
                                 <label for="inlineFormInput" class="col-form-label col-form-label-sm">Módulo de Elasticidad (Ec)</label>
                                 <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#ModElasticidadModal"><i class="fa fa-question-circle"></i></button>
-                                <input id="txtModElasticidad" data-id="4" type="text" placeholder="Módulo de Elasticidad (Ec)" class="column_filter mr-3 col-sm-12 form-control form-control-sm" onkeypress="return filterFloat(event,this);">
+                                <input id="txtModElasticidad" data-id="4" type="text" placeholder="Módulo de Elasticidad (Ec)" readonly="readonly" class="column_filter mr-3 col-sm-12 form-control form-control-sm" onkeypress="return filterFloat(event,this);">
                             </div>
                             <div class="form-group col-md-5">
                                 <label for="inlineFormInput" class="col-form-label col-form-label-sm">Coeficiente de Transferencia (J)</label>
@@ -108,14 +108,14 @@
                             <div class="form-group col-md-5">
                                 <label for="inlineFormInput" class="col-form-label col-form-label-sm">Módulo de Reacción (Kc)&nbsp;&nbsp;&nbsp;</label>
                                 <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#ModReaccionModal"><i class="fa fa-question-circle"></i></button>
-                                <input id="txtModReaccion" data-id="1" type="text" placeholder="Módulo de Reacción (Kc)" readonly="readonly" class="column_filter mr-3 col-sm-10 form-control form-control-sm">
-                                <button type="button" id="btnEvaluaModRotura" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#EvaluaResilenciaModal"><span class="fa fa-cog"></span></button>
+                                <input id="txtModReaccion" data-id="1" type="text" placeholder="Módulo de Reacción (Kc)" readonly="readonly" class="column_filter mr-3 col-sm-10 form-control form-control-sm" onkeypress="return filterFloat(event,this);">
+                                <button type="button" id="btnEvaluaModRotura" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#EvaluaModReaccionModal"><span class="fa fa-cog"></span></button>
                             </div>
                             <div class="form-group col-md-5">
                                 <label for="inlineFormInput" class="col-form-label col-form-label-sm">Coeficiente de Drenaje (Cd)&nbsp;&nbsp;&nbsp;</label>
                                 <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#CoefDrenajeModal"><i class="fa fa-question-circle"></i></button>
-                                <input id="txtCoefDrenaje" data-id="1" type="text" placeholder="Coeficiente de Drenaje (Cd)" readonly="readonly" class="column_filter mr-3 col-sm-10 form-control form-control-sm">
-                                <button type="button" id="btnEvaluaModRotura" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#EvaluaResilenciaModal"><span class="fa fa-cog"></span></button>
+                                <input id="txtCoefDrenaje" data-id="1" type="text" placeholder="Coeficiente de Drenaje (Cd)" readonly="readonly" class="column_filter mr-3 col-sm-10 form-control form-control-sm" onkeypress="return filterFloat(event,this);">
+                                <button type="button" id="btnEvaluaModRotura" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#EvaluaCoefDrenajeModal"><span class="fa fa-cog"></span></button>
                             </div>
                             @*Implementacion Concreto*@
 
@@ -850,6 +850,106 @@
             </div>
         </div>
     </div>
+
+    <!-- SUBMODAL --- COEFICIENTE DE DRENAJE-->
+
+    <div class="modal fade" id="EvaluaCoefDrenajeModal" tabindex="-1" role="dialog" aria-labelledby="EvaluaCoefDrenajeModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document" style="margin-right: 80px; margin-left: 280px;">
+            <div class="modal-content" style="width:800px;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">COEFICIENTES </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
+                            <tr>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td align="left" style="color:#FF0000">
+                                    <b>
+                                        <label>SUBBASE GRANULAR(m3):</label>
+                                    </b>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td align="left">
+                                    <label>Calidad de Drenaje de la Sub Base Granular </label>
+                                </td>
+                                <td>
+                                    <div class="form-group col-md-10">
+                                        <div class="form-inline">
+                                            @Html.DropDownList("ddlCalidadDrenajeSubBase", null, new { @class = "mr-3 col-sm-8 form-control form-control-sm" })
+                                            <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#infoDrenajeTiempoModal"><i class="fa fa-info-circle"></i></button>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td align="left">
+                                    <label>Coeficiente de Drenaje de la Sub Base Granular </label>
+                                </td>
+                                <td>
+                                    <input id="txtPorcDrenajeSubBase" type="text" readonly="readonly" class="mr-3 col-sm-8 form-control form-control-sm mascara">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left">
+                                    <label>Porcentaje de Exposición a Saturación </label>
+                                </td>
+                                <td>
+                                    <div class="form-group col-md-10">
+                                        <div class="form-inline">
+                                            <input id="txtPorcDrenajeSubBaseIng" type="text" value="25.00" class="mr-3 col-sm-8 form-control form-control-sm mascara">
+                                            <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#infoDrenajePorcentajeModal"><i class="fa fa-info-circle"></i></button>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td align="left" style="color:#FF0000">
+                                    <b>
+                                        <label>(ESCRIBE LOS VALORES)</label>
+                                    </b>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td align="left">
+                                    <label>Coeficiente de Drenaje de la Sub Base Granular (m3) </label>
+                                </td>
+                                <td>
+                                    <div class="form-group col-md-10">
+                                        <div class="form-inline">
+                                            <input id="txtPorcDrenajeSubBaseInput" type="text" class="mr-3 col-sm-8 form-control form-control-sm mascara">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btnFinalizaEvaluaCoefDrenaje" class="btn btn-primary">Finalizar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 
 
@@ -3547,6 +3647,19 @@
             obtenerModuloElasticidad();
         });
 
+        $("#btnFinalizaEvaluaCoefDrenaje").click(function () {
+
+            if (document.getElementById("txtPorcDrenajeSubBaseInput").value.length > 0) {
+                document.getElementById("txtCoefDrenaje").value = document.getElementById("txtPorcDrenajeSubBaseInput").value;
+            } else {
+                document.getElementById("txtCoefDrenaje").value = document.getElementById("txtPorcDrenajeSubBase").value;
+            }
+
+            $("#EvaluaCoefDrenajeModal .close").click();
+
+        });
+
+
 
         LimpiarVariableTiempo();
         //GenerarTasaCrecxTiempo(1);
@@ -3596,6 +3709,7 @@
         var ResisCompre = document.getElementById("txtResistComp").value;
 
         if (ResisCompre.length == 0) {
+            document.getElementById("txtModElasticidad").value = "";
             return;
         }
 
