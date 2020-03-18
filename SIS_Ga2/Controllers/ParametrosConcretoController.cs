@@ -1059,6 +1059,94 @@ namespace SIS_Ga2.Controllers
             }
 
         }
+        
+
+
+        public double ModuloReaccion_KEquivMpaM(decimal valor)
+        {
+            try
+            {
+                double KEquivMpaM = 0;
+
+                BLReglas bLReglas = new BLReglas();
+
+                KEquivMpaM = bLReglas.CalculoKEquivMpaM(Convert.ToDouble(valor));
+
+                return KEquivMpaM;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        public double ModuloReaccion_CalculoKgCm3(decimal valor)
+        {
+            try
+            {
+                double CalculoKgCm3 = 0;
+
+                BLReglas bLReglas = new BLReglas();
+
+                CalculoKgCm3 = bLReglas.CalculoKgCm3(Convert.ToDouble(valor));
+
+                return CalculoKgCm3;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        public double ModuloReaccion_CalcuKeqkgcm3(decimal k1, decimal ko, decimal hCm)
+        {
+            try
+            {
+                double CalcuKeqkgcm3 = 0;
+
+                BLReglas bLReglas = new BLReglas();
+
+                CalcuKeqkgcm3 = bLReglas.CalcuKeqkgcm3(Convert.ToDouble(k1), Convert.ToDouble(ko), Convert.ToDouble(hCm));
+
+                return CalcuKeqkgcm3;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        public double ModuloReaccion_CalcuKeqMpa(decimal valor)
+        {
+            try
+            {
+                double CalcuKeqMpa = 0;
+
+                BLReglas bLReglas = new BLReglas();
+
+                CalcuKeqMpa = bLReglas.CalcuKeqMpa(Convert.ToDouble(valor));
+
+                return CalcuKeqMpa;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        //CalcuKeqMpa
+
+
+
+
 
     }
 }

@@ -898,10 +898,10 @@
                                     <label>SubBase </label>
                                 </td>
                                 <td style="border: black 2px solid;">
-                                    <input id="txtCBR_SubBase_%" type="text" class="mr-3 col-sm-10 form-control form-control-sm mascara">
+                                    <input id="txtCBR_SubBase_Porc" type="text" class="mr-3 col-sm-10 form-control form-control-sm " onkeypress="return filterFloat(event,this);">
                                 </td>
                                 <td style="border: black 2px solid;">
-                                    <input id="txtH_SubBase_%" type="text" class="mr-3 col-sm-10 form-control form-control-sm mascara">
+                                    <input id="txtH_SubBase_Porc" type="text" class="mr-3 col-sm-10 form-control form-control-sm " onkeypress="return filterFloat(event,this);">
                                 </td>
                                 <td></td>
                             </tr>
@@ -913,7 +913,7 @@
                                     <label>SubRasante </label>
                                 </td>
                                 <td style="border: black 2px solid;">
-                                    <input id="txtCBR_SubRasante_%" type="text" class="mr-3 col-sm-10 form-control form-control-sm mascara">
+                                    <input id="txtCBR_SubRasante_Porc" type="text" class="mr-3 col-sm-10 form-control form-control-sm " onkeypress="return filterFloat(event,this);">
                                 </td>
                                 <td style="border: black 2px solid;"></td>
                                 <td></td>
@@ -955,10 +955,10 @@
                                     <label>K1 </label>
                                 </td>
                                 <td style="border: black 2px solid;">
-                                    <input id="txtMpa_K1_%" type="text" class="mr-3 col-sm-10 form-control form-control-sm mascara">
+                                    <input id="txtMpa_K1_Porc" type="text" class="mr-3 col-sm-10 form-control form-control-sm mascara">
                                 </td>
                                 <td style="border: black 2px solid;">
-                                    <input id="txtKg_K1_%" type="text" class="mr-3 col-sm-10 form-control form-control-sm mascara">
+                                    <input id="txtKg_K1_Porc" type="text" class="mr-3 col-sm-10 form-control form-control-sm mascara">
                                 </td>
                                 <td></td>
                                 <td style="font-size:80%;">
@@ -973,10 +973,10 @@
                                     <label>Ko </label>
                                 </td>
                                 <td style="border: black 2px solid;">
-                                    <input id="txtMpa_Ko_%" type="text" class="mr-3 col-sm-10 form-control form-control-sm mascara">
+                                    <input id="txtMpa_Ko_Porc" type="text" class="mr-3 col-sm-10 form-control form-control-sm mascara">
                                 </td>
                                 <td style="border: black 2px solid;">
-                                    <input id="txtKg_Ko_%" type="text" class="mr-3 col-sm-10 form-control form-control-sm mascara">
+                                    <input id="txtKg_Ko_Porc" type="text" class="mr-3 col-sm-10 form-control form-control-sm mascara">
                                 </td>
                                 <td></td>
                                 <td style="font-size:80%;">
@@ -991,10 +991,10 @@
                                     <label>Keq </label>
                                 </td>
                                 <td style="background-color:yellow; border: black 2px solid;">
-                                    <input id="txtMpa_Keq_%" type="text" class="mr-3 col-sm-10 form-control form-control-sm mascara">
+                                    <input id="txtMpa_Keq_Porc" type="text" class="mr-3 col-sm-10 form-control form-control-sm mascara">
                                 </td>
                                 <td style="background-color:yellow; border: black 2px solid;">
-                                    <input id="txtKg_Keq_%" type="text" class="mr-3 col-sm-10 form-control form-control-sm mascara">
+                                    <input id="txtKg_Keq_Porc" type="text" class="mr-3 col-sm-10 form-control form-control-sm mascara">
                                 </td>
                                 <td></td>
                                 <td style="font-size:80%;">
@@ -1007,7 +1007,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" id="btnFinalizaEvaluaCoefDrenaje" class="btn btn-primary">Finalizar</button>
+                    <button type="button" id="btnFinalizaCoefReaccionEqui" class="btn btn-primary">Finalizar</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>
@@ -3856,6 +3856,40 @@
         });
 
 
+        $("#txtCBR_SubBase_Porc").keyup(function (e) {
+            obtenerModuloReaccion_K1();            
+        });
+
+        $("#txtCBR_SubRasante_Porc").keyup(function (e) {
+            obtenerModuloReaccion_Ko();
+        });
+
+        $("#txtH_SubBase_Porc").keyup(function (e) {
+
+            valor = document.getElementById("txtH_SubBase_Porc").value;
+            if (valor.length == 0) {
+                document.getElementById("txtKg_Keq_Porc").value = "";
+                return;
+            }
+            obtenerModuloReaccion_Keqkgcm3();
+
+        });
+
+        $("#btnFinalizaCoefReaccionEqui").click(function () {
+
+            var Mpa_Keq_Porc = document.getElementById("txtMpa_Keq_Porc").value;
+
+            if (Mpa_Keq_Porc.length > 0) {
+                document.getElementById("txtModReaccion").value = document.getElementById("txtMpa_Keq_Porc").value;
+                $("#EvaluaModReaccionModal .close").click();
+            } else { return; }
+
+
+        });
+
+
+
+
 
         LimpiarVariableTiempo();
         //GenerarTasaCrecxTiempo(1);
@@ -3930,6 +3964,265 @@
             });
 
     }
+
+    function obtenerModuloReaccion_K1() {
+
+        var valor = document.getElementById("txtCBR_SubBase_Porc").value;
+
+        if (valor.length == 0) {
+            document.getElementById("txtMpa_K1_Porc").value = "";
+            document.getElementById("txtKg_K1_Porc").value = "";
+            document.getElementById("txtKg_Keq_Porc").value = "";
+            document.getElementById("txtMpa_Keq_Porc").value = "";            
+            return;
+        }
+
+
+        $.ajax
+            ({
+                method: 'POST',
+                url: '/ParametrosConcreto/ModuloReaccion_KEquivMpaM',
+                data: { 'valor': valor },
+                success: function (respuesta) {
+                    if (respuesta.length > 0) {                        
+                        document.getElementById("txtMpa_K1_Porc").value = respuesta;
+                        obtenerModuloReaccion_KgCm3_K1();   
+                    }
+                    else {
+                        toastr.error("Ingrese los datos!", 'ERROR', { timeOut: 2000 });
+                    }
+                },
+                error: function (xhr, status) {
+                    toastr.error(status, 'ERROR', { timeOut: 2000 });
+                }
+
+            });
+
+    }
+
+    function obtenerModuloReaccion_Ko() {
+
+        var valor = document.getElementById("txtCBR_SubRasante_Porc").value;
+
+        if (valor.length == 0) {
+            document.getElementById("txtMpa_Ko_Porc").value = "";
+            document.getElementById("txtKg_Ko_Porc").value = "";
+            document.getElementById("txtKg_Keq_Porc").value = "";
+            document.getElementById("txtMpa_Keq_Porc").value = "";
+            return;
+        }
+
+
+        $.ajax
+            ({
+                method: 'POST',
+                url: '/ParametrosConcreto/ModuloReaccion_KEquivMpaM',
+                data: { 'valor': valor },
+                success: function (respuesta) {
+                    if (respuesta.length > 0) {                        
+                        document.getElementById("txtMpa_Ko_Porc").value = respuesta;
+                        obtenerModuloReaccion_KgCm3_Ko();
+                    }
+                    else {
+                        toastr.error("Ingrese los datos!", 'ERROR', { timeOut: 2000 });
+                    }
+                },
+                error: function (xhr, status) {
+                    toastr.error(status, 'ERROR', { timeOut: 2000 });
+                }
+
+            });
+
+    }
+
+    function obtenerModuloReaccion_KgCm3_K1() {
+
+        var valor = document.getElementById("txtMpa_K1_Porc").value;
+
+        $.ajax
+            ({
+                method: 'POST',
+                url: '/ParametrosConcreto/ModuloReaccion_CalculoKgCm3',
+                data: { 'valor': valor },
+                success: function (respuesta) {
+                    if (respuesta.length > 0) {                        
+                        document.getElementById("txtKg_K1_Porc").value = respuesta;
+
+                        var k1 = document.getElementById("txtKg_K1_Porc").value;
+                        var ko = document.getElementById("txtKg_Ko_Porc").value;
+                        var hCm = document.getElementById("txtH_SubBase_Porc").value;
+
+                        if (k1.length == 0) {
+                            return;
+                        }
+                        if (ko.length == 0) {
+                            return;
+                        }
+                        if (hCm.length == 0) {
+                            return;
+                        }
+
+                        $.ajax
+                            ({
+                                method: 'POST',
+                                url: '/ParametrosConcreto/ModuloReaccion_CalcuKeqkgcm3',
+                                data: { 'k1': k1, 'ko': ko, 'hCm': hCm },
+                                success: function (respuesta) {
+                                    if (respuesta.length > 0) {                        
+                                        document.getElementById("txtKg_Keq_Porc").value = respuesta;
+                                        obtenerModuloReaccion_KeqMpa()
+                                    }
+                                    else {
+                                        toastr.error("Ingrese los datos!", 'ERROR', { timeOut: 2000 });
+                                    }
+                                },
+                                error: function (xhr, status) {
+                                    toastr.error(status, 'ERROR', { timeOut: 2000 });
+                                }
+
+                        });
+
+                    }
+                    else {
+                        toastr.error("Ingrese los datos!", 'ERROR', { timeOut: 2000 });
+                    }
+                },
+                error: function (xhr, status) {
+                    toastr.error(status, 'ERROR', { timeOut: 2000 });
+                }
+
+            });
+
+    }
+
+    function obtenerModuloReaccion_KgCm3_Ko() {
+
+        var valor = document.getElementById("txtMpa_Ko_Porc").value;
+
+        $.ajax
+            ({
+                method: 'POST',
+                url: '/ParametrosConcreto/ModuloReaccion_CalculoKgCm3',
+                data: { 'valor': valor },
+                success: function (respuesta) {
+                    if (respuesta.length > 0) {                        
+                        document.getElementById("txtKg_Ko_Porc").value = respuesta;
+
+                        var k1 = document.getElementById("txtKg_K1_Porc").value;
+                        var ko = document.getElementById("txtKg_Ko_Porc").value;
+                        var hCm = document.getElementById("txtH_SubBase_Porc").value;
+
+                        if (k1.length == 0) {
+                            return;
+                        }
+                        if (ko.length == 0) {
+                            return;
+                        }
+                        if (hCm.length == 0) {
+                            return;
+                        }
+
+                        $.ajax
+                            ({
+                                method: 'POST',
+                                url: '/ParametrosConcreto/ModuloReaccion_CalcuKeqkgcm3',
+                                data: { 'k1': k1, 'ko': ko, 'hCm': hCm },
+                                success: function (respuesta) {
+                                    if (respuesta.length > 0) {                        
+                                        document.getElementById("txtKg_Keq_Porc").value = respuesta;
+                                        obtenerModuloReaccion_KeqMpa()
+                                    }
+                                    else {
+                                        toastr.error("Ingrese los datos!", 'ERROR', { timeOut: 2000 });
+                                    }
+                                },
+                                error: function (xhr, status) {
+                                    toastr.error(status, 'ERROR', { timeOut: 2000 });
+                                }
+
+                        });
+
+                    }
+                    else {
+                        toastr.error("Ingrese los datos!", 'ERROR', { timeOut: 2000 });
+                    }
+                },
+                error: function (xhr, status) {
+                    toastr.error(status, 'ERROR', { timeOut: 2000 });
+                }
+
+            });
+
+    }
+
+    function obtenerModuloReaccion_Keqkgcm3() {
+
+        var k1 = document.getElementById("txtKg_K1_Porc").value;
+        var ko = document.getElementById("txtKg_Ko_Porc").value;
+        var hCm = document.getElementById("txtH_SubBase_Porc").value;
+
+        if (k1.length == 0) {
+            return;
+        }
+        if (ko.length == 0) {
+            return;
+        }
+        if (hCm.length == 0) {
+            return;
+        }
+
+        $.ajax
+            ({
+                method: 'POST',
+                url: '/ParametrosConcreto/ModuloReaccion_CalcuKeqkgcm3',
+                data: { 'k1': k1, 'ko': ko, 'hCm': hCm },
+                success: function (respuesta) {
+                    if (respuesta.length > 0) {                        
+                        document.getElementById("txtKg_Keq_Porc").value = respuesta;
+                        obtenerModuloReaccion_KeqMpa()
+                    }
+                    else {
+                        toastr.error("Ingrese los datos!", 'ERROR', { timeOut: 2000 });
+                    }
+                },
+                error: function (xhr, status) {
+                    toastr.error(status, 'ERROR', { timeOut: 2000 });
+                }
+
+        });
+
+    }
+
+    function obtenerModuloReaccion_KeqMpa() {
+
+        var valorf = document.getElementById("txtKg_Keq_Porc").value;
+
+        if (valorf.length == 0) {
+            return;
+        }
+
+        $.ajax
+            ({
+                method: 'POST',
+                url: '/ParametrosConcreto/ModuloReaccion_CalcuKeqMpa',
+                data: { 'valor': valorf },
+                success: function (respuesta) {
+                    if (respuesta.length > 0) {                        
+                        document.getElementById("txtMpa_Keq_Porc").value = respuesta;
+                    }
+                    else {
+                        toastr.error("Ingrese los datos!", 'ERROR', { timeOut: 2000 });
+                    }
+                },
+                error: function (xhr, status) {
+                    toastr.error(status, 'ERROR', { timeOut: 2000 });
+                }
+
+        });
+
+    }
+
+
 
 
 
