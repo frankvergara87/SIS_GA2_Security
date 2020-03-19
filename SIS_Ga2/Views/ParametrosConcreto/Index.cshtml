@@ -172,44 +172,36 @@
                             <tr>
                                 <td width="160px" rowspan="4">
                                     <div class="form-group col-md-6 text-lg-right">
-                                        <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#BaseSubModal"><i class="fa fa-question-circle"></i></button>
-                                        <img src="~/Content/images/asfalto_1.jpg" width="200" height="180" class="">
+                                        <img src="../Content/images/concreto/Pavimento_Cuadro.jpg" width="170" height="180" class="">
                                     </div>
                                 </td>
-                                <td width="70px"></td>
-                                <td>
+                                <td colspan="2">
                                     <div class="form-group col-md-12">
-                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">ME</label>
+                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">f'c</label>
                                         <div class="form-inline">
-                                            <input id="txtME" data-id="4" type="text" value="450,000" placeholder="ME" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                            <input id="txtFC" data-id="4" type="text" placeholder="f'c" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
                                             <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#MEModal"><i class="fa fa-question-circle"></i></button>
                                         </div>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td>
+                                <td colspan="2">
                                     <div class="form-group col-md-12">
-                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">California Bearing Ratio (CBR)</label>
+                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">CBR</label>
                                         <div class="form-inline">
-                                            <input id="txtCBR_1" data-id="1" type="text" value="80.00" placeholder="California Bearing Ratio (CBR" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                            <input id="txtCBR_1" data-id="1" type="text" placeholder="CBR" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
                                             <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#CBR_1_Modal"><i class="fa fa-question-circle"></i></button>
                                         </div>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <td>
-                                    <button type="button" id="btninfoCBR" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#infoCBRModal">
-                                        <img src="~/Content/images/asfalto_2.jpg" width="70" height="90" class="">
-                                    </button>
-                                </td>
-                                <td>
+                                <td colspan="2">
                                     <div class="form-group col-md-12">
-                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">California Bearing Ratio (CBR)</label>
+                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">CBR</label>
                                         <div class="form-inline">
-                                            <input id="txtCBR_2" data-id="1" type="text" value="40.00" placeholder="California Bearing Ratio (CBR)" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                            <input id="txtCBR_2" data-id="1" type="text" placeholder="CBR" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
                                             <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#CBR_2_Modal"><i class="fa fa-question-circle"></i></button>
                                         </div>
                                     </div>
@@ -217,24 +209,8 @@
                             </tr>
                             <tr>
                                 <td></td>
-                                <td>
-                                    <div class="form-group col-md-12">
-                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">California Bearing Ratio (CBR)</label>
-                                        <div class="form-inline">
-                                            <input id="txtCBR_3" data-id="1" type="text" value="10.00" placeholder="California Bearing Ratio (CBR)" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
-                                            <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#CBR_3_Modal"><i class="fa fa-question-circle"></i></button>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="form-group col-md-12">
-                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">Módulo de Rotura PSI</label>
-                                        <div class="form-inline">
-                                            <input id="txtModRoturaPSI" data-id="1" type="text" readonly="readonly" placeholder="Módulo de Rotura PSI" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
-                                            <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#MR_Modal"><i class="fa fa-question-circle"></i></button>
-                                        </div>
-                                    </div>
-                                </td>
+                                <td></td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td colspan="4">&nbsp;&nbsp;&nbsp;</td>
@@ -242,7 +218,7 @@
                             <tr>
                                 <td colspan="4">
                                     <div class="text-center">
-                                        <img src="~/Content/images/img_b.jpg">
+                                        <img src="../Content/images/concreto/Pavimento_Formula.jpg">
                                     </div>
                                 </td>
                             </tr>
@@ -278,7 +254,7 @@
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
+                            @*<tr>
                                 <td>
                                     <div class="form-group col-md-12">
                                         <div class="form-inline">
@@ -295,7 +271,7 @@
                                     </div>
                                 </td>
                                 <td>&nbsp;</td>
-                            </tr>
+                            </tr>*@
                         </table>
                     </div>
                     <div class="card-header">
@@ -846,7 +822,7 @@
                                     </b>
                                 </td>
                                 <td>
-                                    <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#EvaluaCoefDrenajeModal"><i class="fa fa-question-circle"></i></button>
+                                    <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#infoModReaccionDocumentosModal"><i class="fa fa-question-circle"></i></button>
                                 </td>
                             </tr>
                             <tr>
@@ -887,12 +863,12 @@
                                 </td>
                                 <td></td>
                                 <td rowspan="3">
-                                    <img src="~/Content/images/concreto/Modulo Reaccion Equivalente.jpg" "  />
+                                    <img src="~/Content/images/concreto/Modulo Reaccion Equivalente.jpg" "          />
                                 </td>
                             </tr>
                             <tr>
                                 <td>
-                                    <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#EvaluaCoefDrenajeModal"><i class="fa fa-question-circle"></i></button>
+                                    <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#infoModReaccionSubBaseModal"><i class="fa fa-question-circle"></i></button>
                                 </td>
                                 <td align="left" style="background-color:darkred; color:white; border: black 2px solid;">
                                     <label>SubBase </label>
@@ -907,7 +883,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#EvaluaCoefDrenajeModal"><i class="fa fa-question-circle"></i></button>
+                                    <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#infoModReaccionSubRasanteModal"><i class="fa fa-question-circle"></i></button>
                                 </td>
                                 <td align="left" style="background-color:khaki; color:black; border: black 2px solid;">
                                     <label>SubRasante </label>
@@ -1008,6 +984,132 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" id="btnFinalizaCoefReaccionEqui" class="btn btn-primary">Finalizar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SUBMODAL --- INFO SUBBASE --- MODULO DE REACCION-->
+    <div class="modal fade" id="infoModReaccionSubBaseModal" tabindex="-1" role="dialog" aria-labelledby="infoModReaccionSubBaseModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="width:650px;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">MR</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
+                            <tr>
+                                <td colspan="4">
+                                    <p align="justify">
+                                        Expresa la resistencia a la flexión debido a que los pavimentos de concreto
+                                        trabajan principalmente a flexión es que se relacion este parámetro con la resistencia
+                                        a la comprensión.
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SUBMODAL --- INFO SUBRASANTE --- MODULO DE REACCION-->
+    <div class="modal fade" id="infoModReaccionSubRasanteModal" tabindex="-1" role="dialog" aria-labelledby="infoModReaccionSubRasanteModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="width:650px;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">SUB BASE </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
+                            <tr>
+                                <td colspan="4">
+                                    <p align="justify">
+                                        Capa que no es empleada siempre en el pavimento, impide que el agua de las
+                                        terracerías ascienda por capilaridad y evitar que el pavimento sea absorvido
+                                        por la sub-rasante. Además, se ahorra dinero al poder transformar un cierto
+                                        espesor de la capa de base a un espesor.
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" style="color:red">
+                                    <p align="justify">
+                                        Espesor Sub-Base:
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4">
+                                    <p align="justify">
+                                        El espesor mínimo requerido es de 15 cm.
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" style="color:red">
+                                    <p align="justify">
+                                        Requerimiento CBR:
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4">
+                                    <p align="justify">
+                                        Se recomienda que el CBR de la subbase sea mayor o igual a 30%.
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SUBMODAL --- INFO DOCUMENTOS --- MODULO DE REACCION-->
+    <div class="modal fade" id="infoModReaccionDocumentosModal" tabindex="-1" role="dialog" aria-labelledby="infoModReaccionDocumentosModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="width:550px;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">INFORMACIÓN </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
+                            <tr>
+                                <td>
+                                    <img src="../Content/images/concreto/ModuloReaccionEquivalenteTexto.jpg" style="width:100%; height:100%;" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="../Content/images/concreto/ModuloReaccionEquivalenteImagen.jpg" style="width:100%; height:100%;" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                 </div>
             </div>
@@ -1214,7 +1316,7 @@
                                     </p>
                                 </td>
                                 <td align="right">
-                                    <img src="~/Content/images/param_esal_3.jpg" style="width:100%; height:70%;" /> 
+                                    <img src="~/Content/images/param_esal_3.jpg" style="width:100%; height:70%;" />
                                 </td>
                             </tr>
                         </table>
@@ -1369,34 +1471,6 @@
 
 
 
-    <!-- BASE SUB-BASE SUB-RASANTE -->
-    <div class="modal fade" id="BaseSubModal" tabindex="-1" role="dialog" aria-labelledby="BaseSubModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content" style="width:650px;">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">INFORMACIÓN </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="table-responsive">
-                        <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
-                            <tr>
-                                <td>
-                                    <img src="~/Content/images/pavimento_1.jpg" style="width:100%; height:70%;" />
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- ME -->
     <div class="modal fade" id="MEModal" tabindex="-1" role="dialog" aria-labelledby="MEModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -1520,90 +1594,7 @@
         </div>
     </div>
 
-    <!-- MODULO DE RESILENCIA (MR) -->
-    <div class="modal fade" id="MR_Modal" tabindex="-1" role="dialog" aria-labelledby="MR_ModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content" style="width:650px;">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">MÓDULO DE RESILENCIA (MR) </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="table-responsive">
-                        <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
-                            <tr>
-                                <td colspan="4">
-                                    <p align="justify">
-                                        Es el índice que describe la relación no lineal de esfuerzos - deformaciones de los
-                                        suelos bajo cargas repetidas.
-                                    </p>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- info CBR MODAL -->
-    <div class="modal fade" id="infoCBRModal" tabindex="-1" role="dialog" aria-labelledby="infoCBRModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content" style="width:650px;">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">CBR</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="table-responsive">
-                        <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
-                            <tr>
-                                <td colspan="2">
-                                    <p align="justify">
-                                        CBR (California Bearing Ratio): Evalúa la calidad del suelo por medio de la
-                                        resistencia al esfuerzo cortante. Se efectúa bajo condiciones controladas de humedad
-                                        y densidad.
-                                    </p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                        <li class="nav-item">
-                                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">CUADRO CBR</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">GRÁFICO CBR</a>
-                                        </li>
-                                    </ul>
-                                    <div class="tab-content" id="myTabContent">
-                                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                            <p> &nbsp; &nbsp; &nbsp;</p>
-                                            <img src="~/Content/images/asfalto_3.jpg" style="width:100%; height:70%;" />
-                                        </div>
-                                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab" style="text-align:center;">
-                                            <p> &nbsp; &nbsp; &nbsp;</p>
-                                            <img src="~/Content/images/asfalto_4.jpg" style="width:70%; height:100%;" />
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
 
@@ -2773,7 +2764,7 @@
             document.getElementById("txtCantidadESAL").value = '';
             document.getElementById("txtConfiab").value = '';
             document.getElementById("txtErrorComb").value = '';
-            document.getElementById("txtModResilenciaSub").value = '';
+            //document.getElementById("txtModResilenciaSub").value = '';
             document.getElementById("txtServInicial").value = '';
             document.getElementById("txtServFinal").value = '';
             document.getElementById("txtDifServ").value = '';
@@ -2790,11 +2781,11 @@
                 return;
             }
 
-            varModResilenciaSub = document.getElementById("txtModResilenciaSub").value;
-            if (varModResilenciaSub == '') {
-                toastr.error("Ingrese Módulo de Resilencia!", 'ERROR', { timeOut: 2000 });
-                return;
-            }
+            //varModResilenciaSub = document.getElementById("txtModResilenciaSub").value;
+            //if (varModResilenciaSub == '') {
+            //    toastr.error("Ingrese Módulo de Resilencia!", 'ERROR', { timeOut: 2000 });
+            //    return;
+            //}
 
             varServInicial = document.getElementById("txtServInicial").value;
             if (varServInicial == '') {
@@ -2846,56 +2837,56 @@
                 CantidadESAL = 0;
             }
 
-            $.ajax
-                ({
-                    method: 'POST',
-                    url: '/ParametrosConcreto/calcularN18Nom',
-                    data: { 'CantESAL': CantidadESAL },
-                    success: function (respuesta) {
+            //$.ajax
+            //    ({
+            //        method: 'POST',
+            //        url: '/ParametrosConcreto/calcularN18Nom',
+            //        data: { 'CantESAL': CantidadESAL },
+            //        success: function (respuesta) {
 
-                        document.getElementById("txtN18Nominal").value = roundNumber(respuesta);
+            //            document.getElementById("txtN18Nominal").value = roundNumber(respuesta);
 
-                    },
-                    error: function (xhr, status) {
-                        alert("ERROR DE CÓDIGO");
-                    }
+            //        },
+            //        error: function (xhr, status) {
+            //            alert("ERROR DE CÓDIGO");
+            //        }
 
-                });
-
-
-            $.ajax
-                ({
-                    method: 'POST',
-                    url: '/ParametrosConcreto/calcularN18Calc2',
-                    data: { 'DifServiciabilidad': DifServiciabilidad },
-                    success: function (respuesta) {
-
-                        document.getElementById("txtN18Calculado2").value = roundNumber(respuesta);
-
-                    },
-                    error: function (xhr, status) {
-                        alert("ERROR DE CÓDIGO");
-                    }
-
-                });
+            //    });
 
 
+            //$.ajax
+            //    ({
+            //        method: 'POST',
+            //        url: '/ParametrosConcreto/calcularN18Calc2',
+            //        data: { 'DifServiciabilidad': DifServiciabilidad },
+            //        success: function (respuesta) {
 
-            $.ajax
-                ({
-                    method: 'POST',
-                    url: '/ParametrosConcreto/calcularN18Calc1',
-                    data: { 'ErrorCombiEstandar': ErrorCombiEstandar, 'DesviEstandar': DesviEstandar, 'valorMR': valorMR, 'DifServiciabilidad': DifServiciabilidad },
-                    success: function (respuesta) {
+            //            document.getElementById("txtN18Calculado2").value = roundNumber(respuesta);
 
-                        document.getElementById("txtN18Calculado").value = roundNumber(respuesta);
+            //        },
+            //        error: function (xhr, status) {
+            //            alert("ERROR DE CÓDIGO");
+            //        }
 
-                    },
-                    error: function (xhr, status) {
-                        alert("ERROR DE CÓDIGO");
-                    }
+            //    });
 
-                });
+
+
+            //$.ajax
+            //    ({
+            //        method: 'POST',
+            //        url: '/ParametrosConcreto/calcularN18Calc1',
+            //        data: { 'ErrorCombiEstandar': ErrorCombiEstandar, 'DesviEstandar': DesviEstandar, 'valorMR': valorMR, 'DifServiciabilidad': DifServiciabilidad },
+            //        success: function (respuesta) {
+
+            //            document.getElementById("txtN18Calculado").value = roundNumber(respuesta);
+
+            //        },
+            //        error: function (xhr, status) {
+            //            alert("ERROR DE CÓDIGO");
+            //        }
+
+            //    });
 
 
         });
@@ -2920,7 +2911,7 @@
 
             valorMR = document.getElementById("txtModRoturaPSI").value;
             N18Calc = document.getElementById("txtN18Calculado").value;
-            N18Calc2 = document.getElementById("txtN18Calculado2").value;
+            //N18Calc2 = document.getElementById("txtN18Calculado2").value;
             N18Nominal = document.getElementById("txtN18Nominal").value;
 
 
@@ -3028,11 +3019,11 @@
         $("#btnEvaluaResilencia").click(function () {
             document.getElementById("txtCBR").value = '';
             document.getElementById("txtMR").value = '';
-            document.getElementById("txtModResilenciaSub").value = '';
+            //document.getElementById("txtModResilenciaSub").value = '';
         });
 
         $("#btnCalcularMR").click(function () {
-            document.getElementById("txtModResilenciaSub").value = delimitNumbers(document.getElementById("txtMR").value);
+            //document.getElementById("txtModResilenciaSub").value = delimitNumbers(document.getElementById("txtMR").value);
             document.getElementById("txtModRoturaPSI").value = delimitNumbers(document.getElementById("txtMR").value);
 
             $("#EvaluaResilenciaModal .close").click();
@@ -3552,8 +3543,8 @@
 
 
         //txtCBR_1 - txtCBR_2
-        ObtenerCoeficienteA2(document.getElementById("txtCBR_1").value);
-        ObtenerCoeficienteA3(document.getElementById("txtCBR_2").value);
+        //ObtenerCoeficienteA2(document.getElementById("txtCBR_1").value);
+        //ObtenerCoeficienteA3(document.getElementById("txtCBR_2").value);
 
 
 
@@ -3840,6 +3831,7 @@
         });
 
         $("#txtResistComp").keyup(function (e) {
+            document.getElementById("txtFC").value = document.getElementById("txtResistComp").value;
             obtenerModuloElasticidad();
         });
 
@@ -3857,10 +3849,12 @@
 
 
         $("#txtCBR_SubBase_Porc").keyup(function (e) {
+            document.getElementById("txtCBR_1").value = document.getElementById("txtCBR_SubBase_Porc").value;
             obtenerModuloReaccion_K1();            
         });
 
         $("#txtCBR_SubRasante_Porc").keyup(function (e) {
+            document.getElementById("txtCBR_2").value = document.getElementById("txtCBR_SubRasante_Porc").value;
             obtenerModuloReaccion_Ko();
         });
 
