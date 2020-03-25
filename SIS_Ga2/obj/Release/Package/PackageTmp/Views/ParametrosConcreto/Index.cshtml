@@ -92,13 +92,13 @@
                             <div class="form-group col-md-5">
                                 <label for="inlineFormInput" class="col-form-label col-form-label-sm">Módulo de Rotura (MR)&nbsp;&nbsp;&nbsp;</label>
                                 <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#ModRoturaModal"><i class="fa fa-question-circle"></i></button>
-                                <input id="txtModRotura" data-id="1" type="text" placeholder="Módulo de Rotura (MR)" readonly="readonly" class="column_filter mr-3 col-sm-10 form-control form-control-sm">
-                                <button type="button" id="btnEvaluaModRotura" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#EvaluaResilenciaModal"><span class="fa fa-cog"></span></button>
+                                <input id="txtModRotura" data-id="1" type="text" placeholder="Módulo de Rotura (MR)" readonly="readonly" class="column_filter mr-3 col-sm-10 form-control form-control-sm" onkeypress="return filterFloat(event,this);">
+                                <button type="button" id="btnEvaluaModRotura" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#EvaluaModuloRoturaModal"><span class="fa fa-cog"></span></button>
                             </div>
                             <div class="form-group col-md-5">
                                 <label for="inlineFormInput" class="col-form-label col-form-label-sm">Módulo de Elasticidad (Ec)</label>
                                 <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#ModElasticidadModal"><i class="fa fa-question-circle"></i></button>
-                                <input id="txtModElasticidad" data-id="4" type="text" placeholder="Módulo de Elasticidad (Ec)" class="column_filter mr-3 col-sm-12 form-control form-control-sm" onkeypress="return filterFloat(event,this);">
+                                <input id="txtModElasticidad" data-id="4" type="text" placeholder="Módulo de Elasticidad (Ec)" readonly="readonly" class="column_filter mr-3 col-sm-12 form-control form-control-sm" onkeypress="return filterFloat(event,this);">
                             </div>
                             <div class="form-group col-md-5">
                                 <label for="inlineFormInput" class="col-form-label col-form-label-sm">Coeficiente de Transferencia (J)</label>
@@ -108,14 +108,14 @@
                             <div class="form-group col-md-5">
                                 <label for="inlineFormInput" class="col-form-label col-form-label-sm">Módulo de Reacción (Kc)&nbsp;&nbsp;&nbsp;</label>
                                 <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#ModReaccionModal"><i class="fa fa-question-circle"></i></button>
-                                <input id="txtModReaccion" data-id="1" type="text" placeholder="Módulo de Reacción (Kc)" readonly="readonly" class="column_filter mr-3 col-sm-10 form-control form-control-sm">
-                                <button type="button" id="btnEvaluaModRotura" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#EvaluaResilenciaModal"><span class="fa fa-cog"></span></button>
+                                <input id="txtModReaccion" data-id="1" type="text" placeholder="Módulo de Reacción (Kc)" readonly="readonly" class="column_filter mr-3 col-sm-10 form-control form-control-sm" onkeypress="return filterFloat(event,this);">
+                                <button type="button" id="btnEvaluaModRotura" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#EvaluaModReaccionModal"><span class="fa fa-cog"></span></button>
                             </div>
                             <div class="form-group col-md-5">
                                 <label for="inlineFormInput" class="col-form-label col-form-label-sm">Coeficiente de Drenaje (Cd)&nbsp;&nbsp;&nbsp;</label>
                                 <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#CoefDrenajeModal"><i class="fa fa-question-circle"></i></button>
-                                <input id="txtCoefDrenaje" data-id="1" type="text" placeholder="Coeficiente de Drenaje (Cd)" readonly="readonly" class="column_filter mr-3 col-sm-10 form-control form-control-sm">
-                                <button type="button" id="btnEvaluaModRotura" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#EvaluaResilenciaModal"><span class="fa fa-cog"></span></button>
+                                <input id="txtCoefDrenaje" data-id="1" type="text" placeholder="Coeficiente de Drenaje (Cd)" readonly="readonly" class="column_filter mr-3 col-sm-10 form-control form-control-sm" onkeypress="return filterFloat(event,this);">
+                                <button type="button" id="btnEvaluaModRotura" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#EvaluaCoefDrenajeModal"><span class="fa fa-cog"></span></button>
                             </div>
                             @*Implementacion Concreto*@
 
@@ -172,44 +172,36 @@
                             <tr>
                                 <td width="160px" rowspan="4">
                                     <div class="form-group col-md-6 text-lg-right">
-                                        <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#BaseSubModal"><i class="fa fa-question-circle"></i></button>
-                                        <img src="~/Content/images/asfalto_1.jpg" width="200" height="180" class="">
+                                        <img src="../Content/images/concreto/Pavimento_Cuadro.jpg" width="170" height="180" class="">
                                     </div>
                                 </td>
-                                <td width="70px"></td>
-                                <td>
+                                <td colspan="2">
                                     <div class="form-group col-md-12">
-                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">ME</label>
+                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">f'c</label>
                                         <div class="form-inline">
-                                            <input id="txtME" data-id="4" type="text" value="450,000" placeholder="ME" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                            <input id="txtFC" data-id="4" type="text" placeholder="f'c" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
                                             <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#MEModal"><i class="fa fa-question-circle"></i></button>
                                         </div>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td>
+                                <td colspan="2">
                                     <div class="form-group col-md-12">
-                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">California Bearing Ratio (CBR)</label>
+                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">CBR</label>
                                         <div class="form-inline">
-                                            <input id="txtCBR_1" data-id="1" type="text" value="80.00" placeholder="California Bearing Ratio (CBR" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                            <input id="txtCBR_1" data-id="1" type="text" placeholder="CBR" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
                                             <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#CBR_1_Modal"><i class="fa fa-question-circle"></i></button>
                                         </div>
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <td>
-                                    <button type="button" id="btninfoCBR" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#infoCBRModal">
-                                        <img src="~/Content/images/asfalto_2.jpg" width="70" height="90" class="">
-                                    </button>
-                                </td>
-                                <td>
+                                <td colspan="2">
                                     <div class="form-group col-md-12">
-                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">California Bearing Ratio (CBR)</label>
+                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">CBR</label>
                                         <div class="form-inline">
-                                            <input id="txtCBR_2" data-id="1" type="text" value="40.00" placeholder="California Bearing Ratio (CBR)" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
+                                            <input id="txtCBR_2" data-id="1" type="text" placeholder="CBR" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
                                             <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#CBR_2_Modal"><i class="fa fa-question-circle"></i></button>
                                         </div>
                                     </div>
@@ -217,24 +209,8 @@
                             </tr>
                             <tr>
                                 <td></td>
-                                <td>
-                                    <div class="form-group col-md-12">
-                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">California Bearing Ratio (CBR)</label>
-                                        <div class="form-inline">
-                                            <input id="txtCBR_3" data-id="1" type="text" value="10.00" placeholder="California Bearing Ratio (CBR)" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
-                                            <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#CBR_3_Modal"><i class="fa fa-question-circle"></i></button>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td>
-                                    <div class="form-group col-md-12">
-                                        <label for="inlineFormInput" class="col-form-label col-form-label-sm">Módulo de Rotura PSI</label>
-                                        <div class="form-inline">
-                                            <input id="txtModRoturaPSI" data-id="1" type="text" readonly="readonly" placeholder="Módulo de Rotura PSI" class="column_filter mr-1 col-sm-8 form-control form-control-sm">
-                                            <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#MR_Modal"><i class="fa fa-question-circle"></i></button>
-                                        </div>
-                                    </div>
-                                </td>
+                                <td></td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td colspan="4">&nbsp;&nbsp;&nbsp;</td>
@@ -242,7 +218,7 @@
                             <tr>
                                 <td colspan="4">
                                     <div class="text-center">
-                                        <img src="~/Content/images/img_b.jpg">
+                                        <img src="../Content/images/concreto/Pavimento_Formula.jpg">
                                     </div>
                                 </td>
                             </tr>
@@ -278,7 +254,7 @@
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
+                            @*<tr>
                                 <td>
                                     <div class="form-group col-md-12">
                                         <div class="form-inline">
@@ -295,7 +271,7 @@
                                     </div>
                                 </td>
                                 <td>&nbsp;</td>
-                            </tr>
+                            </tr>*@
                         </table>
                     </div>
                     <div class="card-header">
@@ -619,6 +595,11 @@
                                     </p>
                                 </td>
                             </tr>
+                            <tr>
+                                <td>
+                                    <img src="~/Content/images/concreto/Resistencia a la Comprension.jpg" style="width:100%; height:95%;" />
+                                </td>
+                            </tr>
                         </table>
                     </div>
                 </div>
@@ -661,10 +642,68 @@
         </div>
     </div>
 
+    <!-- SUBMODAL --- MODULO DE ROTURA-->
+    <div class="modal fade" id="EvaluaModuloRoturaModal" tabindex="-1" role="dialog" aria-labelledby="EvaluaModuloRoturaModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document" style="margin-right: 80px; margin-left: 480px;">
+            <div class="modal-content" style="width:430px;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">MR - Cálculo </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
+                            <tr>
+                                <td align="left" colspan="4">
+                                    <img src="~/Content/images/concreto/Modulo de Rotura.jpg" style="width:100%; height:100%;" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td align="left">
+                                    <label>a =</label>
+                                </td>
+                                <td>
+                                    <input id="txtValorModRotura" type="text" placeholder="Valor" class="mr-3 col-sm-6 form-control form-control-sm input-number">
+                                </td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td colspan="4">
+                                    <p align="justify">
+                                        Valor recomendado: 2.4 a 2.6
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btnAceptarModRotura" class="btn btn-primary">Aceptar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
     <!-- MODULO DE ELASTICIDAD-->
     <div class="modal fade" id="ModElasticidadModal" tabindex="-1" role="dialog" aria-labelledby="ModElasticidadModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content" style="width:650px;">
+        <div class="modal-dialog" role="document" style="margin-right: 80px; margin-left: 500px;">
+            <div class="modal-content" style="width:260px;">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">EC</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -675,10 +714,8 @@
                     <div class="table-responsive">
                         <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
                             <tr>
-                                <td colspan="4">
-                                    <p align="justify">
-                                        Pendiente Fórmula.
-                                    </p>
+                                <td>
+                                    <img src="~/Content/images/concreto/Modulo de Elasticidad.jpg" style="width:100%; height:100%;" />
                                 </td>
                             </tr>
                         </table>
@@ -712,6 +749,11 @@
                                     </p>
                                 </td>
                             </tr>
+                            <tr>
+                                <td>
+                                    <img src="~/Content/images/concreto/Transferencia de Carga.jpg" style="width:100%; height:95%;" />
+                                </td>
+                            </tr>
                         </table>
                     </div>
                 </div>
@@ -738,7 +780,7 @@
                             <tr>
                                 <td colspan="4">
                                     <p align="justify">
-                                        Parámetro que determina la presión que se debe ejercer para lograr cierta 
+                                        Parámetro que determina la presión que se debe ejercer para lograr cierta
                                         deformacion. Puede contemplarse en capas intermedias granulares o tratadas
                                         como solo la capa de la subrasante.
                                     </p>
@@ -753,6 +795,329 @@
             </div>
         </div>
     </div>
+
+    <!-- SUBMODAL --- MODULO DE REACCION-->
+    <div class="modal fade" id="EvaluaModReaccionModal" tabindex="-1" role="dialog" aria-labelledby="EvaluaModReaccionModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document" style="margin-right: 80px; margin-left: 280px;">
+            <div class="modal-content" style="width:800px;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">COEFICIENTE DE REACCIÓN EQUIVALENTE (Keq) </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
+                            <tr>
+                                <td></td>
+                                <td align="left" colspan="3" style="font-size:90%;">
+                                    <b>
+                                        <label>CBR >10   K = 46 + 9.08*(LOG(CBR))^4.34</label>
+                                    </b>
+                                </td>
+                                <td align="left" style="font-size:90%;">
+                                    <b>
+                                        <label>Mpa/m</label>
+                                    </b>
+                                </td>
+                                <td>
+                                    <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#infoModReaccionDocumentosModal"><i class="fa fa-question-circle"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td align="left" colspan="3" style="font-size:90%;">
+                                    <b>
+                                        <label>CBR< 10   K = 2.55 + 52.5*LOG(CBR)</label>
+                                    </b>
+                                </td>
+                                <td align="left" style="font-size:90%;">
+                                    <b>
+                                        <label>Mpa/m</label>
+                                    </b>
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td align="left" style="color:#FF0000" colspan="2">
+                                    <b>
+                                        <label>Colocar el % CBR: </label>
+                                    </b>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td style="background-color:lightblue; color:black; border: black 2px solid;">
+                                    <label>Capas </label>
+                                </td>
+                                <td style="background-color:lightblue; color:black; border: black 2px solid;">
+                                    <label>CBR (%) </label>
+                                </td>
+                                <td style="background-color:lightblue; color:black; border: black 2px solid;">
+                                    <label>h (cm) </label>
+                                </td>
+                                <td></td>
+                                <td rowspan="3">
+                                    <img src="~/Content/images/concreto/Modulo Reaccion Equivalente.jpg" "          />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#infoModReaccionSubBaseModal"><i class="fa fa-question-circle"></i></button>
+                                </td>
+                                <td align="left" style="background-color:darkred; color:white; border: black 2px solid;">
+                                    <label>SubBase </label>
+                                </td>
+                                <td style="border: black 2px solid;">
+                                    <input id="txtCBR_SubBase_Porc" type="text" class="mr-3 col-sm-10 form-control form-control-sm " onkeypress="return filterFloat(event,this);">
+                                </td>
+                                <td style="border: black 2px solid;">
+                                    <input id="txtH_SubBase_Porc" type="text" class="mr-3 col-sm-10 form-control form-control-sm " onkeypress="return filterFloat(event,this);">
+                                </td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#infoModReaccionSubRasanteModal"><i class="fa fa-question-circle"></i></button>
+                                </td>
+                                <td align="left" style="background-color:khaki; color:black; border: black 2px solid;">
+                                    <label>SubRasante </label>
+                                </td>
+                                <td style="border: black 2px solid;">
+                                    <input id="txtCBR_SubRasante_Porc" type="text" class="mr-3 col-sm-10 form-control form-control-sm " onkeypress="return filterFloat(event,this);">
+                                </td>
+                                <td style="border: black 2px solid;"></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td align="left" style="color:#FF0000" colspan="2">
+                                    <b>
+                                        <label>Cálculo del K Equivalente: </label>
+                                    </b>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td style="background-color:lightblue; color:black; border: black 2px solid;">
+                                    <label>K </label>
+                                </td>
+                                <td style="background-color:lightblue; color:black; border: black 2px solid;">
+                                    <label>Mpa/m </label>
+                                </td>
+                                <td style="background-color:lightblue; color:black; border: black 2px solid;">
+                                    <label>Kg/cm3 </label>
+                                </td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td style="border: black 2px solid;">
+                                    <label>K1 </label>
+                                </td>
+                                <td style="border: black 2px solid;">
+                                    <input id="txtMpa_K1_Porc" type="text" class="mr-3 col-sm-10 form-control form-control-sm mascara">
+                                </td>
+                                <td style="border: black 2px solid;">
+                                    <input id="txtKg_K1_Porc" type="text" class="mr-3 col-sm-10 form-control form-control-sm mascara">
+                                </td>
+                                <td></td>
+                                <td style="font-size:80%;">
+                                    <b>
+                                        <label>K1 (kg/cm3): Coeficinte de reacción de la subbase </label>
+                                    </b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td style="border: black 2px solid;">
+                                    <label>Ko </label>
+                                </td>
+                                <td style="border: black 2px solid;">
+                                    <input id="txtMpa_Ko_Porc" type="text" class="mr-3 col-sm-10 form-control form-control-sm mascara">
+                                </td>
+                                <td style="border: black 2px solid;">
+                                    <input id="txtKg_Ko_Porc" type="text" class="mr-3 col-sm-10 form-control form-control-sm mascara">
+                                </td>
+                                <td></td>
+                                <td style="font-size:80%;">
+                                    <b>
+                                        <label>Ko (kg/cm3): Coeficiente de reacción de la subrasante </label>
+                                    </b>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td style="background-color:yellow; border: black 2px solid;">
+                                    <label>Keq </label>
+                                </td>
+                                <td style="background-color:yellow; border: black 2px solid;">
+                                    <input id="txtMpa_Keq_Porc" type="text" class="mr-3 col-sm-10 form-control form-control-sm mascara">
+                                </td>
+                                <td style="background-color:yellow; border: black 2px solid;">
+                                    <input id="txtKg_Keq_Porc" type="text" class="mr-3 col-sm-10 form-control form-control-sm mascara">
+                                </td>
+                                <td></td>
+                                <td style="font-size:80%;">
+                                    <b>
+                                        <label>keq(kg/cm3): Coeficiente de reacción equivalente </label>
+                                    </b>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btnFinalizaCoefReaccionEqui" class="btn btn-primary">Finalizar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SUBMODAL --- INFO SUBBASE --- MODULO DE REACCION-->
+    <div class="modal fade" id="infoModReaccionSubBaseModal" tabindex="-1" role="dialog" aria-labelledby="infoModReaccionSubBaseModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="width:650px;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">MR</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
+                            <tr>
+                                <td colspan="4">
+                                    <p align="justify">
+                                        Expresa la resistencia a la flexión debido a que los pavimentos de concreto
+                                        trabajan principalmente a flexión es que se relacion este parámetro con la resistencia
+                                        a la comprensión.
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SUBMODAL --- INFO SUBRASANTE --- MODULO DE REACCION-->
+    <div class="modal fade" id="infoModReaccionSubRasanteModal" tabindex="-1" role="dialog" aria-labelledby="infoModReaccionSubRasanteModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="width:650px;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">SUB BASE </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
+                            <tr>
+                                <td colspan="4">
+                                    <p align="justify">
+                                        Capa que no es empleada siempre en el pavimento, impide que el agua de las
+                                        terracerías ascienda por capilaridad y evitar que el pavimento sea absorvido
+                                        por la sub-rasante. Además, se ahorra dinero al poder transformar un cierto
+                                        espesor de la capa de base a un espesor.
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" style="color:red">
+                                    <p align="justify">
+                                        Espesor Sub-Base:
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4">
+                                    <p align="justify">
+                                        El espesor mínimo requerido es de 15 cm.
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" style="color:red">
+                                    <p align="justify">
+                                        Requerimiento CBR:
+                                    </p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="4">
+                                    <p align="justify">
+                                        Se recomienda que el CBR de la subbase sea mayor o igual a 30%.
+                                    </p>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SUBMODAL --- INFO DOCUMENTOS --- MODULO DE REACCION-->
+    <div class="modal fade" id="infoModReaccionDocumentosModal" tabindex="-1" role="dialog" aria-labelledby="infoModReaccionDocumentosModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="width:550px;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">INFORMACIÓN </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
+                            <tr>
+                                <td>
+                                    <img src="../Content/images/concreto/ModuloReaccionEquivalenteTexto.jpg" style="width:100%; height:100%;" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <img src="../Content/images/concreto/ModuloReaccionEquivalenteImagen.jpg" style="width:100%; height:100%;" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
 
     <!-- COEFICIENTE DE DRENAJE-->
     <div class="modal fade" id="CoefDrenajeModal" tabindex="-1" role="dialog" aria-labelledby="CoefDrenajeModalLabel" aria-hidden="true">
@@ -784,6 +1149,105 @@
             </div>
         </div>
     </div>
+
+    <!-- SUBMODAL --- COEFICIENTE DE DRENAJE-->
+    <div class="modal fade" id="EvaluaCoefDrenajeModal" tabindex="-1" role="dialog" aria-labelledby="EvaluaCoefDrenajeModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document" style="margin-right: 80px; margin-left: 280px;">
+            <div class="modal-content" style="width:800px;">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">COEFICIENTES </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="table-responsive">
+                        <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
+                            <tr>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td align="left" style="color:#FF0000">
+                                    <b>
+                                        <label>SUBBASE GRANULAR(m3):</label>
+                                    </b>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td align="left">
+                                    <label>Calidad de Drenaje de la Sub Base Granular </label>
+                                </td>
+                                <td>
+                                    <div class="form-group col-md-10">
+                                        <div class="form-inline">
+                                            @Html.DropDownList("ddlCalidadDrenajeSubBase", null, new { @class = "mr-3 col-sm-8 form-control form-control-sm" })
+                                            <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#infoDrenajeTiempoModal"><i class="fa fa-info-circle"></i></button>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td align="left">
+                                    <label>Coeficiente de Drenaje de la Sub Base Granular </label>
+                                </td>
+                                <td>
+                                    <input id="txtPorcDrenajeSubBase" type="text" readonly="readonly" class="mr-3 col-sm-8 form-control form-control-sm mascara">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td align="left">
+                                    <label>Porcentaje de Exposición a Saturación </label>
+                                </td>
+                                <td>
+                                    <div class="form-group col-md-10">
+                                        <div class="form-inline">
+                                            <input id="txtPorcDrenajeSubBaseIng" type="text" value="25.00" class="mr-3 col-sm-8 form-control form-control-sm mascara">
+                                            <button type="button" id="btninfoesal" class="btn btn-toolbar btn-sm" data-toggle="modal" data-target="#infoDrenajePorcentajeModal"><i class="fa fa-info-circle"></i></button>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td align="left" style="color:#FF0000">
+                                    <b>
+                                        <label>(ESCRIBE LOS VALORES)</label>
+                                    </b>
+                                </td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td align="left">
+                                    <label>Coeficiente de Drenaje de la Sub Base Granular (m3) </label>
+                                </td>
+                                <td>
+                                    <div class="form-group col-md-10">
+                                        <div class="form-inline">
+                                            <input id="txtPorcDrenajeSubBaseInput" type="text" class="mr-3 col-sm-8 form-control form-control-sm mascara">
+                                        </div>
+                                    </div>
+                                </td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="btnFinalizaEvaluaCoefDrenaje" class="btn btn-primary">Finalizar</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 
 
@@ -852,7 +1316,7 @@
                                     </p>
                                 </td>
                                 <td align="right">
-                                    <img src="~/Content/images/param_esal_3.jpg" style="width:80%; height:70%;" />
+                                    <img src="~/Content/images/param_esal_3.jpg" style="width:100%; height:70%;" />
                                 </td>
                             </tr>
                         </table>
@@ -1007,34 +1471,6 @@
 
 
 
-    <!-- BASE SUB-BASE SUB-RASANTE -->
-    <div class="modal fade" id="BaseSubModal" tabindex="-1" role="dialog" aria-labelledby="BaseSubModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content" style="width:650px;">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">INFORMACIÓN </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="table-responsive">
-                        <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
-                            <tr>
-                                <td>
-                                    <img src="~/Content/images/pavimento_1.jpg" style="width:100%; height:70%;" />
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- ME -->
     <div class="modal fade" id="MEModal" tabindex="-1" role="dialog" aria-labelledby="MEModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -1158,90 +1594,7 @@
         </div>
     </div>
 
-    <!-- MODULO DE RESILENCIA (MR) -->
-    <div class="modal fade" id="MR_Modal" tabindex="-1" role="dialog" aria-labelledby="MR_ModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content" style="width:650px;">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">MÓDULO DE RESILENCIA (MR) </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="table-responsive">
-                        <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
-                            <tr>
-                                <td colspan="4">
-                                    <p align="justify">
-                                        Es el índice que describe la relación no lineal de esfuerzos - deformaciones de los
-                                        suelos bajo cargas repetidas.
-                                    </p>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
-    <!-- info CBR MODAL -->
-    <div class="modal fade" id="infoCBRModal" tabindex="-1" role="dialog" aria-labelledby="infoCBRModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content" style="width:650px;">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">CBR</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="table-responsive">
-                        <table class="table-responsive" border="0" cellspacing="0" cellpadding="4" style="width:auto;">
-                            <tr>
-                                <td colspan="2">
-                                    <p align="justify">
-                                        CBR (California Bearing Ratio): Evalúa la calidad del suelo por medio de la
-                                        resistencia al esfuerzo cortante. Se efectúa bajo condiciones controladas de humedad
-                                        y densidad.
-                                    </p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                        <li class="nav-item">
-                                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">CUADRO CBR</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">GRÁFICO CBR</a>
-                                        </li>
-                                    </ul>
-                                    <div class="tab-content" id="myTabContent">
-                                        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                                            <p> &nbsp; &nbsp; &nbsp;</p>
-                                            <img src="~/Content/images/asfalto_3.jpg" style="width:100%; height:70%;" />
-                                        </div>
-                                        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab" style="text-align:center;">
-                                            <p> &nbsp; &nbsp; &nbsp;</p>
-                                            <img src="~/Content/images/asfalto_4.jpg" style="width:70%; height:100%;" />
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
 
@@ -2411,7 +2764,7 @@
             document.getElementById("txtCantidadESAL").value = '';
             document.getElementById("txtConfiab").value = '';
             document.getElementById("txtErrorComb").value = '';
-            document.getElementById("txtModResilenciaSub").value = '';
+            //document.getElementById("txtModResilenciaSub").value = '';
             document.getElementById("txtServInicial").value = '';
             document.getElementById("txtServFinal").value = '';
             document.getElementById("txtDifServ").value = '';
@@ -2428,11 +2781,11 @@
                 return;
             }
 
-            varModResilenciaSub = document.getElementById("txtModResilenciaSub").value;
-            if (varModResilenciaSub == '') {
-                toastr.error("Ingrese Módulo de Resilencia!", 'ERROR', { timeOut: 2000 });
-                return;
-            }
+            //varModResilenciaSub = document.getElementById("txtModResilenciaSub").value;
+            //if (varModResilenciaSub == '') {
+            //    toastr.error("Ingrese Módulo de Resilencia!", 'ERROR', { timeOut: 2000 });
+            //    return;
+            //}
 
             varServInicial = document.getElementById("txtServInicial").value;
             if (varServInicial == '') {
@@ -2484,56 +2837,56 @@
                 CantidadESAL = 0;
             }
 
-            $.ajax
-                ({
-                    method: 'POST',
-                    url: '/ParametrosConcreto/calcularN18Nom',
-                    data: { 'CantESAL': CantidadESAL },
-                    success: function (respuesta) {
+            //$.ajax
+            //    ({
+            //        method: 'POST',
+            //        url: '/ParametrosConcreto/calcularN18Nom',
+            //        data: { 'CantESAL': CantidadESAL },
+            //        success: function (respuesta) {
 
-                        document.getElementById("txtN18Nominal").value = roundNumber(respuesta);
+            //            document.getElementById("txtN18Nominal").value = roundNumber(respuesta);
 
-                    },
-                    error: function (xhr, status) {
-                        alert("ERROR DE CÓDIGO");
-                    }
+            //        },
+            //        error: function (xhr, status) {
+            //            alert("ERROR DE CÓDIGO");
+            //        }
 
-                });
-
-
-            $.ajax
-                ({
-                    method: 'POST',
-                    url: '/ParametrosConcreto/calcularN18Calc2',
-                    data: { 'DifServiciabilidad': DifServiciabilidad },
-                    success: function (respuesta) {
-
-                        document.getElementById("txtN18Calculado2").value = roundNumber(respuesta);
-
-                    },
-                    error: function (xhr, status) {
-                        alert("ERROR DE CÓDIGO");
-                    }
-
-                });
+            //    });
 
 
+            //$.ajax
+            //    ({
+            //        method: 'POST',
+            //        url: '/ParametrosConcreto/calcularN18Calc2',
+            //        data: { 'DifServiciabilidad': DifServiciabilidad },
+            //        success: function (respuesta) {
 
-            $.ajax
-                ({
-                    method: 'POST',
-                    url: '/ParametrosConcreto/calcularN18Calc1',
-                    data: { 'ErrorCombiEstandar': ErrorCombiEstandar, 'DesviEstandar': DesviEstandar, 'valorMR': valorMR, 'DifServiciabilidad': DifServiciabilidad },
-                    success: function (respuesta) {
+            //            document.getElementById("txtN18Calculado2").value = roundNumber(respuesta);
 
-                        document.getElementById("txtN18Calculado").value = roundNumber(respuesta);
+            //        },
+            //        error: function (xhr, status) {
+            //            alert("ERROR DE CÓDIGO");
+            //        }
 
-                    },
-                    error: function (xhr, status) {
-                        alert("ERROR DE CÓDIGO");
-                    }
+            //    });
 
-                });
+
+
+            //$.ajax
+            //    ({
+            //        method: 'POST',
+            //        url: '/ParametrosConcreto/calcularN18Calc1',
+            //        data: { 'ErrorCombiEstandar': ErrorCombiEstandar, 'DesviEstandar': DesviEstandar, 'valorMR': valorMR, 'DifServiciabilidad': DifServiciabilidad },
+            //        success: function (respuesta) {
+
+            //            document.getElementById("txtN18Calculado").value = roundNumber(respuesta);
+
+            //        },
+            //        error: function (xhr, status) {
+            //            alert("ERROR DE CÓDIGO");
+            //        }
+
+            //    });
 
 
         });
@@ -2558,7 +2911,7 @@
 
             valorMR = document.getElementById("txtModRoturaPSI").value;
             N18Calc = document.getElementById("txtN18Calculado").value;
-            N18Calc2 = document.getElementById("txtN18Calculado2").value;
+            //N18Calc2 = document.getElementById("txtN18Calculado2").value;
             N18Nominal = document.getElementById("txtN18Nominal").value;
 
 
@@ -2666,11 +3019,11 @@
         $("#btnEvaluaResilencia").click(function () {
             document.getElementById("txtCBR").value = '';
             document.getElementById("txtMR").value = '';
-            document.getElementById("txtModResilenciaSub").value = '';
+            //document.getElementById("txtModResilenciaSub").value = '';
         });
 
         $("#btnCalcularMR").click(function () {
-            document.getElementById("txtModResilenciaSub").value = delimitNumbers(document.getElementById("txtMR").value);
+            //document.getElementById("txtModResilenciaSub").value = delimitNumbers(document.getElementById("txtMR").value);
             document.getElementById("txtModRoturaPSI").value = delimitNumbers(document.getElementById("txtMR").value);
 
             $("#EvaluaResilenciaModal .close").click();
@@ -3190,8 +3543,8 @@
 
 
         //txtCBR_1 - txtCBR_2
-        ObtenerCoeficienteA2(document.getElementById("txtCBR_1").value);
-        ObtenerCoeficienteA3(document.getElementById("txtCBR_2").value);
+        //ObtenerCoeficienteA2(document.getElementById("txtCBR_1").value);
+        //ObtenerCoeficienteA3(document.getElementById("txtCBR_2").value);
 
 
 
@@ -3435,6 +3788,102 @@
 
 
 
+        $("#btnAceptarModRotura").click(function () {
+
+            var valor = document.getElementById("txtValorModRotura").value;
+            var ResisCompre = document.getElementById("txtResistComp").value;
+
+            if (ResisCompre.length == 0) {
+                toastr.error("Ingrese Resistencia a la Comprensión!", 'ERROR', { timeOut: 2000 });
+                $("#EvaluaModuloRoturaModal .close").click();
+                return;
+            }
+
+            if (valor.length == 0) {
+                toastr.error("Ingrese un Valor!", 'ERROR', { timeOut: 2000 });
+                valor.focus();
+                return;
+            }
+
+
+            $.ajax
+                ({
+                    method: 'POST',
+                    url: '/ParametrosConcreto/ModuloRotura',
+                    data: { 'valor': valor, 'ResisCompre': ResisCompre },
+                    success: function (respuesta) {
+                        if (respuesta.length > 0) {
+                            document.getElementById("txtModRotura").value = respuesta;
+                            $("#EvaluaModuloRoturaModal .close").click();
+                        }
+                        else {
+                            toastr.error("Ingrese los datos!", 'ERROR', { timeOut: 2000 });
+                        }
+                    },
+                    error: function (xhr, status) {
+                        toastr.error(status, 'ERROR', { timeOut: 2000 });
+                    }
+
+                });
+
+
+
+        });
+
+        $("#txtResistComp").keyup(function (e) {
+            document.getElementById("txtFC").value = document.getElementById("txtResistComp").value;
+            obtenerModuloElasticidad();
+        });
+
+        $("#btnFinalizaEvaluaCoefDrenaje").click(function () {
+
+            if (document.getElementById("txtPorcDrenajeSubBaseInput").value.length > 0) {
+                document.getElementById("txtCoefDrenaje").value = document.getElementById("txtPorcDrenajeSubBaseInput").value;
+            } else {
+                document.getElementById("txtCoefDrenaje").value = document.getElementById("txtPorcDrenajeSubBase").value;
+            }
+
+            $("#EvaluaCoefDrenajeModal .close").click();
+
+        });
+
+
+        $("#txtCBR_SubBase_Porc").keyup(function (e) {
+            document.getElementById("txtCBR_1").value = document.getElementById("txtCBR_SubBase_Porc").value;
+            obtenerModuloReaccion_K1();            
+        });
+
+        $("#txtCBR_SubRasante_Porc").keyup(function (e) {
+            document.getElementById("txtCBR_2").value = document.getElementById("txtCBR_SubRasante_Porc").value;
+            obtenerModuloReaccion_Ko();
+        });
+
+        $("#txtH_SubBase_Porc").keyup(function (e) {
+
+            valor = document.getElementById("txtH_SubBase_Porc").value;
+            if (valor.length == 0) {
+                document.getElementById("txtKg_Keq_Porc").value = "";
+                return;
+            }
+            obtenerModuloReaccion_Keqkgcm3();
+
+        });
+
+        $("#btnFinalizaCoefReaccionEqui").click(function () {
+
+            var Mpa_Keq_Porc = document.getElementById("txtMpa_Keq_Porc").value;
+
+            if (Mpa_Keq_Porc.length > 0) {
+                document.getElementById("txtModReaccion").value = document.getElementById("txtMpa_Keq_Porc").value;
+                $("#EvaluaModReaccionModal .close").click();
+            } else { return; }
+
+
+        });
+
+
+
+
 
         LimpiarVariableTiempo();
         //GenerarTasaCrecxTiempo(1);
@@ -3477,6 +3926,298 @@
         }
 
     }
+
+
+    function obtenerModuloElasticidad() {
+
+        var ResisCompre = document.getElementById("txtResistComp").value;
+
+        if (ResisCompre.length == 0) {
+            document.getElementById("txtModElasticidad").value = "";
+            return;
+        }
+
+
+        $.ajax
+            ({
+                method: 'POST',
+                url: '/ParametrosConcreto/ModuloElasticidad',
+                data: { 'ResisCompre': ResisCompre },
+                success: function (respuesta) {
+                    if (respuesta.length > 0) {
+                        document.getElementById("txtModElasticidad").value = respuesta;
+                    }
+                    else {
+                        toastr.error("Ingrese los datos!", 'ERROR', { timeOut: 2000 });
+                    }
+                },
+                error: function (xhr, status) {
+                    toastr.error(status, 'ERROR', { timeOut: 2000 });
+                }
+
+            });
+
+    }
+
+    function obtenerModuloReaccion_K1() {
+
+        var valor = document.getElementById("txtCBR_SubBase_Porc").value;
+
+        if (valor.length == 0) {
+            document.getElementById("txtMpa_K1_Porc").value = "";
+            document.getElementById("txtKg_K1_Porc").value = "";
+            document.getElementById("txtKg_Keq_Porc").value = "";
+            document.getElementById("txtMpa_Keq_Porc").value = "";            
+            return;
+        }
+
+
+        $.ajax
+            ({
+                method: 'POST',
+                url: '/ParametrosConcreto/ModuloReaccion_KEquivMpaM',
+                data: { 'valor': valor },
+                success: function (respuesta) {
+                    if (respuesta.length > 0) {                        
+                        document.getElementById("txtMpa_K1_Porc").value = respuesta;
+                        obtenerModuloReaccion_KgCm3_K1();   
+                    }
+                    else {
+                        toastr.error("Ingrese los datos!", 'ERROR', { timeOut: 2000 });
+                    }
+                },
+                error: function (xhr, status) {
+                    toastr.error(status, 'ERROR', { timeOut: 2000 });
+                }
+
+            });
+
+    }
+
+    function obtenerModuloReaccion_Ko() {
+
+        var valor = document.getElementById("txtCBR_SubRasante_Porc").value;
+
+        if (valor.length == 0) {
+            document.getElementById("txtMpa_Ko_Porc").value = "";
+            document.getElementById("txtKg_Ko_Porc").value = "";
+            document.getElementById("txtKg_Keq_Porc").value = "";
+            document.getElementById("txtMpa_Keq_Porc").value = "";
+            return;
+        }
+
+
+        $.ajax
+            ({
+                method: 'POST',
+                url: '/ParametrosConcreto/ModuloReaccion_KEquivMpaM',
+                data: { 'valor': valor },
+                success: function (respuesta) {
+                    if (respuesta.length > 0) {                        
+                        document.getElementById("txtMpa_Ko_Porc").value = respuesta;
+                        obtenerModuloReaccion_KgCm3_Ko();
+                    }
+                    else {
+                        toastr.error("Ingrese los datos!", 'ERROR', { timeOut: 2000 });
+                    }
+                },
+                error: function (xhr, status) {
+                    toastr.error(status, 'ERROR', { timeOut: 2000 });
+                }
+
+            });
+
+    }
+
+    function obtenerModuloReaccion_KgCm3_K1() {
+
+        var valor = document.getElementById("txtMpa_K1_Porc").value;
+
+        $.ajax
+            ({
+                method: 'POST',
+                url: '/ParametrosConcreto/ModuloReaccion_CalculoKgCm3',
+                data: { 'valor': valor },
+                success: function (respuesta) {
+                    if (respuesta.length > 0) {                        
+                        document.getElementById("txtKg_K1_Porc").value = respuesta;
+
+                        var k1 = document.getElementById("txtKg_K1_Porc").value;
+                        var ko = document.getElementById("txtKg_Ko_Porc").value;
+                        var hCm = document.getElementById("txtH_SubBase_Porc").value;
+
+                        if (k1.length == 0) {
+                            return;
+                        }
+                        if (ko.length == 0) {
+                            return;
+                        }
+                        if (hCm.length == 0) {
+                            return;
+                        }
+
+                        $.ajax
+                            ({
+                                method: 'POST',
+                                url: '/ParametrosConcreto/ModuloReaccion_CalcuKeqkgcm3',
+                                data: { 'k1': k1, 'ko': ko, 'hCm': hCm },
+                                success: function (respuesta) {
+                                    if (respuesta.length > 0) {                        
+                                        document.getElementById("txtKg_Keq_Porc").value = respuesta;
+                                        obtenerModuloReaccion_KeqMpa()
+                                    }
+                                    else {
+                                        toastr.error("Ingrese los datos!", 'ERROR', { timeOut: 2000 });
+                                    }
+                                },
+                                error: function (xhr, status) {
+                                    toastr.error(status, 'ERROR', { timeOut: 2000 });
+                                }
+
+                        });
+
+                    }
+                    else {
+                        toastr.error("Ingrese los datos!", 'ERROR', { timeOut: 2000 });
+                    }
+                },
+                error: function (xhr, status) {
+                    toastr.error(status, 'ERROR', { timeOut: 2000 });
+                }
+
+            });
+
+    }
+
+    function obtenerModuloReaccion_KgCm3_Ko() {
+
+        var valor = document.getElementById("txtMpa_Ko_Porc").value;
+
+        $.ajax
+            ({
+                method: 'POST',
+                url: '/ParametrosConcreto/ModuloReaccion_CalculoKgCm3',
+                data: { 'valor': valor },
+                success: function (respuesta) {
+                    if (respuesta.length > 0) {                        
+                        document.getElementById("txtKg_Ko_Porc").value = respuesta;
+
+                        var k1 = document.getElementById("txtKg_K1_Porc").value;
+                        var ko = document.getElementById("txtKg_Ko_Porc").value;
+                        var hCm = document.getElementById("txtH_SubBase_Porc").value;
+
+                        if (k1.length == 0) {
+                            return;
+                        }
+                        if (ko.length == 0) {
+                            return;
+                        }
+                        if (hCm.length == 0) {
+                            return;
+                        }
+
+                        $.ajax
+                            ({
+                                method: 'POST',
+                                url: '/ParametrosConcreto/ModuloReaccion_CalcuKeqkgcm3',
+                                data: { 'k1': k1, 'ko': ko, 'hCm': hCm },
+                                success: function (respuesta) {
+                                    if (respuesta.length > 0) {                        
+                                        document.getElementById("txtKg_Keq_Porc").value = respuesta;
+                                        obtenerModuloReaccion_KeqMpa()
+                                    }
+                                    else {
+                                        toastr.error("Ingrese los datos!", 'ERROR', { timeOut: 2000 });
+                                    }
+                                },
+                                error: function (xhr, status) {
+                                    toastr.error(status, 'ERROR', { timeOut: 2000 });
+                                }
+
+                        });
+
+                    }
+                    else {
+                        toastr.error("Ingrese los datos!", 'ERROR', { timeOut: 2000 });
+                    }
+                },
+                error: function (xhr, status) {
+                    toastr.error(status, 'ERROR', { timeOut: 2000 });
+                }
+
+            });
+
+    }
+
+    function obtenerModuloReaccion_Keqkgcm3() {
+
+        var k1 = document.getElementById("txtKg_K1_Porc").value;
+        var ko = document.getElementById("txtKg_Ko_Porc").value;
+        var hCm = document.getElementById("txtH_SubBase_Porc").value;
+
+        if (k1.length == 0) {
+            return;
+        }
+        if (ko.length == 0) {
+            return;
+        }
+        if (hCm.length == 0) {
+            return;
+        }
+
+        $.ajax
+            ({
+                method: 'POST',
+                url: '/ParametrosConcreto/ModuloReaccion_CalcuKeqkgcm3',
+                data: { 'k1': k1, 'ko': ko, 'hCm': hCm },
+                success: function (respuesta) {
+                    if (respuesta.length > 0) {                        
+                        document.getElementById("txtKg_Keq_Porc").value = respuesta;
+                        obtenerModuloReaccion_KeqMpa()
+                    }
+                    else {
+                        toastr.error("Ingrese los datos!", 'ERROR', { timeOut: 2000 });
+                    }
+                },
+                error: function (xhr, status) {
+                    toastr.error(status, 'ERROR', { timeOut: 2000 });
+                }
+
+        });
+
+    }
+
+    function obtenerModuloReaccion_KeqMpa() {
+
+        var valorf = document.getElementById("txtKg_Keq_Porc").value;
+
+        if (valorf.length == 0) {
+            return;
+        }
+
+        $.ajax
+            ({
+                method: 'POST',
+                url: '/ParametrosConcreto/ModuloReaccion_CalcuKeqMpa',
+                data: { 'valor': valorf },
+                success: function (respuesta) {
+                    if (respuesta.length > 0) {                        
+                        document.getElementById("txtMpa_Keq_Porc").value = respuesta;
+                    }
+                    else {
+                        toastr.error("Ingrese los datos!", 'ERROR', { timeOut: 2000 });
+                    }
+                },
+                error: function (xhr, status) {
+                    toastr.error(status, 'ERROR', { timeOut: 2000 });
+                }
+
+        });
+
+    }
+
+
+
 
 
     function DiferenciaServicialidad() {

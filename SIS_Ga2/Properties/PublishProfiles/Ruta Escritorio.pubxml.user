@@ -142,10 +142,10 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>10/10/2019 01:54:02</publishTime>
     </File>
     <File Include="bin/SIS_Ga2.Business.dll">
-      <publishTime>03/13/2020 13:56:49</publishTime>
+      <publishTime>03/24/2020 21:47:30</publishTime>
     </File>
     <File Include="bin/SIS_Ga2.Business.pdb">
-      <publishTime>03/13/2020 13:56:49</publishTime>
+      <publishTime>03/24/2020 21:47:30</publishTime>
     </File>
     <File Include="bin/SIS_Ga2.DataAccess.dll">
       <publishTime>03/13/2020 13:56:48</publishTime>
@@ -154,7 +154,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>03/13/2020 13:56:48</publishTime>
     </File>
     <File Include="bin/SIS_Ga2.dll">
-      <publishTime>03/13/2020 13:56:53</publishTime>
+      <publishTime>03/24/2020 21:47:35</publishTime>
     </File>
     <File Include="bin/SIS_Ga2.Entity.dll">
       <publishTime>03/13/2020 13:56:41</publishTime>
@@ -163,7 +163,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>03/13/2020 13:56:41</publishTime>
     </File>
     <File Include="bin/SIS_Ga2.pdb">
-      <publishTime>03/13/2020 13:56:53</publishTime>
+      <publishTime>03/24/2020 21:47:35</publishTime>
     </File>
     <File Include="bin/System.Web.Helpers.dll">
       <publishTime>10/10/2019 01:54:02</publishTime>
@@ -359,6 +359,33 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
     </File>
     <File Include="Content/images/Coeficiente_Drenaje_Tiempo.jpg">
       <publishTime>12/28/2019 02:21:39</publishTime>
+    </File>
+    <File Include="Content/images/concreto/Modulo de Elasticidad.jpg">
+      <publishTime>03/14/2020 23:10:25</publishTime>
+    </File>
+    <File Include="Content/images/concreto/Modulo de Rotura.jpg">
+      <publishTime>03/15/2020 00:23:28</publishTime>
+    </File>
+    <File Include="Content/images/concreto/Modulo Reaccion Equivalente.jpg">
+      <publishTime>03/18/2020 01:46:51</publishTime>
+    </File>
+    <File Include="Content/images/concreto/ModuloReaccionEquivalenteImagen.jpg">
+      <publishTime>03/18/2020 01:46:50</publishTime>
+    </File>
+    <File Include="Content/images/concreto/ModuloReaccionEquivalenteTexto.jpg">
+      <publishTime>03/18/2020 01:46:51</publishTime>
+    </File>
+    <File Include="Content/images/concreto/Pavimento_Cuadro.jpg">
+      <publishTime>03/18/2020 22:07:08</publishTime>
+    </File>
+    <File Include="Content/images/concreto/Pavimento_Formula.jpg">
+      <publishTime>03/18/2020 22:07:08</publishTime>
+    </File>
+    <File Include="Content/images/concreto/Resistencia a la Comprension.jpg">
+      <publishTime>03/14/2020 23:10:25</publishTime>
+    </File>
+    <File Include="Content/images/concreto/Transferencia de Carga.jpg">
+      <publishTime>03/14/2020 23:10:25</publishTime>
     </File>
     <File Include="Content/images/Diseno_Adoquin.jpg">
       <publishTime>10/10/2019 01:54:00</publishTime>
@@ -1594,7 +1621,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>03/13/2020 13:37:52</publishTime>
     </File>
     <File Include="Views/ParametrosConcreto/Index.cshtml">
-      <publishTime>03/13/2020 13:45:09</publishTime>
+      <publishTime>03/18/2020 23:00:18</publishTime>
     </File>
     <File Include="Views/ProyectoDiseno/Index.cshtml">
       <publishTime>02/04/2020 15:08:16</publishTime>
@@ -1618,7 +1645,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>10/10/2019 01:54:00</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>03/13/2020 13:57:19</publishTime>
+      <publishTime>03/18/2020 23:07:11</publishTime>
     </File>
   </ItemGroup>
 </Project>
