@@ -252,8 +252,8 @@ namespace SIS_Ga2.Business
             Decision x = new Decision(Domain.RealNonnegative, "SNREQ");
             model.AddDecisions(x);
             model.AddConstraints("N18Calc",
-            objEntidad.N18Calc == objEntidad.DesviEstandar * objEntidad.ErrorCombiEstandar + constanteN18_3 * Model.Log10(x + 1) - constanteN18_4 + objEntidad.N18Calc2 / (constanteN18_5 + constanteN18_6 / Model.Power((x + 1), constanteN18_7)) + constanteN18_8 * Math.Log10(objEntidad.valorMR) - constanteN18_9);
-
+            //objEntidad.N18Calc == objEntidad.DesviEstandar * objEntidad.ErrorCombiEstandar + constanteN18_3 * Model.Log10(x + 1) - constanteN18_4 + objEntidad.N18Calc2 / (constanteN18_5 + constanteN18_6 / Model.Power((x + 1), constanteN18_7)) + constanteN18_8 * Math.Log10(objEntidad.valorMR) - constanteN18_9);
+            objEntidad.N18Nom == objEntidad.DesviEstandar * objEntidad.ErrorCombiEstandar + constanteN18_3 * Model.Log10(x + 1) - constanteN18_4 + objEntidad.N18Calc2 / (constanteN18_5 + constanteN18_6 / Model.Power((x + 1), constanteN18_7)) + constanteN18_8 * Math.Log10(objEntidad.valorMR) - constanteN18_9);
             // Add non-negative variables
             model.AddConstraints("nonnegative", x >= 0);
 
