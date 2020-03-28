@@ -1760,7 +1760,7 @@ namespace SIS_Ga2.Business
             return KgCm3;
         }
 
-        public double CalcuKeqkgcm3(double k1,double k0,double hCm)
+        public double CalcuKeqkgcm3(double k1,double k0,double hCm, double kgcm3Ko)
 
         {
             double contantekG1 = Convert.ToDouble(ConfigurationManager.AppSettings["contantekG1"].ToString()); //38
@@ -1773,11 +1773,12 @@ namespace SIS_Ga2.Business
             double calculo4 = 0;
             double calculo5 = 0;
             calculo1 = Math.Pow(hCm / contantekG1, contantekG3);
-            calculo2 = Math.Pow( k1 / k0, contantekG2);
-            calculo3 = calculo1 * calculo2 + 1;
+            calculo2 = Math.Pow(k1 / k0, contantekG2);
+            calculo3 = (calculo1 * calculo2) + 1;
             calculo4 = Math.Pow(calculo3, contantekG4);
-            calculo5 = calculo4 * hCm;
+            calculo5 = calculo4 * kgcm3Ko;
             return calculo5;
+
         }
 
 

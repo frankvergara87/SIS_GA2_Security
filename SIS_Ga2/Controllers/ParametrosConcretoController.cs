@@ -1102,7 +1102,7 @@ namespace SIS_Ga2.Controllers
 
         }
 
-        public double ModuloReaccion_CalcuKeqkgcm3(decimal k1, decimal ko, decimal hCm)
+        public double ModuloReaccion_CalcuKeqkgcm3(decimal k1, decimal ko, decimal hCm, decimal kgcm3Ko)
         {
             try
             {
@@ -1110,7 +1110,7 @@ namespace SIS_Ga2.Controllers
 
                 BLReglas bLReglas = new BLReglas();
 
-                CalcuKeqkgcm3 = bLReglas.CalcuKeqkgcm3(Convert.ToDouble(k1), Convert.ToDouble(ko), Convert.ToDouble(hCm));
+                CalcuKeqkgcm3 = bLReglas.CalcuKeqkgcm3(Convert.ToDouble(k1), Convert.ToDouble(ko), Convert.ToDouble(hCm), Convert.ToDouble(kgcm3Ko));
 
                 return CalcuKeqkgcm3;
             }

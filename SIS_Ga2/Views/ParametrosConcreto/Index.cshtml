@@ -4045,6 +4045,7 @@
                         var k1 = document.getElementById("txtKg_K1_Porc").value;
                         var ko = document.getElementById("txtKg_Ko_Porc").value;
                         var hCm = document.getElementById("txtH_SubBase_Porc").value;
+                        var kgcm3Ko = ko;
 
                         if (k1.length == 0) {
                             return;
@@ -4060,7 +4061,7 @@
                             ({
                                 method: 'POST',
                                 url: '/ParametrosConcreto/ModuloReaccion_CalcuKeqkgcm3',
-                                data: { 'k1': k1, 'ko': ko, 'hCm': hCm },
+                                data: { 'k1': k1, 'ko': ko, 'hCm': hCm, 'kgcm3Ko': kgcm3Ko  },
                                 success: function (respuesta) {
                                     if (respuesta.length > 0) {                        
                                         document.getElementById("txtKg_Keq_Porc").value = respuesta;
@@ -4105,6 +4106,7 @@
                         var k1 = document.getElementById("txtKg_K1_Porc").value;
                         var ko = document.getElementById("txtKg_Ko_Porc").value;
                         var hCm = document.getElementById("txtH_SubBase_Porc").value;
+                        var kgcm3Ko = ko;
 
                         if (k1.length == 0) {
                             return;
@@ -4120,7 +4122,7 @@
                             ({
                                 method: 'POST',
                                 url: '/ParametrosConcreto/ModuloReaccion_CalcuKeqkgcm3',
-                                data: { 'k1': k1, 'ko': ko, 'hCm': hCm },
+                                data: { 'k1': k1, 'ko': ko, 'hCm': hCm, 'kgcm3Ko': kgcm3Ko  },
                                 success: function (respuesta) {
                                     if (respuesta.length > 0) {                        
                                         document.getElementById("txtKg_Keq_Porc").value = respuesta;
@@ -4154,6 +4156,7 @@
         var k1 = document.getElementById("txtKg_K1_Porc").value;
         var ko = document.getElementById("txtKg_Ko_Porc").value;
         var hCm = document.getElementById("txtH_SubBase_Porc").value;
+        var kgcm3Ko = ko;
 
         if (k1.length == 0) {
             return;
@@ -4169,7 +4172,7 @@
             ({
                 method: 'POST',
                 url: '/ParametrosConcreto/ModuloReaccion_CalcuKeqkgcm3',
-                data: { 'k1': k1, 'ko': ko, 'hCm': hCm },
+                data: { 'k1': k1, 'ko': ko, 'hCm': hCm, 'kgcm3Ko': kgcm3Ko },
                 success: function (respuesta) {
                     if (respuesta.length > 0) {                        
                         document.getElementById("txtKg_Keq_Porc").value = respuesta;
