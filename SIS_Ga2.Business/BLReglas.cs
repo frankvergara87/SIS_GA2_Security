@@ -271,9 +271,11 @@ namespace SIS_Ga2.Business
         {
             try
             {
-                string TipoDiseno, Id_TipoVehiculo, Id_Vehiculo;
+                string TipoDiseno, Id_TipoVehiculo, Id_Vehiculo, TipoDiseno2;
                 double resultadoFVP = 0;
-                TipoDiseno = ConfigurationManager.AppSettings["TipoAsfalto"].ToString();//ASFALTO (MAYUSCULA)
+                string ListaTipoDiseno = ConfigurationManager.AppSettings["TipoAsfalto"].ToString();//ASFALTO,CONCRETO (MAYUSCULA)
+                TipoDiseno = ListaTipoDiseno.Substring(8, 8);//Obtiene Concreto
+                TipoDiseno2 = ListaTipoDiseno.Substring(0, 7);//Obtiene Concreto
                 Id_TipoVehiculo = ConfigurationManager.AppSettings["Id_TipoVehiculo"].ToString();//1,2,3,4,5,6 (id de tipo vehiculo tabla Tipo_Vehiculo)
                 Id_Vehiculo = ConfigurationManager.AppSettings["Id_Vehiculo"].ToString();//1,2,3,4,5,6..hasta el ultimo que es 22 (id de vehiculo tabla [Tipo_Vehiculo])
 
@@ -298,6 +300,9 @@ namespace SIS_Ga2.Business
                 double constanteBuses3 = Convert.ToDouble(ConfigurationManager.AppSettings["constanteBuses3"].ToString());// 15.1
                 double constanteBuses4 = Convert.ToDouble(ConfigurationManager.AppSettings["constanteBuses4"].ToString());// 13.3
 
+                double constanteBuses5 = Convert.ToDouble(ConfigurationManager.AppSettings["constanteBuses5"].ToString());// 13
+                double constanteBuses6 = Convert.ToDouble(ConfigurationManager.AppSettings["constanteBuses6"].ToString());// 14.8
+
                 //Constante para camiones
                 double constantecamiones1 = Convert.ToDouble(ConfigurationManager.AppSettings["constantecamiones1"].ToString());// 6.6
                 double constantecamiones2 = Convert.ToDouble(ConfigurationManager.AppSettings["constantecamiones2"].ToString());// 8.2
@@ -305,6 +310,9 @@ namespace SIS_Ga2.Business
                 double constantecamiones4 = Convert.ToDouble(ConfigurationManager.AppSettings["constantecamiones4"].ToString());// 13.3
                 double constantecamiones5 = Convert.ToDouble(ConfigurationManager.AppSettings["constantecamiones5"].ToString());// 21.8
                 double constantecamiones6 = Convert.ToDouble(ConfigurationManager.AppSettings["constantecamiones6"].ToString());// 17.5
+
+                double constantecamiones7 = Convert.ToDouble(ConfigurationManager.AppSettings["constantecamiones7"].ToString());// 16.6
+                double constantecamiones8 = Convert.ToDouble(ConfigurationManager.AppSettings["constantecamiones8"].ToString());// 20.7
 
 
                 //Constante para Semi Trailers
@@ -314,6 +322,14 @@ namespace SIS_Ga2.Business
                 double constanteSemiTrailer4 = Convert.ToDouble(ConfigurationManager.AppSettings["constanteSemiTrailer4"].ToString());// 13.3
                 double constanteSemiTrailer5 = Convert.ToDouble(ConfigurationManager.AppSettings["constanteSemiTrailer5"].ToString());// 21.8
                 double constanteSemiTrailer6 = Convert.ToDouble(ConfigurationManager.AppSettings["constanteSemiTrailer6"].ToString());// 17.5
+
+                double constanteSemiTrailer7 = Convert.ToDouble(ConfigurationManager.AppSettings["constanteSemiTrailer7"].ToString());// 4.1
+                double constanteSemiTrailer8 = Convert.ToDouble(ConfigurationManager.AppSettings["constanteSemiTrailer8"].ToString());// 4
+
+
+                double constanteSemiTrailer9 = Convert.ToDouble(ConfigurationManager.AppSettings["constanteSemiTrailer9"].ToString());// 13.3
+                double constanteSemiTrailer10 = Convert.ToDouble(ConfigurationManager.AppSettings["constanteSemiTrailer10"].ToString());// 15.1
+
 
                 //Constante para  Trailers
                 double constanteTrailer1 = Convert.ToDouble(ConfigurationManager.AppSettings["constanteTrailer1"].ToString());// 6.6
@@ -361,26 +377,71 @@ namespace SIS_Ga2.Business
                 if ((objEntidad.TipoDiseno.ToUpper() == TipoDiseno) && (objEntidad.Id_TipoVehiculo.ToString() == Id_TipoVehiculo.Substring(0, 1)))// si es ASFALTO y si es Vehiculos (Id_Tipo_Vehiculo=1)
                 {
 
-                    PotenciaE1 = Math.Pow(resultE1, constantePotVehi1);
-                    PotenciaE2 = Math.Pow(resultE2, constantePotVehi1);
-                }
-                else if ((objEntidad.TipoDiseno.ToUpper() != TipoDiseno) && (objEntidad.Id_TipoVehiculo.ToString() == Id_TipoVehiculo.Substring(0, 1)))
-                {
                     PotenciaE1 = Math.Pow(resultE1, constantePotVehi2);
                     PotenciaE2 = Math.Pow(resultE2, constantePotVehi2);
                 }
+                else if ((objEntidad.TipoDiseno.ToUpper() != TipoDiseno) && (objEntidad.Id_TipoVehiculo.ToString() == Id_TipoVehiculo.Substring(0, 1)))
+                {
+                    PotenciaE1 = Math.Pow(resultE1, constantePotVehi1);
+                    PotenciaE2 = Math.Pow(resultE2, constantePotVehi1);
+                }
 
                 //2- Camionetas
-                if ((objEntidad.TipoDiseno.ToUpper() == TipoDiseno) && (objEntidad.Id_TipoVehiculo.ToString() == Id_TipoVehiculo.Substring(2, 1)))// si es ASFALTO y si es Camioneta (Id_Tipo_Vehiculo=2)
+                // si es CONCRETO y si es Camioneta (Id_Tipo_Vehiculo=2) y si es PANEL "N1"
+                if ((objEntidad.TipoDiseno.ToUpper() == TipoDiseno) && (objEntidad.Id_TipoVehiculo.ToString() == Id_TipoVehiculo.Substring(2, 1)) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(6, 1)))
                 {
 
+                    PotenciaE1 = Math.Pow(resultE1, constantePotCam2);
+                    PotenciaE2 = Math.Pow(resultE2, constantePotCam2);
+                }
+                // si NO es CONCRETO y si es Camioneta (Id_Tipo_Vehiculo=2) y si es PANEL "N1"
+                else if ((objEntidad.TipoDiseno.ToUpper() != TipoDiseno) && (objEntidad.Id_TipoVehiculo.ToString() == Id_TipoVehiculo.Substring(2, 1)) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(6, 1)))
+                {
                     PotenciaE1 = Math.Pow(resultE1, constantePotCam1);
                     PotenciaE2 = Math.Pow(resultE2, constantePotCam1);
                 }
-                else if ((objEntidad.TipoDiseno.ToUpper() != TipoDiseno) && (objEntidad.Id_TipoVehiculo.ToString() == Id_TipoVehiculo.Substring(2, 1)))
+
+                // si es CONCRETO y si es Camioneta (Id_Tipo_Vehiculo=2) y si es PICK UP "N2"
+                if ((objEntidad.TipoDiseno.ToUpper() == TipoDiseno) && (objEntidad.Id_TipoVehiculo.ToString() == Id_TipoVehiculo.Substring(2, 1)) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(8, 1)))
                 {
+
                     PotenciaE1 = Math.Pow(resultE1, constantePotCam2);
                     PotenciaE2 = Math.Pow(resultE2, constantePotCam2);
+                }
+                //// si NO es CONCRETO y si es Camioneta (Id_Tipo_Vehiculo=2) y si es PICK UP "N2"
+                else if ((objEntidad.TipoDiseno.ToUpper() != TipoDiseno) && (objEntidad.Id_TipoVehiculo.ToString() == Id_TipoVehiculo.Substring(2, 1)) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(8, 1)))
+                {
+                    PotenciaE1 = Math.Pow(resultE1, constantePotCam1);
+                    PotenciaE2 = Math.Pow(resultE2, constantePotCam1);
+                }
+
+                // si es CONCRETO y si es Camioneta (Id_Tipo_Vehiculo=2) y si es RURAL   COMBI "M2"
+                if ((objEntidad.TipoDiseno.ToUpper() == TipoDiseno) && (objEntidad.Id_TipoVehiculo.ToString() == Id_TipoVehiculo.Substring(2, 1)) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(10, 1)))
+                {
+
+                    PotenciaE1 = Math.Pow(resultE1, constantePotCam2);
+
+                }
+                // si NO es CONCRETO y si es Camioneta (Id_Tipo_Vehiculo=2) y si es RURAL   COMBI "M2"
+                else if ((objEntidad.TipoDiseno.ToUpper() != TipoDiseno) && (objEntidad.Id_TipoVehiculo.ToString() == Id_TipoVehiculo.Substring(2, 1)) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(10, 1)))
+                {
+                    PotenciaE1 = Math.Pow(resultE1, constantePotCam1);
+
+                }
+
+                //si es ASFALTO y si es Camioneta(Id_Tipo_Vehiculo = 2) y si es RURAL   COMBI "M2"
+
+                if ((objEntidad.TipoDiseno.ToUpper() == TipoDiseno2) && (objEntidad.Id_TipoVehiculo.ToString() == Id_TipoVehiculo.Substring(2, 1)) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(10, 1)))// 
+                {
+
+                    PotenciaE2 = Math.Pow(resultE2, constantePotCam2);
+
+                }
+                // si NO es ASFALTO y si es Camioneta (Id_Tipo_Vehiculo=2) y si es RURAL   COMBI "M2"
+                else if ((objEntidad.TipoDiseno.ToUpper() != TipoDiseno2) && (objEntidad.Id_TipoVehiculo.ToString() == Id_TipoVehiculo.Substring(2, 1)) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(10, 1)))
+                {
+                    PotenciaE2 = Math.Pow(resultE2, constantePotCam1);
+
                 }
 
 
@@ -397,13 +458,13 @@ namespace SIS_Ga2.Business
                 if ((objEntidad.TipoDiseno.ToUpper() == TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(14, 1)))
                 {
                     resultE1 = objEntidad.PesoE1 / constanteBuses1;
-                    resultE2 = objEntidad.PesoE2 / constanteBuses3;
+                    resultE2 = objEntidad.PesoE2 / constanteBuses5;
                 }
                 else if ((objEntidad.TipoDiseno.ToUpper() != TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(14, 1)))
 
                 {
                     resultE1 = objEntidad.PesoE1 / constanteBuses1;
-                    resultE2 = objEntidad.PesoE2 / constanteBuses4;
+                    resultE2 = objEntidad.PesoE2 / constanteBuses6;
 
                 }
 
@@ -412,61 +473,61 @@ namespace SIS_Ga2.Business
                 {
                     resultE1 = objEntidad.PesoE1 / constanteBuses1;
                     resultE2 = objEntidad.PesoE2 / constanteBuses1;
-                    resultE3 = objEntidad.PesoE3 / constanteBuses3;
+                    resultE3 = objEntidad.PesoE3 / constanteBuses5;
                 }
                 else if ((objEntidad.TipoDiseno.ToUpper() != TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(16, 1)))
 
                 {
                     resultE1 = objEntidad.PesoE1 / constanteBuses1;
                     resultE2 = objEntidad.PesoE2 / constanteBuses1;
-                    resultE3 = objEntidad.PesoE3 / constanteBuses4;
+                    resultE3 = objEntidad.PesoE3 / constanteBuses6;
 
                 }
 
 
 
 
-                //SI ES ASFALTO Y B2 id_vehiculo=7
+                //SI ES CONCRETO Y B2 id_vehiculo=7
 
                 if ((objEntidad.TipoDiseno.ToUpper() == TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(12, 1)))
                 {
 
-                    PotenciaE1 = Math.Pow(resultE1, constantePot1);
-                    PotenciaE2 = Math.Pow(resultE2, constantePot1);
+                    PotenciaE1 = Math.Pow(resultE1, constantePot2);
+                    PotenciaE2 = Math.Pow(resultE2, constantePot2);
                 }
                 else if ((objEntidad.TipoDiseno.ToUpper() != TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(12, 1)))
                 {
-                    PotenciaE1 = Math.Pow(resultE1, constantePot2);
-                    PotenciaE2 = Math.Pow(resultE2, constantePot2);
-                }
-
-                //Buses Y TIPO DE vehiculo "B3" = id_vehiculo=8
-                if ((objEntidad.TipoDiseno.ToUpper() == TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(14, 1)))//SI ES ASFALTO Y B3
-                {
-
                     PotenciaE1 = Math.Pow(resultE1, constantePot1);
                     PotenciaE2 = Math.Pow(resultE2, constantePot1);
                 }
-                else if ((objEntidad.TipoDiseno.ToUpper() != TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(14, 1)))//SI NO ES ASFALTO Y B3
+
+                //Buses Y TIPO DE vehiculo "B3" = id_vehiculo=8
+                if ((objEntidad.TipoDiseno.ToUpper() == TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(14, 1)))//SI ES CONCRETO Y B3
                 {
+
                     PotenciaE1 = Math.Pow(resultE1, constantePot2);
                     PotenciaE2 = Math.Pow(resultE2, constantePot2);
+                }
+                else if ((objEntidad.TipoDiseno.ToUpper() != TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(14, 1)))//SI NO ES CONCRETO Y B3
+                {
+                    PotenciaE1 = Math.Pow(resultE1, constantePot1);
+                    PotenciaE2 = Math.Pow(resultE2, constantePot1);
                 }
 
 
                 //Buses Y TIPO DE vehiculo "B4" = id_vehiculo=9
-                if ((objEntidad.TipoDiseno.ToUpper() == TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(16, 1)))//SI ES ASFALTO Y B4
+                if ((objEntidad.TipoDiseno.ToUpper() == TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(16, 1)))//SI ES CONCRETO Y B4
                 {
 
-                    PotenciaE1 = Math.Pow(resultE1, constantePot1);
-                    PotenciaE2 = Math.Pow(resultE2, constantePot1);
-                    PotenciaE3 = Math.Pow(resultE3, constantePot1);
-                }
-                else if ((objEntidad.TipoDiseno.ToUpper() != TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(16, 1)))//SI NO ES ASFALTO Y B4
-                {
                     PotenciaE1 = Math.Pow(resultE1, constantePot2);
                     PotenciaE2 = Math.Pow(resultE2, constantePot2);
                     PotenciaE3 = Math.Pow(resultE3, constantePot2);
+                }
+                else if ((objEntidad.TipoDiseno.ToUpper() != TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(16, 1)))//SI NO ES CONCRETO Y B4
+                {
+                    PotenciaE1 = Math.Pow(resultE1, constantePot1);
+                    PotenciaE2 = Math.Pow(resultE2, constantePot1);
+                    PotenciaE3 = Math.Pow(resultE3, constantePot1);
                 }
 
 
@@ -479,12 +540,12 @@ namespace SIS_Ga2.Business
 
                 }
 
-                //Tipo diseño ASFALTO  Y TIPO DE vehiculo "C3" = id_vehiculo=11
+                //Tipo diseño CONCRETO  Y TIPO DE vehiculo "C3" = id_vehiculo=11
                 if ((objEntidad.TipoDiseno.ToUpper() == TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(21, 2)))
 
                 {
                     resultE1 = objEntidad.PesoE1 / constantecamiones1;
-                    resultE2 = objEntidad.PesoE2 / constantecamiones3;
+                    resultE2 = objEntidad.PesoE2 / constantecamiones4;
 
 
                 }
@@ -492,18 +553,18 @@ namespace SIS_Ga2.Business
 
                 {
                     resultE1 = objEntidad.PesoE1 / constantecamiones1;
-                    resultE2 = objEntidad.PesoE2 / constantecamiones4;
+                    resultE2 = objEntidad.PesoE2 / constantecamiones3;
 
                 }
 
 
 
-                //Tipo diseño ASFALTO  Y TIPO DE vehiculo "C4" = id_vehiculo=12
+                //Tipo diseño CONCRETO  Y TIPO DE vehiculo "C4" = id_vehiculo=12
                 if ((objEntidad.TipoDiseno.ToUpper() == TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(24, 2)))
 
                 {
                     resultE1 = objEntidad.PesoE1 / constantecamiones1;
-                    resultE2 = objEntidad.PesoE2 / constantecamiones5;
+                    resultE2 = objEntidad.PesoE2 / constantecamiones7;
 
 
                 }
@@ -511,7 +572,7 @@ namespace SIS_Ga2.Business
 
                 {
                     resultE1 = objEntidad.PesoE1 / constantecamiones1;
-                    resultE2 = objEntidad.PesoE2 / constantecamiones6;
+                    resultE2 = objEntidad.PesoE2 / constantecamiones8;
 
                 }
 
@@ -525,12 +586,12 @@ namespace SIS_Ga2.Business
 
                 }
 
-                //Tipo diseño ASFALTO  Y TIPO DE vehiculo "2S2" = id_vehiculo=14
+                //Tipo diseño concreto  Y TIPO DE vehiculo "2S2" = id_vehiculo=14
                 if ((objEntidad.TipoDiseno.ToUpper() == TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(30, 2)))
                 {
                     resultE1 = objEntidad.PesoE1 / constanteSemiTrailer1;
                     resultE2 = objEntidad.PesoE2 / constanteSemiTrailer2;
-                    resultE3 = objEntidad.PesoE3 / constanteSemiTrailer3;
+                    resultE3 = objEntidad.PesoE3 / constanteSemiTrailer4;
 
 
                 }
@@ -538,7 +599,7 @@ namespace SIS_Ga2.Business
                 {
                     resultE1 = objEntidad.PesoE1 / constanteSemiTrailer1;
                     resultE2 = objEntidad.PesoE2 / constanteSemiTrailer2;
-                    resultE3 = objEntidad.PesoE3 / constanteSemiTrailer4;
+                    resultE3 = objEntidad.PesoE3 / constanteSemiTrailer3;
 
                 }
 
@@ -547,7 +608,7 @@ namespace SIS_Ga2.Business
                 {
                     resultE1 = objEntidad.PesoE1 / constanteSemiTrailer1;
                     resultE2 = objEntidad.PesoE2 / constanteSemiTrailer2;
-                    resultE3 = objEntidad.PesoE3 / constanteSemiTrailer5;
+                    resultE3 = objEntidad.PesoE3 / constanteSemiTrailer6;
 
 
                 }
@@ -555,16 +616,16 @@ namespace SIS_Ga2.Business
                 {
                     resultE1 = objEntidad.PesoE1 / constanteSemiTrailer1;
                     resultE2 = objEntidad.PesoE2 / constanteSemiTrailer2;
-                    resultE3 = objEntidad.PesoE3 / constanteSemiTrailer6;
+                    resultE3 = objEntidad.PesoE3 / constanteSemiTrailer5;
 
                 }
 
 
-                //Tipo diseño ASFALTO  Y TIPO DE vehiculo "3S1" = id_vehiculo=16
+                //Tipo diseño concreto  Y TIPO DE vehiculo "3S1" = id_vehiculo=16
                 if ((objEntidad.TipoDiseno.ToUpper() == TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(36, 2)))
                 {
                     resultE1 = objEntidad.PesoE1 / constanteSemiTrailer1;
-                    resultE2 = objEntidad.PesoE2 / constanteSemiTrailer3;
+                    resultE2 = objEntidad.PesoE2 / constanteSemiTrailer4;
                     resultE3 = objEntidad.PesoE3 / constanteSemiTrailer2;
 
 
@@ -572,88 +633,100 @@ namespace SIS_Ga2.Business
                 else if ((objEntidad.TipoDiseno.ToUpper() != TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(36, 2)))
                 {
                     resultE1 = objEntidad.PesoE1 / constanteSemiTrailer1;
-                    resultE2 = objEntidad.PesoE2 / constanteSemiTrailer4;
+                    resultE2 = objEntidad.PesoE2 / constanteSemiTrailer3;
                     resultE3 = objEntidad.PesoE3 / constanteSemiTrailer2;
 
                 }
 
-                //Tipo diseño ASFALTO  Y TIPO DE vehiculo "3S2" = id_vehiculo=17
+
+                //Tipo diseño concreto  Y TIPO DE vehiculo "3S2" = id_vehiculo=17
+
+
                 if ((objEntidad.TipoDiseno.ToUpper() == TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(39, 2)))
                 {
                     resultE1 = objEntidad.PesoE1 / constanteSemiTrailer1;
-                    resultE2 = objEntidad.PesoE2 / constanteSemiTrailer3;
-                    resultE3 = objEntidad.PesoE3 / constanteSemiTrailer3;
+                    resultE2 = objEntidad.PesoE2 / constanteSemiTrailer9;
+                    resultE3 = objEntidad.PesoE3 / constanteSemiTrailer9;
 
 
                 }
                 else if ((objEntidad.TipoDiseno.ToUpper() != TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(39, 2)))
                 {
                     resultE1 = objEntidad.PesoE1 / constanteSemiTrailer1;
-                    resultE2 = objEntidad.PesoE2 / constanteSemiTrailer4;
-                    resultE3 = objEntidad.PesoE3 / constanteSemiTrailer4;
+                    resultE2 = objEntidad.PesoE2 / constanteSemiTrailer10;
+                    resultE3 = objEntidad.PesoE3 / constanteSemiTrailer10;
 
                 }
 
-                //Tipo diseño ASFALTO  Y TIPO DE vehiculo "3S3" = id_vehiculo=18
+
+
+                //Tipo diseño CONCRETO  Y TIPO DE vehiculo "3S3" = id_vehiculo=18
                 if ((objEntidad.TipoDiseno.ToUpper() == TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(42, 2)))
                 {
                     resultE1 = objEntidad.PesoE1 / constanteSemiTrailer1;
-                    resultE2 = objEntidad.PesoE2 / constanteSemiTrailer3;
-                    resultE3 = objEntidad.PesoE3 / constanteSemiTrailer5;
+                    resultE2 = objEntidad.PesoE2 / constanteSemiTrailer9;
+                    resultE3 = objEntidad.PesoE3 / constanteSemiTrailer6;
 
 
                 }
                 else if ((objEntidad.TipoDiseno.ToUpper() != TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(42, 2)))
                 {
                     resultE1 = objEntidad.PesoE1 / constanteSemiTrailer1;
-                    resultE2 = objEntidad.PesoE2 / constanteSemiTrailer4;
-                    resultE3 = objEntidad.PesoE3 / constanteSemiTrailer6;
+                    resultE2 = objEntidad.PesoE2 / constanteSemiTrailer10;
+                    resultE3 = objEntidad.PesoE3 / constanteSemiTrailer5;
 
                 }
 
+     
+
+
                 // TIPO DE vehiculo "C2" = id_vehiculo=10
-                if ((objEntidad.TipoDiseno.ToUpper() == TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(18, 2)))//SI ES ASFALTO Y B4
+                if ((objEntidad.TipoDiseno.ToUpper() == TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(18, 2)))//SI ES CONCRETO Y C2
                 {
 
-                    PotenciaE1 = Math.Pow(resultE1, constantePot1);
-                    PotenciaE2 = Math.Pow(resultE2, constantePot1);
+                    PotenciaE1 = Math.Pow(resultE1, constantePot2);
+                    PotenciaE2 = Math.Pow(resultE2, constantePot2);
 
                 }
                 else if ((objEntidad.TipoDiseno.ToUpper() != TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(18, 2)))//SI NO ES ASFALTO Y B4
                 {
-                    PotenciaE1 = Math.Pow(resultE1, constantePot2);
-                    PotenciaE2 = Math.Pow(resultE2, constantePot2);
+                    PotenciaE1 = Math.Pow(resultE1, constantePot1);
+                    PotenciaE2 = Math.Pow(resultE2, constantePot1);
 
                 }
+
+       
 
                 // TIPO DE vehiculo "C3" = id_vehiculo=11
-                if ((objEntidad.TipoDiseno.ToUpper() == TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(21, 2)))//SI ES ASFALTO Y B4
+                if ((objEntidad.TipoDiseno.ToUpper() == TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(21, 2)))//SI ES CONCRETO Y C3
                 {
 
-                    PotenciaE1 = Math.Pow(resultE1, constantePot1);
-                    PotenciaE2 = Math.Pow(resultE2, constantePot1);
-
-                }
-                else if ((objEntidad.TipoDiseno.ToUpper() != TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(21, 2)))//SI NO ES ASFALTO Y B4
-                {
                     PotenciaE1 = Math.Pow(resultE1, constantePot2);
                     PotenciaE2 = Math.Pow(resultE2, constantePot2);
 
                 }
-
-
-                // TIPO DE vehiculo "C4" = id_vehiculo=12
-                if ((objEntidad.TipoDiseno.ToUpper() == TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(24, 2)))//SI ES ASFALTO Y B4
+                else if ((objEntidad.TipoDiseno.ToUpper() != TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(21, 2)))//SI NO ES CONCRETO Y C3
                 {
-
                     PotenciaE1 = Math.Pow(resultE1, constantePot1);
-                    PotenciaE2 = Math.Pow(resultE2, constantePot3);
+                    PotenciaE2 = Math.Pow(resultE2, constantePot1);
 
                 }
-                else if ((objEntidad.TipoDiseno.ToUpper() != TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(24, 2)))//SI NO ES ASFALTO Y B4
+
+          
+                 // TIPO DE vehiculo "C4" = id_vehiculo=12
+                      
+
+                if ((objEntidad.TipoDiseno.ToUpper() == TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(24, 2)))//SI ES concreto Y c4
                 {
+
                     PotenciaE1 = Math.Pow(resultE1, constantePot2);
                     PotenciaE2 = Math.Pow(resultE2, constantePot1);
+
+                }
+                else if ((objEntidad.TipoDiseno.ToUpper() != TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(24, 2)))//SI NO ES CONCRETO Y C4
+                {
+                    PotenciaE1 = Math.Pow(resultE1, constantePot1);
+                    PotenciaE2 = Math.Pow(resultE2, constantePot3);
 
                 }
 
@@ -661,104 +734,114 @@ namespace SIS_Ga2.Business
                 if ((objEntidad.TipoDiseno.ToUpper() == TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(27, 2)))//SI ES ASFALTO Y 2s1
                 {
 
-                    PotenciaE1 = Math.Pow(resultE1, constantePot1);
-                    PotenciaE2 = Math.Pow(resultE2, constantePot1);
-                    PotenciaE3 = Math.Pow(resultE2, constantePot1);
-
-                }
-                else if ((objEntidad.TipoDiseno.ToUpper() != TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(27, 2)))//SI NO ES ASFALTO Y 2s1
-                {
                     PotenciaE1 = Math.Pow(resultE1, constantePot2);
                     PotenciaE2 = Math.Pow(resultE2, constantePot2);
                     PotenciaE3 = Math.Pow(resultE2, constantePot2);
 
                 }
+                else if ((objEntidad.TipoDiseno.ToUpper() != TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(27, 2)))//SI NO ES ASFALTO Y 2s1
+                {
+                    PotenciaE1 = Math.Pow(resultE1, constantePot1);
+                    PotenciaE2 = Math.Pow(resultE2, constantePot1);
+                    PotenciaE3 = Math.Pow(resultE2, constantePot1);
+
+                }
+
+                
+               
+
 
                 // TIPO DE vehiculo "2s2" = id_vehiculo=14
                 if ((objEntidad.TipoDiseno.ToUpper() == TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(30, 2)))//SI ES ASFALTO Y 2s2
                 {
 
-                    PotenciaE1 = Math.Pow(resultE1, constantePot1);
-                    PotenciaE2 = Math.Pow(resultE2, constantePot1);
-                    PotenciaE3 = Math.Pow(resultE3, constantePot1);
-
-                }
-                else if ((objEntidad.TipoDiseno.ToUpper() != TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(30, 2)))//SI NO ES ASFALTO Y 2s2
-                {
                     PotenciaE1 = Math.Pow(resultE1, constantePot2);
                     PotenciaE2 = Math.Pow(resultE2, constantePot2);
                     PotenciaE3 = Math.Pow(resultE3, constantePot2);
 
                 }
+                else if ((objEntidad.TipoDiseno.ToUpper() != TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(30, 2)))//SI NO ES ASFALTO Y 2s2
+                {
+                    PotenciaE1 = Math.Pow(resultE1, constantePot1);
+                    PotenciaE2 = Math.Pow(resultE2, constantePot1);
+                    PotenciaE3 = Math.Pow(resultE3, constantePot1);
+
+                }
+
+
                 // TIPO DE vehiculo "2s3" = id_vehiculo=15
                 if ((objEntidad.TipoDiseno.ToUpper() == TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(33, 2)))//SI ES ASFALTO Y 2s3
                 {
 
+                    PotenciaE1 = Math.Pow(resultE1, constantePot2);
+                    PotenciaE2 = Math.Pow(resultE2, constantePot2);
+                    PotenciaE3 = Math.Pow(resultE3, constantePot1);
+
+                }
+                else if ((objEntidad.TipoDiseno.ToUpper() != TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(33, 2)))//SI NO ES ASFALTO Y 2s3
+                {
                     PotenciaE1 = Math.Pow(resultE1, constantePot1);
                     PotenciaE2 = Math.Pow(resultE2, constantePot1);
                     PotenciaE3 = Math.Pow(resultE3, constantePot3);
 
                 }
-                else if ((objEntidad.TipoDiseno.ToUpper() != TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(33, 2)))//SI NO ES ASFALTO Y 2s3
-                {
-                    PotenciaE1 = Math.Pow(resultE1, constantePot2);
-                    PotenciaE2 = Math.Pow(resultE2, constantePot2);
-                    PotenciaE3 = Math.Pow(resultE3, constantePot1);
 
-                }
+                
+
                 // TIPO DE vehiculo "3s1" = id_vehiculo=16
                 if ((objEntidad.TipoDiseno.ToUpper() == TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(36, 2)))//SI ES ASFALTO Y 3s1
                 {
 
-                    PotenciaE1 = Math.Pow(resultE1, constantePot1);
-                    PotenciaE2 = Math.Pow(resultE2, constantePot1);
-                    PotenciaE3 = Math.Pow(resultE3, constantePot1);
-
-                }
-                else if ((objEntidad.TipoDiseno.ToUpper() != TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(36, 2)))//SI NO ES ASFALTO Y B4
-                {
                     PotenciaE1 = Math.Pow(resultE1, constantePot2);
                     PotenciaE2 = Math.Pow(resultE2, constantePot2);
                     PotenciaE3 = Math.Pow(resultE3, constantePot2);
 
                 }
+                else if ((objEntidad.TipoDiseno.ToUpper() != TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(36, 2)))//SI NO ES ASFALTO Y B4
+                {
+                    PotenciaE1 = Math.Pow(resultE1, constantePot1);
+                    PotenciaE2 = Math.Pow(resultE2, constantePot1);
+                    PotenciaE3 = Math.Pow(resultE3, constantePot1);
 
+                }
+
+                
                 // TIPO DE vehiculo "3s2" = id_vehiculo=17
                 if ((objEntidad.TipoDiseno.ToUpper() == TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(39, 2)))//SI ES ASFALTO Y B4
                 {
 
-                    PotenciaE1 = Math.Pow(resultE1, constantePot1);
-                    PotenciaE2 = Math.Pow(resultE2, constantePot1);
-                    PotenciaE3 = Math.Pow(resultE2, constantePot1);
-
-                }
-                else if ((objEntidad.TipoDiseno.ToUpper() != TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(39, 2)))//SI NO ES ASFALTO Y B4
-                {
                     PotenciaE1 = Math.Pow(resultE1, constantePot2);
                     PotenciaE2 = Math.Pow(resultE2, constantePot2);
                     PotenciaE3 = Math.Pow(resultE2, constantePot2);
 
                 }
+                else if ((objEntidad.TipoDiseno.ToUpper() != TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(39, 2)))//SI NO ES ASFALTO Y B4
+                {
+                    PotenciaE1 = Math.Pow(resultE1, constantePot1);
+                    PotenciaE2 = Math.Pow(resultE2, constantePot1);
+                    PotenciaE3 = Math.Pow(resultE2, constantePot1);
 
+                }
+
+               
                 // TIPO DE vehiculo "3s3" = id_vehiculo=18
                 if ((objEntidad.TipoDiseno.ToUpper() == TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(42, 2)))//SI ES ASFALTO Y B4
                 {
 
-                    PotenciaE1 = Math.Pow(resultE1, constantePot1);
-                    PotenciaE2 = Math.Pow(resultE2, constantePot1);
-                    PotenciaE3 = Math.Pow(resultE3, constantePot3);
-
-                }
-                else if ((objEntidad.TipoDiseno.ToUpper() != TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(42, 2)))//SI NO ES ASFALTO Y B4
-                {
                     PotenciaE1 = Math.Pow(resultE1, constantePot2);
                     PotenciaE2 = Math.Pow(resultE2, constantePot2);
                     PotenciaE3 = Math.Pow(resultE3, constantePot1);
 
                 }
+                else if ((objEntidad.TipoDiseno.ToUpper() != TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(42, 2)))//SI NO ES ASFALTO Y B4
+                {
+                    PotenciaE1 = Math.Pow(resultE1, constantePot1);
+                    PotenciaE2 = Math.Pow(resultE2, constantePot1);
+                    PotenciaE3 = Math.Pow(resultE3, constantePot3);
 
+                }
 
-
+            
                 //Tipo diseño ASFALTO  Y TIPO DE vehiculo "2T2" = id_vehiculo=19
                 if (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(45, 2))
 
@@ -770,16 +853,14 @@ namespace SIS_Ga2.Business
 
                 }
 
-
-
-                //Tipo diseño ASFALTO  Y TIPO DE vehiculo "2T3" = id_vehiculo=20
+                    //Tipo diseño concreto  Y TIPO DE vehiculo "2T3" = id_vehiculo=20
                 if ((objEntidad.TipoDiseno.ToUpper() == TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(48, 2)))
 
                 {
                     resultE1 = objEntidad.PesoE1 / constanteTrailer1;
-                    resultE2 = objEntidad.PesoE2 / constanteTrailer3;
+                    resultE2 = objEntidad.PesoE2 / constanteTrailer2;
                     resultE3 = objEntidad.PesoE3 / constanteTrailer2;
-                    resultE4 = objEntidad.PesoE4 / constanteTrailer3;
+                    resultE4 = objEntidad.PesoE4 / constanteTrailer4;
 
 
                 }
@@ -787,19 +868,18 @@ namespace SIS_Ga2.Business
 
                 {
                     resultE1 = objEntidad.PesoE1 / constanteTrailer1;
-                    resultE2 = objEntidad.PesoE2 / constanteTrailer4;
+                    resultE2 = objEntidad.PesoE2 / constanteTrailer2;
                     resultE3 = objEntidad.PesoE3 / constanteTrailer2;
-                    resultE4 = objEntidad.PesoE4 / constanteTrailer4;
+                    resultE4 = objEntidad.PesoE4 / constanteTrailer3;
 
                 }
 
-
-                //Tipo diseño ASFALTO  Y TIPO DE vehiculo "3T2" = id_vehiculo=21
+                     //Tipo diseño concreto  Y TIPO DE vehiculo "3T2" = id_vehiculo=21
                 if ((objEntidad.TipoDiseno.ToUpper() == TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(51, 2)))
 
                 {
                     resultE1 = objEntidad.PesoE1 / constanteTrailer1;
-                    resultE2 = objEntidad.PesoE2 / constanteTrailer3;
+                    resultE2 = objEntidad.PesoE2 / constanteTrailer4;
                     resultE3 = objEntidad.PesoE3 / constanteTrailer2;
                     resultE4 = objEntidad.PesoE4 / constanteTrailer2;
 
@@ -810,21 +890,20 @@ namespace SIS_Ga2.Business
                 {
 
                     resultE1 = objEntidad.PesoE1 / constanteTrailer1;
-                    resultE2 = objEntidad.PesoE2 / constanteTrailer4;
+                    resultE2 = objEntidad.PesoE2 / constanteTrailer3;
                     resultE3 = objEntidad.PesoE3 / constanteTrailer2;
                     resultE4 = objEntidad.PesoE4 / constanteTrailer2;
 
                 }
-
-                //Tipo diseño ASFALTO  Y TIPO DE vehiculo ">3T3" = id_vehiculo=22
+                //Tipo diseño concreto  Y TIPO DE vehiculo ">3T3" = id_vehiculo=22
                 if ((objEntidad.TipoDiseno.ToUpper() == TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(54, 2)))
 
                 {
                     resultE1 = objEntidad.PesoE1 / constanteTrailer1;
-                    resultE2 = objEntidad.PesoE2 / constanteTrailer3;
-                    resultE3 = objEntidad.PesoE3 / constanteTrailer3;
-                    resultE4 = objEntidad.PesoE4 / constanteTrailer3;
-                    resultE5 = objEntidad.PesoE5 / constanteTrailer3;
+                    resultE2 = objEntidad.PesoE2 / constanteTrailer4;
+                    resultE3 = objEntidad.PesoE3 / constanteTrailer2;
+                    resultE4 = objEntidad.PesoE4 / constanteTrailer4;
+          
 
                 }
                 else if ((objEntidad.TipoDiseno.ToUpper() != TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(54, 2)))
@@ -832,10 +911,10 @@ namespace SIS_Ga2.Business
                 {
 
                     resultE1 = objEntidad.PesoE1 / constanteTrailer1;
-                    resultE2 = objEntidad.PesoE2 / constanteTrailer4;
-                    resultE3 = objEntidad.PesoE3 / constanteTrailer4;
-                    resultE4 = objEntidad.PesoE4 / constanteTrailer4;
-                    resultE5 = objEntidad.PesoE5 / constanteTrailer4;
+                    resultE2 = objEntidad.PesoE2 / constanteTrailer3;
+                    resultE3 = objEntidad.PesoE3 / constanteTrailer2;
+                    resultE4 = objEntidad.PesoE4 / constanteTrailer3;
+          
 
                 }
 
@@ -843,86 +922,83 @@ namespace SIS_Ga2.Business
 
 
 
-                //3- Buses
+                //trailer
 
-
-
+              
                 // TIPO DE vehiculo "2t2" = id_vehiculo=19
                 if ((objEntidad.TipoDiseno.ToUpper() == TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(45, 2)))//SI ES ASFALTO Y B4
                 {
 
-                    PotenciaE1 = Math.Pow(resultE1, constantePot1);
-                    PotenciaE2 = Math.Pow(resultE2, constantePot1);
-                    PotenciaE3 = Math.Pow(resultE3, constantePot1);
-                    PotenciaE4 = Math.Pow(resultE4, constantePot1);
+                    PotenciaE1 = Math.Pow(resultE1, constantePot2);
+                    PotenciaE2 = Math.Pow(resultE2, constantePot2);
+                    PotenciaE3 = Math.Pow(resultE3, constantePot2);
+                    PotenciaE4 = Math.Pow(resultE4, constantePot2);
 
                 }
                 else if ((objEntidad.TipoDiseno.ToUpper() != TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(45, 2)))//SI NO ES ASFALTO Y B4
                 {
-                    PotenciaE1 = Math.Pow(resultE1, constantePot2);
-                    PotenciaE2 = Math.Pow(resultE2, constantePot2);
-                    PotenciaE3 = Math.Pow(resultE3, constantePot2);
-                    PotenciaE4 = Math.Pow(resultE4, constantePot2);
-                }
-
-                // TIPO DE vehiculo "2t3" = id_vehiculo=20
-                if ((objEntidad.TipoDiseno.ToUpper() == TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(48, 2)))//SI ES ASFALTO Y B4
-                {
-
                     PotenciaE1 = Math.Pow(resultE1, constantePot1);
                     PotenciaE2 = Math.Pow(resultE2, constantePot1);
                     PotenciaE3 = Math.Pow(resultE3, constantePot1);
                     PotenciaE4 = Math.Pow(resultE4, constantePot1);
+                }
+                     // TIPO DE vehiculo "2t3" = id_vehiculo=20
+                if ((objEntidad.TipoDiseno.ToUpper() == TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(48, 2)))//SI ES ASFALTO Y B4
+                {
+
+                    PotenciaE1 = Math.Pow(resultE1, constantePot2);
+                    PotenciaE2 = Math.Pow(resultE2, constantePot2);
+                    PotenciaE3 = Math.Pow(resultE3, constantePot2);
+                    PotenciaE4 = Math.Pow(resultE4, constantePot2);
 
                 }
                 else if ((objEntidad.TipoDiseno.ToUpper() != TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(48, 2)))//SI NO ES ASFALTO Y B4
                 {
-                    PotenciaE1 = Math.Pow(resultE1, constantePot2);
-                    PotenciaE2 = Math.Pow(resultE2, constantePot2);
-                    PotenciaE3 = Math.Pow(resultE3, constantePot2);
-                    PotenciaE4 = Math.Pow(resultE4, constantePot2);
-                }
-
-                // TIPO DE vehiculo "3t2" = id_vehiculo=21
-                if ((objEntidad.TipoDiseno.ToUpper() == TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(51, 2)))//SI ES ASFALTO Y 3t2
-                {
-
                     PotenciaE1 = Math.Pow(resultE1, constantePot1);
                     PotenciaE2 = Math.Pow(resultE2, constantePot1);
                     PotenciaE3 = Math.Pow(resultE3, constantePot1);
                     PotenciaE4 = Math.Pow(resultE4, constantePot1);
+                }
+
+                    // TIPO DE vehiculo "3t2" = id_vehiculo=21
+                if ((objEntidad.TipoDiseno.ToUpper() == TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(51, 2)))//SI ES ASFALTO Y 3t2
+                {
+
+                    PotenciaE1 = Math.Pow(resultE1, constantePot2);
+                    PotenciaE2 = Math.Pow(resultE2, constantePot2);
+                    PotenciaE3 = Math.Pow(resultE3, constantePot2);
+                    PotenciaE4 = Math.Pow(resultE4, constantePot2);
 
                 }
                 else if ((objEntidad.TipoDiseno.ToUpper() != TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(51, 2)))//SI NO ES ASFALTO Y B4
                 {
-                    PotenciaE1 = Math.Pow(resultE1, constantePot2);
-                    PotenciaE2 = Math.Pow(resultE2, constantePot2);
-                    PotenciaE3 = Math.Pow(resultE3, constantePot2);
-                    PotenciaE4 = Math.Pow(resultE4, constantePot2);
-                }
-
-
-                // TIPO DE vehiculo ">3T3" = id_vehiculo=22
-                if ((objEntidad.TipoDiseno.ToUpper() == TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(54, 2)))//SI ES ASFALTO Y >3T3
-                {
-
                     PotenciaE1 = Math.Pow(resultE1, constantePot1);
                     PotenciaE2 = Math.Pow(resultE2, constantePot1);
                     PotenciaE3 = Math.Pow(resultE3, constantePot1);
                     PotenciaE4 = Math.Pow(resultE4, constantePot1);
-                    PotenciaE5 = Math.Pow(resultE5, constantePot1);
-
                 }
-                else if ((objEntidad.TipoDiseno.ToUpper() != TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(54, 2)))//SI NO ES ASFALTO Y B4
+
+               // TIPO DE vehiculo ">3T3" = id_vehiculo=22
+                if ((objEntidad.TipoDiseno.ToUpper() == TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(54, 2)))//SI ES ASFALTO Y >3T3
                 {
+
                     PotenciaE1 = Math.Pow(resultE1, constantePot2);
                     PotenciaE2 = Math.Pow(resultE2, constantePot2);
                     PotenciaE3 = Math.Pow(resultE3, constantePot2);
                     PotenciaE4 = Math.Pow(resultE4, constantePot2);
-                    PotenciaE5 = Math.Pow(resultE5, constantePot2);
+                   
+
+                }
+                else if ((objEntidad.TipoDiseno.ToUpper() != TipoDiseno) && (objEntidad.Id_Vehiculo.ToString() == Id_Vehiculo.Substring(54, 2)))//SI NO ES ASFALTO Y B4
+                {
+                    PotenciaE1 = Math.Pow(resultE1, constantePot1);
+                    PotenciaE2 = Math.Pow(resultE2, constantePot1);
+                    PotenciaE3 = Math.Pow(resultE3, constantePot1);
+                    PotenciaE4 = Math.Pow(resultE4, constantePot1);
+               
                 }
                 //Buses enviado el ID VEhiculo
-                return resultadoFVP = PotenciaE1 + PotenciaE2 + PotenciaE3 + PotenciaE4 + PotenciaE5;
+                return resultadoFVP = PotenciaE1 + PotenciaE2 + PotenciaE3 + PotenciaE4;
                 //double resultadoN18calc2 = 0;
 
             }
