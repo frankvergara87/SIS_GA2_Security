@@ -64,7 +64,7 @@ namespace SIS_Ga2.Business
             if (idTipoTasaCrec == idTipoTasaCreci1)
             {
 
-                foreach (BETipoVehiculos point in LstBETipoVehiculos)
+          /*      foreach (BETipoVehiculos point in LstBETipoVehiculos)
                 {
                     objBEMatriz = new BEMatrizTasaCrecimiento();
                     objBEMatriz.Nro_Anio = 0;
@@ -73,7 +73,7 @@ namespace SIS_Ga2.Business
                     objBEMatriz.Valor = 0;
                     Resultado1 = objMatriz.GuardartasaCrecimiento(objBEMatriz, 1);
                 }
-
+           */
                 foreach (BETasaCrecimiento item in LstCrecimXTiempo)
                 {
                     objBEMatriz = new BEMatrizTasaCrecimiento();
@@ -102,7 +102,7 @@ namespace SIS_Ga2.Business
 
                 //Registro de Variables por Crecimiento de Vehiculo
 
-                for (int j = 0; j <= objEntidad.Nro_Anio; j++)
+                for (int j = 1; j <= objEntidad.Nro_Anio; j++)
                 {
                     foreach (BETipoVehiculos point in LstBETipoVehiculos)
                     {
@@ -117,7 +117,9 @@ namespace SIS_Ga2.Business
                                 objBEMatriz.Nro_Anio = j;
                                 objBEMatriz.Id_Diseno = objEntidad.Id_Diseno;
                                 objBEMatriz.Id_Tipo_Vehiculo = point.Id_Tipo_Vehiculo;
-                                if (j == 0)
+                                objBEMatriz.Valor = ValorCrecVeh;
+                              
+                                /*   if (j == 0)
                                 {
 
                                     objBEMatriz.Valor = j;
@@ -127,6 +129,7 @@ namespace SIS_Ga2.Business
                                     objBEMatriz.Valor = ValorCrecVeh;
 
                                 }
+                                */
 
                                 Resultado1 = objMatriz.GuardartasaCrecimiento(objBEMatriz, 1);
 
@@ -148,7 +151,7 @@ namespace SIS_Ga2.Business
 
                 //Registro de Variables por Constante
 
-                for (int j = 0; j <= objEntidad.Nro_Anio; j++)
+                for (int j = 1; j <= objEntidad.Nro_Anio; j++)
                 {
                     foreach (BETipoVehiculos point in LstBETipoVehiculos)
                     {
@@ -162,7 +165,9 @@ namespace SIS_Ga2.Business
                             objBEMatriz.Nro_Anio = j;
                             objBEMatriz.Id_Diseno = objEntidad.Id_Diseno;
                             objBEMatriz.Id_Tipo_Vehiculo = point.Id_Tipo_Vehiculo;
-                            if (j == 0)
+                            objBEMatriz.Valor = ValorCrecConstate;
+                          
+                          /*  if (j == 0)
                             {
                                 objBEMatriz.Valor = 0;
                             }
@@ -171,6 +176,7 @@ namespace SIS_Ga2.Business
 
                                 objBEMatriz.Valor = ValorCrecConstate;
                             }
+                            */
 
                             Resultado1 = objMatriz.GuardartasaCrecimiento(objBEMatriz, 1);
 
@@ -198,7 +204,7 @@ namespace SIS_Ga2.Business
             
             // Logica Matriz
 
-            for (int i = 0; i <= objEntidad.Nro_Anio; i++)
+            for (int i =1; i <= objEntidad.Nro_Anio; i++)
 
             {
                 foreach (BETipoVehiculos Veh in LstBETipoVehiculos)// Recorremos los tipos de vehiculos
@@ -214,7 +220,7 @@ namespace SIS_Ga2.Business
                    foreach (BEMatrizEE item in resultadoIMD)// Recorremos la  lista para obtener los valores IMD y FVP USP_Sel_Info_Matriz_EE
                     {
 
-                        if (i == 0)
+                        if (i == 1)
                         {
                             BEMatrizEE itemEE = new BEMatrizEE();
                             itemEE.Id_Vehiculos = item.Id_Vehiculos;
@@ -295,31 +301,31 @@ namespace SIS_Ga2.Business
 
                 }
 
-           DataTable tabla1 = new DataTable();
+           //DataTable tabla1 = new DataTable();
 
 
-            PropertyInfo[] propiedades1 = LstMatrizEEResultado1[0].GetType().GetProperties();
-            for (int i = 0; i < propiedades1.Length; i++)
-            {
-                tabla1.Columns.Add(propiedades1[i].Name, propiedades1[i].PropertyType);
-            }
-            //Llenar la Tabla desde la Lista de Objetos
-            DataRow fila1 = null;
-            for (int i = 0; i < LstMatrizEEResultado1.Count; i++)
-            {
-                propiedades1 = LstMatrizEEResultado1[i].GetType().GetProperties();
-                fila1 = tabla1.NewRow();
-                for (int j = 0; j < propiedades1.Length; j++)
-                {
-                    fila1[j] = propiedades1[j].GetValue(LstMatrizEEResultado1[i], null);
-                }
-                tabla1.Rows.Add(fila1);
-            }
+           // PropertyInfo[] propiedades1 = LstMatrizEEResultado1[0].GetType().GetProperties();
+           // for (int i = 0; i < propiedades1.Length; i++)
+           // {
+           //     tabla1.Columns.Add(propiedades1[i].Name, propiedades1[i].PropertyType);
+           // }
+           // //Llenar la Tabla desde la Lista de Objetos
+           // DataRow fila1 = null;
+           // for (int i = 0; i < LstMatrizEEResultado1.Count; i++)
+           // {
+           //     propiedades1 = LstMatrizEEResultado1[i].GetType().GetProperties();
+           //     fila1 = tabla1.NewRow();
+           //     for (int j = 0; j < propiedades1.Length; j++)
+           //     {
+           //         fila1[j] = propiedades1[j].GetValue(LstMatrizEEResultado1[i], null);
+           //     }
+           //     tabla1.Rows.Add(fila1);
+           // }
 
             
             //en base a la informacion calculamos el EE 
 
-            for (int j = 0; j <= objEntidad.Nro_Anio; j++)
+            for (int j = 1; j <= objEntidad.Nro_Anio; j++)
             {
 
                 foreach (BEVehiculos Vehi in LstVehiculos)// Recorremos los vehiculos
@@ -366,7 +372,7 @@ namespace SIS_Ga2.Business
             LstMatrizEEResultado1.Clear();
             LstMatrizEEResultado2.Clear();
 
-            DataTable tabla = new DataTable();
+        /*    DataTable tabla = new DataTable();
 
             
             PropertyInfo[] propiedades = LstMatrizEEResultado3[0].GetType().GetProperties();
@@ -385,7 +391,7 @@ namespace SIS_Ga2.Business
                     fila[j] = propiedades[j].GetValue(LstMatrizEEResultado3[i], null);
                 }
                 tabla.Rows.Add(fila);
-            }
+            }*/
 
 
             return LstMatrizEEResultado3;

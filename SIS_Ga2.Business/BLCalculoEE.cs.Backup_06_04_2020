@@ -6,34 +6,31 @@ using System.Threading.Tasks;
 using SIS_Ga2.Entity;
 using SIS_Ga2.DataAccess;
 using System.Configuration;
-
+using System.Reflection;
+using System.Data;
 namespace SIS_Ga2.Business
 {
     public class BLCalculoEE
     {
-        public decimal CalculoEE(BEMatrizTasaCrecimiento objEntidad, int idTipoTasaCrec, decimal FDxFC, decimal Fp)
+        public List<BEMatrizEE> ListaResultadoEE  (BEMatrizTasaCrecimiento objEntidad, int idTipoTasaCrec, decimal FDxFC, decimal Fp)
         {
             int idTipoTasaCreci1 = 0;
             int idTipoTasaCreci2 = 0;
             int idTipoTasaCreci3 = 0;
 
-            decimal ValorEE = 0;
+            //decimal ValorEE = 0;
             BLMatrizTasaCrecimiento objMatriz = new BLMatrizTasaCrecimiento();
             BEMatrizTasaCrecimiento objBEMatriz = new BEMatrizTasaCrecimiento();
             int Resultado1 = 0;
-           
+            int del = 0;
+                del = objMatriz.DelTasaCrecimiento(objEntidad.Id_Diseno);
             List<BEMatrizTasaCrecimiento> LstBLMatriz1 = new List<BEMatrizTasaCrecimiento>();
             List<BETipoVehiculos> LstBETipoVehiculos = new List<BETipoVehiculos>();
             List<BETasaCrecimiento> LstCrecimXTiempo = new List<BETasaCrecimiento>();
             List<BETasaCrecimiento> LstCrecimXVehiculo = new List<BETasaCrecimiento>();
-            List<BETasaCrecimiento> LstCrecimConstante = new List<BETasaCrecimiento>();
-            List<BETasaCrecimiento> LstTasaCrecim1 = new List<BETasaCrecimiento>();
-            List<BETasaCrecimiento> LstTasaCrecim2 = new List<BETasaCrecimiento>();
+            List<BETasaCrecimiento> LstCrecimConstante = new List<BETasaCrecimiento>();         
             List<BEMatrizEE> LstMatrizEE = new List<BEMatrizEE>();
-            List<BEVehiculos> LstVehiculos = new List<BEVehiculos>();
-
-            List<BEMatrizEE> LstMatrizEExVehi = new List<BEMatrizEE>();
-
+            List<BEVehiculos> LstVehiculos = new List<BEVehiculos>();         
             List<BEMatrizEE> LstMatrizEEResultado1 = new List<BEMatrizEE>();
             List<BEMatrizEERes> LstMatrizEEResultado2 = new List<BEMatrizEERes>();
             List<BEMatrizEE> LstMatrizEEResultado3 = new List<BEMatrizEE>();
@@ -100,49 +97,6 @@ namespace SIS_Ga2.Business
 
 
 
-            //for (int i = 0; i <= objEntidad.Nro_anio; i++)
-            //{
-            //    foreach (BETipoVehiculos point in LstBETipoVehiculos)
-            //    {
-
-            //        Ubicar el valor de crecimiento de tiempo X Año
-            //        foreach (BETasaCrecimiento item in LstCrecimXTiempo)
-            //        {
-            //            if (item.NroAnio == i)
-            //            {
-            //                objBEMatriz = new BEMatrizTasaCrecimiento();
-            //                objBEMatriz.Nro_anio = i;
-            //                objBEMatriz.Id_Diseno = objEntidad.Id_Diseno;
-            //                objBEMatriz.Id_Tipo_Vehiculo = item.Id_Tipo_Vehiculo;
-            //                objBEMatriz.Valor = item.Valor;
-            //            }
-
-            //            if (i == 0)
-            //            {
-            //                objBEMatriz = new BEMatrizTasaCrecimiento();
-            //                objBEMatriz.Nro_anio = i;
-            //                objBEMatriz.Id_Diseno = objEntidad.Id_Diseno;
-            //                objBEMatriz.Id_Tipo_Vehiculo = item.Id_Tipo_Vehiculo;
-            //                objBEMatriz.Valor = i;
-
-            //            }
-            //            Guarda en la tabla[Matriz_Tasa_Crecimiento1]
-            //            Resultado1 = objMatriz.GuardartasaCrecimiento(objBEMatriz, 1);
-            //            Guarda en la tabla[Matriz_Tasa_Crecimiento2]
-            //             Resultado2 = objMatriz.GuardartasaCrecimiento(objBEMatriz, 2);
-
-            //        }
-
-
-
-
-            //    }
-
-
-            //}
-
-
-
             if (idTipoTasaCrec == idTipoTasaCreci2)
             {
 
@@ -181,9 +135,6 @@ namespace SIS_Ga2.Business
                         }
 
 
-
-
-                        // Resultado2 = objMatriz.GuardartasaCrecimiento(objBEMatriz, 2);
                     }
 
 
@@ -244,7 +195,7 @@ namespace SIS_Ga2.Business
             //seleccionamos la matriz de tasa de crecimiento registrada por año y vehiculo//[USP_Sel_TasasCrecimiento1]
             LstBLMatriz1 = ObjBLMatrizTasaCrec.ListarTasaCrec1(objEntidad.Id_Diseno);
 
-
+            
             // Logica Matriz
 
             for (int i = 0; i <= objEntidad.Nro_Anio; i++)
@@ -300,18 +251,6 @@ namespace SIS_Ga2.Business
                                                  //&& (Matriz1.Id_Vehiculos == item.Id_Vehiculos)
                                                  select Matriz1;
 
-                                //foreach (BEMatrizEE itemR in resultado)
-                                //{
-
-                                //    string a;
-                                //    a = itemR.Id_Vehiculos.ToString();
-                                //}
-
-                                //foreach (BEMatrizTasaCrecimiento itemM2 in resultadoM)
-                                //{
-                                //    string b;
-                                //    b = itemM2.Id_Tipo_Vehiculo.ToString();
-                                //}
                                 foreach (BEMatrizEE itemR in resultado)
                                 {
 
@@ -326,7 +265,8 @@ namespace SIS_Ga2.Business
 
                                             BEMatrizEERes itemEE = new BEMatrizEERes();
                                             itemEE.Id_Vehiculos = item.Id_Vehiculos;
-                                            itemEE.valorEEMatriz = Math.Round(CalculoEE1,2);
+                                            //itemEE.valorEEMatriz = Math.Round(CalculoEE1,2);
+                                            itemEE.valorEEMatriz = CalculoEE1;
                                             itemEE.NroAnio = i;
                                             itemEE.Id_Tipo_Vehiculo = item.Id_Tipo_Vehiculo;
                                             LstMatrizEEResultado2.Add(itemEE);
@@ -354,8 +294,29 @@ namespace SIS_Ga2.Business
                     }
 
                 }
-            
 
+           DataTable tabla1 = new DataTable();
+
+
+            PropertyInfo[] propiedades1 = LstMatrizEEResultado1[0].GetType().GetProperties();
+            for (int i = 0; i < propiedades1.Length; i++)
+            {
+                tabla1.Columns.Add(propiedades1[i].Name, propiedades1[i].PropertyType);
+            }
+            //Llenar la Tabla desde la Lista de Objetos
+            DataRow fila1 = null;
+            for (int i = 0; i < LstMatrizEEResultado1.Count; i++)
+            {
+                propiedades1 = LstMatrizEEResultado1[i].GetType().GetProperties();
+                fila1 = tabla1.NewRow();
+                for (int j = 0; j < propiedades1.Length; j++)
+                {
+                    fila1[j] = propiedades1[j].GetValue(LstMatrizEEResultado1[i], null);
+                }
+                tabla1.Rows.Add(fila1);
+            }
+
+            
             //en base a la informacion calculamos el EE 
 
             for (int j = 0; j <= objEntidad.Nro_Anio; j++)
@@ -378,10 +339,13 @@ namespace SIS_Ga2.Business
                         foreach (BEMatrizEE itemR in resultado)//recorremos para obrener el FVP - debe ser un solo resultado
                         {
                             BEMatrizEE itemEE = new BEMatrizEE();
+                          
                             CalculoEE2 = item.Valor_FVP * itemR.valorEEMatriz  * FDxFC * Fp * 365;
                             itemEE.Id_Vehiculos = item.Id_Vehiculos;
                             itemEE.Id_Tipo_Vehiculo = item.Id_Tipo_Vehiculo;
-                            //itemEE.valorEEMatriz =Math.Round( CalculoEE2,0);
+                            // itemEE.valorEEMatriz =Math.Round( CalculoEE2,0);
+                            
+
                             itemEE.valorEEMatriz = CalculoEE2;
                             itemEE.NroAnio = j;
                             LstMatrizEEResultado3.Add(itemEE);
@@ -392,21 +356,68 @@ namespace SIS_Ga2.Business
 
             }
 
-            foreach (BEMatrizEE item in LstMatrizEEResultado3)
+            LstBLMatriz1.Clear();
+            LstBETipoVehiculos.Clear();
+            LstCrecimXTiempo.Clear();
+            LstCrecimXVehiculo.Clear();
+            LstCrecimConstante.Clear();
+            LstMatrizEE.Clear();
+            LstVehiculos.Clear();
+            LstMatrizEEResultado1.Clear();
+            LstMatrizEEResultado2.Clear();
+
+            DataTable tabla = new DataTable();
+
+            
+            PropertyInfo[] propiedades = LstMatrizEEResultado3[0].GetType().GetProperties();
+            for (int i = 0; i < propiedades.Length; i++)
+            {
+                tabla.Columns.Add(propiedades[i].Name, propiedades[i].PropertyType);
+            }
+            //Llenar la Tabla desde la Lista de Objetos
+            DataRow fila = null;
+            for (int i = 0; i < LstMatrizEEResultado3.Count; i++)
+            {
+                propiedades = LstMatrizEEResultado3[i].GetType().GetProperties();
+                fila = tabla.NewRow();
+                for (int j = 0; j < propiedades.Length; j++)
+                {
+                    fila[j] = propiedades[j].GetValue(LstMatrizEEResultado3[i], null);
+                }
+                tabla.Rows.Add(fila);
+            }
+
+
+            return LstMatrizEEResultado3;
+
+       /*    foreach (BEMatrizEE item in LstMatrizEEResultado3)
             {
                 ValorEE = ValorEE + item.valorEEMatriz;
 
             }
 
            // decimal a = 0;
-            return Math.Round(ValorEE, 0);
+            return Math.Round(ValorEE, 0);*/
 
             
 
         }
 
 
+
+
+    public decimal CalculoEExVehi(List<BEMatrizEE> LstMatrizEEResultado, int TipoVehiculo,int idVehiculo )
+        {
+            decimal ValorEExVeh = 0;
+            var resultado = from Matriz in LstMatrizEEResultado
+                            where Matriz.Id_Vehiculos == idVehiculo && Matriz.Id_Tipo_Vehiculo == TipoVehiculo
+                            select Matriz;
+            foreach (BEMatrizEE item in resultado)//recorremos para obrener el FVP - debe ser un solo resultado
+            {
+                ValorEExVeh = ValorEExVeh + item.valorEEMatriz;
+            }
+
+               return ValorEExVeh;
+    }
     }
 }
-
-

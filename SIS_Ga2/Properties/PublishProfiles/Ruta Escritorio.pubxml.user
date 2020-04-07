@@ -154,7 +154,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>03/13/2020 13:56:48</publishTime>
     </File>
     <File Include="bin/SIS_Ga2.dll">
-      <publishTime>04/01/2020 15:06:34</publishTime>
+      <publishTime>04/03/2020 21:40:30</publishTime>
     </File>
     <File Include="bin/SIS_Ga2.Entity.dll">
       <publishTime>03/13/2020 13:56:41</publishTime>
@@ -163,7 +163,7 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>03/13/2020 13:56:41</publishTime>
     </File>
     <File Include="bin/SIS_Ga2.pdb">
-      <publishTime>04/01/2020 15:06:34</publishTime>
+      <publishTime>04/03/2020 21:40:30</publishTime>
     </File>
     <File Include="bin/System.Web.Helpers.dll">
       <publishTime>10/10/2019 01:54:02</publishTime>
@@ -1615,13 +1615,13 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>11/22/2019 21:40:45</publishTime>
     </File>
     <File Include="Views/ParametrosAdoquin/Index.cshtml">
-      <publishTime>04/01/2020 15:02:50</publishTime>
+      <publishTime>04/03/2020 21:34:08</publishTime>
     </File>
     <File Include="Views/ParametrosAsfalto/Index.cshtml">
-      <publishTime>03/25/2020 23:40:22</publishTime>
+      <publishTime>04/03/2020 21:27:00</publishTime>
     </File>
     <File Include="Views/ParametrosConcreto/Index.cshtml">
-      <publishTime>04/01/2020 15:01:57</publishTime>
+      <publishTime>04/03/2020 21:35:02</publishTime>
     </File>
     <File Include="Views/ProyectoDiseno/Index.cshtml">
       <publishTime>02/04/2020 15:08:16</publishTime>
