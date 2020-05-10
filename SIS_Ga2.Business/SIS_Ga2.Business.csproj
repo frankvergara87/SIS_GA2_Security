@@ -58,6 +58,7 @@
     <Compile Include="BLEjes.cs" />
     <Compile Include="BLMatrizEE.cs" />
     <Compile Include="BLMatrizTasaCrecimiento.cs" />
+    <Compile Include="BLParametrosDiseno.cs" />
     <Compile Include="BLPeriodos.cs" />
     <Compile Include="BLPorcEstrucPavimento.cs" />
     <Compile Include="BLPresContacNeum.cs" />

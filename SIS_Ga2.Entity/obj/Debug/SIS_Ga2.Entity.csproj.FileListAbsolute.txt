@@ -59,7 +59,7 @@ C:\Gustavo\Proyecto\ASHTO_24.09\SIS_GA2_Security\SIS_Ga2.Entity\obj\Debug\SIS_Ga
 C:\Gustavo\Proyecto\ASHTO_24.09\SIS_GA2_Security\SIS_Ga2.Entity\obj\Debug\SIS_Ga2.Entity.pdb
 C:\Users\Frank\Source\Repos\Aashto\SIS_GA2_Security\SIS_Ga2.Entity\bin\Debug\SIS_Ga2.Entity.dll
 C:\Users\Frank\Source\Repos\Aashto\SIS_GA2_Security\SIS_Ga2.Entity\bin\Debug\SIS_Ga2.Entity.pdb
-C:\Users\Frank\Source\Repos\Aashto\SIS_GA2_Security\SIS_Ga2.Entity\obj\Debug\SIS_Ga2.Entity.csprojAssemblyReference.cache
 C:\Users\Frank\Source\Repos\Aashto\SIS_GA2_Security\SIS_Ga2.Entity\obj\Debug\SIS_Ga2.Entity.csproj.CoreCompileInputs.cache
 C:\Users\Frank\Source\Repos\Aashto\SIS_GA2_Security\SIS_Ga2.Entity\obj\Debug\SIS_Ga2.Entity.dll
 C:\Users\Frank\Source\Repos\Aashto\SIS_GA2_Security\SIS_Ga2.Entity\obj\Debug\SIS_Ga2.Entity.pdb
+C:\Users\Frank\source\repos\Aashto\SIS_GA2_Security\SIS_Ga2.Entity\obj\Debug\SIS_Ga2.Entity.csprojAssemblyReference.cache

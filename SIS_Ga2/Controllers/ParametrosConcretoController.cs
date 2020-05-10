@@ -1144,7 +1144,99 @@ namespace SIS_Ga2.Controllers
 
         //CalcuKeqMpa
 
+        public int RegistroParametroDiseno(BEParametroDiseno objParametroDiseno)
+        {
+            try
+            {
+                int upd = 0;
 
+                BLParametrosDiseno bLParametrosDiseno = new BLParametrosDiseno();
+                BEParametroDiseno beParametrosDiseno = new BEParametroDiseno();
+
+                beParametrosDiseno.idDiseno = Convert.ToInt32(Session["DisenoId"].ToString());
+                beParametrosDiseno.idPeriodo = objParametroDiseno.idPeriodo;
+                beParametrosDiseno.ESAL = objParametroDiseno.ESAL;
+                beParametrosDiseno.Confiabilidad = objParametroDiseno.Confiabilidad;
+                beParametrosDiseno.ErrorCombinac = objParametroDiseno.ErrorCombinac;
+                beParametrosDiseno.ServInicial = objParametroDiseno.ServInicial;
+                beParametrosDiseno.ServFinal = objParametroDiseno.ServFinal;
+                beParametrosDiseno.DiferenciaServ = objParametroDiseno.DiferenciaServ;
+                beParametrosDiseno.DesvEstandar = objParametroDiseno.DesvEstandar;
+                beParametrosDiseno.Estado = 1;
+
+
+                beParametrosDiseno.ResCompresion = objParametroDiseno.ResCompresion;
+                beParametrosDiseno.ModuloRotura = objParametroDiseno.ModuloRotura;
+                beParametrosDiseno.ModuloElasticidad = objParametroDiseno.ModuloElasticidad;
+                beParametrosDiseno.CoefTransfe = objParametroDiseno.CoefTransfe;
+
+
+                beParametrosDiseno.N18_NOM2 = "0";
+
+
+                upd = bLParametrosDiseno.Guardar(beParametrosDiseno);
+
+
+                return upd;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+
+        public int RegistroCapaPavimento(BEParametroDiseno objCapaPavimento)
+        {
+            try
+            {
+                int upd = 0;
+
+                BLParametrosDiseno bLCapaPavimento = new BLParametrosDiseno();
+                BEParametroDiseno beCapaPavimento = new BEParametroDiseno();
+
+                beCapaPavimento.idDiseno = Convert.ToInt32(Session["DisenoId"].ToString());
+                beCapaPavimento.idParametro = objCapaPavimento.idParametro;
+
+
+                beCapaPavimento.C_Asfaltica_Ingresado = 0;
+                beCapaPavimento.Base_Ingresado = 0;
+                beCapaPavimento.Sub_Base_Ingresado = objCapaPavimento.Sub_Base_Ingresado;
+                beCapaPavimento.Sub_Rasante_Ingresado = objCapaPavimento.Sub_Rasante_Ingresado;
+                beCapaPavimento.Concreto_Ingresado = objCapaPavimento.Concreto_Ingresado;
+
+                beCapaPavimento.N18_NOM1 = objCapaPavimento.N18_NOM1;
+                beCapaPavimento.N18_NOM2 = "0";
+                beCapaPavimento.N18_CALC1 = objCapaPavimento.N18_CALC1;
+                beCapaPavimento.N18_CALC2 = 0;
+                beCapaPavimento.SN_Requerido = objCapaPavimento.SN_Requerido;
+
+                beCapaPavimento.Capacidad_Elastica_Ingresado = 0;
+                beCapaPavimento.Concreto_Ingresado = 0;
+                beCapaPavimento.C_Asfaltica_Calculado = 0;
+                beCapaPavimento.Base_Ingresado_Calculado = 0;
+                beCapaPavimento.Sub_Base_Calculado = 0;
+                beCapaPavimento.Sub_Rasante_Calculado = 0;
+                beCapaPavimento.Capacidad_Elastica_Calculado = 0;
+                beCapaPavimento.Concreto_Calculado = 0;
+
+                beCapaPavimento.SN_Prop = 0;
+                beCapaPavimento.D_Requerido = 0;
+
+                upd = bLCapaPavimento.Actualizar(beCapaPavimento);
+
+
+                return upd;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
 
 
 

@@ -27,11 +27,36 @@ namespace SIS_Ga2.Entity
         public decimal ModuloReaccion { get; set; }
         public decimal CoefDrenaje { get; set; }
         public int idRepetEquiva { get; set; }
+
+
+        public decimal C_Asfaltica_Ingresado { get; set; }
+        public decimal Base_Ingresado { get; set; }
+        public decimal Sub_Base_Ingresado { get; set; }
+        public decimal Sub_Rasante_Ingresado { get; set; }
+        public decimal Capacidad_Elastica_Ingresado { get; set; }
+        public decimal Concreto_Ingresado { get; set; }
+        public decimal C_Asfaltica_Calculado { get; set; }
+        public decimal Base_Ingresado_Calculado { get; set; }
+        public decimal Sub_Base_Calculado { get; set; }
+        public decimal Sub_Rasante_Calculado { get; set; }
+        public decimal Capacidad_Elastica_Calculado { get; set; }
+        public decimal Concreto_Calculado { get; set; }
+        public decimal SN_Requerido { get; set; }
+        public decimal SN_Prop { get; set; }
+        public decimal D_Requerido { get; set; }
+        public decimal N18_CALC1 { get; set; }
+        public decimal N18_CALC2 { get; set; }
+        public decimal N18_NOM1 { get; set; }
+        public string N18_NOM2 { get; set; }                     
+
+
         public double FechaCreacion { get; set; }
         public double HoraCreacion { get; set; }
         public string UsrCreacion { get; set; }
         public double FechaActualizacion { get; set; }
         public double HoraActualizacion { get; set; }
         public string UsrActualizacion { get; set; }
+
+        public int Estado { get; set; }
     }
 }
