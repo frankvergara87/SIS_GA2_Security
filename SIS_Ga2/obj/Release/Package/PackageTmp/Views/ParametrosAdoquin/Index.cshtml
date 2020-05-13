@@ -24,7 +24,7 @@
 
 @*Obtenemos el diseñoId que se genera al guardar un ProyDiseno en la tabla*@
 <input type="hidden" id="hidDisenoId" value="@DisenoId" />
-
+<input type="hidden" id="hidRegParametro" value="0"/>
 
 <div class="col-lg-12">
     <div class="card">
@@ -266,7 +266,7 @@
                             </div>
                             <div class="p-0">
                                 <div class="btn-group float-right" role="group" aria-label="Basic example">
-                                    <button type="button" id="btnSiguiente_b" class="nexttab btn btn-primary"><span class="fa fa-arrow-right"></span> Siguiente</button>
+                                    <button type="button" id="btnSiguiente_b" class="btn btn-primary"><span class="fa fa-arrow-right"></span> Siguiente</button>
                                 </div>
                                 <div class="btn-group float-right" role="group" aria-label="Basic example">
                                     &nbsp;
@@ -2302,7 +2302,104 @@
                 });
 
 
+
+            //Proceso de Registro de Pamámetro Diseño
+
+            var objParametroDiseno = {};
+            objParametroDiseno["idPeriodo"] = document.getElementById("ddlPeriodoDisenoParam").value;
+            objParametroDiseno["ESAL"] = document.getElementById("txtCantidadESAL").value;
+            objParametroDiseno["Confiabilidad"] = document.getElementById("txtConfiab").value;
+            objParametroDiseno["ErrorCombinac"] = document.getElementById("txtErrorComb").value;
+            objParametroDiseno["ModuloResilencia"] = document.getElementById("txtModResilenciaSub").value;
+            objParametroDiseno["ServInicial"] = document.getElementById("txtServInicial").value;
+            objParametroDiseno["ServFinal"] = document.getElementById("txtServFinal").value;
+            objParametroDiseno["DiferenciaServ"] = document.getElementById("txtDifServ").value;
+            objParametroDiseno["DesvEstandar"] = document.getElementById("txtDesvEstandar").value;
+
+            //Solo Aplica para Concreto:
+            //objParametroDiseno["ResCompresion"] = document.getElementById("txtDesvEstandar").value;
+            //objParametroDiseno["ModuloRotura"] = document.getElementById("txtDesvEstandar").value;
+            //objParametroDiseno["ModuloElasticidad"] = document.getElementById("txtDesvEstandar").value;
+            //objParametroDiseno["CoefTransfe"] = document.getElementById("txtDesvEstandar").value;
+
+            
+            $.ajax
+                ({
+                    method: 'POST',
+                    url: '/ParametrosAdoquin/RegistroParametroDiseno',
+                    data: { 'objParametroDiseno': objParametroDiseno },
+                    success: function (respuesta) {
+
+                        document.getElementById("hidRegParametro").value = respuesta;
+
+                    },
+                    error: function (xhr, status) {
+                        alert("ERROR DE CÓDIGO");
+                    }
+
+                });
+
+            //Proceso de Registro de Pamámetro Diseño
+
+
+
         });
+
+
+
+        $("#btnSiguiente_b").click(function () {
+
+            //Validamos campos vacíos
+
+            var i, j, items = $('.nav-link'), pane = $('.tab-pane');
+            j = 3;
+            i = 1;
+            $(items[j]).removeClass('active');
+            $(items[j + 1]).addClass('active');
+            // for pane
+            $(pane[i]).removeClass('show active');
+            $(pane[i + 1]).addClass('show active');
+
+
+            //alert("aqui");
+            //Proceso de Registro de Capa Pavimento
+
+            var objCapaPavimento = {};
+            objCapaPavimento["idParametro"] = document.getElementById("hidRegParametro").value;
+            objCapaPavimento["C_Asfaltica_Ingresado"] = document.getElementById("txtME").value;
+            objCapaPavimento["Base_Ingresado"] = document.getElementById("txtCBR_1").value;
+            objCapaPavimento["Sub_Base_Ingresado"] = document.getElementById("txtCBR_2").value;
+            objCapaPavimento["Sub_Rasante_Ingresado"] = document.getElementById("txtCBR_3").value;
+            objCapaPavimento["N18_NOM1"] = document.getElementById("txtN18Nominal").value;
+            objCapaPavimento["N18_NOM2"] = document.getElementById("txtGT").value;
+            objCapaPavimento["N18_CALC1"] = document.getElementById("txtN18Calculado").value;
+            objCapaPavimento["N18_CALC2"] = document.getElementById("txtN18Calculado2").value;
+            objCapaPavimento["SN_Requerido"] = document.getElementById("txtSNRequerido").value;
+
+            $.ajax
+                ({
+                    method: 'POST',
+                    url: '/ParametrosAdoquin/RegistroCapaPavimento',
+                    data: { 'objCapaPavimento': objCapaPavimento },
+                    success: function (respuesta) {
+
+                        respuesta = respuesta;
+                        //alert(respuesta);
+
+                    },
+                    error: function (xhr, status) {
+                        alert("ERROR DE CÓDIGO");
+                    }
+
+        });
+
+
+            //Proceso de Registro de Capa Pavimento
+
+
+        });
+
+
 
 
         $("#ddlPeriodoDisenoParam").change(function () {
