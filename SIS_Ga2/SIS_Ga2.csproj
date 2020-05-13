@@ -194,6 +194,7 @@
     <Content Include="Content\images\coeficiente_2.jpg" />
     <Content Include="Content\images\Coeficiente_Drenaje_Porcentaje.jpg" />
     <Content Include="Content\images\Coeficiente_Drenaje_Tiempo.jpg" />
+    <Content Include="Content\images\concreto\Imagen_concreto_SB.jpg" />
     <Content Include="Content\images\concreto\Modulo de Elasticidad.jpg" />
     <Content Include="Content\images\concreto\Modulo de Rotura.jpg" />
     <Content Include="Content\images\concreto\ModuloReaccionEquivalenteImagen.jpg" />
